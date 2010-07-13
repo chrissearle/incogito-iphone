@@ -36,9 +36,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-    // Set the title.
-    self.title = @"Sessions";
-	
 	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
