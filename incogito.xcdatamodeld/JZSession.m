@@ -3,7 +3,7 @@
 //  incogito
 //
 //  Created by Chris Searle on 12.07.10.
-//  Copyright 2010 Itera Consulting. All rights reserved.
+//  Copyright 2010 Chris Searle. All rights reserved.
 //
 
 #import "JZSession.h"
@@ -14,5 +14,8 @@
 @dynamic title;
 @dynamic jzId;
 @dynamic active;
+@dynamic startDate;
+@dynamic endDate;
+@dynamic room;
 
 @end

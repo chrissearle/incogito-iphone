@@ -3,7 +3,7 @@
 //  incogito
 //
 //  Created by Chris Searle on 09.07.10.
-//  Copyright Itera Consulting 2010. All rights reserved.
+//  Copyright 2010 Chris Searle. All rights reserved.
 //
 
 #import "incogitoAppDelegate.h"
@@ -23,20 +23,16 @@
 	
 	NSManagedObjectContext *context = [self managedObjectContext];
 
-	/*
-	 
-	 // Move to a UI action - but check on load if none present.
-	 
+	// Move to a UI action - but check on load if none present.
 	 
     // Override point for customization after application launch.
-	javazoneSessionsRetriever *retriever = [[javazoneSessionsRetriever alloc] init];
+	JavazoneSessionsRetriever *retriever = [[JavazoneSessionsRetriever alloc] init];
 
 	retriever.managedObjectContext = context;
 	
 	[retriever retrieveSessionsWithUrl:@"http://javazone.no/incogito10/rest/events/JavaZone%202010/sessions"];
 	
 	[retriever release];
-	*/
 	
 	sessionViewController.managedObjectContext = context;
 	

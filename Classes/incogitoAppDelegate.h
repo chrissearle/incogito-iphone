@@ -3,7 +3,7 @@
 //  incogito
 //
 //  Created by Chris Searle on 09.07.10.
-//  Copyright Itera Consulting 2010. All rights reserved.
+//  Copyright 2010 Chris Searle. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

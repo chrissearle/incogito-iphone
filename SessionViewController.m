@@ -114,7 +114,7 @@
 
 	NSLog(@"Adding row %d %@ %@", indexPath.row, [session title], [session jzId]);
 	
-    cell.textLabel.text = [session title];
+    cell.textLabel.text = [NSString stringWithFormat:@"(%@) %@", [session room], [session title]];
 	
     cell.detailTextLabel.text = [session jzId];
 	

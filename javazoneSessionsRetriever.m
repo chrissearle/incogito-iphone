@@ -102,6 +102,9 @@
 	[session setJzId:[item objectForKey:@"id"]];
 	[session setActive:[NSNumber numberWithBool:TRUE]];
 	
+	[session setRoom:[NSNumber numberWithInt:[[[item objectForKey:@"room"]
+											   stringByReplacingOccurrencesOfString:@"Sal " withString:@""] intValue]]];
+	
 	NSLog(@"%@ - %@", [session jzId], [session title]);
 	
 		
