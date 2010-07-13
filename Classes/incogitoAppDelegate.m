@@ -24,8 +24,6 @@
 	NSManagedObjectContext *context = [self managedObjectContext];
 
 	// Move to a UI action - but check on load if none present.
-	 
-    // Override point for customization after application launch.
 	JavazoneSessionsRetriever *retriever = [[JavazoneSessionsRetriever alloc] init];
 
 	retriever.managedObjectContext = context;
@@ -33,6 +31,7 @@
 	[retriever retrieveSessionsWithUrl:@"http://javazone.no/incogito10/rest/events/JavaZone%202010/sessions"];
 	
 	[retriever release];
+	// End of temp code to init db content
 	
 	sessionViewController.managedObjectContext = context;
 	
