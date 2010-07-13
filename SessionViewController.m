@@ -107,7 +107,7 @@
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"session"];
 	
 	if (nil == cell) {
-		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"session"] autorelease];
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"session"] autorelease];
 	}
 	
 	JZSession *session = (JZSession *)[sessionsArray objectAtIndex:indexPath.row];
