@@ -7,12 +7,13 @@
 //
 
 #import "incogitoAppDelegate.h"
-#import "javazoneSessionsRetriever.h"
+#import "JavazoneSessionsRetriever.h"
 
 
 @implementation incogitoAppDelegate
 
 @synthesize window;
+@synthesize sessionViewController;
 
 
 #pragma mark -
@@ -21,7 +22,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
 	
 	NSManagedObjectContext *context = [self managedObjectContext];
-	
+
+	/*
+	 
+	 // Move to a UI action - but check on load if none present.
+	 
+	 
     // Override point for customization after application launch.
 	javazoneSessionsRetriever *retriever = [[javazoneSessionsRetriever alloc] init];
 
@@ -30,7 +36,11 @@
 	[retriever retrieveSessionsWithUrl:@"http://javazone.no/incogito10/rest/events/JavaZone%202010/sessions"];
 	
 	[retriever release];
+	*/
 	
+	sessionViewController.managedObjectContext = context;
+	
+	[window addSubview:sessionViewController.view];
     [window makeKeyAndVisible];
 	
 	return YES;

@@ -1,4 +1,4 @@
-@interface javazoneSessionsRetriever : NSObject {
+@interface JavazoneSessionsRetriever : NSObject {
 	NSManagedObjectContext *managedObjectContext;
 }
 

@@ -6,11 +6,11 @@
 //  Copyright 2010 Chris Searle. All rights reserved.
 //
 
-#import "javazoneSessionsRetriever.h"
+#import "JavazoneSessionsRetriever.h"
 #import "JSON.h"
 #import "JZSession.h"
 
-@implementation javazoneSessionsRetriever
+@implementation JavazoneSessionsRetriever
 
 @synthesize managedObjectContext;
 
