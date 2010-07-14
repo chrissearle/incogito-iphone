@@ -150,6 +150,8 @@
 		83424C3811ED981300590A7A /* 97-puzzle.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424BB611ED981300590A7A /* 97-puzzle.png */; };
 		83424C3911ED981300590A7A /* 98-palette.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424BB711ED981300590A7A /* 98-palette.png */; };
 		83424C3A11ED981300590A7A /* 99-umbrella.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424BB811ED981300590A7A /* 99-umbrella.png */; };
+		83424E9011EDB68000590A7A /* NowAndNextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83424E8F11EDB68000590A7A /* NowAndNextViewController.m */; };
+		83424E9211EDB68D00590A7A /* NowAndNext.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424E9111EDB68D00590A7A /* NowAndNext.xib */; };
 		838FC59811EC486600160C5E /* SessionList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 838FC59711EC486600160C5E /* SessionList.xib */; };
 		838FC60711EC4CD800160C5E /* SessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 838FC60611EC4CD800160C5E /* SessionViewController.m */; };
 		8394723C11EB98500075C4C1 /* JavazoneSessionsRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */; };
@@ -311,6 +313,9 @@
 		83424BB611ED981300590A7A /* 97-puzzle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "97-puzzle.png"; sourceTree = "<group>"; };
 		83424BB711ED981300590A7A /* 98-palette.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "98-palette.png"; sourceTree = "<group>"; };
 		83424BB811ED981300590A7A /* 99-umbrella.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "99-umbrella.png"; sourceTree = "<group>"; };
+		83424E8E11EDB68000590A7A /* NowAndNextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowAndNextViewController.h; sourceTree = "<group>"; };
+		83424E8F11EDB68000590A7A /* NowAndNextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowAndNextViewController.m; sourceTree = "<group>"; };
+		83424E9111EDB68D00590A7A /* NowAndNext.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NowAndNext.xib; sourceTree = "<group>"; };
 		838FC59711EC486600160C5E /* SessionList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SessionList.xib; sourceTree = "<group>"; };
 		838FC60511EC4CD800160C5E /* SessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SessionViewController.h; path = ../SessionViewController.h; sourceTree = "<group>"; };
 		838FC60611EC4CD800160C5E /* SessionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SessionViewController.m; path = ../SessionViewController.m; sourceTree = "<group>"; };
@@ -361,6 +366,8 @@
 				83424B2D11ED88E700590A7A /* OverviewViewController.m */,
 				83424B2F11ED898B00590A7A /* RefreshViewController.h */,
 				83424B3011ED898B00590A7A /* RefreshViewController.m */,
+				83424E8E11EDB68000590A7A /* NowAndNextViewController.h */,
+				83424E8F11EDB68000590A7A /* NowAndNextViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -405,6 +412,7 @@
 				838FC59711EC486600160C5E /* SessionList.xib */,
 				8D1107310486CEB800E47090 /* incogito-Info.plist */,
 				83424B3211ED899E00590A7A /* Refresh.xib */,
+				83424E9111EDB68D00590A7A /* NowAndNext.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -768,6 +776,7 @@
 				83424C3811ED981300590A7A /* 97-puzzle.png in Resources */,
 				83424C3911ED981300590A7A /* 98-palette.png in Resources */,
 				83424C3A11ED981300590A7A /* 99-umbrella.png in Resources */,
+				83424E9211EDB68D00590A7A /* NowAndNext.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -792,6 +801,7 @@
 				838FC60711EC4CD800160C5E /* SessionViewController.m in Sources */,
 				83424B2E11ED88E700590A7A /* OverviewViewController.m in Sources */,
 				83424B3111ED898B00590A7A /* RefreshViewController.m in Sources */,
+				83424E9011EDB68000590A7A /* NowAndNextViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
