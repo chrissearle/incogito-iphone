@@ -8,5 +8,6 @@
 - (void) addSession:(NSDictionary *)item;
 - (void) invalidateSessions;
 - (void) removeSpeakers;
+- (NSDate *)getDateFromJson:(NSDictionary *)jsonDate;
 
 @end

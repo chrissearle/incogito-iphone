@@ -142,6 +142,14 @@
 	[session setRoom:[NSNumber numberWithInt:[[[item objectForKey:@"room"]
 											   stringByReplacingOccurrencesOfString:@"Sal " withString:@""] intValue]]];
 	
+
+	// Dates
+	NSDictionary *start = [item objectForKey:@"start"];
+	NSDictionary *end = [item objectForKey:@"end"];
+	
+	[session setStartDate:[self getDateFromJson:start]];
+	[session setEndDate:[self getDateFromJson:end]];
+		
 	NSLog(@"%@ - %@", [session jzId], [session title]);
 
 	NSArray *speakers = [item objectForKey:@"speakers"];
@@ -158,6 +166,21 @@
 	if (![managedObjectContext save:&error]) {
 		// Handle the error.
 	}
+}
+
+- (NSDate *)getDateFromJson:(NSDictionary *)jsonDate {
+	NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@ %@:%@:00 +0100",
+							[jsonDate objectForKey:@"year"],
+							[jsonDate objectForKey:@"month"],
+							[jsonDate objectForKey:@"day"],
+							[jsonDate objectForKey:@"hour"],
+							[jsonDate objectForKey:@"minute"]];
+
+	NSLog(dateString);
+	
+	NSDate *date = [[NSDate alloc] initWithString:dateString];
+	
+	return date;
 }
 
 @end
