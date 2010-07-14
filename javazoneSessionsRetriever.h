@@ -7,6 +7,6 @@
 - (NSUInteger)retrieveSessionsWithUrl:(NSString *)urlString;
 - (void) addSession:(NSDictionary *)item;
 - (void) invalidateSessions;
-
+- (void) removeSpeakers;
 
 @end

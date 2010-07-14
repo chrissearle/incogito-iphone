@@ -22,6 +22,8 @@
 		830B12B811EDCA66004A9B25 /* Advanced.png in Resources */ = {isa = PBXBuildFile; fileRef = 830B12B511EDCA66004A9B25 /* Advanced.png */; };
 		830B12B911EDCA66004A9B25 /* Intermediate.png in Resources */ = {isa = PBXBuildFile; fileRef = 830B12B611EDCA66004A9B25 /* Intermediate.png */; };
 		830B12BA11EDCA66004A9B25 /* Introductory.png in Resources */ = {isa = PBXBuildFile; fileRef = 830B12B711EDCA66004A9B25 /* Introductory.png */; };
+		830B149311EDED9D004A9B25 /* JZSessionBio.m in Sources */ = {isa = PBXBuildFile; fileRef = 830B149011EDED9D004A9B25 /* JZSessionBio.m */; };
+		830B149411EDED9D004A9B25 /* JZSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 830B149211EDED9D004A9B25 /* JZSession.m */; };
 		834243EB11E74CAD00B438A8 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 834243EA11E74CAD00B438A8 /* Icon.png */; };
 		83424B2211ED882F00590A7A /* Overview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424B2111ED882F00590A7A /* Overview.xib */; };
 		83424B2E11ED88E700590A7A /* OverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83424B2D11ED88E700590A7A /* OverviewViewController.m */; };
@@ -40,7 +42,6 @@
 		8394726911EB98B10075C4C1 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394726111EB98B10075C4C1 /* SBJsonBase.m */; };
 		8394726A11EB98B10075C4C1 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394726311EB98B10075C4C1 /* SBJsonParser.m */; };
 		8394726B11EB98B10075C4C1 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394726511EB98B10075C4C1 /* SBJsonWriter.m */; };
-		8394729411EB9C3E0075C4C1 /* JZSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394729311EB9C3E0075C4C1 /* JZSession.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,10 @@
 		830B12B511EDCA66004A9B25 /* Advanced.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Advanced.png; sourceTree = "<group>"; };
 		830B12B611EDCA66004A9B25 /* Intermediate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Intermediate.png; sourceTree = "<group>"; };
 		830B12B711EDCA66004A9B25 /* Introductory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Introductory.png; sourceTree = "<group>"; };
+		830B148F11EDED9D004A9B25 /* JZSessionBio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSessionBio.h; sourceTree = "<group>"; };
+		830B149011EDED9D004A9B25 /* JZSessionBio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSessionBio.m; sourceTree = "<group>"; };
+		830B149111EDED9D004A9B25 /* JZSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSession.h; sourceTree = "<group>"; };
+		830B149211EDED9D004A9B25 /* JZSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSession.m; sourceTree = "<group>"; };
 		834243EA11E74CAD00B438A8 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		83424B2111ED882F00590A7A /* Overview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Overview.xib; sourceTree = "<group>"; };
 		83424B2C11ED88E700590A7A /* OverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverviewViewController.h; sourceTree = "<group>"; };
@@ -219,8 +224,6 @@
 		8394726311EB98B10075C4C1 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		8394726411EB98B10075C4C1 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		8394726511EB98B10075C4C1 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		8394729211EB9C3E0075C4C1 /* JZSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSession.h; sourceTree = "<group>"; };
-		8394729311EB9C3E0075C4C1 /* JZSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSession.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* incogito-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "incogito-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -566,12 +569,13 @@
 				8394726911EB98B10075C4C1 /* SBJsonBase.m in Sources */,
 				8394726A11EB98B10075C4C1 /* SBJsonParser.m in Sources */,
 				8394726B11EB98B10075C4C1 /* SBJsonWriter.m in Sources */,
-				8394729411EB9C3E0075C4C1 /* JZSession.m in Sources */,
 				838FC60711EC4CD800160C5E /* SessionViewController.m in Sources */,
 				83424B2E11ED88E700590A7A /* OverviewViewController.m in Sources */,
 				83424B3111ED898B00590A7A /* RefreshViewController.m in Sources */,
 				83424E9011EDB68000590A7A /* NowAndNextViewController.m in Sources */,
 				83424EBC11EDB79400590A7A /* MyProgrammeViewController.m in Sources */,
+				830B149311EDED9D004A9B25 /* JZSessionBio.m in Sources */,
+				830B149411EDED9D004A9B25 /* JZSession.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,8 +663,10 @@
 		2819305F112F816700ECF9B4 /* incogito.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				8394729211EB9C3E0075C4C1 /* JZSession.h */,
-				8394729311EB9C3E0075C4C1 /* JZSession.m */,
+				830B148F11EDED9D004A9B25 /* JZSessionBio.h */,
+				830B149011EDED9D004A9B25 /* JZSessionBio.m */,
+				830B149111EDED9D004A9B25 /* JZSession.h */,
+				830B149211EDED9D004A9B25 /* JZSession.m */,
 				28C3AD890F43EF2300507BA6 /* incogito.xcdatamodel */,
 			);
 			currentVersion = 28C3AD890F43EF2300507BA6 /* incogito.xcdatamodel */;

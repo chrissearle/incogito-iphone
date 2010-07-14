@@ -2,21 +2,23 @@
 //  JZSession.m
 //  incogito
 //
-//  Created by Chris Searle on 12.07.10.
-//  Copyright 2010 Chris Searle. All rights reserved.
+//  Created by Chris Searle on 14.07.10.
+//  Copyright 2010 Itera Consulting. All rights reserved.
 //
 
 #import "JZSession.h"
 
+#import "JZSessionBio.h"
 
 @implementation JZSession 
 
-@dynamic title;
-@dynamic jzId;
 @dynamic active;
-@dynamic startDate;
-@dynamic endDate;
 @dynamic room;
+@dynamic endDate;
+@dynamic startDate;
+@dynamic jzId;
+@dynamic title;
 @dynamic level;
+@dynamic speakers;
 
 @end

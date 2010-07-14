@@ -9,6 +9,7 @@
 #import "JavazoneSessionsRetriever.h"
 #import "JSON.h"
 #import "JZSession.h"
+#import "JZSessionBio.h"
 
 @implementation JavazoneSessionsRetriever
 
@@ -46,7 +47,11 @@
 	
 	NSArray *array = [object objectForKey:@"sessions"];
 	
+	// Set all sessions inactive. Active flag will be set for existing and new sessions retrieved.
 	[self invalidateSessions];
+	
+	// Remove speakers - they will get added for all active sessions.
+	[self removeSpeakers];
 	
 	// Each element in statuses is a single status
 	// represented as a NSDictionary
@@ -78,6 +83,26 @@
 	}	
 }
 
+- (void) removeSpeakers {
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"JZSessionBio" inManagedObjectContext:managedObjectContext];
+	
+	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+	[request setEntity:entityDescription];
+	
+	NSError *error;
+	
+	NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];
+	
+	for (NSManagedObject *speaker in array) {
+		[managedObjectContext deleteObject:speaker];
+	}
+	
+	if (![managedObjectContext save:&error]) {
+		// Handle the error.
+	}	
+}
+
 - (void) addSession:(NSDictionary *)item {
 	NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
@@ -92,21 +117,21 @@
 
 	NSError *error;
 
-	NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];
+	NSArray *sessions = [managedObjectContext executeFetchRequest:request error:&error];
 	
 	JZSession *session;						  
 	
-	if (array == nil)
+	if (sessions == nil)
 	{
 		// Create and configure a new instance of the Event entity
 		session = (JZSession *)[NSEntityDescription insertNewObjectForEntityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
 	} else {
-		int count = [array count];
+		int count = [sessions count];
 		
 		if (count == 0) {
 			session = (JZSession *)[NSEntityDescription insertNewObjectForEntityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
 		} else {
-			session = (JZSession *)[array objectAtIndex:0];
+			session = (JZSession *)[sessions objectAtIndex:0];
 		}
 	}
 	
@@ -118,8 +143,18 @@
 											   stringByReplacingOccurrencesOfString:@"Sal " withString:@""] intValue]]];
 	
 	NSLog(@"%@ - %@", [session jzId], [session title]);
+
+	NSArray *speakers = [item objectForKey:@"speakers"];
 	
+	for (NSDictionary *speaker in speakers) {
+		JZSessionBio *sessionBio = (JZSessionBio *)[NSEntityDescription insertNewObjectForEntityForName:@"JZSessionBio" inManagedObjectContext:managedObjectContext];
+
+		[sessionBio setBio:[speaker objectForKey:@"bioHtml"]];
+		[sessionBio setName:[speaker objectForKey:@"name"]];
 		
+		[session addSpeakersObject:sessionBio];
+	}
+	
 	if (![managedObjectContext save:&error]) {
 		// Handle the error.
 	}

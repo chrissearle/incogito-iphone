@@ -9,6 +9,7 @@
 #import "OverviewViewController.h"
 #import "IncogitoAppDelegate.h"
 #import "JZSession.h"
+#import "JZSessionBio.h"
 
 @implementation OverviewViewController
 
@@ -95,9 +96,16 @@
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"sessionCell"];
 	}
 	
+	NSMutableArray *speakerNames = [[NSMutableArray alloc] initWithCapacity:[session.speakers count]];
+	
+	for (JZSessionBio *bio in session.speakers) {
+		[speakerNames addObject:[bio name]];
+	}
+	
 	cell.textLabel.text = session.title;
 	cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.0];
-	cell.detailTextLabel.text = [NSString stringWithFormat:@"Room %@", session.room];
+
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"Room %@ - %@", session.room, [speakerNames componentsJoinedByString:@", "]];
 	cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
 	return cell;
 }
