@@ -34,5 +34,7 @@
 - (NSArray *)getSectionTitles;
 - (NSDictionary *)getSessions;
 
+- (BOOL)startDate:(NSDate *)startDate andEndDate:(NSDate *)endDate areBetween:(NSDate *)earliestDate and:(NSDate *)latestDate;
+
 @end
 

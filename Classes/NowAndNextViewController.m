@@ -8,6 +8,8 @@
 
 #import "NowAndNextViewController.h"
 
+// Notes: NSDate *now = [[NSDate alloc] init];
+
 
 @implementation NowAndNextViewController
 
