@@ -36,7 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
 	[request setEntity:entityDescription];

@@ -15,9 +15,6 @@
 @synthesize managedObjectContext;
 
 - (NSUInteger)retrieveSessionsWithUrl:(NSString *)urlString {
-	// Create new SBJSON parser object
-	SBJSON *parser = [[SBJSON alloc] init];
-	
 	NSMutableURLRequest *urlRequest;
 	
 	urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
@@ -34,12 +31,18 @@
 		return 0;
 	}
 	
+	// Create new SBJSON parser object
+	SBJSON *parser = [[SBJSON alloc] init];
+
 	// Get JSON as a NSString from NSData response
 	NSString *json_string = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-	
+		
 	// parse the JSON response into an object
 	// Here we're using NSArray since we're parsing an array of JSON status objects
 	NSDictionary *object = [parser objectWithString:json_string error:nil];
+	
+	[json_string release];
+	[parser release];
 	
 	NSArray *array = [object objectForKey:@"sessions"];
 	
