@@ -142,7 +142,8 @@
 	[session setRoom:[NSNumber numberWithInt:[[[item objectForKey:@"room"]
 											   stringByReplacingOccurrencesOfString:@"Sal " withString:@""] intValue]]];
 	
-
+	[session setLevel:[[item objectForKey:@"level"] objectForKey:@"id"]];
+	
 	// Dates
 	NSDictionary *start = [item objectForKey:@"start"];
 	NSDictionary *end = [item objectForKey:@"end"];
@@ -176,8 +177,6 @@
 							[jsonDate objectForKey:@"hour"],
 							[jsonDate objectForKey:@"minute"]];
 
-	NSLog(dateString);
-	
 	NSDate *date = [[NSDate alloc] initWithString:dateString];
 	
 	return date;
