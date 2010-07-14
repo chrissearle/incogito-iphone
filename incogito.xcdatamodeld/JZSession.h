@@ -19,7 +19,7 @@
 @property (nonatomic, retain) NSDate * startDate;
 @property (nonatomic, retain) NSDate * endDate;
 @property (nonatomic, retain) NSNumber * room;
-
+@property (nonatomic, retain) NSString * level;
 
 @end
 

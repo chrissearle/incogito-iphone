@@ -8,6 +8,7 @@
 
 #import "IncogitoAppDelegate.h"
 #import "JavazoneSessionsRetriever.h"
+#import "JZSession.h"
 
 @implementation IncogitoAppDelegate
 
@@ -207,7 +208,7 @@
 #pragma mark Data retrieval utils
 
 - (NSArray *)getSectionTitles {
-	return [NSArray arrayWithObjects:@"Day 1: 09:00 - 10:00", @"Day 1: 09:00 - 10:00",
+	return [NSArray arrayWithObjects:@"Day 1: 09:00 - 10:00",
 			@"Day 1: 10:15 - 11:15", 
 			@"Day 1: 11:45 - 12:45", 
 			@"Day 1: 13:00 - 14:00", 
@@ -224,6 +225,45 @@
 			@"Day 2: 17:00 - 18:00", 
 			nil];
 }
+
+- (NSDictionary *)getSessions {
+	NSManagedObjectContext *context = [self managedObjectContext];
+	
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"JZSession" inManagedObjectContext:context];
+	
+	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+	
+	[request setEntity:entityDescription];
+
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"room" ascending:YES];
+	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+	[request setSortDescriptors:sortDescriptors];
+	[sortDescriptors release];
+	[sortDescriptor release];
+		
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:
+							  @"(active == %@)", [NSNumber numberWithBool:true]];
+	
+	[request setPredicate:predicate];
+
+	NSError *error;
+	
+	NSMutableArray *mutableFetchResults = [[context executeFetchRequest:request error:&error] mutableCopy];
+	
+	NSArray *sessionsArray = [[NSArray alloc] initWithArray:mutableFetchResults];
+	
+	NSArray *keys = [NSArray arrayWithObjects:@"Day 1: 09:00 - 10:00", nil];
+	NSArray *objects = [NSArray arrayWithObjects:sessionsArray, nil];
+	
+	NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+	
+	[mutableFetchResults release];
+	[request release];
+	
+	return dictionary;
+}
+
 
 @end
 

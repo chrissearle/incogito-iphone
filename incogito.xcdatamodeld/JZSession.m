@@ -17,5 +17,6 @@
 @dynamic startDate;
 @dynamic endDate;
 @dynamic room;
+@dynamic level;
 
 @end

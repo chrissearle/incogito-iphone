@@ -32,6 +32,7 @@
 - (NSUInteger)refreshData;
 
 - (NSArray *)getSectionTitles;
+- (NSDictionary *)getSessions;
 
 @end
 

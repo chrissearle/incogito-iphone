@@ -8,10 +8,12 @@
 
 #import "OverviewViewController.h"
 #import "IncogitoAppDelegate.h"
+#import "JZSession.h"
 
 @implementation OverviewViewController
 
 @synthesize sectionTitles;
+@synthesize sessions;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -33,7 +35,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	sectionTitles = [[NSMutableArray alloc] initWithArray:[appDelegate getSectionTitles]];
+	sectionTitles = [[NSArray alloc] initWithArray:[appDelegate getSectionTitles]];
+	sessions = [appDelegate getSessions];
 }
 
 /*
@@ -59,6 +62,7 @@
 
 
 - (void)dealloc {
+	[sessions dealloc];
 	[sectionTitles dealloc];
     [super dealloc];
 }
@@ -67,20 +71,32 @@
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	// Return the number of sessions in the given timeslot
+	NSString *sectionName = [sectionTitles objectAtIndex:section];
 	
-	return 1;
+	NSArray *sectionSessions = [sessions objectForKey:sectionName];
+	
+	if (nil == sectionSessions) {
+		return 0;
+	}
+	
+	return [sectionSessions count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSString *sectionName = [sectionTitles objectAtIndex:indexPath.section];
+	
+	NSArray *sectionSessions = [sessions objectForKey:sectionName];
+
+	JZSession *session = [sectionSessions objectAtIndex:indexPath.row];
+	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"sessionCell"];
 	
 	if (nil == cell) {
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"sessionCell"];
 	}
 	
-	cell.textLabel.text = @"Cell title";
-	cell.detailTextLabel.text = @"Subtitle";
+	cell.textLabel.text = session.title;
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"Room %@", session.room];
 	
 	return cell;
 }

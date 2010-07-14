@@ -13,9 +13,11 @@
 @interface OverviewViewController : UIViewController <UITableViewDataSource> {
 	IBOutlet IncogitoAppDelegate *appDelegate;
 	
-	NSMutableArray *sectionTitles;
+	NSArray *sectionTitles;
+	NSDictionary *sessions;
 }
 
-@property (nonatomic, retain) NSMutableArray *sectionTitles;
+@property (nonatomic, retain) NSArray *sectionTitles;
+@property (nonatomic, retain) NSDictionary *sessions;
 
 @end
