@@ -4,7 +4,7 @@
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
-- (void)retrieveSessionsWithUrl:(NSString *)urlString;
+- (NSUInteger)retrieveSessionsWithUrl:(NSString *)urlString;
 - (void) addSession:(NSDictionary *)item;
 - (void) invalidateSessions;
 

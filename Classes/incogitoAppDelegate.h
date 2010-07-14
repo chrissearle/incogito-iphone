@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "SessionViewController.h"
 
-@interface incogitoAppDelegate : NSObject <UIApplicationDelegate> {
+@interface IncogitoAppDelegate : NSObject <UIApplicationDelegate> {
     
     UIWindow *window;
-    SessionViewController *sessionViewController;
+	IBOutlet UITabBarController *rootController;
 	
 @private
     NSManagedObjectContext *managedObjectContext_;
@@ -22,13 +21,15 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet SessionViewController *sessionViewController;
+@property (nonatomic, retain) IBOutlet UITabBarController *rootController;
 
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 - (NSString *)applicationDocumentsDirectory;
+
+- (NSUInteger)refreshData;
 
 @end
 

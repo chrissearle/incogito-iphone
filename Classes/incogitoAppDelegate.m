@@ -6,36 +6,20 @@
 //  Copyright 2010 Chris Searle. All rights reserved.
 //
 
-#import "incogitoAppDelegate.h"
+#import "IncogitoAppDelegate.h"
 #import "JavazoneSessionsRetriever.h"
 
-
-@implementation incogitoAppDelegate
+@implementation IncogitoAppDelegate
 
 @synthesize window;
-@synthesize sessionViewController;
-
+@synthesize rootController;
 
 #pragma mark -
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
 	
-	NSManagedObjectContext *context = [self managedObjectContext];
-
-	// Move to a UI action - but check on load if none present.
-	JavazoneSessionsRetriever *retriever = [[JavazoneSessionsRetriever alloc] init];
-
-	retriever.managedObjectContext = context;
-	
-	[retriever retrieveSessionsWithUrl:@"http://javazone.no/incogito10/rest/events/JavaZone%202010/sessions"];
-	
-	[retriever release];
-	// End of temp code to init db content
-	
-	sessionViewController.managedObjectContext = context;
-	
-	[window addSubview:sessionViewController.view];
+	[window addSubview:rootController.view];
     [window makeKeyAndVisible];
 	
 	return YES;
@@ -204,9 +188,20 @@
     [persistentStoreCoordinator_ release];
     
     [window release];
+	[rootController release]; 
     [super dealloc];
 }
 
+#pragma mark -
+#pragma mark REST 
+
+- (NSUInteger)refreshData {
+	JavazoneSessionsRetriever *retriever = [[[JavazoneSessionsRetriever alloc] init] autorelease];
+	
+	retriever.managedObjectContext = [self managedObjectContext];
+	
+	return [retriever retrieveSessionsWithUrl:@"http://javazone.no/incogito10/rest/events/JavaZone%202010/sessions"];
+}
 
 @end
 

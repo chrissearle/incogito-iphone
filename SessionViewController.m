@@ -57,8 +57,9 @@
 	if (mutableFetchResults == nil) {
 		// Handle the error.
 	}
+
+	sessionsArray = [[NSMutableArray alloc] initWithArray:mutableFetchResults];
 	
-	[self setSessionsArray:mutableFetchResults];
 	[mutableFetchResults release];
 	[request release];
 }
@@ -86,6 +87,7 @@
 
 
 - (void)dealloc {
+	[sessionsArray dealloc];
     [super dealloc];
 }
 

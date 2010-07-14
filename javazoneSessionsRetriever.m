@@ -14,7 +14,7 @@
 
 @synthesize managedObjectContext;
 
-- (void)retrieveSessionsWithUrl:(NSString *)urlString {
+- (NSUInteger)retrieveSessionsWithUrl:(NSString *)urlString {
 	// Create new SBJSON parser object
 	SBJSON *parser = [[SBJSON alloc] init];
 	
@@ -24,8 +24,15 @@
 	
 	[urlRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	
+	NSError *error = nil;
+	
 	// Perform request and get JSON back as a NSData object
-	NSData *response = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:nil];
+	NSData *response = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:&error];
+	
+	if (nil != error) {
+		NSLog(@"%@:%s Error retrieving sessions: %@", [self class], _cmd, [error localizedDescription]);
+		return 0;
+	}
 	
 	// Get JSON as a NSString from NSData response
 	NSString *json_string = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
@@ -44,6 +51,8 @@
 	{
 		[self addSession:item];
 	}
+	
+	return [array count];
 }
 
 - (void) invalidateSessions {
