@@ -36,7 +36,7 @@
     [super viewDidLoad];
 	
 	sectionTitles = [[NSArray alloc] initWithArray:[appDelegate getSectionTitles]];
-	sessions = [appDelegate getSessions];
+	sessions = [[appDelegate getSessions] retain];
 }
 
 /*
@@ -62,8 +62,8 @@
 
 
 - (void)dealloc {
-	[sessions dealloc];
-	[sectionTitles dealloc];
+	[sessions release];
+	[sectionTitles release];
     [super dealloc];
 }
 
@@ -96,8 +96,9 @@
 	}
 	
 	cell.textLabel.text = session.title;
+	cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.0];
 	cell.detailTextLabel.text = [NSString stringWithFormat:@"Room %@", session.room];
-	
+	cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
 	return cell;
 }
 

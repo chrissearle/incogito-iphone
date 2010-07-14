@@ -87,7 +87,7 @@
 
 
 - (void)dealloc {
-	[sessionsArray dealloc];
+	[sessionsArray release];
     [super dealloc];
 }
 
