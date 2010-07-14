@@ -60,5 +60,38 @@
     [super dealloc];
 }
 
+#pragma mark -
+#pragma mark UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	// Return the number of sessions in the given timeslot
+	
+	return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"sessionCell"];
+	
+	if (nil == cell) {
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"sessionCell"];
+	}
+	
+	cell.textLabel.text = @"Cell title";
+	cell.detailTextLabel.text = @"Subtitle";
+	
+	return cell;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	// Return the number of timeslots
+	
+	return 1;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	// Return section title
+	
+	return @"Section Title";
+}
 
 @end

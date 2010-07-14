@@ -9,10 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface OverviewViewController : UIViewController {
-	IBOutlet UITabBarController *tabBarController;
+@interface OverviewViewController : UIViewController <UITableViewDataSource> {
 }
-
-@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
 
 @end
