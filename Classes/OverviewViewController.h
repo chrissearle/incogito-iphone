@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class IncogitoAppDelegate;
 
 @interface OverviewViewController : UIViewController <UITableViewDataSource> {
+	IBOutlet IncogitoAppDelegate *appDelegate;
+	
+	NSMutableArray *sectionTitles;
 }
+
+@property (nonatomic, retain) NSMutableArray *sectionTitles;
 
 @end

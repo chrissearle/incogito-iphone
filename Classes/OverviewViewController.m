@@ -7,9 +7,11 @@
 //
 
 #import "OverviewViewController.h"
-
+#import "IncogitoAppDelegate.h"
 
 @implementation OverviewViewController
+
+@synthesize sectionTitles;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -27,12 +29,12 @@
 }
 */
 
-/*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	sectionTitles = [[NSMutableArray alloc] initWithArray:[appDelegate getSectionTitles]];
 }
-*/
 
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -57,6 +59,7 @@
 
 
 - (void)dealloc {
+	[sectionTitles dealloc];
     [super dealloc];
 }
 
@@ -83,15 +86,11 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	// Return the number of timeslots
-	
-	return 1;
+	return [sectionTitles count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	// Return section title
-	
-	return @"Section Title";
+	return [sectionTitles objectAtIndex:section];
 }
 
 @end

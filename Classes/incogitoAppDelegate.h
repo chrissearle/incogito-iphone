@@ -31,5 +31,7 @@
 
 - (NSUInteger)refreshData;
 
+- (NSArray *)getSectionTitles;
+
 @end
 
