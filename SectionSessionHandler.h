@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class Section;
+
 @interface SectionSessionHandler : NSObject {
 	NSManagedObjectContext *managedObjectContext;
 }
@@ -18,6 +20,7 @@
 - (NSArray *)getSections;
 
 - (NSDictionary *)getSessions;
+- (NSArray *)getSessionsForSection:(Section *)section;
 
 - (BOOL)startDate:(NSDate *)startDate andEndDate:(NSDate *)endDate areBetween:(NSDate *)earliestDate and:(NSDate *)latestDate;
 
