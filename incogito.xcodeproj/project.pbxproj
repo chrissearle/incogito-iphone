@@ -45,6 +45,8 @@
 		83D6BFF111EF3A7B00FBC0FE /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6BFEA11EF3A7B00FBC0FE /* Section.m */; };
 		83D6BFF211EF3A7B00FBC0FE /* JZSessionBio.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6BFEC11EF3A7B00FBC0FE /* JZSessionBio.m */; };
 		83D6BFF311EF3A7B00FBC0FE /* UserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6BFEE11EF3A7B00FBC0FE /* UserSession.m */; };
+		83D6C07211EF922500FBC0FE /* DetailedSessionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D6C06F11EF922500FBC0FE /* DetailedSessionView.xib */; };
+		83D6C07311EF922500FBC0FE /* DetailedSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6C07111EF922500FBC0FE /* DetailedSessionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -234,6 +236,9 @@
 		83D6BFEC11EF3A7B00FBC0FE /* JZSessionBio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSessionBio.m; sourceTree = "<group>"; };
 		83D6BFED11EF3A7B00FBC0FE /* UserSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSession.h; sourceTree = "<group>"; };
 		83D6BFEE11EF3A7B00FBC0FE /* UserSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSession.m; sourceTree = "<group>"; };
+		83D6C06F11EF922500FBC0FE /* DetailedSessionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DetailedSessionView.xib; path = Classes/DetailedSessionView.xib; sourceTree = "<group>"; };
+		83D6C07011EF922500FBC0FE /* DetailedSessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedSessionViewController.h; sourceTree = "<group>"; };
+		83D6C07111EF922500FBC0FE /* DetailedSessionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedSessionViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* incogito-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "incogito-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -255,6 +260,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				83D6C07011EF922500FBC0FE /* DetailedSessionViewController.h */,
+				83D6C07111EF922500FBC0FE /* DetailedSessionViewController.m */,
 				83D6BDC011EF051700FBC0FE /* SectionSessionHandler.h */,
 				83D6BDC111EF051700FBC0FE /* SectionSessionHandler.m */,
 				83F2D54411EBB56B0043A75E /* REST */,
@@ -306,6 +313,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				83D6C06F11EF922500FBC0FE /* DetailedSessionView.xib */,
 				830B12B511EDCA66004A9B25 /* Advanced.png */,
 				830B12B611EDCA66004A9B25 /* Intermediate.png */,
 				830B12B711EDCA66004A9B25 /* Introductory.png */,
@@ -559,6 +567,7 @@
 				830B12B811EDCA66004A9B25 /* Advanced.png in Resources */,
 				830B12B911EDCA66004A9B25 /* Intermediate.png in Resources */,
 				830B12BA11EDCA66004A9B25 /* Introductory.png in Resources */,
+				83D6C07211EF922500FBC0FE /* DetailedSessionView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,6 +599,7 @@
 				83D6BFF111EF3A7B00FBC0FE /* Section.m in Sources */,
 				83D6BFF211EF3A7B00FBC0FE /* JZSessionBio.m in Sources */,
 				83D6BFF311EF3A7B00FBC0FE /* UserSession.m in Sources */,
+				83D6C07311EF922500FBC0FE /* DetailedSessionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
