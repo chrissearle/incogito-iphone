@@ -13,11 +13,13 @@
 
 
 @interface RefreshViewController : UIViewController {
-	IBOutlet IncogitoAppDelegate *appDelegate;
-	UIActivityIndicatorView *spinner;
-	
-	UIAlertView *refreshComplete;
+	IncogitoAppDelegate			*appDelegate;
+	UIActivityIndicatorView		*spinner;
+	UITextView					*refreshStatus;
 }
+
+@property (nonatomic, retain) IBOutlet UIActivityIndicatorView	*spinner;
+@property (nonatomic, retain) IBOutlet UITextView				*refreshStatus;
 
 - (IBAction)refresh:(id)sender;
 
