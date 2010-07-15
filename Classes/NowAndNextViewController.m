@@ -41,10 +41,9 @@
 	
 	NSMutableArray *titles = [[NSMutableArray alloc] init];
 	
-	// NSDate *now = [[NSDate alloc] init];
-	// Careful to get +0100 here.
-	// Testing
-	NSDate *now = [[NSDate alloc] initWithString:@"2010-09-08 10:33:00 +0100"];
+	NSDate *now = [[NSDate alloc] init];
+	//For testing
+	//NSDate *now = [[NSDate alloc] initWithString:@"2010-09-08 10:33:00 +0100"];
 	Section *section = [handler getSectionForDate:now];
 	[now release];
 	

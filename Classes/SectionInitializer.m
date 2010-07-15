@@ -16,21 +16,21 @@
 - (void) initializeSections {
 	[self removeSections];
 	
-	[self addSectionForDay:1 startingAt:@"2010-09-08 09:00:00 +0100" endingAt:@"2010-09-08 10:00:00 +0100"];
-	[self addSectionForDay:1 startingAt:@"2010-09-08 10:15:00 +0100" endingAt:@"2010-09-08 11:15:00 +0100"];
-	[self addSectionForDay:1 startingAt:@"2010-09-08 11:45:00 +0100" endingAt:@"2010-09-08 12:45:00 +0100"];
-	[self addSectionForDay:1 startingAt:@"2010-09-08 13:00:00 +0100" endingAt:@"2010-09-08 14:00:00 +0100"];
-	[self addSectionForDay:1 startingAt:@"2010-09-08 14:15:00 +0100" endingAt:@"2010-09-08 15:15:00 +0100"];
-	[self addSectionForDay:1 startingAt:@"2010-09-08 15:45:00 +0100" endingAt:@"2010-09-08 16:45:00 +0100"];
-	[self addSectionForDay:1 startingAt:@"2010-09-08 17:00:00 +0100" endingAt:@"2010-09-08 18:00:00 +0100"];
-	[self addSectionForDay:1 startingAt:@"2010-09-08 18:15:00 +0100" endingAt:@"2010-09-08 19:15:00 +0100"];
-	[self addSectionForDay:2 startingAt:@"2010-09-09 09:00:00 +0100" endingAt:@"2010-09-09 10:00:00 +0100"];
-	[self addSectionForDay:2 startingAt:@"2010-09-09 10:15:00 +0100" endingAt:@"2010-09-09 11:15:00 +0100"];
-	[self addSectionForDay:2 startingAt:@"2010-09-09 11:45:00 +0100" endingAt:@"2010-09-09 12:45:00 +0100"];
-	[self addSectionForDay:2 startingAt:@"2010-09-09 13:00:00 +0100" endingAt:@"2010-09-09 14:00:00 +0100"];
-	[self addSectionForDay:2 startingAt:@"2010-09-09 14:15:00 +0100" endingAt:@"2010-09-09 15:15:00 +0100"];
-	[self addSectionForDay:2 startingAt:@"2010-09-09 15:45:00 +0100" endingAt:@"2010-09-09 16:45:00 +0100"];
-	[self addSectionForDay:2 startingAt:@"2010-09-09 17:00:00 +0100" endingAt:@"2010-09-09 18:00:00 +0100"];
+	[self addSectionForDay:1 startingAt:@"2010-09-08 09:00:00 +0200" endingAt:@"2010-09-08 10:00:00 +0200"];
+	[self addSectionForDay:1 startingAt:@"2010-09-08 10:15:00 +0200" endingAt:@"2010-09-08 11:15:00 +0200"];
+	[self addSectionForDay:1 startingAt:@"2010-09-08 11:45:00 +0200" endingAt:@"2010-09-08 12:45:00 +0200"];
+	[self addSectionForDay:1 startingAt:@"2010-09-08 13:00:00 +0200" endingAt:@"2010-09-08 14:00:00 +0200"];
+	[self addSectionForDay:1 startingAt:@"2010-09-08 14:15:00 +0200" endingAt:@"2010-09-08 15:15:00 +0200"];
+	[self addSectionForDay:1 startingAt:@"2010-09-08 15:45:00 +0200" endingAt:@"2010-09-08 16:45:00 +0200"];
+	[self addSectionForDay:1 startingAt:@"2010-09-08 17:00:00 +0200" endingAt:@"2010-09-08 18:00:00 +0200"];
+	[self addSectionForDay:1 startingAt:@"2010-09-08 18:15:00 +0200" endingAt:@"2010-09-08 19:15:00 +0200"];
+	[self addSectionForDay:2 startingAt:@"2010-09-09 09:00:00 +0200" endingAt:@"2010-09-09 10:00:00 +0200"];
+	[self addSectionForDay:2 startingAt:@"2010-09-09 10:15:00 +0200" endingAt:@"2010-09-09 11:15:00 +0200"];
+	[self addSectionForDay:2 startingAt:@"2010-09-09 11:45:00 +0200" endingAt:@"2010-09-09 12:45:00 +0200"];
+	[self addSectionForDay:2 startingAt:@"2010-09-09 13:00:00 +0200" endingAt:@"2010-09-09 14:00:00 +0200"];
+	[self addSectionForDay:2 startingAt:@"2010-09-09 14:15:00 +0200" endingAt:@"2010-09-09 15:15:00 +0200"];
+	[self addSectionForDay:2 startingAt:@"2010-09-09 15:45:00 +0200" endingAt:@"2010-09-09 16:45:00 +0200"];
+	[self addSectionForDay:2 startingAt:@"2010-09-09 17:00:00 +0200" endingAt:@"2010-09-09 18:00:00 +0200"];
 }
 
 - (void)addSectionForDay:(int)day startingAt:(NSString *)startDate endingAt:(NSString *)endDate {
@@ -40,7 +40,6 @@
 	NSDate *end = [[NSDate alloc] initWithString:endDate];
 	
 	NSCalendar *calendar = [NSCalendar currentCalendar];
-	[calendar setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:3600]];
 	
 	unsigned int unitFlags = NSHourCalendarUnit|NSMinuteCalendarUnit;
 	

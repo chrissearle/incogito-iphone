@@ -174,7 +174,7 @@
 }
 
 - (NSDate *)getDateFromJson:(NSDictionary *)jsonDate {
-	NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@ %@:%@:00 +0100",
+	NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@ %@:%@:00 +0200",
 							[jsonDate objectForKey:@"year"],
 							[jsonDate objectForKey:@"month"],
 							[jsonDate objectForKey:@"day"],
