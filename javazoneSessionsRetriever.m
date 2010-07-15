@@ -144,6 +144,14 @@
 	
 	[session setLevel:[[item objectForKey:@"level"] objectForKey:@"id"]];
 	
+	NSString *body = [item objectForKey:@"bodyHtml"];
+	
+	if ([body isKindOfClass:[NSNull class]]) {
+		NSLog(@"No body found for %@", [item objectForKey:@"title"]);
+	} else {
+		[session setDetail:body];
+	}
+	
 	// Dates
 	NSDictionary *start = [item objectForKey:@"start"];
 	NSDictionary *end = [item objectForKey:@"end"];

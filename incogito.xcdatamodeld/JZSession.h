@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * level;
 @property (nonatomic, retain) NSSet* speakers;
+@property (nonatomic, retain) NSString * detail;
 
 @end
 

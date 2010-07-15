@@ -20,5 +20,6 @@
 @dynamic title;
 @dynamic level;
 @dynamic speakers;
+@dynamic detail;
 
 @end

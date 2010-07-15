@@ -360,23 +360,15 @@
 }
 
 - (BOOL)startDate:(NSDate *)startDate andEndDate:(NSDate *)endDate areBetween:(NSDate *)earliestDate and:(NSDate *)latestDate {
-	NSLog(@"Checking %@ not earlier than %@", startDate, earliestDate);
-	
 	NSComparisonResult startCompare = [startDate compare:earliestDate];
-	
 	if (startCompare == NSOrderedAscending) {
 		return false;
 	}
-	
-	NSLog(@"Checking %@ not later than %@", endDate, latestDate);
 
 	NSComparisonResult endCompare = [endDate compare:latestDate];
-
 	if (endCompare == NSOrderedDescending) {
 		return false;
 	}
-	
-	NSLog(@"Found a date");
 	
 	return true;
 }

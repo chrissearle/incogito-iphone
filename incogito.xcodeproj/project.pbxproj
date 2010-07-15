@@ -33,8 +33,6 @@
 		83424E9211EDB68D00590A7A /* NowAndNext.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424E9111EDB68D00590A7A /* NowAndNext.xib */; };
 		83424EBC11EDB79400590A7A /* MyProgrammeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83424EBB11EDB79400590A7A /* MyProgrammeViewController.m */; };
 		83424EC111EDB7E300590A7A /* MyProgramme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424EC011EDB7E300590A7A /* MyProgramme.xib */; };
-		838FC59811EC486600160C5E /* SessionList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 838FC59711EC486600160C5E /* SessionList.xib */; };
-		838FC60711EC4CD800160C5E /* SessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 838FC60611EC4CD800160C5E /* SessionViewController.m */; };
 		8394723C11EB98500075C4C1 /* JavazoneSessionsRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */; };
 		8394726611EB98B10075C4C1 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394725B11EB98B10075C4C1 /* NSObject+SBJSON.m */; };
 		8394726711EB98B10075C4C1 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394725D11EB98B10075C4C1 /* NSString+SBJSON.m */; };
@@ -206,9 +204,6 @@
 		83424EBA11EDB79400590A7A /* MyProgrammeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProgrammeViewController.h; sourceTree = "<group>"; };
 		83424EBB11EDB79400590A7A /* MyProgrammeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProgrammeViewController.m; sourceTree = "<group>"; };
 		83424EC011EDB7E300590A7A /* MyProgramme.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProgramme.xib; sourceTree = "<group>"; };
-		838FC59711EC486600160C5E /* SessionList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SessionList.xib; sourceTree = "<group>"; };
-		838FC60511EC4CD800160C5E /* SessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SessionViewController.h; path = ../SessionViewController.h; sourceTree = "<group>"; };
-		838FC60611EC4CD800160C5E /* SessionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SessionViewController.m; path = ../SessionViewController.m; sourceTree = "<group>"; };
 		8394723A11EB98500075C4C1 /* JavazoneSessionsRetriever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JavazoneSessionsRetriever.h; path = ../JavazoneSessionsRetriever.h; sourceTree = "<group>"; };
 		8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JavazoneSessionsRetriever.m; path = ../JavazoneSessionsRetriever.m; sourceTree = "<group>"; };
 		8394725911EB98B10075C4C1 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
@@ -245,8 +240,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				838FC60511EC4CD800160C5E /* SessionViewController.h */,
-				838FC60611EC4CD800160C5E /* SessionViewController.m */,
 				83F2D54411EBB56B0043A75E /* REST */,
 				1D3623240D0F684500981E51 /* IncogitoAppDelegate.h */,
 				1D3623250D0F684500981E51 /* IncogitoAppDelegate.m */,
@@ -302,7 +295,6 @@
 				834243EA11E74CAD00B438A8 /* Icon.png */,
 				2819305F112F816700ECF9B4 /* incogito.xcdatamodeld */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
-				838FC59711EC486600160C5E /* SessionList.xib */,
 				8D1107310486CEB800E47090 /* incogito-Info.plist */,
 				83424B3211ED899E00590A7A /* Refresh.xib */,
 				83424E9111EDB68D00590A7A /* NowAndNext.xib */,
@@ -537,7 +529,6 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				834243EB11E74CAD00B438A8 /* Icon.png in Resources */,
-				838FC59811EC486600160C5E /* SessionList.xib in Resources */,
 				83424B2211ED882F00590A7A /* Overview.xib in Resources */,
 				83424B3311ED899E00590A7A /* Refresh.xib in Resources */,
 				83424E9211EDB68D00590A7A /* NowAndNext.xib in Resources */,
@@ -569,7 +560,6 @@
 				8394726911EB98B10075C4C1 /* SBJsonBase.m in Sources */,
 				8394726A11EB98B10075C4C1 /* SBJsonParser.m in Sources */,
 				8394726B11EB98B10075C4C1 /* SBJsonWriter.m in Sources */,
-				838FC60711EC4CD800160C5E /* SessionViewController.m in Sources */,
 				83424B2E11ED88E700590A7A /* OverviewViewController.m in Sources */,
 				83424B3111ED898B00590A7A /* RefreshViewController.m in Sources */,
 				83424E9011EDB68000590A7A /* NowAndNextViewController.m in Sources */,
