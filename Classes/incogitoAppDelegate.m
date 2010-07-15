@@ -202,27 +202,6 @@
     [super dealloc];
 }
 
-#pragma mark -
-#pragma mark REST 
-
-- (NSUInteger)refreshData {
-	JavazoneSessionsRetriever *retriever = [[[JavazoneSessionsRetriever alloc] init] autorelease];
-	
-	retriever.managedObjectContext = [self managedObjectContext];
-	
-	NSUInteger count = [retriever retrieveSessionsWithUrl:@"http://javazone.no/incogito10/rest/events/JavaZone%202010/sessions"];
-	
-	NSArray *controllers = [rootController viewControllers];
-	
-	for (UIViewController *controller in controllers) {
-		if ([controller respondsToSelector:@selector(reloadSessionData)]) {
-			[controller reloadSessionData];
-		}
-	}
-	
-	return count;
-}
-
 - (SectionSessionHandler *)sectionSessionHandler {
 	if (sectionSessionHandler_ != nil) {
         return sectionSessionHandler_;

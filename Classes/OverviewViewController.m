@@ -121,8 +121,4 @@
 	return [sectionTitles objectAtIndex:section];
 }
 
-- (void)reloadSessionData {
-	[sessionTableView reloadData];
-}
-
 @end

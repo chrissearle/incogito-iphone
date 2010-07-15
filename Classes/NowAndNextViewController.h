@@ -20,6 +20,4 @@
 @property (nonatomic, retain) NSArray *sectionTitles;
 @property (nonatomic, retain) NSDictionary *sessions;
 
-- (void)reloadSessionData;
-
 @end

@@ -35,7 +35,5 @@
 
 - (NSString *)applicationDocumentsDirectory;
 
-- (NSUInteger)refreshData;
-
 @end
 

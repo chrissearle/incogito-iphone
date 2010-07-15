@@ -39,35 +39,31 @@
 	
 	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
 	
+	NSMutableArray *titles = [[NSMutableArray alloc] init];
+	
 	// NSDate *now = [[NSDate alloc] init];
 	// Careful to get +0100 here.
-	
 	// Testing
 	NSDate *now = [[NSDate alloc] initWithString:@"2010-09-08 10:33:00 +0100"];
+	Section *section = [handler getSectionForDate:now];
+	[now release];
 	
-	Section *nowSection = nil;
-	Section *nextSection = nil;
-	
-	nowSection = [handler getSectionForDate:now];
-	
-	if (nil != nowSection) {
-		NSDate *next = [[NSDate alloc] initWithTimeInterval:1801 sinceDate:[nowSection endDate]];
-	
-		nextSection = [handler getSectionForDate:next];
-	}
-	
-	NSString *nowTitle = @"";
-	NSString *nextTitle = @"";
-	
-	if (nil != nowSection) {
-		nowTitle = [nowSection title];
-	}
+	if (nil != section) {
+		[titles addObject:[section title]];
+		
+		NSDate *next = [[NSDate alloc] initWithTimeInterval:1801 sinceDate:[section endDate]];
+		
+		[section release];
 
-	if (nil != nextSection) {
-		nextTitle = [nextSection title];
+		section = [handler getSectionForDate:next];
+		[next release];
+		
+		if (nil != section) {
+			[titles addObject:[section title]];
+		}
 	}
 	
-	sectionTitles = [[NSArray alloc] initWithObjects:nowTitle, nextTitle, nil];
+	sectionTitles = [NSArray arrayWithArray:titles];
 	sessions = [[handler getSessions] retain];
 }
 
@@ -146,10 +142,5 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	return [sectionTitles objectAtIndex:section];
 }
-
-- (void)reloadSessionData {
-//	[sessionTableView reloadData];
-}
-
 
 @end
