@@ -18,10 +18,9 @@
 
 - (NSArray *)getSectionTitles;
 - (NSArray *)getSections;
+- (Section *)getSectionForDate:(NSDate *)date;
 
 - (NSDictionary *)getSessions;
 - (NSArray *)getSessionsForSection:(Section *)section;
-
-- (BOOL)startDate:(NSDate *)startDate andEndDate:(NSDate *)endDate areBetween:(NSDate *)earliestDate and:(NSDate *)latestDate;
 
 @end

@@ -7,11 +7,15 @@
 //
 
 #import "NowAndNextViewController.h"
-
-// Notes: NSDate *now = [[NSDate alloc] init];
-
+#import "Section.h"
+#import "JZSession.h"
+#import "SectionSessionHandler.h"
+#import "IncogitoAppDelegate.h"
 
 @implementation NowAndNextViewController
+
+@synthesize sectionTitles;
+@synthesize sessions;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -29,12 +33,43 @@
 }
 */
 
-/*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
+	
+	// NSDate *now = [[NSDate alloc] init];
+	// Careful to get +0100 here.
+	
+	// Testing
+	NSDate *now = [[NSDate alloc] initWithString:@"2010-09-08 10:33:00 +0100"];
+	
+	Section *nowSection = nil;
+	Section *nextSection = nil;
+	
+	nowSection = [handler getSectionForDate:now];
+	
+	if (nil != nowSection) {
+		NSDate *next = [[NSDate alloc] initWithTimeInterval:1801 sinceDate:[nowSection endDate]];
+	
+		nextSection = [handler getSectionForDate:next];
+	}
+	
+	NSString *nowTitle = @"";
+	NSString *nextTitle = @"";
+	
+	if (nil != nowSection) {
+		nowTitle = [nowSection title];
+	}
+
+	if (nil != nextSection) {
+		nextTitle = [nextSection title];
+	}
+	
+	sectionTitles = [[NSArray alloc] initWithObjects:nowTitle, nextTitle, nil];
+	sessions = [[handler getSessions] retain];
 }
-*/
 
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -66,34 +101,54 @@
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	// Return the number of sessions in the given timeslot
+	NSString *sectionName = [sectionTitles objectAtIndex:section];
 	
-	return 1;
+	NSArray *sectionSessions = [sessions objectForKey:sectionName];
+	
+	if (nil == sectionSessions) {
+		return 0;
+	}
+	
+	return [sectionSessions count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSString *sectionName = [sectionTitles objectAtIndex:indexPath.section];
+	
+	NSArray *sectionSessions = [sessions objectForKey:sectionName];
+	
+	JZSession *session = [sectionSessions objectAtIndex:indexPath.row];
+	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"sessionCell"];
 	
 	if (nil == cell) {
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"sessionCell"];
 	}
 	
-	cell.textLabel.text = @"Cell title";
-	cell.detailTextLabel.text = @"Subtitle";
+	NSMutableArray *speakerNames = [[NSMutableArray alloc] initWithCapacity:[session.speakers count]];
 	
+	for (JZSessionBio *bio in session.speakers) {
+		[speakerNames addObject:[bio name]];
+	}
+	
+	cell.textLabel.text = session.title;
+	cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.0];
+	
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"Room %@ - %@", session.room, [speakerNames componentsJoinedByString:@", "]];
+	cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
 	return cell;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 2;
+	return [sectionTitles count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	if (section == 0) {
-		return @"Now";
-	} else {
-		return @"Next";
-	}
+	return [sectionTitles objectAtIndex:section];
+}
+
+- (void)reloadSessionData {
+//	[sessionTableView reloadData];
 }
 
 

@@ -8,9 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class IncogitoAppDelegate;
 
 @interface NowAndNextViewController : UIViewController <UITableViewDataSource> {
+	IBOutlet IncogitoAppDelegate *appDelegate;
 
+	NSArray *sectionTitles;
+	NSDictionary *sessions;
 }
+
+@property (nonatomic, retain) NSArray *sectionTitles;
+@property (nonatomic, retain) NSDictionary *sessions;
+
+- (void)reloadSessionData;
 
 @end

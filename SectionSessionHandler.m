@@ -99,20 +99,34 @@
 	return dictionary;
 }
 
-- (BOOL)startDate:(NSDate *)startDate andEndDate:(NSDate *)endDate areBetween:(NSDate *)earliestDate and:(NSDate *)latestDate {
-	NSComparisonResult startCompare = [startDate compare:earliestDate];
-	if (startCompare == NSOrderedAscending) {
-		return false;
-	}
+- (Section *)getSectionForDate:(NSDate *)date {
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"Section" inManagedObjectContext:managedObjectContext];
 	
-	NSComparisonResult endCompare = [endDate compare:latestDate];
-	if (endCompare == NSOrderedDescending) {
-		return false;
-	}
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	
-	return true;
-}
+	[request setEntity:entityDescription];
 
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:
+							  @"(startDate <= %@) AND (endDate >= %@)", date, date];
+	
+	[request setPredicate:predicate];
+	
+	NSError *error;
+	
+	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	
+	NSArray *sections = [NSArray arrayWithArray:mutableFetchResults];
+	
+	[mutableFetchResults release];
+	[request release];
+
+	if (nil == sections || [sections count] == 0) {
+		return nil;
+	}
+	
+	return [sections objectAtIndex:0];
+}
 
 
 @end
