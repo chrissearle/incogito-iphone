@@ -42,6 +42,7 @@
 		8394726B11EB98B10075C4C1 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394726511EB98B10075C4C1 /* SBJsonWriter.m */; };
 		83D6BCED11EEF37700FBC0FE /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6BCEC11EEF37700FBC0FE /* Section.m */; };
 		83D6BCF911EEF3A100FBC0FE /* SectionInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */; };
+		83D6BDC211EF051700FBC0FE /* SectionSessionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6BDC111EF051700FBC0FE /* SectionSessionHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -225,6 +226,8 @@
 		83D6BCEC11EEF37700FBC0FE /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
 		83D6BCF711EEF3A100FBC0FE /* SectionInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionInitializer.h; sourceTree = "<group>"; };
 		83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionInitializer.m; sourceTree = "<group>"; };
+		83D6BDC011EF051700FBC0FE /* SectionSessionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SectionSessionHandler.h; path = ../SectionSessionHandler.h; sourceTree = "<group>"; };
+		83D6BDC111EF051700FBC0FE /* SectionSessionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SectionSessionHandler.m; path = ../SectionSessionHandler.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* incogito-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "incogito-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -246,6 +249,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				83D6BDC011EF051700FBC0FE /* SectionSessionHandler.h */,
+				83D6BDC111EF051700FBC0FE /* SectionSessionHandler.m */,
 				83F2D54411EBB56B0043A75E /* REST */,
 				1D3623240D0F684500981E51 /* IncogitoAppDelegate.h */,
 				1D3623250D0F684500981E51 /* IncogitoAppDelegate.m */,
@@ -576,6 +581,7 @@
 				830B149411EDED9D004A9B25 /* JZSession.m in Sources */,
 				83D6BCED11EEF37700FBC0FE /* Section.m in Sources */,
 				83D6BCF911EEF3A100FBC0FE /* SectionInitializer.m in Sources */,
+				83D6BDC211EF051700FBC0FE /* SectionSessionHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

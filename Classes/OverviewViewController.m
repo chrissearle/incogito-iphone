@@ -10,6 +10,7 @@
 #import "IncogitoAppDelegate.h"
 #import "JZSession.h"
 #import "JZSessionBio.h"
+#import "SectionSessionHandler.h"
 
 @implementation OverviewViewController
 
@@ -36,7 +37,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	sectionTitles = [[NSArray alloc] initWithArray:[appDelegate getSectionTitles]];
+	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
+	
+	sectionTitles = [[NSArray alloc] initWithArray:[handler getSectionTitles]];
 	sessions = [[appDelegate getSessions] retain];
 }
 

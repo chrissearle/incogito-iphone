@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+@class SectionSessionHandler;
+
 @interface IncogitoAppDelegate : NSObject <UIApplicationDelegate> {
     
     UIWindow *window;
@@ -18,6 +20,8 @@
     NSManagedObjectContext *managedObjectContext_;
     NSManagedObjectModel *managedObjectModel_;
     NSPersistentStoreCoordinator *persistentStoreCoordinator_;
+	
+	SectionSessionHandler *sectionSessionHandler_;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -27,11 +31,12 @@
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+@property (nonatomic, retain, readonly) SectionSessionHandler *sectionSessionHandler;
+
 - (NSString *)applicationDocumentsDirectory;
 
 - (NSUInteger)refreshData;
 
-- (NSArray *)getSectionTitles;
 - (NSDictionary *)getSessions;
 
 - (BOOL)startDate:(NSDate *)startDate andEndDate:(NSDate *)endDate areBetween:(NSDate *)earliestDate and:(NSDate *)latestDate;

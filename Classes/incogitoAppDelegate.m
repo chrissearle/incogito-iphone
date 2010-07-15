@@ -11,11 +11,13 @@
 #import "JZSession.h"
 #import "SectionInitializer.h"
 #import "Section.h"
+#import "SectionSessionHandler.h"
 
 @implementation IncogitoAppDelegate
 
 @synthesize window;
 @synthesize rootController;
+@synthesize sectionSessionHandler;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -193,6 +195,7 @@
     [managedObjectContext_ release];
     [managedObjectModel_ release];
     [persistentStoreCoordinator_ release];
+	[sectionSessionHandler_ release];
     
     [window release];
 	[rootController release]; 
@@ -222,37 +225,6 @@
 
 #pragma mark -
 #pragma mark Data retrieval utils
-
-- (NSArray *)getSectionTitles {
-	NSManagedObjectContext *context = [self managedObjectContext];
-	
-	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"Section" inManagedObjectContext:context];
-	
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	
-	[request setEntity:entityDescription];
-	
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startDate" ascending:YES];
-	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-	[request setSortDescriptors:sortDescriptors];
-	[sortDescriptors release];
-	[sortDescriptor release];
-	
-	NSError *error;
-	
-	NSMutableArray *mutableFetchResults = [[context executeFetchRequest:request error:&error] mutableCopy];
-	
-	NSMutableArray *mutableSectionList = [[NSMutableArray alloc] initWithCapacity:[mutableFetchResults count]];
-
-	for (Section *section in mutableFetchResults) {
-		[mutableSectionList addObject:[section title]];
-	}
-
-	NSArray *sections = [NSArray arrayWithArray:mutableSectionList];
-
-	return sections;
-}
 
 - (NSDictionary *)getSessions {
 	NSManagedObjectContext *context = [self managedObjectContext];
@@ -361,7 +333,7 @@
 		}
 	}
 	
-	NSArray *keys = [self getSectionTitles];
+	NSArray *keys = [[self sectionSessionHandler] getSectionTitles];
 	NSArray *objects = [NSArray arrayWithObjects:section1Sessions,
 						section2Sessions,
 						section3Sessions,
@@ -399,6 +371,18 @@
 	}
 	
 	return true;
+}
+
+- (SectionSessionHandler *)sectionSessionHandler {
+	if (sectionSessionHandler_ != nil) {
+        return sectionSessionHandler_;
+    }
+    
+	sectionSessionHandler_ = [[SectionSessionHandler alloc] init];
+	
+	[sectionSessionHandler_ setManagedObjectContext:[self managedObjectContext]];
+	
+	return sectionSessionHandler_;
 }
 
 @end
