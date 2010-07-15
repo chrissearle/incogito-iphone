@@ -40,7 +40,7 @@
 	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
 	
 	sectionTitles = [[NSArray alloc] initWithArray:[handler getSectionTitles]];
-	sessions = [[appDelegate getSessions] retain];
+	sessions = [[handler getSessions] retain];
 }
 
 /*
