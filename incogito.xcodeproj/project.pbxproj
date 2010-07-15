@@ -15,6 +15,8 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		3EC6053A11EF20CD00E84299 /* DetailedSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC6053811EF20CD00E84299 /* DetailedSessionViewController.m */; };
+		3EC6053B11EF20CD00E84299 /* DetailedSessionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EC6053911EF20CD00E84299 /* DetailedSessionView.xib */; };
 		830B12A911EDC9E3004A9B25 /* 01-refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B3711ED981200590A7A /* 01-refresh.png */; };
 		830B12AA11EDC9EC004A9B25 /* 11-clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B4B11ED981200590A7A /* 11-clock.png */; };
 		830B12AB11EDC9F2004A9B25 /* 111-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B4D11ED981200590A7A /* 111-user.png */; };
@@ -57,6 +59,9 @@
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* incogito_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = incogito_Prefix.pch; sourceTree = "<group>"; };
+		3EC6053711EF20CD00E84299 /* DetailedSessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedSessionViewController.h; sourceTree = "<group>"; };
+		3EC6053811EF20CD00E84299 /* DetailedSessionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedSessionViewController.m; sourceTree = "<group>"; };
+		3EC6053911EF20CD00E84299 /* DetailedSessionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DetailedSessionView.xib; path = Classes/DetailedSessionView.xib; sourceTree = "<group>"; };
 		830B12B511EDCA66004A9B25 /* Advanced.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Advanced.png; sourceTree = "<group>"; };
 		830B12B611EDCA66004A9B25 /* Intermediate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Intermediate.png; sourceTree = "<group>"; };
 		830B12B711EDCA66004A9B25 /* Introductory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Introductory.png; sourceTree = "<group>"; };
@@ -254,6 +259,8 @@
 				83F2D54411EBB56B0043A75E /* REST */,
 				1D3623240D0F684500981E51 /* IncogitoAppDelegate.h */,
 				1D3623250D0F684500981E51 /* IncogitoAppDelegate.m */,
+				3EC6053711EF20CD00E84299 /* DetailedSessionViewController.h */,
+				3EC6053811EF20CD00E84299 /* DetailedSessionViewController.m */,
 				83424B2C11ED88E700590A7A /* OverviewViewController.h */,
 				83424B2D11ED88E700590A7A /* OverviewViewController.m */,
 				83424B2F11ED898B00590A7A /* RefreshViewController.h */,
@@ -300,6 +307,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3EC6053911EF20CD00E84299 /* DetailedSessionView.xib */,
 				830B12B511EDCA66004A9B25 /* Advanced.png */,
 				830B12B611EDCA66004A9B25 /* Intermediate.png */,
 				830B12B711EDCA66004A9B25 /* Introductory.png */,
@@ -553,6 +561,7 @@
 				830B12B811EDCA66004A9B25 /* Advanced.png in Resources */,
 				830B12B911EDCA66004A9B25 /* Intermediate.png in Resources */,
 				830B12BA11EDCA66004A9B25 /* Introductory.png in Resources */,
+				3EC6053B11EF20CD00E84299 /* DetailedSessionView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,6 +591,7 @@
 				83D6BCED11EEF37700FBC0FE /* Section.m in Sources */,
 				83D6BCF911EEF3A100FBC0FE /* SectionInitializer.m in Sources */,
 				83D6BDC211EF051700FBC0FE /* SectionSessionHandler.m in Sources */,
+				3EC6053A11EF20CD00E84299 /* DetailedSessionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
