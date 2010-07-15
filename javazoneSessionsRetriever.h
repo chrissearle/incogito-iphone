@@ -7,7 +7,8 @@
 - (NSUInteger)retrieveSessionsWithUrl:(NSString *)urlString;
 - (void) addSession:(NSDictionary *)item;
 - (void) invalidateSessions;
-- (void) removeSpeakers;
 - (NSDate *)getDateFromJson:(NSDictionary *)jsonDate;
+
+- (void) removeAllEntitiesByName:(NSString *)entityName;
 
 @end

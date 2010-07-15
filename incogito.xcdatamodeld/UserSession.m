@@ -1,19 +1,17 @@
 // 
-//  JZSessionBio.m
+//  UserSession.m
 //  incogito
 //
 //  Created by Chris Searle on 15.07.10.
 //  Copyright 2010 Itera Consulting. All rights reserved.
 //
 
-#import "JZSessionBio.h"
+#import "UserSession.h"
 
 #import "JZSession.h"
 
-@implementation JZSessionBio 
+@implementation UserSession 
 
-@dynamic name;
-@dynamic bio;
 @dynamic session;
 
 @end

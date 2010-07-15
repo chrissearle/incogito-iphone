@@ -1,19 +1,19 @@
 // 
-//  JZSessionBio.m
+//  JZLabel.m
 //  incogito
 //
 //  Created by Chris Searle on 15.07.10.
 //  Copyright 2010 Itera Consulting. All rights reserved.
 //
 
-#import "JZSessionBio.h"
+#import "JZLabel.h"
 
 #import "JZSession.h"
 
-@implementation JZSessionBio 
+@implementation JZLabel 
 
-@dynamic name;
-@dynamic bio;
+@dynamic title;
+@dynamic jzId;
 @dynamic session;
 
 @end

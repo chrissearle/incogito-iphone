@@ -10,6 +10,7 @@
 #import "JSON.h"
 #import "JZSession.h"
 #import "JZSessionBio.h"
+#import "JZLabel.h"
 
 @implementation JavazoneSessionsRetriever
 
@@ -51,7 +52,10 @@
 	[self invalidateSessions];
 	
 	// Remove speakers - they will get added for all active sessions.
-	[self removeSpeakers];
+	[self removeAllEntitiesByName:@"JZSessionBio"];
+
+	// Remove labels - they will get added for all active sessions.
+	[self removeAllEntitiesByName:@"JZLabel"];
 	
 	// Each element in statuses is a single status
 	// represented as a NSDictionary
@@ -76,26 +80,6 @@
 	
 	for (JZSession *session in array) {
 		[session setActive:[NSNumber numberWithBool:FALSE]];
-	}
-	
-	if (![managedObjectContext save:&error]) {
-		// Handle the error.
-	}	
-}
-
-- (void) removeSpeakers {
-	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"JZSessionBio" inManagedObjectContext:managedObjectContext];
-	
-	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
-	[request setEntity:entityDescription];
-	
-	NSError *error;
-	
-	NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];
-	
-	for (NSManagedObject *speaker in array) {
-		[managedObjectContext deleteObject:speaker];
 	}
 	
 	if (![managedObjectContext save:&error]) {
@@ -172,6 +156,18 @@
 		[session addSpeakersObject:sessionBio];
 	}
 	
+	NSArray *labels = [item objectForKey:@"labels"];
+	
+	for (NSDictionary *label in labels) {
+		JZLabel *lbl = (JZLabel *)[NSEntityDescription insertNewObjectForEntityForName:@"JZLabel" inManagedObjectContext:managedObjectContext];
+		
+		[lbl setJzId:[label objectForKey:@"id"]];
+		[lbl setTitle:[label objectForKey:@"displayName"]];
+		
+		[session addLabelsObject:lbl];
+	}
+		
+	
 	if (![managedObjectContext save:&error]) {
 		// Handle the error.
 	}
@@ -188,6 +184,26 @@
 	NSDate *date = [[NSDate alloc] initWithString:dateString];
 	
 	return date;
+}
+
+- (void) removeAllEntitiesByName:(NSString *)entityName {
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:entityName inManagedObjectContext:managedObjectContext];
+	
+	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+	[request setEntity:entityDescription];
+	
+	NSError *error;
+	
+	NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];
+	
+	for (NSManagedObject *item in array) {
+		[managedObjectContext deleteObject:item];
+	}
+	
+	if (![managedObjectContext save:&error]) {
+		// Handle the error.
+	}	
 }
 
 @end

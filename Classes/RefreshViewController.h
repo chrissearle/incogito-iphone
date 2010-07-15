@@ -13,7 +13,7 @@
 
 
 @interface RefreshViewController : UIViewController {
-	IncogitoAppDelegate			*appDelegate;
+	IBOutlet IncogitoAppDelegate			*appDelegate;
 	UIActivityIndicatorView		*spinner;
 	UITextView					*refreshStatus;
 }

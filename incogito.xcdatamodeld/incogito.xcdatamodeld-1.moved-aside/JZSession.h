@@ -2,13 +2,12 @@
 //  JZSession.h
 //  incogito
 //
-//  Created by Chris Searle on 15.07.10.
+//  Created by Chris Searle on 14.07.10.
 //  Copyright 2010 Itera Consulting. All rights reserved.
 //
 
 #import <CoreData/CoreData.h>
 
-@class JZLabel;
 @class JZSessionBio;
 
 @interface JZSession :  NSManagedObject  
@@ -22,10 +21,8 @@
 @property (nonatomic, retain) NSString * jzId;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * level;
-@property (nonatomic, retain) NSString * detail;
 @property (nonatomic, retain) NSSet* speakers;
-@property (nonatomic, retain) NSSet* labels;
-@property (nonatomic, retain) NSManagedObject * userSession;
+@property (nonatomic, retain) NSString * detail;
 
 @end
 
@@ -35,11 +32,6 @@
 - (void)removeSpeakersObject:(JZSessionBio *)value;
 - (void)addSpeakers:(NSSet *)value;
 - (void)removeSpeakers:(NSSet *)value;
-
-- (void)addLabelsObject:(JZLabel *)value;
-- (void)removeLabelsObject:(JZLabel *)value;
-- (void)addLabels:(NSSet *)value;
-- (void)removeLabels:(NSSet *)value;
 
 @end
 

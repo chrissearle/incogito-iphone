@@ -1,5 +1,5 @@
 //
-//  JZSessionBio.h
+//  UserSession.h
 //  incogito
 //
 //  Created by Chris Searle on 15.07.10.
@@ -10,12 +10,10 @@
 
 @class JZSession;
 
-@interface JZSessionBio :  NSManagedObject  
+@interface UserSession :  NSManagedObject  
 {
 }
 
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * bio;
 @property (nonatomic, retain) JZSession * session;
 
 @end
