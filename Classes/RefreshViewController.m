@@ -8,41 +8,21 @@
 
 #import "RefreshViewController.h"
 #import "IncogitoAppDelegate.h"
-
+#import "JavazoneSessionsRetriever.h"
 
 @implementation RefreshViewController
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
+@synthesize spinner;
+@synthesize refreshStatus;
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
+NSInteger sessionCount;
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
-	spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-	[self.view addSubview:spinner];
+	[refreshStatus setText:@""];
+	[spinner stopAnimating];
 }
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -59,7 +39,7 @@
 
 
 - (void)dealloc {
-	[spinner dealloc];
+	[spinner release];
     [super dealloc];
 }
 
@@ -68,24 +48,34 @@
 
 - (IBAction)refresh:(id)sender {
 	[spinner startAnimating];
-	NSInteger sessionCount = [appDelegate refreshData];
+	[NSThread detachNewThreadSelector:@selector(refreshSessions) toTarget:self withObject:nil];
+}
+
+- (void) refreshSessions {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	JavazoneSessionsRetriever *retriever = [[[JavazoneSessionsRetriever alloc] init] autorelease];
+	
+	retriever.managedObjectContext = [appDelegate managedObjectContext];
+		
+	sessionCount = [retriever retrieveSessionsWithUrl:@"http://javazone.no/incogito10/rest/events/JavaZone%202010/sessions"];
+	[self performSelectorOnMainThread:@selector(taskDone:) withObject:nil waitUntilDone:NO];
+	[pool drain];
+}
+
+// This will be called in the context of the main thread, so you can do any required UI interaction here
+- (void)taskDone:(id)arg {
 	[spinner stopAnimating];
 
-	
-	if (0 == sessionCount) {
-		refreshComplete = [[UIAlertView alloc] initWithTitle:@"Refresh Failed" message:@"Unable to connect to JavaZone website."
-													delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+	NSString *status;
+	if (sessionCount == 0) {
+		status = [[NSString alloc] initWithString:@"Unable to connect to JavaZone website."];
+		[refreshStatus setText:status];
 	} else {
-		refreshComplete = [[UIAlertView alloc] initWithTitle:@"Refresh Complete" message:[NSString stringWithFormat:@"%d sessions downloaded from JavaZone website.", sessionCount]
-									  delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+		status = [[NSString alloc] initWithFormat:@"%d sessions downloaded from JavaZone website.", sessionCount];
+		[refreshStatus setText:status];
 	}
-
-	[refreshComplete show];
-	
-/*
- This causes a bad access crash - do I not need to dealloc an alert view?
-	[refreshComplete dealloc];
- */
+	[status release];
 }
+
 
 @end
