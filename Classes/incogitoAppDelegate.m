@@ -9,6 +9,8 @@
 #import "IncogitoAppDelegate.h"
 #import "JavazoneSessionsRetriever.h"
 #import "JZSession.h"
+#import "SectionInitializer.h"
+#import "Section.h"
 
 @implementation IncogitoAppDelegate
 
@@ -19,6 +21,10 @@
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+	SectionInitializer *sectionInitializer = [[SectionInitializer alloc] init];
+	[sectionInitializer setManagedObjectContext:[self managedObjectContext]];
+	[sectionInitializer initializeSections];
+	[sectionInitializer release];
 	
 	[window addSubview:rootController.view];
     [window makeKeyAndVisible];
@@ -218,22 +224,34 @@
 #pragma mark Data retrieval utils
 
 - (NSArray *)getSectionTitles {
-	return [NSArray arrayWithObjects:@"Day 1: 09:00 - 10:00",
-			@"Day 1: 10:15 - 11:15", 
-			@"Day 1: 11:45 - 12:45", 
-			@"Day 1: 13:00 - 14:00", 
-			@"Day 1: 14:15 - 15:15", 
-			@"Day 1: 15:45 - 16:45", 
-			@"Day 1: 17:00 - 18:00", 
-			@"Day 1: 18:15 - 19:15", 
-			@"Day 2: 09:00 - 10:00", 
-			@"Day 2: 10:15 - 11:15", 
-			@"Day 2: 11:45 - 12:45", 
-			@"Day 2: 13:00 - 14:00", 
-			@"Day 2: 14:15 - 15:15", 
-			@"Day 2: 15:45 - 16:45", 
-			@"Day 2: 17:00 - 18:00", 
-			nil];
+	NSManagedObjectContext *context = [self managedObjectContext];
+	
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"Section" inManagedObjectContext:context];
+	
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	
+	[request setEntity:entityDescription];
+	
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startDate" ascending:YES];
+	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+	[request setSortDescriptors:sortDescriptors];
+	[sortDescriptors release];
+	[sortDescriptor release];
+	
+	NSError *error;
+	
+	NSMutableArray *mutableFetchResults = [[context executeFetchRequest:request error:&error] mutableCopy];
+	
+	NSMutableArray *mutableSectionList = [[NSMutableArray alloc] initWithCapacity:[mutableFetchResults count]];
+
+	for (Section *section in mutableFetchResults) {
+		[mutableSectionList addObject:[section title]];
+	}
+
+	NSArray *sections = [NSArray arrayWithArray:mutableSectionList];
+
+	return sections;
 }
 
 - (NSDictionary *)getSessions {
