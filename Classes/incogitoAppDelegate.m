@@ -201,7 +201,17 @@
 	
 	retriever.managedObjectContext = [self managedObjectContext];
 	
-	return [retriever retrieveSessionsWithUrl:@"http://javazone.no/incogito10/rest/events/JavaZone%202010/sessions"];
+	NSUInteger count = [retriever retrieveSessionsWithUrl:@"http://javazone.no/incogito10/rest/events/JavaZone%202010/sessions"];
+	
+	NSArray *controllers = [rootController viewControllers];
+	
+	for (UIViewController *controller in controllers) {
+		if ([controller respondsToSelector:@selector(reloadSessionData)]) {
+			[controller reloadSessionData];
+		}
+	}
+	
+	return count;
 }
 
 #pragma mark -

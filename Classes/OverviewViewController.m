@@ -1,4 +1,4 @@
-    //
+//
 //  OverviewViewController.m
 //  incogito
 //
@@ -116,6 +116,10 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	return [sectionTitles objectAtIndex:section];
+}
+
+- (void)reloadSessionData {
+	[sessionTableView reloadData];
 }
 
 @end
