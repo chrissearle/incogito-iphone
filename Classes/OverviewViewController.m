@@ -98,6 +98,7 @@
 	cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.0];
 	
 	cell.detailTextLabel.text = [NSString stringWithFormat:@"Room %@ - %@", session.room, [speakerNames componentsJoinedByString:@", "]];
+	[speakerNames release];
 	cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
 	return cell;
 }

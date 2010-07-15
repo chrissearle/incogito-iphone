@@ -32,8 +32,10 @@
 	NSError *error;
 
 	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	[request release];
 
 	NSArray *sections = [NSArray arrayWithArray:mutableFetchResults];
+	[mutableFetchResults release];
 	
 	return sections;
 }
@@ -48,6 +50,7 @@
 	}
 	
 	NSArray *sectionTitles = [NSArray arrayWithArray:mutableSectionTitles];
+	[mutableSectionTitles release];
 	
 	return sectionTitles;
 }
@@ -95,6 +98,7 @@
 	}
 	
 	NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:[NSArray arrayWithArray:objects] forKeys:keys];
+	[objects release];
 	
 	return dictionary;
 }

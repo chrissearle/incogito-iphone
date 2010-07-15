@@ -10,14 +10,19 @@
 
 @class IncogitoAppDelegate;
 
-@interface NowAndNextViewController : UIViewController <UITableViewDataSource> {
-	IBOutlet IncogitoAppDelegate *appDelegate;
+@interface NowAndNextViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+	IBOutlet IncogitoAppDelegate	*appDelegate;
+	UITableView						*_tableView;
 
-	NSArray *sectionTitles;
-	NSDictionary *sessions;
+	NSArray				*sectionTitles;
+	NSDictionary		*sessions;
+	NSString			*sectionName;
+	NSArray				*sectionSessions;
 }
 
-@property (nonatomic, retain) NSArray *sectionTitles;
-@property (nonatomic, retain) NSDictionary *sessions;
+@property (nonatomic, retain) IBOutlet UITableView	*tableView;
+@property (nonatomic, retain) NSArray				*sectionTitles;
+@property (nonatomic, retain) NSDictionary			*sessions;
+@property (nonatomic, retain) NSArray				*sectionSessions;
 
 @end

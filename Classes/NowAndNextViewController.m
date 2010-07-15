@@ -11,11 +11,14 @@
 #import "JZSession.h"
 #import "SectionSessionHandler.h"
 #import "IncogitoAppDelegate.h"
+#import "DetailedSessionViewController.h"
 
 @implementation NowAndNextViewController
 
+@synthesize tableView = _tableView;
 @synthesize sectionTitles;
 @synthesize sessions;
+@synthesize sectionSessions;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -41,9 +44,9 @@
 	
 	NSMutableArray *titles = [[NSMutableArray alloc] init];
 	
-	NSDate *now = [[NSDate alloc] init];
+	//NSDate *now = [[NSDate alloc] init];
 	//For testing
-	//NSDate *now = [[NSDate alloc] initWithString:@"2010-09-08 10:33:00 +0100"];
+	NSDate *now = [[NSDate alloc] initWithString:@"2010-09-08 10:33:00 +0200"];
 	Section *section = [handler getSectionForDate:now];
 	[now release];
 	
@@ -52,8 +55,6 @@
 		
 		NSDate *next = [[NSDate alloc] initWithTimeInterval:1801 sinceDate:[section endDate]];
 		
-		[section release];
-
 		section = [handler getSectionForDate:next];
 		[next release];
 		
@@ -63,6 +64,8 @@
 	}
 	
 	sectionTitles = [NSArray arrayWithArray:titles];
+	[titles release];
+	
 	sessions = [[handler getSessions] retain];
 }
 
@@ -89,6 +92,10 @@
 
 
 - (void)dealloc {
+	[sectionName release];
+	[sectionSessions release];
+	[sessions release];
+	[sectionTitles release];
     [super dealloc];
 }
 
@@ -96,9 +103,9 @@
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	NSString *sectionName = [sectionTitles objectAtIndex:section];
+	sectionName = [sectionTitles objectAtIndex:section];
 	
-	NSArray *sectionSessions = [sessions objectForKey:sectionName];
+	sectionSessions = [sessions objectForKey:sectionName];
 	
 	if (nil == sectionSessions) {
 		return 0;
@@ -108,13 +115,13 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSString *sectionName = [sectionTitles objectAtIndex:indexPath.section];
+	sectionName = [sectionTitles objectAtIndex:indexPath.section];
 	
-	NSArray *sectionSessions = [sessions objectForKey:sectionName];
+	sectionSessions = [sessions objectForKey:sectionName];
 	
 	JZSession *session = [sectionSessions objectAtIndex:indexPath.row];
 	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"sessionCell"];
+	UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"sessionCell"];
 	
 	if (nil == cell) {
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"sessionCell"];
@@ -130,6 +137,7 @@
 	cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.0];
 	
 	cell.detailTextLabel.text = [NSString stringWithFormat:@"Room %@ - %@", session.room, [speakerNames componentsJoinedByString:@", "]];
+	[speakerNames release];
 	cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
 	return cell;
 }
@@ -140,6 +148,16 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	return [sectionTitles objectAtIndex:section];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	DetailedSessionViewController *controller = [[DetailedSessionViewController alloc] initWithNibName:@"DetailedSessionView" bundle:[NSBundle mainBundle]];
+	controller.session = [sectionSessions objectAtIndex:indexPath.row];
+	
+	NSLog(@"row %d title %@", indexPath.row, controller.session.title);
+	
+	[self.tabBarController presentModalViewController:controller animated:YES];
+	[controller release];
 }
 
 @end
