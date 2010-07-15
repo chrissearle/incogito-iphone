@@ -67,7 +67,7 @@
 	[sortDescriptor release];
 	
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:
-							  @"(active == %@) AND (startDate >= %@) AND (endDate < %@)", [NSNumber numberWithBool:true], [section startDate], [section endDate]];
+							  @"(active == %@) AND (startDate >= %@) AND (endDate <= %@)", [NSNumber numberWithBool:true], [section startDate], [section endDate]];
 	
 	[request setPredicate:predicate];
 	
