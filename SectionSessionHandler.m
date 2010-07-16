@@ -172,4 +172,26 @@
 	return dictionary;	
 }
 
+- (NSUInteger)getActiveSessionCount {
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
+	
+	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+	
+	[request setEntity:entityDescription];
+
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:
+							  @"(active == %@)", [NSNumber numberWithBool:true]];
+	
+	[request setPredicate:predicate];
+		
+	NSError *error;
+	
+	NSUInteger count = [managedObjectContext countForFetchRequest:request error:&error];
+
+	return count;
+}
+
+
+
 @end

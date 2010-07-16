@@ -12,6 +12,7 @@
 #import "JZSessionBio.h"
 #import "SectionSessionHandler.h"
 #import "DetailedSessionViewController.h"
+#import "UpdateViewController.h"
 
 @implementation OverviewViewController
 
@@ -33,6 +34,14 @@
     [super viewDidLoad];
 	
 	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
+	
+	NSUInteger count = [handler getActiveSessionCount];
+	
+	if (count == 0) {
+		UpdateViewController *controller = [[UpdateViewController alloc] initWithNibName:@"Update" bundle:[NSBundle mainBundle]];
+		[self.tabBarController presentModalViewController:controller animated:YES];
+		[controller release];
+	}
 	
 	sessions = [[handler getSessions] retain];
 

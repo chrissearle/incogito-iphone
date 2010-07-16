@@ -31,6 +31,8 @@
 		83424E9211EDB68D00590A7A /* NowAndNext.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424E9111EDB68D00590A7A /* NowAndNext.xib */; };
 		83424EBC11EDB79400590A7A /* MyProgrammeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83424EBB11EDB79400590A7A /* MyProgrammeViewController.m */; };
 		83424EC111EDB7E300590A7A /* MyProgramme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424EC011EDB7E300590A7A /* MyProgramme.xib */; };
+		834964C511F09016008BB29F /* UpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834964C411F09016008BB29F /* UpdateViewController.m */; };
+		834964D411F0910A008BB29F /* Update.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834964D311F0910A008BB29F /* Update.xib */; };
 		8394723C11EB98500075C4C1 /* JavazoneSessionsRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */; };
 		8394726611EB98B10075C4C1 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394725B11EB98B10075C4C1 /* NSObject+SBJSON.m */; };
 		8394726711EB98B10075C4C1 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394725D11EB98B10075C4C1 /* NSString+SBJSON.m */; };
@@ -207,6 +209,9 @@
 		83424EBA11EDB79400590A7A /* MyProgrammeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProgrammeViewController.h; sourceTree = "<group>"; };
 		83424EBB11EDB79400590A7A /* MyProgrammeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProgrammeViewController.m; sourceTree = "<group>"; };
 		83424EC011EDB7E300590A7A /* MyProgramme.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProgramme.xib; sourceTree = "<group>"; };
+		834964C311F09016008BB29F /* UpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateViewController.h; sourceTree = "<group>"; };
+		834964C411F09016008BB29F /* UpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateViewController.m; sourceTree = "<group>"; };
+		834964D311F0910A008BB29F /* Update.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Update.xib; sourceTree = "<group>"; };
 		8394723A11EB98500075C4C1 /* JavazoneSessionsRetriever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JavazoneSessionsRetriever.h; path = ../JavazoneSessionsRetriever.h; sourceTree = "<group>"; };
 		8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JavazoneSessionsRetriever.m; path = ../JavazoneSessionsRetriever.m; sourceTree = "<group>"; };
 		8394725911EB98B10075C4C1 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
@@ -277,6 +282,8 @@
 				83424EBB11EDB79400590A7A /* MyProgrammeViewController.m */,
 				83D6BCF711EEF3A100FBC0FE /* SectionInitializer.h */,
 				83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */,
+				834964C311F09016008BB29F /* UpdateViewController.h */,
+				834964C411F09016008BB29F /* UpdateViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -313,6 +320,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				834964D311F0910A008BB29F /* Update.xib */,
 				83D6C06F11EF922500FBC0FE /* DetailedSessionView.xib */,
 				830B12B511EDCA66004A9B25 /* Advanced.png */,
 				830B12B611EDCA66004A9B25 /* Intermediate.png */,
@@ -568,6 +576,7 @@
 				830B12BA11EDCA66004A9B25 /* Introductory.png in Resources */,
 				83D6C07211EF922500FBC0FE /* DetailedSessionView.xib in Resources */,
 				8317CED711F038BB00DE7415 /* 28-star.png in Resources */,
+				834964D411F0910A008BB29F /* Update.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +609,7 @@
 				83D6BFF211EF3A7B00FBC0FE /* JZSessionBio.m in Sources */,
 				83D6BFF311EF3A7B00FBC0FE /* UserSession.m in Sources */,
 				83D6C07311EF922500FBC0FE /* DetailedSessionViewController.m in Sources */,
+				834964C511F09016008BB29F /* UpdateViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

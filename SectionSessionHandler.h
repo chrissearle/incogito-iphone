@@ -24,4 +24,6 @@
 - (NSDictionary *)getFavouriteSessions;
 - (NSArray *)getFavouriteSessionsForSection:(Section *)section;
 
+- (NSUInteger)getActiveSessionCount;
+
 @end

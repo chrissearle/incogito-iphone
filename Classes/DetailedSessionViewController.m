@@ -8,13 +8,14 @@
 
 #import "DetailedSessionViewController.h"
 
-
 @implementation DetailedSessionViewController
 
 @synthesize session;
 @synthesize sessionTitle;
 @synthesize sessionLocation;
 @synthesize details;
+@synthesize level;
+@synthesize levelImage;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
