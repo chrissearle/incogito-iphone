@@ -10,7 +10,7 @@
 
 @class IncogitoAppDelegate;
 
-@interface MyProgrammeViewController : UIViewController <UITableViewDataSource> {
+@interface MyProgrammeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
 	IBOutlet IncogitoAppDelegate		*appDelegate;
 
 	NSArray					*sectionTitles;

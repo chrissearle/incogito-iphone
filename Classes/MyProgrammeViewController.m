@@ -11,6 +11,7 @@
 #import "JZSession.h"
 #import "JZSessionBio.h"
 #import "SectionSessionHandler.h"
+#import "DetailedSessionViewController.h"
 
 @implementation MyProgrammeViewController
 
@@ -128,6 +129,16 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	return [sectionTitles objectAtIndex:section];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	DetailedSessionViewController *controller = [[DetailedSessionViewController alloc] initWithNibName:@"DetailedSessionView" bundle:[NSBundle mainBundle]];
+	controller.session = [sectionSessions objectAtIndex:indexPath.row];
+	
+	NSLog(@"row %d title %@", indexPath.row, controller.session.title);
+	
+	[self.tabBarController presentModalViewController:controller animated:YES];
+	[controller release];
 }
 
 @end
