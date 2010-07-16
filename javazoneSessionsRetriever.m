@@ -12,6 +12,10 @@
 #import "JZSessionBio.h"
 #import "JZLabel.h"
 
+/* Test - set a couple of sessions to be favourites at retrieval
+#import "UserSession.h"
+*/
+
 @implementation JavazoneSessionsRetriever
 
 @synthesize managedObjectContext;
@@ -122,7 +126,7 @@
 	[session setTitle:[item objectForKey:@"title"]];
 	[session setJzId:[item objectForKey:@"id"]];
 	[session setActive:[NSNumber numberWithBool:TRUE]];
-	
+
 	[session setRoom:[NSNumber numberWithInt:[[[item objectForKey:@"room"]
 											   stringByReplacingOccurrencesOfString:@"Sal " withString:@""] intValue]]];
 	
@@ -135,6 +139,14 @@
 	} else {
 		[session setDetail:body];
 	}
+
+	/* Test - set a couple of sessions to be favourites at retrieval
+	if ([@"e6ca284d-4940-46a8-bfaf-6544dcf292c0" isEqualToString:[session jzId]] || [@"d4c5c969-ed4e-4ec8-bed9-cf4cfa7bf9fa" isEqualToString:[session jzId]]) {
+		UserSession *userSession = (UserSession *)[NSEntityDescription insertNewObjectForEntityForName:@"UserSession" inManagedObjectContext:managedObjectContext];
+
+		[session setUserSession:userSession];
+	}
+	 */
 	
 	// Dates
 	NSDictionary *start = [item objectForKey:@"start"];

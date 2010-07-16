@@ -42,7 +42,7 @@
 	
 	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
 	
-	NSMutableArray *titles = [[NSMutableArray alloc] init];
+	NSMutableArray *titles = [[[NSMutableArray alloc] init] autorelease];
 	
 	//NSDate *now = [[NSDate alloc] init];
 	//For testing
@@ -64,7 +64,6 @@
 	}
 	
 	sectionTitles = [NSArray arrayWithArray:titles];
-	[titles release];
 	
 	sessions = [[handler getSessions] retain];
 }

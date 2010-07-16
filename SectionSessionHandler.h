@@ -16,11 +16,12 @@
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
-- (NSArray *)getSectionTitles;
 - (NSArray *)getSections;
 - (Section *)getSectionForDate:(NSDate *)date;
 
 - (NSDictionary *)getSessions;
 - (NSArray *)getSessionsForSection:(Section *)section;
+- (NSDictionary *)getFavouriteSessions;
+- (NSArray *)getFavouriteSessionsForSection:(Section *)section;
 
 @end

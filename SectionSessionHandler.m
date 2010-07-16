@@ -40,21 +40,6 @@
 	return sections;
 }
 
-- (NSArray *)getSectionTitles {
-	NSArray *sections = [self getSections];
-	
-	NSMutableArray *mutableSectionTitles = [[NSMutableArray alloc] initWithCapacity:[sections count]];
-	
-	for (Section *section in sections) {
-		[mutableSectionTitles addObject:[section title]];
-	}
-	
-	NSArray *sectionTitles = [NSArray arrayWithArray:mutableSectionTitles];
-	[mutableSectionTitles release];
-	
-	return sectionTitles;
-}
-
 - (NSArray *)getSessionsForSection:(Section *)section {
 	NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
@@ -86,19 +71,51 @@
 	return sessions;
 }
 
+- (NSArray *)getFavouriteSessionsForSection:(Section *)section {
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
+	
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	
+	[request setEntity:entityDescription];
+	
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"room" ascending:YES];
+	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+	[request setSortDescriptors:sortDescriptors];
+	[sortDescriptors release];
+	[sortDescriptor release];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:
+							  @"(userSession.@count > 0) && (active == %@) AND (startDate >= %@) AND (endDate <= %@)", [NSNumber numberWithBool:true], [section startDate], [section endDate]];
+
+	[request setPredicate:predicate];
+	
+	NSError *error;
+	
+	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	
+	NSArray *sessions = [NSArray arrayWithArray:mutableFetchResults];
+	
+	[mutableFetchResults release];
+	[request release];
+	
+	return sessions;
+}
+
 - (NSDictionary *)getSessions {
 	NSArray *sections = [self getSections];
 	
-	NSArray *keys = [self getSectionTitles];
-
+	NSMutableArray *keys = [[NSMutableArray alloc] initWithCapacity:[sections count]];
 	NSMutableArray *objects = [[NSMutableArray alloc] initWithCapacity:[sections count]];
 	
 	for (Section *section in sections) {
+		[keys addObject:[section title]];
 		[objects addObject:[self getSessionsForSection:section]];
 	}
 	
 	NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:[NSArray arrayWithArray:objects] forKeys:keys];
 	[objects release];
+	[keys release];
 	
 	return dictionary;
 }
@@ -132,5 +149,27 @@
 	return [sections objectAtIndex:0];
 }
 
+- (NSDictionary *)getFavouriteSessions {
+	NSArray *sections = [self getSections];
+	
+	NSMutableArray *keys = [[NSMutableArray alloc] init];
+	
+	NSMutableArray *objects = [[NSMutableArray alloc] init];
+	
+	for (Section *section in sections) {
+		NSArray *sessions = [self getFavouriteSessionsForSection:section];
+		
+		if (nil != sessions && [sessions count] > 0) {
+			[keys addObject:[section title]];
+			[objects addObject:sessions];
+		}
+	}
+	
+	NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:[NSArray arrayWithArray:objects] forKeys:keys];
+	[objects release];
+	[keys release];
+	
+	return dictionary;	
+}
 
 @end

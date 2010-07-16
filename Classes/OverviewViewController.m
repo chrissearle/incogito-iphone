@@ -34,8 +34,13 @@
 	
 	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
 	
-	sectionTitles = [[NSArray alloc] initWithArray:[handler getSectionTitles]];
 	sessions = [[handler getSessions] retain];
+
+	NSMutableArray *titles = [NSMutableArray arrayWithArray:[sessions allKeys]];
+	
+	[titles sortUsingSelector:@selector(compare:)];
+	
+	sectionTitles = [[[NSArray alloc] initWithArray:titles] retain];
 }
 
 - (void)didReceiveMemoryWarning {
