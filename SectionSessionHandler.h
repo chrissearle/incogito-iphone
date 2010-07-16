@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class Section;
+@class JZSession;
 
 @interface SectionSessionHandler : NSObject {
 	NSManagedObjectContext *managedObjectContext;
@@ -18,6 +19,7 @@
 
 - (NSArray *)getSections;
 - (Section *)getSectionForDate:(NSDate *)date;
+- (JZSession *)getSessionForJZId:(NSString *)jzId;
 
 - (NSDictionary *)getSessions;
 - (NSArray *)getSessionsForSection:(Section *)section;
@@ -25,5 +27,7 @@
 - (NSArray *)getFavouriteSessionsForSection:(Section *)section;
 
 - (NSUInteger)getActiveSessionCount;
+
+- (void) setFavouriteForSession:(JZSession *)session withBoolean:(BOOL)favouriteFlag;
 
 @end

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JZSession.h"
+
+@class JZSession;
+@class SectionSessionHandler;
+@class IncogitoAppDelegate;
 
 @interface DetailedSessionViewController : UIViewController {
 	JZSession		*session;
@@ -16,6 +19,10 @@
 	UILabel			*sessionLocation;
 	UILabel			*level;
 	UIImageView		*levelImage;
+	BOOL			checkboxSelected;
+	IBOutlet		UIButton *checkboxButton;
+	SectionSessionHandler *handler;
+	IBOutlet IncogitoAppDelegate *appDelegate;
 }
 
 @property (nonatomic, retain) JZSession		*session;
@@ -24,10 +31,11 @@
 @property (nonatomic, retain) IBOutlet UILabel		*sessionLocation;
 @property (nonatomic, retain) IBOutlet UILabel		*level;
 @property (nonatomic, retain) IBOutlet UIImageView	*levelImage;
-
-
+@property (nonatomic, retain) SectionSessionHandler *handler;
 
 - (void) closeModalViewController:(id)sender;
 - (NSString *)removeHtmlTags:(NSString *)textWithTags;
+
+- (IBAction)checkboxButton:(id)sender;
 
 @end

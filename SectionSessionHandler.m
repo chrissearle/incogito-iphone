@@ -10,6 +10,7 @@
 
 #import "Section.h"
 #import "JZSession.h"
+#import "UserSession.h"
 
 @implementation SectionSessionHandler
 
@@ -127,7 +128,7 @@
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	
 	[request setEntity:entityDescription];
-
+	
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:
 							  @"(startDate <= %@) AND (endDate >= %@)", date, date];
 	
@@ -141,12 +142,41 @@
 	
 	[mutableFetchResults release];
 	[request release];
-
+	
 	if (nil == sections || [sections count] == 0) {
 		return nil;
 	}
 	
 	return [sections objectAtIndex:0];
+}
+
+- (JZSession *)getSessionForJZId:(NSString *)jzId {
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
+	
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	
+	[request setEntity:entityDescription];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:
+							  @"(jzId == %@)", jzId];
+	
+	[request setPredicate:predicate];
+	
+	NSError *error;
+	
+	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	
+	NSArray *sessions = [NSArray arrayWithArray:mutableFetchResults];
+	
+	[mutableFetchResults release];
+	[request release];
+	
+	if (nil == sessions || [sessions count] == 0) {
+		return nil;
+	}
+	
+	return [sessions objectAtIndex:0];
 }
 
 - (NSDictionary *)getFavouriteSessions {
@@ -192,6 +222,30 @@
 	return count;
 }
 
+- (void) setFavouriteForSession:(JZSession *)session withBoolean:(BOOL)favouriteFlag {
+	JZSession *sessionInContext = [self getSessionForJZId:[session jzId]];
+	
+	if (favouriteFlag == NO) {
+		if ([sessionInContext userSession]) {
+			[managedObjectContext deleteObject:[sessionInContext userSession]];
+			[sessionInContext setUserSession:nil];
+		}
+	}
+	
+	if (favouriteFlag == YES) {
+		if ([sessionInContext userSession] == nil) {
+			UserSession *userSession = (UserSession *)[NSEntityDescription insertNewObjectForEntityForName:@"UserSession" inManagedObjectContext:managedObjectContext];
+			
+			[sessionInContext setUserSession:userSession];
+		}
+	}
+
+	NSError *error;
+	
+	if (![managedObjectContext save:&error]) {
+		// Handle the error.
+	}	
+}
 
 
 @end

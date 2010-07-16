@@ -7,6 +7,9 @@
 //
 
 #import "DetailedSessionViewController.h"
+#import "JZSession.h"
+#import "SectionSessionHandler.h"
+#import "IncogitoAppDelegate.h"
 
 @implementation DetailedSessionViewController
 
@@ -16,9 +19,14 @@
 @synthesize details;
 @synthesize level;
 @synthesize levelImage;
+@synthesize handler;
 
 - (void)viewDidLoad {
+	checkboxSelected = 0;
+	
     [super viewDidLoad];
+	
+	handler = [appDelegate sectionSessionHandler];
 	
 	NSDateFormatter *startFormatter = [[NSDateFormatter alloc] init];
 	[startFormatter setDateFormat:@"hh:mm"];
@@ -39,8 +47,24 @@
 	
 	[startFormatter release];
 	[endFormatter release];
+	
+	if ([session userSession]) {
+		checkboxSelected = 1;
+		[checkboxButton setSelected:YES];
+	}
 }
 
+- (IBAction)checkboxButton:(id)sender{
+	if (checkboxSelected == 0){
+		[checkboxButton setSelected:YES];
+		checkboxSelected = 1;
+		[handler setFavouriteForSession:session withBoolean:YES];
+	} else {
+		[checkboxButton setSelected:NO];
+		checkboxSelected = 0;
+		[handler setFavouriteForSession:session withBoolean:NO];
+	}
+}
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
