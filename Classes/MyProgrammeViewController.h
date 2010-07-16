@@ -15,14 +15,9 @@
 
 	NSArray					*sectionTitles;
 	NSDictionary			*sessions;
-	NSString				*sectionName;
-	NSArray					*sectionSessions;
 }
-
 
 @property (nonatomic, retain) NSArray				*sectionTitles;
 @property (nonatomic, retain) NSDictionary			*sessions;
-@property (nonatomic, retain) NSArray				*sectionSessions;
-
 
 @end

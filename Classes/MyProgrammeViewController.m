@@ -17,7 +17,6 @@
 
 @synthesize sectionTitles;
 @synthesize sessions;
-@synthesize sectionSessions;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -73,8 +72,6 @@
 
 
 - (void)dealloc {
-	[sectionName release];
-	[sectionSessions release];
 	[sessions release];
 	[sectionTitles release];
     [super dealloc];
@@ -84,23 +81,19 @@
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	sectionName = [sectionTitles objectAtIndex:section];
+	NSString *sectionName = [sectionTitles objectAtIndex:section];
 	
-	sectionSessions = [sessions objectForKey:sectionName];
-	
-	if (nil == sectionSessions) {
+	if ([[sessions allKeys] containsObject:sectionName]) {
+		NSArray *sectionSessions = [sessions objectForKey:sectionName];
+		
+		return [sectionSessions count];
+	} else {
 		return 0;
 	}
-	
-	return [sectionSessions count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	sectionName = [sectionTitles objectAtIndex:indexPath.section];
-	
-	sectionSessions = [sessions objectForKey:sectionName];
-	
-	JZSession *session = [sectionSessions objectAtIndex:indexPath.row];
+	JZSession *session = [[sessions objectForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"sessionCell"];
 	
@@ -132,8 +125,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSString *sectionTitle = [sectionTitles objectAtIndex:indexPath.section];
+	
 	DetailedSessionViewController *controller = [[DetailedSessionViewController alloc] initWithNibName:@"DetailedSessionView" bundle:[NSBundle mainBundle]];
-	controller.session = [sectionSessions objectAtIndex:indexPath.row];
+	controller.session = [[sessions objectForKey:sectionTitle] objectAtIndex:indexPath.row];
 	
 	NSLog(@"row %d title %@", indexPath.row, controller.session.title);
 	
