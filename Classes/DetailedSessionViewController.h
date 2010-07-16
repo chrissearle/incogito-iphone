@@ -13,15 +13,18 @@
 	JZSession		*session;
 	UITextView		*details;
 	UILabel			*sessionTitle;
-	UILabel			*startDate;
-	UILabel			*endDate;
+	UILabel			*sessionLocation;
+	UILabel			*level;
+	UIImageView		*levelImage;
 }
 
 @property (nonatomic, retain) JZSession		*session;
 @property (nonatomic, retain) IBOutlet UITextView	*details;
 @property (nonatomic, retain) IBOutlet UILabel		*sessionTitle;
-@property (nonatomic, retain) IBOutlet UILabel		*startDate;
-@property (nonatomic, retain) IBOutlet UILabel		*endDate;
+@property (nonatomic, retain) IBOutlet UILabel		*sessionLocation;
+@property (nonatomic, retain) IBOutlet UILabel		*level;
+@property (nonatomic, retain) IBOutlet UIImageView	*levelImage;
+
 
 
 - (void) closeModalViewController:(id)sender;

@@ -13,22 +13,31 @@
 
 @synthesize session;
 @synthesize sessionTitle;
-@synthesize startDate;
-@synthesize endDate;
+@synthesize sessionLocation;
 @synthesize details;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	[formatter setDateFormat:@"yyyy-MM-dd hh:mm"];
+	NSDateFormatter *startFormatter = [[NSDateFormatter alloc] init];
+	[startFormatter setDateFormat:@"hh:mm"];
+	NSDateFormatter *endFormatter = [[NSDateFormatter alloc] init];
+	[endFormatter setDateFormat:@"hh:mm"];
 	
 	[sessionTitle setText:session.title];
-	[startDate setText:[formatter stringFromDate:session.startDate]];
-	[endDate setText:[formatter stringFromDate:session.endDate]];
+	[sessionLocation setText:[NSString stringWithFormat:@"%@ - %@ in room %@",
+							  [startFormatter stringFromDate:[session startDate]],
+							  [endFormatter stringFromDate:[session endDate]],
+							  [session room]]];
+
 	[details setText:[self removeHtmlTags:session.detail]];
 	
-	[formatter release];
+	[level setText:[session level]];
+	
+	[levelImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [session level]]]];
+	
+	[startFormatter release];
+	[endFormatter release];
 }
 
 
