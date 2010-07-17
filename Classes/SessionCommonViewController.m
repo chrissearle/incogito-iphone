@@ -34,6 +34,11 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	[self loadSessionData];
+	
+	[tv reloadData];
+}
 
 - (void)dealloc {
 	[sessions release];

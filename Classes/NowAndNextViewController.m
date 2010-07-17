@@ -64,12 +64,6 @@
 	[footerTexts release];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-	[self loadSessionData];
-	
-	[tv reloadData];
-}
-
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
