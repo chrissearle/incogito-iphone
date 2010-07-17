@@ -8,6 +8,7 @@
 
 #import "DetailedSessionViewController.h"
 #import "JZSession.h"
+#import "JZSessionBio.h"
 #import "SectionSessionHandler.h"
 #import "IncogitoAppDelegate.h"
 
@@ -39,7 +40,7 @@
 							  [endFormatter stringFromDate:[session endDate]],
 							  [session room]]];
 
-	[details setText:[self removeHtmlTags:session.detail]];
+	[details loadHTMLString:[self buildPage:[session detail] withSpeakerInfo:[self buildSpeakersSection:[session speakers]]] baseURL:nil];
 	
 	[level setText:[session level]];
 	
@@ -87,25 +88,57 @@
 	[self dismissModalViewControllerAnimated:YES];
 }
 
-- (NSString *)removeHtmlTags:(NSString *)textWithTags {
-    NSScanner *theScanner;
-    NSString *text = nil;
+- (NSString *)buildSpeakersSection:(NSSet *)speakers {
+	NSMutableString *result = [[NSMutableString alloc] init];
 	
-    theScanner = [NSScanner scannerWithString:textWithTags];
-	
-    while ([theScanner isAtEnd] == NO) {
-        [theScanner scanUpToString:@"<" intoString:NULL] ; 
-        [theScanner scanUpToString:@">" intoString:&text];
-        textWithTags = [textWithTags stringByReplacingOccurrencesOfString:
-				[ NSString stringWithFormat:@"%@>", text]
-											   withString:@""];
+	for (JZSessionBio *speaker in speakers) {
+		NSString *speakerLine = [NSString stringWithFormat:@"<h3>%@</h3>%@", [speaker name], [speaker bio]];
 		
-    }
-	// remove line break
-	textWithTags = [textWithTags stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+		[result appendString:speakerLine];
+	}
 	
-    return textWithTags;
+	NSString *speakerSection = [NSString stringWithString:result];
+	
+	[result release];
+	
+	return speakerSection;
 }
 
+- (NSString *)buildPage:(NSString *)content withSpeakerInfo:(NSString *)speakerInfo {
+	NSString *page = [NSString stringWithFormat:@""
+					  "<html>"
+					  "<head>"
+					  "<style type=\"text/css\">"
+					  "body {"
+					  "  font-family: Helvetica;"
+					  "}"
+					  "div.paragraph {"
+					  "  font-size: 13px;"
+					  "  margin-bottom: 8px;"
+					  "}"
+					  "li {"
+					  "  font-size: 13px;"
+					  "}"
+					  "h2 {"
+					  "  font-size: 15px;"
+					  "  font-weight: bold;"
+					  "}"
+					  "h3 {"
+					  "  font-size: 15px;"
+					  "  font-weight: normal;"
+					  "}"
+					  "</style>"
+					  "</head>"
+					  "<body>"
+					  "%@"
+					  "<h2>Speakers</h2>"
+					  "%@"
+					  "</body>"
+					  "</html>",
+					  content,
+					  speakerInfo];
+	
+	return page;
+}
 
 @end

@@ -14,7 +14,7 @@
 
 @interface DetailedSessionViewController : UIViewController {
 	JZSession		*session;
-	UITextView		*details;
+	UIWebView		*details;
 	UILabel			*sessionTitle;
 	UILabel			*sessionLocation;
 	UILabel			*level;
@@ -26,7 +26,7 @@
 }
 
 @property (nonatomic, retain) JZSession		*session;
-@property (nonatomic, retain) IBOutlet UITextView	*details;
+@property (nonatomic, retain) IBOutlet UIWebView	*details;
 @property (nonatomic, retain) IBOutlet UILabel		*sessionTitle;
 @property (nonatomic, retain) IBOutlet UILabel		*sessionLocation;
 @property (nonatomic, retain) IBOutlet UILabel		*level;
@@ -34,7 +34,8 @@
 @property (nonatomic, retain) SectionSessionHandler *handler;
 
 - (void) closeModalViewController:(id)sender;
-- (NSString *)removeHtmlTags:(NSString *)textWithTags;
+- (NSString *)buildPage:(NSString *)content withSpeakerInfo:(NSString *)speakerInfo;
+- (NSString *)buildSpeakersSection:(NSSet *)speakers;
 
 - (IBAction)checkboxButton:(id)sender;
 
