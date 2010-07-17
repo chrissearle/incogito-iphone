@@ -14,6 +14,8 @@
 
 @implementation NowAndNextViewController
 
+@synthesize footers;
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,6 +29,7 @@
 	sessions = [[handler getSessions] retain];
 	
 	NSMutableArray *titles = [[NSMutableArray alloc] init];
+	NSMutableArray *footerTexts = [[NSMutableArray alloc] init];
 
 #ifdef NOW_AND_NEXT_USE_TEST_DATE
 	// In debug mode we will use the current time of day but always the first day of JZ. Otherwise we couldn't test until JZ started ;)
@@ -42,25 +45,23 @@
 #else
 	NSDate *now = [[NSDate alloc] init];
 #endif
-
-	Section *section = [handler getSectionForDate:now];
-	[now release];
+	NSString *nowTitle = [handler getSectionTitleForDate:now];
+	NSString *nextTitle = [handler getNextSectionTitleForDate:now];
 	
-	if (nil != section) {
-		[titles addObject:[section title]];
-		
-		NSDate *next = [[NSDate alloc] initWithTimeInterval:1801 sinceDate:[section endDate]];
-		section = [handler getSectionForDate:next];
-		[next release];
-		
-		if (nil != section) {
-			[titles addObject:[section title]];
-		}
+	if (nil != nowTitle) {
+		[footerTexts addObject:nowTitle];
+		[titles addObject:@"Now"];
+	}
+	if (nil != nextTitle) {
+		[footerTexts addObject:nextTitle];
+		[titles addObject:@"Next"];
 	}
 	
 	sectionTitles = [[[NSArray alloc] initWithArray:titles] retain];
+	footers = [[[NSArray alloc] initWithArray:footerTexts] retain];
 	
 	[titles release];
+	[footerTexts release];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -84,7 +85,16 @@
 
 
 - (void)dealloc {
+	[footers release];
     [super dealloc];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+	return [footers objectAtIndex:section];
+}
+
+- (NSString *)getSelectedSessionTitle:(NSInteger)section {
+	return [footers objectAtIndex:section];
 }
 
 @end

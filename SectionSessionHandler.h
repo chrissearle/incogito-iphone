@@ -18,7 +18,8 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 - (NSArray *)getSections;
-- (Section *)getSectionForDate:(NSDate *)date;
+- (NSString *)getSectionTitleForDate:(NSDate *)date;
+- (NSString *)getNextSectionTitleForDate:(NSDate *)date;
 - (JZSession *)getSessionForJZId:(NSString *)jzId;
 
 - (NSDictionary *)getSessions;

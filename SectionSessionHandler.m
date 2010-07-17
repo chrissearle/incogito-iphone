@@ -121,7 +121,7 @@
 	return dictionary;
 }
 
-- (Section *)getSectionForDate:(NSDate *)date {
+- (NSString *)getSectionTitleForDate:(NSDate *)date {
 	NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:@"Section" inManagedObjectContext:managedObjectContext];
 	
@@ -147,7 +147,42 @@
 		return nil;
 	}
 	
-	return [sections objectAtIndex:0];
+	return [[sections objectAtIndex:0] title];
+}
+
+- (NSString *)getNextSectionTitleForDate:(NSDate *)date {
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"Section" inManagedObjectContext:managedObjectContext];
+	
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	
+	[request setEntity:entityDescription];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:
+							  @"(startDate > %@)", date];
+	
+	[request setPredicate:predicate];
+
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startDate" ascending:YES];
+	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+	[request setSortDescriptors:sortDescriptors];
+	[sortDescriptors release];
+	[sortDescriptor release];
+	
+	NSError *error;
+	
+	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	
+	NSArray *sections = [NSArray arrayWithArray:mutableFetchResults];
+	
+	[mutableFetchResults release];
+	[request release];
+	
+	if (nil == sections || [sections count] == 0) {
+		return nil;
+	}
+	
+	return [[sections objectAtIndex:0] title];
 }
 
 - (JZSession *)getSessionForJZId:(NSString *)jzId {

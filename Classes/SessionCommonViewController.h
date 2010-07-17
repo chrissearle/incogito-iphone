@@ -23,6 +23,7 @@
 
 @property (nonatomic, retain) UITableView	*tv;
 
-- (void) loadSessionData;
+- (void)loadSessionData;
+- (NSString *)getSelectedSessionTitle:(NSInteger)section;
 
 @end

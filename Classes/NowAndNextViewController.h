@@ -10,6 +10,9 @@
 #import "SessionCommonViewController.h"
 
 @interface NowAndNextViewController : SessionCommonViewController {
+	NSArray *footers;
 }
+
+@property (nonatomic, retain) NSArray *footers;
 
 @end

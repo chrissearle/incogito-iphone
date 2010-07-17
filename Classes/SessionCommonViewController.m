@@ -42,9 +42,12 @@
     [super dealloc];
 }
 
+- (NSString *)getSelectedSessionTitle:(NSInteger)section {
+	return [sectionTitles objectAtIndex:section];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	NSString *sectionName = [sectionTitles objectAtIndex:section];
+	NSString *sectionName = [self getSelectedSessionTitle:section];
 	
 	if ([[sessions allKeys] containsObject:sectionName]) {
 		NSArray *sectionSessions = [sessions objectForKey:sectionName];
@@ -56,7 +59,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	JZSession *session = [[sessions objectForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+	JZSession *session = [[sessions objectForKey:[self getSelectedSessionTitle:indexPath.section]] objectAtIndex:indexPath.row];
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"sessionCell"];
 	
@@ -94,12 +97,10 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSString *sectionTitle = [sectionTitles objectAtIndex:indexPath.section];
+	NSString *sectionTitle = [self getSelectedSessionTitle:indexPath.section];
 	
 	DetailedSessionViewController *controller = [[DetailedSessionViewController alloc] initWithNibName:@"DetailedSessionView" bundle:[NSBundle mainBundle]];
 	controller.session = [[sessions objectForKey:sectionTitle] objectAtIndex:indexPath.row];
-	
-	NSLog(@"row %d title %@", indexPath.row, controller.session.title);
 	
 	[self.tabBarController presentModalViewController:controller animated:YES];
 	[controller release];
