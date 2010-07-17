@@ -19,8 +19,10 @@
     [super viewDidLoad];
 	
 	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
+
+	sessions = [[handler getSessions] retain];
 	
-	NSMutableArray *titles = [[[NSMutableArray alloc] init] autorelease];
+	NSMutableArray *titles = [[NSMutableArray alloc] init];
 	
 	//NSDate *now = [[NSDate alloc] init];
 	//For testing
@@ -31,19 +33,18 @@
 	if (nil != section) {
 		[titles addObject:[section title]];
 		
-		NSDate *next = [[NSDate alloc] initWithTimeInterval:1801 sinceDate:[section endDate]];
-		
-		section = [handler getSectionForDate:next];
-		[next release];
-		
-		if (nil != section) {
-			[titles addObject:[section title]];
-		}
+		 NSDate *next = [[NSDate alloc] initWithTimeInterval:1801 sinceDate:[section endDate]];
+		 section = [handler getSectionForDate:next];
+		 [next release];
+		 
+		 if (nil != section) {
+			 [titles addObject:[section title]];
+		 }
 	}
 	
-	sectionTitles = [NSArray arrayWithArray:titles];
+	sectionTitles = [[[NSArray alloc] initWithArray:titles] retain];
 	
-	sessions = [[handler getSessions] retain];
+	[titles release];
 }
 
 - (void)didReceiveMemoryWarning {
