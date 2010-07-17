@@ -644,8 +644,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
 				INFOPLIST_FILE = "incogito-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				OTHER_CFLAGS = "-DNOW_AND_NEXT_USE_TEST_DATE=1";
 				PRODUCT_NAME = JavaZone;
+				SDKROOT = iphoneos4.0;
 			};
 			name = Debug;
 		};
@@ -658,6 +660,7 @@
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
 				INFOPLIST_FILE = "incogito-Info.plist";
 				PRODUCT_NAME = incogito;
+				SDKROOT = iphoneos3.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
