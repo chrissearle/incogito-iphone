@@ -76,6 +76,11 @@
 	cell.detailTextLabel.text = [NSString stringWithFormat:@"Room %@ - %@", session.room, [speakerNames componentsJoinedByString:@", "]];
 	[speakerNames release];
 	cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
+	
+	UIImageView *imageView = [cell imageView];
+	
+	[imageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [session level]]]];
+	
 	return cell;
 }
 
