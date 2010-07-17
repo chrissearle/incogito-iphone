@@ -13,8 +13,6 @@
 
 @implementation OverviewViewController
 
-@synthesize tableView = _tableView;
-
 /*
  // Implement loadView to create a view hierarchy programmatically, without using a nib.
  - (void)loadView {
@@ -60,10 +58,6 @@
 
 - (void)dealloc {
     [super dealloc];
-}
-
-- (void)reloadSessionData {
-	[_tableView reloadData];
 }
 
 @end

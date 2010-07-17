@@ -10,9 +10,6 @@
 #import "SessionCommonViewController.h"
 
 @interface OverviewViewController : SessionCommonViewController {
-	UITableView							*_tableView;
 }
-
-@property (nonatomic, retain) IBOutlet UITableView	*tableView;
 
 @end
