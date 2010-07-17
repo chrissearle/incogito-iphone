@@ -18,33 +18,55 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
+	[self loadSessionData];
+}
 
+- (void)loadSessionData {
+	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
+	
 	sessions = [[handler getSessions] retain];
 	
 	NSMutableArray *titles = [[NSMutableArray alloc] init];
+
+#ifdef NOW_AND_NEXT_USE_TEST_DATE
+	// In debug mode we will use the current time of day but always the first day of JZ. Otherwise we couldn't test until JZ started ;)
+	NSDate *current = [[NSDate alloc] init];
 	
-	//NSDate *now = [[NSDate alloc] init];
-	//For testing
-	NSDate *now = [[NSDate alloc] initWithString:@"2010-09-08 10:33:00 +0200"];
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	unsigned int unitFlags = NSHourCalendarUnit|NSMinuteCalendarUnit;
+	NSDateComponents *comp = [calendar components:unitFlags fromDate:current];
+	
+	NSDate *now = [[NSDate alloc] initWithString:[NSString stringWithFormat:@"2010-09-08 %02d:%02d:00 +0200", [comp hour], [comp minute]]];
+
+	[current release];
+#else
+	NSDate *now = [[NSDate alloc] init];
+#endif
+
 	Section *section = [handler getSectionForDate:now];
 	[now release];
 	
 	if (nil != section) {
 		[titles addObject:[section title]];
 		
-		 NSDate *next = [[NSDate alloc] initWithTimeInterval:1801 sinceDate:[section endDate]];
-		 section = [handler getSectionForDate:next];
-		 [next release];
-		 
-		 if (nil != section) {
-			 [titles addObject:[section title]];
-		 }
+		NSDate *next = [[NSDate alloc] initWithTimeInterval:1801 sinceDate:[section endDate]];
+		section = [handler getSectionForDate:next];
+		[next release];
+		
+		if (nil != section) {
+			[titles addObject:[section title]];
+		}
 	}
 	
 	sectionTitles = [[[NSArray alloc] initWithArray:titles] retain];
 	
 	[titles release];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[self loadSessionData];
+	
+	[tv reloadData];
 }
 
 - (void)didReceiveMemoryWarning {

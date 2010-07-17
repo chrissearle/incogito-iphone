@@ -16,12 +16,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+	[self loadSessionData];
+}
+
+- (void)loadSessionData {
 	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
 	
 	sessions = [[handler getFavouriteSessions] retain];
-
+	
 	NSMutableArray *titles = [NSMutableArray arrayWithArray:[sessions allKeys]];
-
+	
 	[titles sortUsingSelector:@selector(compare:)];
 	
 	sectionTitles = [[[NSArray alloc] initWithArray:titles] retain];

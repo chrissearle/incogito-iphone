@@ -23,4 +23,6 @@
 
 @property (nonatomic, retain) UITableView	*tv;
 
+- (void) loadSessionData;
+
 @end
