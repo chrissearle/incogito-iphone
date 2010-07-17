@@ -143,8 +143,6 @@
 	[session setStartDate:[self getDateFromJson:start]];
 	[session setEndDate:[self getDateFromJson:end]];
 		
-	NSLog(@"%@ - %@", [session jzId], [session title]);
-
 	NSArray *speakers = [item objectForKey:@"speakers"];
 	
 	for (NSDictionary *speaker in speakers) {
