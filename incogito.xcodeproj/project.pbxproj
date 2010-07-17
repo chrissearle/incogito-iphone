@@ -43,6 +43,7 @@
 		83A5245D11F0E4D60041308B /* checkbox-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A5245A11F0E4D60041308B /* checkbox-checked.png */; };
 		83A5245E11F0E4D60041308B /* checkbox-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A5245B11F0E4D60041308B /* checkbox-pressed.png */; };
 		83A5245F11F0E4D60041308B /* checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A5245C11F0E4D60041308B /* checkbox.png */; };
+		83D1762511F18C3300D89884 /* SessionCommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1762411F18C3300D89884 /* SessionCommonViewController.m */; };
 		83D6BCF911EEF3A100FBC0FE /* SectionInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */; };
 		83D6BDC211EF051700FBC0FE /* SectionSessionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6BDC111EF051700FBC0FE /* SectionSessionHandler.m */; };
 		83D6BFEF11EF3A7B00FBC0FE /* JZLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6BFE611EF3A7B00FBC0FE /* JZLabel.m */; };
@@ -233,6 +234,8 @@
 		83A5245A11F0E4D60041308B /* checkbox-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-checked.png"; sourceTree = "<group>"; };
 		83A5245B11F0E4D60041308B /* checkbox-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-pressed.png"; sourceTree = "<group>"; };
 		83A5245C11F0E4D60041308B /* checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox.png; sourceTree = "<group>"; };
+		83D1762311F18C3300D89884 /* SessionCommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionCommonViewController.h; sourceTree = "<group>"; };
+		83D1762411F18C3300D89884 /* SessionCommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionCommonViewController.m; sourceTree = "<group>"; };
 		83D6BCF711EEF3A100FBC0FE /* SectionInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionInitializer.h; sourceTree = "<group>"; };
 		83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionInitializer.m; sourceTree = "<group>"; };
 		83D6BDC011EF051700FBC0FE /* SectionSessionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SectionSessionHandler.h; path = ../SectionSessionHandler.h; sourceTree = "<group>"; };
@@ -290,6 +293,8 @@
 				83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */,
 				834964C311F09016008BB29F /* UpdateViewController.h */,
 				834964C411F09016008BB29F /* UpdateViewController.m */,
+				83D1762311F18C3300D89884 /* SessionCommonViewController.h */,
+				83D1762411F18C3300D89884 /* SessionCommonViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -622,6 +627,7 @@
 				83D6BFF311EF3A7B00FBC0FE /* UserSession.m in Sources */,
 				83D6C07311EF922500FBC0FE /* DetailedSessionViewController.m in Sources */,
 				834964C511F09016008BB29F /* UpdateViewController.m in Sources */,
+				83D1762511F18C3300D89884 /* SessionCommonViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

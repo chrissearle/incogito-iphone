@@ -7,17 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SessionCommonViewController.h"
 
-@class IncogitoAppDelegate;
-
-@interface MyProgrammeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
-	IBOutlet IncogitoAppDelegate		*appDelegate;
-
-	NSArray					*sectionTitles;
-	NSDictionary			*sessions;
+@interface MyProgrammeViewController : SessionCommonViewController {
 }
-
-@property (nonatomic, retain) NSArray				*sectionTitles;
-@property (nonatomic, retain) NSDictionary			*sessions;
 
 @end
