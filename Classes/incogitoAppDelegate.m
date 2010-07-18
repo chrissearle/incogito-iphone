@@ -87,13 +87,17 @@
     NSError *error = nil;
     if (managedObjectContext_ != nil) {
         if ([managedObjectContext_ hasChanges] && ![managedObjectContext_ save:&error]) {
-            /*
-             Replace this implementation with code to handle the error appropriately.
-             
-             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-             */
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
+
+			UIAlertView *errorAlert = [[UIAlertView alloc]
+									   initWithTitle: @"Unable to save data state to the data store at shutdown"
+									   message: @"This is not an error we can recover from - please exit using the home button."
+									   delegate:nil
+									   cancelButtonTitle:@"OK"
+									   otherButtonTitles:nil];
+			[errorAlert show];
+			[errorAlert release];
+
+			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         } 
     }
 }
@@ -175,31 +179,17 @@
     NSError *error = nil;
     persistentStoreCoordinator_ = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![persistentStoreCoordinator_ addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-         
-         Typical reasons for an error here include:
-         * The persistent store is not accessible;
-         * The schema for the persistent store is incompatible with current managed object model.
-         Check the error message to determine what the actual problem was.
-         
-         
-         If the persistent store is not accessible, there is typically something wrong with the file path. Often, a file URL is pointing into the application's resources directory instead of a writeable directory.
-         
-         If you encounter schema incompatibility errors during development, you can reduce their frequency by:
-         * Simply deleting the existing store:
-         [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil]
-         
-         * Performing automatic lightweight migration by passing the following dictionary as the options parameter: 
-         [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES],NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
-         
-         Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
-         
-         */
+		
+		UIAlertView *errorAlert = [[UIAlertView alloc]
+								   initWithTitle: @"Unable to load data store"
+								   message: @"The data store failed to load and without it this application has no data to show. This is not an error we can recover from - please exit using the home button."
+								   delegate:nil
+								   cancelButtonTitle:@"OK"
+								   otherButtonTitles:nil];
+		[errorAlert show];
+		[errorAlert release];
+		
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
     }    
     
 #ifdef LOG_FUNCTION_TIMES
