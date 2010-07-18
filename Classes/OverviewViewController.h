@@ -12,4 +12,6 @@
 @interface OverviewViewController : SessionCommonViewController {
 }
 
+- (void) checkForData;
+
 @end

@@ -14,6 +14,8 @@
 
 - (void)removeSections;
 - (void)initializeSections;
+- (void)initializeSectionsWithRefresh:(BOOL)refreshFlag;
 - (void)addSectionForDay:(int)day startingAt:(NSString *)startDate endingAt:(NSString *)endDate;
+- (NSUInteger)getSectionCount;
 
 @end

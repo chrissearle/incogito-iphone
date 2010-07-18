@@ -17,10 +17,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ Overview - about to check for data", [[[NSDate alloc] init] autorelease]);
+#endif
+
+	[self checkForData];
+	
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ Overview - about to load data", [[[NSDate alloc] init] autorelease]);
+#endif
+	
 	[self loadSessionData];
+
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ Overview - loaded data", [[[NSDate alloc] init] autorelease]);
+#endif
+	
 }
 
-- (void) loadSessionData {
+- (void) checkForData {
 	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
 	
 	NSUInteger count = [handler getActiveSessionCount];
@@ -30,6 +45,11 @@
 		[self.tabBarController presentModalViewController:controller animated:YES];
 		[controller release];
 	}
+	
+}
+
+- (void) loadSessionData {
+	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
 	
 	sessions = [[handler getSessions] retain];
 	

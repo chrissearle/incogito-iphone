@@ -23,10 +23,24 @@
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+	
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ Start of application:didFinishLaunchingWithOptions", [[[NSDate alloc] init] autorelease]);
+#endif
+
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ Calling sectionInitializer", [[[NSDate alloc] init] autorelease]);
+#endif
+	
 	SectionInitializer *sectionInitializer = [[SectionInitializer alloc] init];
 	[sectionInitializer setManagedObjectContext:[self managedObjectContext]];
 	[sectionInitializer initializeSections];
 	[sectionInitializer release];
+
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ Called sectionInitializer", [[[NSDate alloc] init] autorelease]);
+#endif
+	
 	
 	[window addSubview:rootController.view];
     [window makeKeyAndVisible];
@@ -98,12 +112,21 @@
         return managedObjectContext_;
     }
     
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ No moc - initializing", [[[NSDate alloc] init] autorelease]);
+#endif
+	
+	NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
         managedObjectContext_ = [[NSManagedObjectContext alloc] init];
         [managedObjectContext_ setPersistentStoreCoordinator:coordinator];
-    }
-    return managedObjectContext_;
+	}
+
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ No moc - initialized", [[[NSDate alloc] init] autorelease]);
+#endif
+	
+	return managedObjectContext_;
 }
 
 
@@ -116,10 +139,20 @@
     if (managedObjectModel_ != nil) {
         return managedObjectModel_;
     }
-    NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"incogito" ofType:@"momd"];
+
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ No mom - initializing", [[[NSDate alloc] init] autorelease]);
+#endif
+	
+	NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"incogito" ofType:@"momd"];
     NSURL *modelURL = [NSURL fileURLWithPath:modelPath];
     managedObjectModel_ = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
-    return managedObjectModel_;
+
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ No mom - initialized", [[[NSDate alloc] init] autorelease]);
+#endif
+	
+	return managedObjectModel_;
 }
 
 
@@ -133,6 +166,10 @@
         return persistentStoreCoordinator_;
     }
     
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ No persistent store - initializing", [[[NSDate alloc] init] autorelease]);
+#endif
+	
     NSURL *storeURL = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory] stringByAppendingPathComponent: @"incogito.sqlite"]];
     
     NSError *error = nil;
@@ -165,6 +202,10 @@
         abort();
     }    
     
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ No persistent store - initialized", [[[NSDate alloc] init] autorelease]);
+#endif
+
     return persistentStoreCoordinator_;
 }
 
