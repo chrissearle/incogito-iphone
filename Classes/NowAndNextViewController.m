@@ -44,6 +44,8 @@
 #endif
 	NSString *nowTitle = [handler getSectionTitleForDate:now];
 	NSString *nextTitle = [handler getNextSectionTitleForDate:now];
+
+	[now release];
 	
 	if (nil != nowTitle) {
 		[footerTexts addObject:nowTitle];

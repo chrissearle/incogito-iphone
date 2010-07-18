@@ -39,12 +39,19 @@
 	// Get JSON as a NSString from NSData response
 	NSString *json_string = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
 		
+	error = nil;
+	
 	// parse the JSON response into an object
 	// Here we're using NSArray since we're parsing an array of JSON status objects
-	NSDictionary *object = [parser objectWithString:json_string error:nil];
+	NSDictionary *object = [parser objectWithString:json_string error:&error];
 	
 	[json_string release];
 	[parser release];
+	
+	if (nil != error) {
+		NSLog(@"%@:%s Error parsing sessions: %@", [self class], _cmd, [error localizedDescription]);
+		return 0;
+	}
 	
 	NSArray *array = [object objectForKey:@"sessions"];
 	
@@ -74,16 +81,27 @@
 	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	[request setEntity:entityDescription];
 
-	NSError *error;
+	NSError *error = nil;
 
 	NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];
+
+	if (nil != error) {
+		NSLog(@"%@:%s Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		return;
+	}
+	
 	
 	for (JZSession *session in array) {
 		[session setActive:[NSNumber numberWithBool:FALSE]];
 	}
 	
+	error = nil;
+	
 	if (![managedObjectContext save:&error]) {
-		// Handle the error.
+		if (nil != error) {
+			NSLog(@"%@:%s Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
+			return;
+		}
 	}	
 }
 
@@ -99,9 +117,14 @@
 	
 	[request setPredicate:predicate];
 
-	NSError *error;
+	NSError *error = nil;
 
 	NSArray *sessions = [managedObjectContext executeFetchRequest:request error:&error];
+
+	if (nil != error) {
+		NSLog(@"%@:%s Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		return;
+	}
 	
 	JZSession *session;						  
 	
@@ -164,10 +187,14 @@
 		
 		[session addLabelsObject:lbl];
 	}
-		
+
+	error = nil;
 	
 	if (![managedObjectContext save:&error]) {
-		// Handle the error.
+		if (nil != error) {
+			NSLog(@"%@:%s Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
+			return;
+		}
 	}
 }
 
@@ -191,7 +218,7 @@
 	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	[request setEntity:entityDescription];
 	
-	NSError *error;
+	NSError *error = nil;
 	
 	NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];
 	
@@ -200,7 +227,10 @@
 	}
 	
 	if (![managedObjectContext save:&error]) {
-		// Handle the error.
+		if (nil != error) {
+			NSLog(@"%@:%s Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
+			return;
+		}
 	}	
 }
 

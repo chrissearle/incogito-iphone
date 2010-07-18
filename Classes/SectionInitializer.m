@@ -75,10 +75,13 @@
 	[start release];
 	[end release];
 	
-	NSError *error;
+	NSError *error = nil;
 	
 	if (![managedObjectContext save:&error]) {
-		// Handle the error.
+		if (nil != error) {
+			NSLog(@"%@:%s Error saving sections: %@", [self class], _cmd, [error localizedDescription]);
+			return;
+		}
 	}
 	
 #ifdef LOG_FUNCTION_TIMES
@@ -95,14 +98,20 @@
 	
 	[request setEntity:entityDescription];
 	
-	NSError *error;
+	NSError *error = nil;
 	
 	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	[request release];
 	
+	if (nil != error) {
+		[mutableFetchResults release];
+		NSLog(@"%@:%s Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
+		return 0;
+	}
+
 	NSUInteger count = [mutableFetchResults count];
 	
 	[mutableFetchResults release];
-	[request release];
 	
 	return count;
 }
@@ -119,10 +128,15 @@
 	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	[request setEntity:entityDescription];
 	
-	NSError *error;
+	NSError *error = nil;
 	
 	NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];
 	
+	if (nil != error) {
+		NSLog(@"%@:%s Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
+		return;
+	}
+
 #ifdef LOG_FUNCTION_TIMES
 	NSLog(@"%@ Removing sections start loop", [[[NSDate alloc] init] autorelease]);
 #endif
@@ -135,8 +149,13 @@
 	NSLog(@"%@ Removing sections end loop", [[[NSDate alloc] init] autorelease]);
 #endif
 	
+	error = nil;
+	
 	if (![managedObjectContext save:&error]) {
-		// Handle the error.
+		if (nil != error) {
+			NSLog(@"%@:%s Error saving sections: %@", [self class], _cmd, [error localizedDescription]);
+			return;
+		}
 	}
 	
 #ifdef LOG_FUNCTION_TIMES

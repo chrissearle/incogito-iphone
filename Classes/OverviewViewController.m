@@ -45,7 +45,6 @@
 		[self.tabBarController presentModalViewController:controller animated:YES];
 		[controller release];
 	}
-	
 }
 
 - (void) loadSessionData {

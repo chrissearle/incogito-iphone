@@ -30,11 +30,17 @@
 	[sortDescriptors release];
 	[sortDescriptor release];
 	
-	NSError *error;
+	NSError *error = nil;
 
 	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
 	[request release];
 
+	if (nil != error) {
+		[mutableFetchResults release];
+		NSLog(@"%@:%s Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
+		return nil;
+	}
+	
 	NSArray *sections = [NSArray arrayWithArray:mutableFetchResults];
 	[mutableFetchResults release];
 	
@@ -60,14 +66,19 @@
 	
 	[request setPredicate:predicate];
 	
-	NSError *error;
+	NSError *error = nil;
 	
 	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	[request release];
+	
+	if (nil != error) {
+		[mutableFetchResults release];
+		NSLog(@"%@:%s Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		return nil;
+	}
 	
 	NSArray *sessions = [NSArray arrayWithArray:mutableFetchResults];
-	
 	[mutableFetchResults release];
-	[request release];
 	
 	return sessions;
 }
@@ -91,14 +102,20 @@
 
 	[request setPredicate:predicate];
 	
-	NSError *error;
+	NSError *error = nil;
 	
 	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	[request release];
 	
+	if (nil != error) {
+		[mutableFetchResults release];
+		NSLog(@"%@:%s Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		return nil;
+	}
+
 	NSArray *sessions = [NSArray arrayWithArray:mutableFetchResults];
 	
 	[mutableFetchResults release];
-	[request release];
 	
 	return sessions;
 }
@@ -134,14 +151,20 @@
 	
 	[request setPredicate:predicate];
 	
-	NSError *error;
+	NSError *error = nil;
 	
 	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	[request release];
 	
+	if (nil != error) {
+		[mutableFetchResults release];
+		NSLog(@"%@:%s Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
+		return nil;
+	}
+
 	NSArray *sections = [NSArray arrayWithArray:mutableFetchResults];
 	
 	[mutableFetchResults release];
-	[request release];
 	
 	if (nil == sections || [sections count] == 0) {
 		return nil;
@@ -169,14 +192,20 @@
 	[sortDescriptors release];
 	[sortDescriptor release];
 	
-	NSError *error;
+	NSError *error = nil;
 	
 	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	[request release];
+	
+	if (nil != error) {
+		[mutableFetchResults release];
+		NSLog(@"%@:%s Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
+		return nil;
+	}
 	
 	NSArray *sections = [NSArray arrayWithArray:mutableFetchResults];
 	
 	[mutableFetchResults release];
-	[request release];
 	
 	if (nil == sections || [sections count] == 0) {
 		return nil;
@@ -198,14 +227,20 @@
 	
 	[request setPredicate:predicate];
 	
-	NSError *error;
+	NSError *error = nil;
 	
 	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	[request release];
+
+	if (nil != error) {
+		[mutableFetchResults release];
+		NSLog(@"%@:%s Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		return nil;
+	}
 	
 	NSArray *sessions = [NSArray arrayWithArray:mutableFetchResults];
 	
 	[mutableFetchResults release];
-	[request release];
 	
 	if (nil == sessions || [sessions count] == 0) {
 		return nil;
@@ -250,10 +285,15 @@
 	
 	[request setPredicate:predicate];
 		
-	NSError *error;
+	NSError *error = nil;
 	
 	NSUInteger count = [managedObjectContext countForFetchRequest:request error:&error];
 
+	if (nil != error) {
+		NSLog(@"%@:%s Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		return 0;
+	}
+	
 	return count;
 }
 
@@ -275,10 +315,13 @@
 		}
 	}
 
-	NSError *error;
+	NSError *error = nil;
 	
 	if (![managedObjectContext save:&error]) {
-		// Handle the error.
+		if (nil != error) {
+			NSLog(@"%@:%s Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
+			return;
+		}
 	}	
 }
 
