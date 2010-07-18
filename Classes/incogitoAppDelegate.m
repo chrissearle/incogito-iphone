@@ -12,6 +12,8 @@
 #import "SectionInitializer.h"
 #import "Section.h"
 #import "SectionSessionHandler.h"
+#import "SessionCommonViewController.h"
+#import "MyProgrammeViewController.h"
 
 @implementation IncogitoAppDelegate
 
@@ -244,6 +246,33 @@
 	
 	return sectionSessionHandler_;
 }
+
+- (void)refreshFavouriteViewData {
+	for (UIViewController *controller in [rootController viewControllers]) {
+		if ([controller isKindOfClass:[MyProgrammeViewController class]]) {
+			NSLog(@"Sending reload to %@", [controller class]);
+			
+			SessionCommonViewController *c = (SessionCommonViewController *)controller;
+			
+			[c loadSessionData];
+			[[c tv] reloadData];
+		}
+	}
+}
+
+- (void)refreshViewData {
+	for (UIViewController *controller in [rootController viewControllers]) {
+		if ([controller isKindOfClass:[SessionCommonViewController class]]) {
+			NSLog(@"Sending reload to %@", [controller class]);
+			
+			SessionCommonViewController *c = (SessionCommonViewController *)controller;
+			
+			[c loadSessionData];
+			[[c tv] reloadData];
+		}
+	}
+}
+
 
 @end
 

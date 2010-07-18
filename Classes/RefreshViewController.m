@@ -14,11 +14,14 @@
 
 @synthesize spinner;
 @synthesize refreshStatus;
+@synthesize appDelegate;
 
 NSInteger sessionCount;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
+	
 	[refreshStatus setText:@""];
 	[spinner stopAnimating];
 }
@@ -75,6 +78,8 @@ NSInteger sessionCount;
 		[refreshStatus setText:status];
 	}
 	[status release];
+	
+	[appDelegate refreshViewData];
 }
 
 

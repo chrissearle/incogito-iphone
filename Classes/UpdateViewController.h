@@ -12,14 +12,15 @@
 
 
 @interface UpdateViewController : UIViewController  {
-	IBOutlet IncogitoAppDelegate	*appDelegate;
-	UIActivityIndicatorView			*spinner;
-	UITextView						*refreshStatus;
-	IBOutlet UIButton				*closeButton;
+	IncogitoAppDelegate			*appDelegate;
+	UIActivityIndicatorView		*spinner;
+	UITextView					*refreshStatus;
+	IBOutlet UIButton			*closeButton;
 }
 
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView	*spinner;
 @property (nonatomic, retain) IBOutlet UITextView				*refreshStatus;
+@property (nonatomic, retain) IncogitoAppDelegate				*appDelegate;
 
 - (void) closeModalViewController:(id)sender;
 

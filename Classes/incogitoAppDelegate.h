@@ -35,5 +35,8 @@
 
 - (NSString *)applicationDocumentsDirectory;
 
+- (void)refreshViewData;
+- (void)refreshFavouriteViewData;
+
 @end
 

@@ -22,7 +22,7 @@
 	BOOL			checkboxSelected;
 	IBOutlet		UIButton *checkboxButton;
 	SectionSessionHandler *handler;
-	IBOutlet IncogitoAppDelegate *appDelegate;
+	IncogitoAppDelegate *appDelegate;
 }
 
 @property (nonatomic, retain) JZSession		*session;
@@ -32,6 +32,7 @@
 @property (nonatomic, retain) IBOutlet UILabel		*level;
 @property (nonatomic, retain) IBOutlet UIImageView	*levelImage;
 @property (nonatomic, retain) SectionSessionHandler *handler;
+@property (nonatomic, retain) IncogitoAppDelegate	*appDelegate;
 
 - (void) closeModalViewController:(id)sender;
 - (NSString *)buildPage:(NSString *)content withSpeakerInfo:(NSString *)speakerInfo;

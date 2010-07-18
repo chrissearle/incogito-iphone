@@ -21,11 +21,14 @@
 @synthesize level;
 @synthesize levelImage;
 @synthesize handler;
+@synthesize appDelegate;
 
 - (void)viewDidLoad {
 	checkboxSelected = 0;
 	
     [super viewDidLoad];
+	
+	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
 	
 	handler = [appDelegate sectionSessionHandler];
 	
@@ -65,6 +68,8 @@
 		checkboxSelected = 0;
 		[handler setFavouriteForSession:session withBoolean:NO];
 	}
+	
+	[appDelegate refreshFavouriteViewData];
 }
 
 - (void)didReceiveMemoryWarning {

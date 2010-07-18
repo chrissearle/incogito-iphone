@@ -10,15 +10,23 @@
 #import "JZSession.h"
 #import "JZSessionBio.h"
 #import "DetailedSessionViewController.h"
+#import "IncogitoAppDelegate.h"
 
 @implementation SessionCommonViewController
 
 @synthesize sectionTitles;
 @synthesize sessions;
 @synthesize tv;
+@synthesize appDelegate;
 
 - (void) loadSessionData {
 	// Stub
+}
+
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	
+	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,12 +40,6 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-	[self loadSessionData];
-	
-	[tv reloadData];
 }
 
 - (void)dealloc {

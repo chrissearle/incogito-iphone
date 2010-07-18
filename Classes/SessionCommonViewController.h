@@ -11,11 +11,12 @@
 @class IncogitoAppDelegate;
 
 @interface SessionCommonViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
-	IBOutlet IncogitoAppDelegate	*appDelegate;
 	IBOutlet UITableView			*tv;
 
 	NSArray			*sectionTitles;
 	NSDictionary	*sessions;
+
+	IncogitoAppDelegate	*appDelegate;
 }
 
 @property (nonatomic, retain) NSArray		*sectionTitles;
@@ -23,7 +24,10 @@
 
 @property (nonatomic, retain) UITableView	*tv;
 
+@property (nonatomic, retain) IncogitoAppDelegate *appDelegate;
+
 - (void)loadSessionData;
 - (NSString *)getSelectedSessionTitle:(NSInteger)section;
+
 
 @end

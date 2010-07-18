@@ -8,16 +8,20 @@
 
 #import "UpdateViewController.h"
 #import "JavazoneSessionsRetriever.h"
+#import "IncogitoAppDelegate.h"
 
 @implementation UpdateViewController
 
 @synthesize spinner;
 @synthesize refreshStatus;
+@synthesize appDelegate;
 
 NSInteger sessionCount;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
 
 	[refreshStatus setText:@""];
 	[spinner startAnimating];
@@ -48,6 +52,8 @@ NSInteger sessionCount;
 		[refreshStatus setText:status];
 	}
 	[status release];
+	
+	[appDelegate refreshViewData];
 	
 	[closeButton setEnabled:YES];
 }
