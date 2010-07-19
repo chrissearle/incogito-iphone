@@ -21,8 +21,8 @@ NSInteger sessionCount;
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
-	
-	[refreshStatus setText:@""];
+
+	[refreshStatus setText:@"If the JavaZone programme has been updated and no longer matches the session list you have - then you can update the list by clicking the refresh button above."];
 	[spinner stopAnimating];
 }
 
@@ -50,6 +50,7 @@ NSInteger sessionCount;
 #pragma mark Actions
 
 - (IBAction)refresh:(id)sender {
+	[refreshStatus setText:@""];
 	[spinner startAnimating];
 	[NSThread detachNewThreadSelector:@selector(refreshSessions) toTarget:self withObject:nil];
 }
