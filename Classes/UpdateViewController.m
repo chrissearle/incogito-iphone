@@ -25,6 +25,9 @@ NSInteger sessionCount;
 
 	[refreshStatus setText:@""];
 	[spinner startAnimating];
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ Start of update sync", [[[NSDate alloc] init] autorelease]);
+#endif
 	[NSThread detachNewThreadSelector:@selector(refreshSessions) toTarget:self withObject:nil];
 }
 
@@ -41,6 +44,9 @@ NSInteger sessionCount;
 
 // This will be called in the context of the main thread, so you can do any required UI interaction here
 - (void)taskDone:(id)arg {
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ End of update sync", [[[NSDate alloc] init] autorelease]);
+#endif
 	[spinner stopAnimating];
 	
 	NSString *status;

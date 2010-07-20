@@ -24,9 +24,18 @@
 	[urlRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	
 	NSError *error = nil;
+
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ Calling update URL", [[[NSDate alloc] init] autorelease]);
+#endif
 	
 	// Perform request and get JSON back as a NSData object
 	NSData *response = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:&error];
+
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ Called update URL", [[[NSDate alloc] init] autorelease]);
+#endif
+	
 	
 	if (nil != error) {
 		NSLog(@"%@:%s Error retrieving sessions: %@", [self class], _cmd, [error localizedDescription]);
@@ -38,12 +47,20 @@
 
 	// Get JSON as a NSString from NSData response
 	NSString *json_string = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-		
+
 	error = nil;
+	
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ Parsing JSON", [[[NSDate alloc] init] autorelease]);
+#endif
 	
 	// parse the JSON response into an object
 	// Here we're using NSArray since we're parsing an array of JSON status objects
 	NSDictionary *object = [parser objectWithString:json_string error:&error];
+	
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ Parsed JSON", [[[NSDate alloc] init] autorelease]);
+#endif
 	
 	[json_string release];
 	[parser release];
@@ -63,6 +80,10 @@
 
 	// Remove labels - they will get added for all active sessions.
 	[self removeAllEntitiesByName:@"JZLabel"];
+
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ Adding sessions", [[[NSDate alloc] init] autorelease]);
+#endif
 	
 	// Each element in statuses is a single status
 	// represented as a NSDictionary
@@ -70,11 +91,19 @@
 	{
 		[self addSession:item];
 	}
+
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ Added sessions", [[[NSDate alloc] init] autorelease]);
+#endif
 	
 	return [array count];
 }
 
 - (void) invalidateSessions {
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ Invalidating sessions", [[[NSDate alloc] init] autorelease]);
+#endif
+	
 	NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
 	
@@ -103,6 +132,10 @@
 			return;
 		}
 	}	
+
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ Invalidated sessions", [[[NSDate alloc] init] autorelease]);
+#endif
 }
 
 - (void) addSession:(NSDictionary *)item {
@@ -212,6 +245,10 @@
 }
 
 - (void) removeAllEntitiesByName:(NSString *)entityName {
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ Removing all %@", [[[NSDate alloc] init] autorelease], entityName);
+#endif
+	
 	NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:entityName inManagedObjectContext:managedObjectContext];
 	
@@ -232,6 +269,10 @@
 			return;
 		}
 	}	
+
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ Removed all %@", [[[NSDate alloc] init] autorelease], entityName);
+#endif
 }
 
 @end
