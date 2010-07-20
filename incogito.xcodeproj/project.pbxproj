@@ -15,7 +15,6 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
-		830B12A911EDC9E3004A9B25 /* 01-refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B3711ED981200590A7A /* 01-refresh.png */; };
 		830B12AA11EDC9EC004A9B25 /* 11-clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B4B11ED981200590A7A /* 11-clock.png */; };
 		830B12AC11EDCA05004A9B25 /* 83-calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424BA811ED981300590A7A /* 83-calendar.png */; };
 		830B12B811EDCA66004A9B25 /* Advanced.png in Resources */ = {isa = PBXBuildFile; fileRef = 830B12B511EDCA66004A9B25 /* Advanced.png */; };
@@ -44,6 +43,7 @@
 		83A5245D11F0E4D60041308B /* checkbox-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A5245A11F0E4D60041308B /* checkbox-checked.png */; };
 		83A5245E11F0E4D60041308B /* checkbox-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A5245B11F0E4D60041308B /* checkbox-pressed.png */; };
 		83A5245F11F0E4D60041308B /* checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A5245C11F0E4D60041308B /* checkbox.png */; };
+		83BA298A11F5A99F00767706 /* 03-loopback.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B3911ED981200590A7A /* 03-loopback.png */; };
 		83D1762511F18C3300D89884 /* SessionCommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1762411F18C3300D89884 /* SessionCommonViewController.m */; };
 		83D6BCF911EEF3A100FBC0FE /* SectionInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */; };
 		83D6BDC211EF051700FBC0FE /* SectionSessionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6BDC111EF051700FBC0FE /* SectionSessionHandler.m */; };
@@ -585,7 +585,6 @@
 				83424B3311ED899E00590A7A /* Refresh.xib in Resources */,
 				83424E9211EDB68D00590A7A /* NowAndNext.xib in Resources */,
 				83424EC111EDB7E300590A7A /* MyProgramme.xib in Resources */,
-				830B12A911EDC9E3004A9B25 /* 01-refresh.png in Resources */,
 				830B12AA11EDC9EC004A9B25 /* 11-clock.png in Resources */,
 				830B12AC11EDCA05004A9B25 /* 83-calendar.png in Resources */,
 				830B12B811EDCA66004A9B25 /* Advanced.png in Resources */,
@@ -598,6 +597,7 @@
 				83A5245E11F0E4D60041308B /* checkbox-pressed.png in Resources */,
 				83A5245F11F0E4D60041308B /* checkbox.png in Resources */,
 				8393654811F34EA700BBE43A /* Default.png in Resources */,
+				83BA298A11F5A99F00767706 /* 03-loopback.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

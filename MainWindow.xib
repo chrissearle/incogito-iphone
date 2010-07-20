@@ -13,7 +13,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="12"/>
-			<integer value="29"/>
+			<integer value="31"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -64,20 +64,20 @@
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<bool key="IBUIHorizontal">NO</bool>
-				<object class="IBUIViewController" key="IBUISelectedViewController" id="214096872">
-					<string key="IBUITitle">Favourites</string>
-					<object class="IBUITabBarItem" key="IBUITabBarItem" id="525238152">
-						<string key="IBUITitle">Favourites</string>
+				<object class="IBUIViewController" key="IBUISelectedViewController" id="995682674">
+					<string key="IBUITitle">Refresh</string>
+					<object class="IBUITabBarItem" key="IBUITabBarItem" id="303626786">
+						<string key="IBUITitle">Sync</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">28-star.png</string>
+							<string key="NSResourceName">03-loopback.png</string>
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<reference key="IBUITabBar"/>
 					</object>
 					<reference key="IBUIToolbarItems" ref="0"/>
 					<reference key="IBUIParentViewController" ref="273763484"/>
-					<string key="IBUINibName">MyProgramme</string>
+					<string key="IBUINibName">Refresh</string>
 					<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 						<int key="interfaceOrientation">1</int>
 					</object>
@@ -124,27 +124,27 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<bool key="IBUIHorizontal">NO</bool>
 					</object>
-					<reference ref="214096872"/>
-					<object class="IBUIViewController" id="995682674">
-						<string key="IBUITitle">Refresh</string>
-						<object class="IBUITabBarItem" key="IBUITabBarItem" id="303626786">
-							<string key="IBUITitle">Refresh</string>
+					<object class="IBUIViewController" id="214096872">
+						<string key="IBUITitle">Favourites</string>
+						<object class="IBUITabBarItem" key="IBUITabBarItem" id="525238152">
+							<string key="IBUITitle">Favourites</string>
 							<object class="NSCustomResource" key="IBUIImage">
 								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">01-refresh.png</string>
+								<string key="NSResourceName">28-star.png</string>
 							</object>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIToolbarItems" ref="0"/>
 						<reference key="IBUIParentViewController" ref="273763484"/>
-						<string key="IBUINibName">Refresh</string>
+						<string key="IBUINibName">MyProgramme</string>
 						<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 							<int key="interfaceOrientation">1</int>
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<bool key="IBUIHorizontal">NO</bool>
 					</object>
+					<reference ref="995682674"/>
 				</object>
 				<object class="IBUITabBar" key="IBUITabBar" id="578151011">
 					<nil key="NSNextResponder"/>
@@ -410,7 +410,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">MyProgrammeViewController</string>
-					<string key="superclassName">UIViewController</string>
+					<string key="superclassName">SessionCommonViewController</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/MyProgrammeViewController.h</string>
@@ -432,39 +432,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NowAndNextViewController</string>
-					<string key="superclassName">UIViewController</string>
-					<object class="NSMutableDictionary" key="outlets">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>appDelegate</string>
-							<string>tableView</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>IncogitoAppDelegate</string>
-							<string>UITableView</string>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>appDelegate</string>
-							<string>tableView</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBToOneOutletInfo">
-								<string key="name">appDelegate</string>
-								<string key="candidateClassName">IncogitoAppDelegate</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">tableView</string>
-								<string key="candidateClassName">UITableView</string>
-							</object>
-						</object>
-					</object>
+					<string key="superclassName">SessionCommonViewController</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/NowAndNextViewController.h</string>
@@ -472,39 +440,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">OverviewViewController</string>
-					<string key="superclassName">UIViewController</string>
-					<object class="NSMutableDictionary" key="outlets">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>appDelegate</string>
-							<string>tableView</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>IncogitoAppDelegate</string>
-							<string>UITableView</string>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>appDelegate</string>
-							<string>tableView</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBToOneOutletInfo">
-								<string key="name">appDelegate</string>
-								<string key="candidateClassName">IncogitoAppDelegate</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">tableView</string>
-								<string key="candidateClassName">UITableView</string>
-							</object>
-						</object>
-					</object>
+					<string key="superclassName">SessionCommonViewController</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/OverviewViewController.h</string>
@@ -528,13 +464,11 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>appDelegate</string>
 							<string>refreshStatus</string>
 							<string>spinner</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>IncogitoAppDelegate</string>
 							<string>UITextView</string>
 							<string>UIActivityIndicatorView</string>
 						</object>
@@ -543,16 +477,11 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>appDelegate</string>
 							<string>refreshStatus</string>
 							<string>spinner</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBToOneOutletInfo">
-								<string key="name">appDelegate</string>
-								<string key="candidateClassName">IncogitoAppDelegate</string>
-							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">refreshStatus</string>
 								<string key="candidateClassName">UITextView</string>
@@ -566,6 +495,25 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/RefreshViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SessionCommonViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">tv</string>
+						<string key="NS.object.0">UITableView</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">tv</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">tv</string>
+							<string key="candidateClassName">UITableView</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/SessionCommonViewController.h</string>
 					</object>
 				</object>
 			</object>
@@ -830,14 +778,14 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>01-refresh.png</string>
+				<string>03-loopback.png</string>
 				<string>11-clock.png</string>
 				<string>28-star.png</string>
 				<string>83-calendar.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{24, 26}</string>
+				<string>{32, 22}</string>
 				<string>{25, 25}</string>
 				<string>{26, 26}</string>
 				<string>{23, 25}</string>

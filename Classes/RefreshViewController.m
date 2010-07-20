@@ -22,7 +22,7 @@ NSInteger sessionCount;
     [super viewDidLoad];
 	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
 
-	[refreshStatus setText:@"If the JavaZone programme has been updated and no longer matches the session list you have - then you can update the list by clicking the refresh button above."];
+	[refreshStatus setText:@"If the JavaZone programme has been updated and no longer matches the session list you have then you can update the list by clicking the sync button above."];
 	[spinner stopAnimating];
 }
 
@@ -52,6 +52,7 @@ NSInteger sessionCount;
 - (IBAction)refresh:(id)sender {
 	[refreshStatus setText:@""];
 	[spinner startAnimating];
+	
 	[NSThread detachNewThreadSelector:@selector(refreshSessions) toTarget:self withObject:nil];
 }
 
@@ -75,9 +76,10 @@ NSInteger sessionCount;
 		status = [[NSString alloc] initWithString:@"Unable to connect to JavaZone website."];
 		[refreshStatus setText:status];
 	} else {
-		status = [[NSString alloc] initWithFormat:@"%d sessions downloaded from JavaZone website.", sessionCount];
+		status = [[NSString alloc] initWithFormat:@"Sessions synchronized with JavaZone. %d sessions available.", sessionCount];
 		[refreshStatus setText:status];
 	}
+
 	[status release];
 	
 	[appDelegate refreshViewData];
