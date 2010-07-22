@@ -335,16 +335,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				83A5245A11F0E4D60041308B /* checkbox-checked.png */,
-				83A5245B11F0E4D60041308B /* checkbox-pressed.png */,
-				83A5245C11F0E4D60041308B /* checkbox.png */,
+				83827C2611F87A1A00A74CC1 /* Images */,
 				83827C1A11F8797600A74CC1 /* Windows */,
-				830B12B511EDCA66004A9B25 /* Advanced.png */,
-				830B12B611EDCA66004A9B25 /* Intermediate.png */,
-				830B12B711EDCA66004A9B25 /* Introductory.png */,
-				83424B3611ED981200590A7A /* icons */,
-				8393654711F34EA700BBE43A /* Default.png */,
-				834243EA11E74CAD00B438A8 /* Icon.png */,
 				2819305F112F816700ECF9B4 /* incogito.xcdatamodeld */,
 				8D1107310486CEB800E47090 /* incogito-Info.plist */,
 				833A524311F840AD00E070D2 /* style.css */,
@@ -512,6 +504,22 @@
 				83424EC011EDB7E300590A7A /* MyProgramme.xib */,
 			);
 			path = Windows;
+			sourceTree = "<group>";
+		};
+		83827C2611F87A1A00A74CC1 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				83A5245A11F0E4D60041308B /* checkbox-checked.png */,
+				83A5245B11F0E4D60041308B /* checkbox-pressed.png */,
+				83A5245C11F0E4D60041308B /* checkbox.png */,
+				830B12B511EDCA66004A9B25 /* Advanced.png */,
+				830B12B611EDCA66004A9B25 /* Intermediate.png */,
+				830B12B711EDCA66004A9B25 /* Introductory.png */,
+				83424B3611ED981200590A7A /* icons */,
+				8393654711F34EA700BBE43A /* Default.png */,
+				834243EA11E74CAD00B438A8 /* Icon.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		8394725811EB98B10075C4C1 /* JSON */ = {
