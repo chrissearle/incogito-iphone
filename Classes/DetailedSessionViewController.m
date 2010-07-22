@@ -43,7 +43,10 @@
 							  [endFormatter stringFromDate:[session endDate]],
 							  [session room]]];
 
-	[details loadHTMLString:[self buildPage:[session detail] withSpeakerInfo:[self buildSpeakersSection:[session speakers]]] baseURL:nil];
+	NSString *path = [[NSBundle mainBundle] bundlePath];
+	NSURL *baseURL = [NSURL fileURLWithPath:path];
+
+	[details loadHTMLString:[self buildPage:[session detail] withSpeakerInfo:[self buildSpeakersSection:[session speakers]]] baseURL:baseURL];
 	
 	[level setText:[session level]];
 	
@@ -113,26 +116,7 @@
 	NSString *page = [NSString stringWithFormat:@""
 					  "<html>"
 					  "<head>"
-					  "<style type=\"text/css\">"
-					  "body {"
-					  "  font-family: Helvetica;"
-					  "}"
-					  "div.paragraph {"
-					  "  font-size: 13px;"
-					  "  margin-bottom: 8px;"
-					  "}"
-					  "li {"
-					  "  font-size: 13px;"
-					  "}"
-					  "h2 {"
-					  "  font-size: 15px;"
-					  "  font-weight: bold;"
-					  "}"
-					  "h3 {"
-					  "  font-size: 15px;"
-					  "  font-weight: normal;"
-					  "}"
-					  "</style>"
+					  "<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\"/>"
 					  "</head>"
 					  "<body>"
 					  "%@"
