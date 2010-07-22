@@ -220,8 +220,8 @@
 		834964C411F09016008BB29F /* UpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateViewController.m; sourceTree = "<group>"; };
 		834964D311F0910A008BB29F /* Update.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Update.xib; sourceTree = "<group>"; };
 		8393654711F34EA700BBE43A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		8394723A11EB98500075C4C1 /* JavazoneSessionsRetriever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JavazoneSessionsRetriever.h; path = ../JavazoneSessionsRetriever.h; sourceTree = "<group>"; };
-		8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JavazoneSessionsRetriever.m; path = ../JavazoneSessionsRetriever.m; sourceTree = "<group>"; };
+		8394723A11EB98500075C4C1 /* JavazoneSessionsRetriever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavazoneSessionsRetriever.h; sourceTree = "<group>"; };
+		8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavazoneSessionsRetriever.m; sourceTree = "<group>"; };
 		8394725911EB98B10075C4C1 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		8394725A11EB98B10075C4C1 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		8394725B11EB98B10075C4C1 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -242,8 +242,8 @@
 		83D1762411F18C3300D89884 /* SessionCommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionCommonViewController.m; sourceTree = "<group>"; };
 		83D6BCF711EEF3A100FBC0FE /* SectionInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionInitializer.h; sourceTree = "<group>"; };
 		83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionInitializer.m; sourceTree = "<group>"; };
-		83D6BDC011EF051700FBC0FE /* SectionSessionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SectionSessionHandler.h; path = ../SectionSessionHandler.h; sourceTree = "<group>"; };
-		83D6BDC111EF051700FBC0FE /* SectionSessionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SectionSessionHandler.m; path = ../SectionSessionHandler.m; sourceTree = "<group>"; };
+		83D6BDC011EF051700FBC0FE /* SectionSessionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionSessionHandler.h; sourceTree = "<group>"; };
+		83D6BDC111EF051700FBC0FE /* SectionSessionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionSessionHandler.m; sourceTree = "<group>"; };
 		83D6BFE511EF3A7B00FBC0FE /* JZLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZLabel.h; sourceTree = "<group>"; };
 		83D6BFE611EF3A7B00FBC0FE /* JZLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZLabel.m; sourceTree = "<group>"; };
 		83D6BFE711EF3A7B00FBC0FE /* JZSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSession.h; sourceTree = "<group>"; };
@@ -539,8 +539,7 @@
 				8394726411EB98B10075C4C1 /* SBJsonWriter.h */,
 				8394726511EB98B10075C4C1 /* SBJsonWriter.m */,
 			);
-			name = JSON;
-			path = ../JSON;
+			path = JSON;
 			sourceTree = "<group>";
 		};
 		83F2D54411EBB56B0043A75E /* REST */ = {
@@ -550,7 +549,7 @@
 				8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */,
 				8394725811EB98B10075C4C1 /* JSON */,
 			);
-			name = REST;
+			path = REST;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
