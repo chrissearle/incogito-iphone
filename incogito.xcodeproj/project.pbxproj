@@ -254,7 +254,7 @@
 		83D6BFEC11EF3A7B00FBC0FE /* JZSessionBio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSessionBio.m; sourceTree = "<group>"; };
 		83D6BFED11EF3A7B00FBC0FE /* UserSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSession.h; sourceTree = "<group>"; };
 		83D6BFEE11EF3A7B00FBC0FE /* UserSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSession.m; sourceTree = "<group>"; };
-		83D6C06F11EF922500FBC0FE /* DetailedSessionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DetailedSessionView.xib; path = Classes/DetailedSessionView.xib; sourceTree = "<group>"; };
+		83D6C06F11EF922500FBC0FE /* DetailedSessionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailedSessionView.xib; sourceTree = "<group>"; };
 		83D6C07011EF922500FBC0FE /* DetailedSessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedSessionViewController.h; sourceTree = "<group>"; };
 		83D6C07111EF922500FBC0FE /* DetailedSessionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedSessionViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* incogito-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "incogito-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -338,21 +338,15 @@
 				83A5245A11F0E4D60041308B /* checkbox-checked.png */,
 				83A5245B11F0E4D60041308B /* checkbox-pressed.png */,
 				83A5245C11F0E4D60041308B /* checkbox.png */,
-				834964D311F0910A008BB29F /* Update.xib */,
-				83D6C06F11EF922500FBC0FE /* DetailedSessionView.xib */,
+				83827C1A11F8797600A74CC1 /* Windows */,
 				830B12B511EDCA66004A9B25 /* Advanced.png */,
 				830B12B611EDCA66004A9B25 /* Intermediate.png */,
 				830B12B711EDCA66004A9B25 /* Introductory.png */,
 				83424B3611ED981200590A7A /* icons */,
-				83424B2111ED882F00590A7A /* Overview.xib */,
 				8393654711F34EA700BBE43A /* Default.png */,
 				834243EA11E74CAD00B438A8 /* Icon.png */,
 				2819305F112F816700ECF9B4 /* incogito.xcdatamodeld */,
-				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* incogito-Info.plist */,
-				83424B3211ED899E00590A7A /* Refresh.xib */,
-				83424E9111EDB68D00590A7A /* NowAndNext.xib */,
-				83424EC011EDB7E300590A7A /* MyProgramme.xib */,
 				833A524311F840AD00E070D2 /* style.css */,
 			);
 			name = Resources;
@@ -504,6 +498,20 @@
 				83424BB811ED981300590A7A /* 99-umbrella.png */,
 			);
 			path = icons;
+			sourceTree = "<group>";
+		};
+		83827C1A11F8797600A74CC1 /* Windows */ = {
+			isa = PBXGroup;
+			children = (
+				834964D311F0910A008BB29F /* Update.xib */,
+				83D6C06F11EF922500FBC0FE /* DetailedSessionView.xib */,
+				83424B2111ED882F00590A7A /* Overview.xib */,
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				83424B3211ED899E00590A7A /* Refresh.xib */,
+				83424E9111EDB68D00590A7A /* NowAndNext.xib */,
+				83424EC011EDB7E300590A7A /* MyProgramme.xib */,
+			);
+			path = Windows;
 			sourceTree = "<group>";
 		};
 		8394725811EB98B10075C4C1 /* JSON */ = {
