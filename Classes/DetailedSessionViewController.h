@@ -35,8 +35,9 @@
 @property (nonatomic, retain) IncogitoAppDelegate	*appDelegate;
 
 - (void) closeModalViewController:(id)sender;
-- (NSString *)buildPage:(NSString *)content withSpeakerInfo:(NSString *)speakerInfo;
+- (NSString *)buildPage:(NSString *)content withSpeakerInfo:(NSString *)speakerInfo andLabelsInfo:(NSString *)labels;
 - (NSString *)buildSpeakersSection:(NSSet *)speakers;
+- (NSString *)buildLabelsSection:(NSSet *)labels;
 
 - (IBAction)checkboxButton:(id)sender;
 

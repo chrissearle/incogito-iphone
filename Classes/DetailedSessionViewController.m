@@ -46,7 +46,10 @@
 	NSString *path = [[NSBundle mainBundle] bundlePath];
 	NSURL *baseURL = [NSURL fileURLWithPath:path];
 
-	[details loadHTMLString:[self buildPage:[session detail] withSpeakerInfo:[self buildSpeakersSection:[session speakers]]] baseURL:baseURL];
+	[details loadHTMLString:[self buildPage:[session detail]
+							withSpeakerInfo:[self buildSpeakersSection:[session speakers]]
+							  andLabelsInfo:[self buildLabelsSection:[session labels]]]
+					baseURL:baseURL];
 	
 	[level setText:[session level]];
 	
@@ -112,7 +115,32 @@
 	return speakerSection;
 }
 
-- (NSString *)buildPage:(NSString *)content withSpeakerInfo:(NSString *)speakerInfo {
+- (NSString *)buildLabelsSection:(NSSet *)labels {
+	if (nil == labels || [labels count] == 0) {
+		return @"";
+	} else {
+		
+		NSMutableString *result = [[NSMutableString alloc] init];
+		
+		NSString *labelsSection = [NSString stringWithString:result];
+		
+		[result appendString:@"<h2>Labels</h2>"];
+
+		[result appendString:@"<ul>"];
+		
+		for (JZLabel *label in labels) {
+			[result appendFormat:@"<li class=\"label-%@\">%@</li>", [label jzId], [label title]];
+		}
+		
+		[result appendString:@"</ul>"];
+		
+		[result release];
+		
+		return labelsSection;
+	}
+}
+
+- (NSString *)buildPage:(NSString *)content withSpeakerInfo:(NSString *)speakerInfo andLabelsInfo:(NSString *)labelsInfo {
 	NSString *page = [NSString stringWithFormat:@""
 					  "<html>"
 					  "<head>"
@@ -120,11 +148,13 @@
 					  "</head>"
 					  "<body>"
 					  "%@"
+					  "%@"
 					  "<h2>Speakers</h2>"
 					  "%@"
 					  "</body>"
 					  "</html>",
 					  content,
+					  labelsInfo,
 					  speakerInfo];
 	
 	return page;
