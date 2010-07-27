@@ -202,25 +202,25 @@
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>831AE81511FF543A008CB371</string>
+				<string>831AE8C211FF5BA5008CB371</string>
 				<key>PBXProjectModuleLabel</key>
-				<string>UpdateViewController.m</string>
+				<string>JavazoneSessionsRetriever.m</string>
 				<key>PBXSplitModuleInNavigatorKey</key>
 				<dict>
 					<key>Split0</key>
 					<dict>
 						<key>PBXProjectModuleGUID</key>
-						<string>831AE81611FF543A008CB371</string>
+						<string>831AE8C311FF5BA5008CB371</string>
 						<key>PBXProjectModuleLabel</key>
-						<string>UpdateViewController.m</string>
+						<string>JavazoneSessionsRetriever.m</string>
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>831AE84111FF54C7008CB371</string>
+						<string>831AE90A11FF5D9F008CB371</string>
 						<key>history</key>
 						<array>
-							<string>831AE81711FF543A008CB371</string>
-							<string>831AE81811FF543A008CB371</string>
+							<string>831AE8C411FF5BA5008CB371</string>
+							<string>831AE8C511FF5BA5008CB371</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -236,31 +236,32 @@
 				<key>PBXModuleWindowStatusBarHidden2</key>
 				<false/>
 				<key>RubberWindowFrame</key>
-				<string>804 269 1315 1016 0 0 2560 1418 </string>
+				<string>153 271 1315 1016 0 0 2560 1418 </string>
 			</dict>
 		</dict>
 		<dict>
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>831AE83811FF54AF008CB371</string>
+				<string>831AE8EF11FF5D24008CB371</string>
 				<key>PBXProjectModuleLabel</key>
-				<string>RefreshCommonViewController.m</string>
+				<string>OverviewViewController.m</string>
 				<key>PBXSplitModuleInNavigatorKey</key>
 				<dict>
 					<key>Split0</key>
 					<dict>
 						<key>PBXProjectModuleGUID</key>
-						<string>831AE83911FF54AF008CB371</string>
+						<string>831AE8F011FF5D24008CB371</string>
 						<key>PBXProjectModuleLabel</key>
-						<string>RefreshCommonViewController.m</string>
+						<string>OverviewViewController.m</string>
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>831AE84211FF54C7008CB371</string>
+						<string>831AE90B11FF5D9F008CB371</string>
 						<key>history</key>
 						<array>
-							<string>831AE82911FF547C008CB371</string>
+							<string>831AE8F111FF5D24008CB371</string>
+							<string>831AE8F211FF5D24008CB371</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -276,14 +277,14 @@
 				<key>PBXModuleWindowStatusBarHidden2</key>
 				<false/>
 				<key>RubberWindowFrame</key>
-				<string>84 334 1315 1016 0 0 2560 1418 </string>
+				<string>666 29 1315 1016 0 0 2560 1418 </string>
 			</dict>
 		</dict>
 		<dict>
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>831AE81A11FF543A008CB371</string>
+				<string>831AE89211FF5864008CB371</string>
 				<key>PBXProjectModuleLabel</key>
 				<string>RefreshCommonViewController.h</string>
 				<key>PBXSplitModuleInNavigatorKey</key>
@@ -291,17 +292,17 @@
 					<key>Split0</key>
 					<dict>
 						<key>PBXProjectModuleGUID</key>
-						<string>831AE81B11FF543A008CB371</string>
+						<string>831AE89311FF5864008CB371</string>
 						<key>PBXProjectModuleLabel</key>
 						<string>RefreshCommonViewController.h</string>
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>831AE84311FF54C7008CB371</string>
+						<string>831AE90C11FF5D9F008CB371</string>
 						<key>history</key>
 						<array>
-							<string>831AE81C11FF543A008CB371</string>
-							<string>831AE81D11FF543A008CB371</string>
+							<string>831AE8E211FF5CD5008CB371</string>
+							<string>831AE8F611FF5D35008CB371</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -317,32 +318,32 @@
 				<key>PBXModuleWindowStatusBarHidden2</key>
 				<false/>
 				<key>RubberWindowFrame</key>
-				<string>288 186 1315 1016 0 0 2560 1418 </string>
+				<string>865 248 1315 1016 0 0 2560 1418 </string>
 			</dict>
 		</dict>
 		<dict>
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>831AE81F11FF543A008CB371</string>
+				<string>831AE88111FF57C4008CB371</string>
 				<key>PBXProjectModuleLabel</key>
-				<string>RefreshViewController.m</string>
+				<string>JavazoneSessionsRetriever.m</string>
 				<key>PBXSplitModuleInNavigatorKey</key>
 				<dict>
 					<key>Split0</key>
 					<dict>
 						<key>PBXProjectModuleGUID</key>
-						<string>831AE82011FF543A008CB371</string>
+						<string>831AE88211FF57C4008CB371</string>
 						<key>PBXProjectModuleLabel</key>
-						<string>RefreshViewController.m</string>
+						<string>JavazoneSessionsRetriever.m</string>
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>831AE84411FF54C7008CB371</string>
+						<string>831AE90D11FF5D9F008CB371</string>
 						<key>history</key>
 						<array>
-							<string>831AE82111FF543A008CB371</string>
-							<string>831AE82211FF543A008CB371</string>
+							<string>831AE89D11FF58FF008CB371</string>
+							<string>831AE89E11FF58FF008CB371</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -358,7 +359,7 @@
 				<key>PBXModuleWindowStatusBarHidden2</key>
 				<false/>
 				<key>RubberWindowFrame</key>
-				<string>1180 74 1315 1016 0 0 2560 1418 </string>
+				<string>916 355 1315 1016 0 0 2560 1418 </string>
 			</dict>
 		</dict>
 	</array>
@@ -432,13 +433,15 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>080E96DDFE201D6D7F000001</string>
+								<string>83F2D54411EBB56B0043A75E</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>83827C1A11F8797600A74CC1</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>13</integer>
+									<integer>7</integer>
+									<integer>6</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -475,7 +478,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>83B3471A11FD59A5006147AA</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>RefreshCommonViewController.m</string>
+								<string>RefreshCommonViewController.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -483,18 +486,20 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>83B3471B11FD59A5006147AA</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>RefreshCommonViewController.m</string>
+										<string>RefreshCommonViewController.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>831AE84011FF54C7008CB371</string>
+										<string>831AE90911FF5D9F008CB371</string>
 										<key>history</key>
 										<array>
-											<string>831AE81011FF543A008CB371</string>
 											<string>831AE81111FF543A008CB371</string>
 											<string>831AE81211FF543A008CB371</string>
 											<string>831AE83411FF54AF008CB371</string>
-											<string>831AE83511FF54AF008CB371</string>
+											<string>831AE87C11FF57C4008CB371</string>
+											<string>831AE8CE11FF5BC0008CB371</string>
+											<string>831AE8FD11FF5D40008CB371</string>
+											<string>831AE8FE11FF5D40008CB371</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -672,7 +677,7 @@
 						<key>Frame</key>
 						<string>{{0, 0}, {1165, 407}}</string>
 						<key>RubberWindowFrame</key>
-						<string>80 302 1165 786 0 0 2560 1418 </string>
+						<string>414 577 1165 786 0 0 2560 1418 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXDebugCLIModule</string>
@@ -748,10 +753,10 @@
 							<key>Frame</key>
 							<string>{{569, 0}, {596, 162}}</string>
 							<key>RubberWindowFrame</key>
-							<string>80 302 1165 786 0 0 2560 1418 </string>
+							<string>414 577 1165 786 0 0 2560 1418 </string>
 						</dict>
 						<key>RubberWindowFrame</key>
-						<string>80 302 1165 786 0 0 2560 1418 </string>
+						<string>414 577 1165 786 0 0 2560 1418 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXDebugSessionModule</string>
@@ -815,14 +820,14 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>831AE81F11FF543A008CB371</string>
-		<string>831AE81A11FF543A008CB371</string>
-		<string>831AE83811FF54AF008CB371</string>
-		<string>831AE81511FF543A008CB371</string>
+		<string>831AE88111FF57C4008CB371</string>
+		<string>831AE89211FF5864008CB371</string>
+		<string>831AE8EF11FF5D24008CB371</string>
+		<string>831AE8C211FF5BA5008CB371</string>
 		<string>/Users/chris/src/incogito-iphone/incogito.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>80 302 1165 786 0 0 2560 1418 </string>
+	<string>414 577 1165 786 0 0 2560 1418 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>

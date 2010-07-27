@@ -15,6 +15,7 @@
 @implementation JavazoneSessionsRetriever
 
 @synthesize managedObjectContext;
+@synthesize refreshCommonViewController;
 
 - (NSUInteger)retrieveSessionsWithUrl:(NSString *)urlString {
 	NSMutableURLRequest *urlRequest;
@@ -75,6 +76,8 @@
 		return 0;
 	}
 	
+	[refreshCommonViewController performSelectorOnMainThread:@selector(showProgressBar:) withObject:nil waitUntilDone:YES];
+	
 	NSArray *array = [object objectForKey:@"sessions"];
 	
 	// Set all sessions inactive. Active flag will be set for existing and new sessions retrieved.
@@ -92,8 +95,16 @@
 	
 	// Each element in statuses is a single status
 	// represented as a NSDictionary
+	int counter = 0;
+	
 	for (NSDictionary *item in array)
 	{
+		counter++;
+		
+		float progress = (1.0 / [array count]) * counter;
+		
+		[refreshCommonViewController performSelectorOnMainThread:@selector(setProgressTo:) withObject:[NSNumber numberWithFloat:progress] waitUntilDone:YES];
+
 		[self addSession:item];
 	}
 

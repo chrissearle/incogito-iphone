@@ -14,14 +14,19 @@
 	IncogitoAppDelegate			*appDelegate;
 	UIActivityIndicatorView		*spinner;
 	UITextView					*refreshStatus;
+	UIProgressView				*progressView;
 }
 
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView	*spinner;
 @property (nonatomic, retain) IBOutlet UITextView				*refreshStatus;
 @property (nonatomic, retain) IncogitoAppDelegate				*appDelegate;
+@property (nonatomic, retain) IBOutlet UIProgressView			*progressView;
 
 - (void) refreshSessions;
 - (void)taskDone:(id)arg;
+
+- (void)showProgressBar:(id)arg;
+- (void)setProgressTo:(id)progress;
 	
 
 @end

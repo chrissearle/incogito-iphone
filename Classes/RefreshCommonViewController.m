@@ -1,4 +1,4 @@
-    //
+//
 //  RefreshCommonViewController.m
 //  incogito
 //
@@ -15,11 +15,13 @@
 @synthesize spinner;
 @synthesize refreshStatus;
 @synthesize appDelegate;
+@synthesize progressView;
 
 NSInteger sessionCount;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	[progressView setHidden:YES];
 	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
 }
 
@@ -55,6 +57,7 @@ NSInteger sessionCount;
 	JavazoneSessionsRetriever *retriever = [[[JavazoneSessionsRetriever alloc] init] autorelease];
 	
 	retriever.managedObjectContext = [appDelegate managedObjectContext];
+	retriever.refreshCommonViewController = self;
 	
 	sessionCount = [retriever retrieveSessionsWithUrl:@"http://javazone.no/incogito10/rest/events/JavaZone%202010/sessions"];
 	[self performSelectorOnMainThread:@selector(taskDone:) withObject:nil waitUntilDone:NO];
@@ -66,7 +69,7 @@ NSInteger sessionCount;
 	NSLog(@"%@ End of sync", [[[NSDate alloc] init] autorelease]);
 #endif
 	
-	[spinner stopAnimating];
+	[progressView setHidden:YES];
 	
 	NSString *status;
 	if (sessionCount == 0) {
@@ -82,6 +85,16 @@ NSInteger sessionCount;
 	[appDelegate refreshViewData];
 }
 
+- (void)showProgressBar:(id)arg {
+	[spinner stopAnimating];
+	[progressView setProgress:0.0];
+	[progressView setHidden:NO];
+}
 
+- (void)setProgressTo:(id)progress {
+	NSNumber *value = (NSNumber *)progress;
+	
+	[progressView setProgress:[value floatValue]];
+}
 
 @end
