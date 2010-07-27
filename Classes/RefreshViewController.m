@@ -1,4 +1,4 @@
-    //
+//
 //  RefreshViewController.m
 //  incogito
 //
@@ -12,18 +12,11 @@
 
 @implementation RefreshViewController
 
-@synthesize spinner;
-@synthesize refreshStatus;
-@synthesize appDelegate;
-
-NSInteger sessionCount;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
 
-	[refreshStatus setText:@"If the JavaZone programme has been updated and no longer matches the session list you have then you can update the list by clicking the sync button above."];
 	[spinner stopAnimating];
+	[refreshStatus setText:@"If the JavaZone programme has been updated and no longer matches the session list you have then you can update the list by clicking the sync button above."];
 }
 
 
@@ -42,7 +35,6 @@ NSInteger sessionCount;
 
 
 - (void)dealloc {
-	[spinner release];
     [super dealloc];
 }
 
@@ -59,39 +51,5 @@ NSLog(@"%@ Start of refresh sync", [[[NSDate alloc] init] autorelease]);
 	
 	[NSThread detachNewThreadSelector:@selector(refreshSessions) toTarget:self withObject:nil];
 }
-
-- (void) refreshSessions {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	JavazoneSessionsRetriever *retriever = [[[JavazoneSessionsRetriever alloc] init] autorelease];
-	
-	retriever.managedObjectContext = [appDelegate managedObjectContext];
-		
-	sessionCount = [retriever retrieveSessionsWithUrl:@"http://javazone.no/incogito10/rest/events/JavaZone%202010/sessions"];
-	[self performSelectorOnMainThread:@selector(taskDone:) withObject:nil waitUntilDone:NO];
-	[pool drain];
-}
-
-// This will be called in the context of the main thread, so you can do any required UI interaction here
-- (void)taskDone:(id)arg {
-#ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ End of refresh sync", [[[NSDate alloc] init] autorelease]);
-#endif
-	
-	[spinner stopAnimating];
-
-	NSString *status;
-	if (sessionCount == 0) {
-		status = [[NSString alloc] initWithString:@"Unable to connect to JavaZone website."];
-		[refreshStatus setText:status];
-	} else {
-		status = [[NSString alloc] initWithFormat:@"Sessions synchronized with JavaZone. %d sessions available.", sessionCount];
-		[refreshStatus setText:status];
-	}
-
-	[status release];
-	
-	[appDelegate refreshViewData];
-}
-
 
 @end

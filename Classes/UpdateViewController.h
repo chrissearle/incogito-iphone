@@ -7,20 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RefreshCommonViewController.h"
 
-@class IncogitoAppDelegate;
-
-
-@interface UpdateViewController : UIViewController  {
-	IncogitoAppDelegate			*appDelegate;
-	UIActivityIndicatorView		*spinner;
-	UITextView					*refreshStatus;
+@interface UpdateViewController : RefreshCommonViewController  {
 	IBOutlet UIButton			*closeButton;
 }
-
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView	*spinner;
-@property (nonatomic, retain) IBOutlet UITextView				*refreshStatus;
-@property (nonatomic, retain) IncogitoAppDelegate				*appDelegate;
 
 - (void) closeModalViewController:(id)sender;
 
