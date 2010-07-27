@@ -29,6 +29,9 @@
 	NSLog(@"%@ Calling update URL", [[[NSDate alloc] init] autorelease]);
 #endif
 	
+	UIApplication* app = [UIApplication sharedApplication];
+	app.networkActivityIndicatorVisible = YES;
+	
 	// Perform request and get JSON back as a NSData object
 	NSData *response = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:&error];
 
@@ -42,6 +45,8 @@
 		return 0;
 	}
 	
+	app.networkActivityIndicatorVisible = NO;
+
 	// Create new SBJSON parser object
 	SBJSON *parser = [[SBJSON alloc] init];
 
