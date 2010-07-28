@@ -684,15 +684,49 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
 				INFOPLIST_FILE = "incogito-Info.plist";
 				PRODUCT_NAME = incogito;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
+		};
+		83632E3A1200208C00F0E82B /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chris Searle";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DB50CA72-E0BF-400D-87D7-A452F50DBEF1";
+				SDKROOT = iphoneos4.0;
+			};
+			name = Distribution;
+		};
+		83632E3B1200208C00F0E82B /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = incogito_Prefix.pch;
+				INFOPLIST_FILE = "incogito-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				PRODUCT_NAME = incogito;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9DB5BAC2-F950-46E2-9AC2-19E494943703";
+				SDKROOT = iphoneos4.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
 		};
 		838660C711F2EA0D0017058B /* Debug with trace logging */ = {
 			isa = XCBuildConfiguration;
@@ -768,6 +802,7 @@
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				838660C811F2EA0D0017058B /* Debug with trace logging */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+				83632E3B1200208C00F0E82B /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -778,6 +813,7 @@
 				C01FCF4F08A954540054247B /* Debug */,
 				838660C711F2EA0D0017058B /* Debug with trace logging */,
 				C01FCF5008A954540054247B /* Release */,
+				83632E3A1200208C00F0E82B /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
