@@ -722,7 +722,6 @@
 				INFOPLIST_FILE = "incogito-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				PRODUCT_NAME = incogito;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9DB5BAC2-F950-46E2-9AC2-19E494943703";
 				SDKROOT = iphoneos4.0;
 				VALIDATE_PRODUCT = YES;
 			};
