@@ -190,13 +190,23 @@
 			session = (JZSession *)[sessions objectAtIndex:0];
 		}
 	}
+
+#ifdef LOG_FUNCTION_TIMES
+	NSLog(@"%@ Adding session with title %@", [[[NSDate alloc] init] autorelease], [item objectForKey:@"title"]);
+#endif
 	
 	[session setTitle:[item objectForKey:@"title"]];
 	[session setJzId:[item objectForKey:@"id"]];
 	[session setActive:[NSNumber numberWithBool:TRUE]];
 
-	[session setRoom:[NSNumber numberWithInt:[[[item objectForKey:@"room"]
+	NSObject *roomString = [item objectForKey:@"room"];
+
+	if ([roomString class] == [NSNull class]) {
+		[session setRoom:0];
+	} else {
+		[session setRoom:[NSNumber numberWithInt:[[[item objectForKey:@"room"]
 											   stringByReplacingOccurrencesOfString:@"Sal " withString:@""] intValue]]];
+	}
 	
 	[session setLevel:[[item objectForKey:@"level"] objectForKey:@"id"]];
 	
@@ -209,11 +219,17 @@
 	}
 
 	// Dates
-	NSDictionary *start = [item objectForKey:@"start"];
-	NSDictionary *end = [item objectForKey:@"end"];
+	NSObject *start = [item objectForKey:@"start"];
+	if ([start class] != [NSNull class]) {
+		NSDictionary *start = [item objectForKey:@"start"];
+		[session setStartDate:[self getDateFromJson:start]];
+	}
 	
-	[session setStartDate:[self getDateFromJson:start]];
-	[session setEndDate:[self getDateFromJson:end]];
+	NSObject *end = [item objectForKey:@"end"];
+	if ([end class] != [NSNull class]) {
+		NSDictionary *end = [item objectForKey:@"end"];
+		[session setEndDate:[self getDateFromJson:end]];
+	}
 		
 	NSArray *speakers = [item objectForKey:@"speakers"];
 	
