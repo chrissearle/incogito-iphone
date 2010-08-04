@@ -109,6 +109,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSString *sectionTitle = [self getSelectedSessionTitle:indexPath.section];
 	
+	[tableView deselectRowAtIndexPath:indexPath animated:NO];
+	
 	DetailedSessionViewController *controller = [[DetailedSessionViewController alloc] initWithNibName:@"DetailedSessionView" bundle:[NSBundle mainBundle]];
 	controller.session = [[sessions objectForKey:sectionTitle] objectAtIndex:indexPath.row];
 	
