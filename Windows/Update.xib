@@ -146,12 +146,11 @@
 					<object class="IBUIProgressView" id="916001693">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 128}, {280, 11}}</string>
+						<string key="NSFrame">{{20, 128}, {280, 9}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<float key="IBUIProgress">0.5</float>
-						<int key="IBUIProgressViewStyle">1</int>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
