@@ -72,6 +72,11 @@
 	
 	if (nil == cell) {
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"sessionCell"];
+
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+		cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.0];
+		cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
 	}
 	
 	NSMutableArray *speakerNames = [[NSMutableArray alloc] initWithCapacity:[session.speakers count]];
@@ -81,11 +86,9 @@
 	}
 	
 	cell.textLabel.text = session.title;
-	cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.0];
-	
 	cell.detailTextLabel.text = [NSString stringWithFormat:@"Room %@ - %@", session.room, [speakerNames componentsJoinedByString:@", "]];
+
 	[speakerNames release];
-	cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
 	
 	UIImageView *imageView = [cell imageView];
 	
