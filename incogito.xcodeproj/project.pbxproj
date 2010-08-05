@@ -34,6 +34,9 @@
 		83424EC111EDB7E300590A7A /* MyProgramme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424EC011EDB7E300590A7A /* MyProgramme.xib */; };
 		834964C511F09016008BB29F /* UpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834964C411F09016008BB29F /* UpdateViewController.m */; };
 		834964D411F0910A008BB29F /* Update.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834964D311F0910A008BB29F /* Update.xib */; };
+		83713C06120AD6A0000050A7 /* star-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 83713C03120AD6A0000050A7 /* star-checked.png */; };
+		83713C07120AD6A0000050A7 /* star-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 83713C04120AD6A0000050A7 /* star-pressed.png */; };
+		83713C08120AD6A0000050A7 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 83713C05120AD6A0000050A7 /* star.png */; };
 		8393654811F34EA700BBE43A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8393654711F34EA700BBE43A /* Default.png */; };
 		8394723C11EB98500075C4C1 /* JavazoneSessionsRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */; };
 		8394726611EB98B10075C4C1 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394725B11EB98B10075C4C1 /* NSObject+SBJSON.m */; };
@@ -42,9 +45,6 @@
 		8394726911EB98B10075C4C1 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394726111EB98B10075C4C1 /* SBJsonBase.m */; };
 		8394726A11EB98B10075C4C1 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394726311EB98B10075C4C1 /* SBJsonParser.m */; };
 		8394726B11EB98B10075C4C1 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394726511EB98B10075C4C1 /* SBJsonWriter.m */; };
-		83A5245D11F0E4D60041308B /* checkbox-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A5245A11F0E4D60041308B /* checkbox-checked.png */; };
-		83A5245E11F0E4D60041308B /* checkbox-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A5245B11F0E4D60041308B /* checkbox-pressed.png */; };
-		83A5245F11F0E4D60041308B /* checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A5245C11F0E4D60041308B /* checkbox.png */; };
 		83BA298A11F5A99F00767706 /* 03-loopback.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B3911ED981200590A7A /* 03-loopback.png */; };
 		83D1762511F18C3300D89884 /* SessionCommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1762411F18C3300D89884 /* SessionCommonViewController.m */; };
 		83D6BCF911EEF3A100FBC0FE /* SectionInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */; };
@@ -222,6 +222,9 @@
 		834964C311F09016008BB29F /* UpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateViewController.h; sourceTree = "<group>"; };
 		834964C411F09016008BB29F /* UpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateViewController.m; sourceTree = "<group>"; };
 		834964D311F0910A008BB29F /* Update.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Update.xib; sourceTree = "<group>"; };
+		83713C03120AD6A0000050A7 /* star-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-checked.png"; sourceTree = "<group>"; };
+		83713C04120AD6A0000050A7 /* star-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-pressed.png"; sourceTree = "<group>"; };
+		83713C05120AD6A0000050A7 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		8393654711F34EA700BBE43A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8394723A11EB98500075C4C1 /* JavazoneSessionsRetriever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavazoneSessionsRetriever.h; sourceTree = "<group>"; };
 		8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavazoneSessionsRetriever.m; sourceTree = "<group>"; };
@@ -238,9 +241,6 @@
 		8394726311EB98B10075C4C1 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		8394726411EB98B10075C4C1 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		8394726511EB98B10075C4C1 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		83A5245A11F0E4D60041308B /* checkbox-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-checked.png"; sourceTree = "<group>"; };
-		83A5245B11F0E4D60041308B /* checkbox-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-pressed.png"; sourceTree = "<group>"; };
-		83A5245C11F0E4D60041308B /* checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox.png; sourceTree = "<group>"; };
 		83D1762311F18C3300D89884 /* SessionCommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionCommonViewController.h; sourceTree = "<group>"; };
 		83D1762411F18C3300D89884 /* SessionCommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionCommonViewController.m; sourceTree = "<group>"; };
 		83D6BCF711EEF3A100FBC0FE /* SectionInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionInitializer.h; sourceTree = "<group>"; };
@@ -514,9 +514,9 @@
 		83827C2611F87A1A00A74CC1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				83A5245A11F0E4D60041308B /* checkbox-checked.png */,
-				83A5245B11F0E4D60041308B /* checkbox-pressed.png */,
-				83A5245C11F0E4D60041308B /* checkbox.png */,
+				83713C03120AD6A0000050A7 /* star-checked.png */,
+				83713C04120AD6A0000050A7 /* star-pressed.png */,
+				83713C05120AD6A0000050A7 /* star.png */,
 				830B12B511EDCA66004A9B25 /* Advanced.png */,
 				830B12B611EDCA66004A9B25 /* Intermediate.png */,
 				830B12B711EDCA66004A9B25 /* Introductory.png */,
@@ -616,12 +616,12 @@
 				83D6C07211EF922500FBC0FE /* DetailedSessionView.xib in Resources */,
 				8317CED711F038BB00DE7415 /* 28-star.png in Resources */,
 				834964D411F0910A008BB29F /* Update.xib in Resources */,
-				83A5245D11F0E4D60041308B /* checkbox-checked.png in Resources */,
-				83A5245E11F0E4D60041308B /* checkbox-pressed.png in Resources */,
-				83A5245F11F0E4D60041308B /* checkbox.png in Resources */,
 				8393654811F34EA700BBE43A /* Default.png in Resources */,
 				83BA298A11F5A99F00767706 /* 03-loopback.png in Resources */,
 				833A524411F840AD00E070D2 /* style.css in Resources */,
+				83713C06120AD6A0000050A7 /* star-checked.png in Resources */,
+				83713C07120AD6A0000050A7 /* star-pressed.png in Resources */,
+				83713C08120AD6A0000050A7 /* star.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
