@@ -273,6 +273,26 @@
 	}
 }
 
+- (void)setLabelFilter:(NSString *)labelFilter {
+	NSLog(@"Setting label filter %@", labelFilter);
+
+	[[NSUserDefaults standardUserDefaults] setObject:labelFilter forKey:@"labelFilter"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString *)getLabelFilter {
+	NSString *label = @"All";
+	
+	if (nil != [[NSUserDefaults standardUserDefaults] stringForKey:@"labelFilter"]) {
+		label = [[NSUserDefaults standardUserDefaults] stringForKey:@"labelFilter"];
+		
+		NSLog(@"Retrieved label filter %@", label);
+	}
+
+	NSLog(@"Retrieved label filter %@", label);
+
+	return label;
+}
 
 @end
 

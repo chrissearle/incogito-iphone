@@ -12,6 +12,8 @@
 @implementation SettingsViewController
 
 @synthesize labels;
+@synthesize picker;
+@synthesize appDelegate;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -31,6 +33,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
 	
 	// Retrieve all keys/vals from CoreData instead of this hard coded set
 	
@@ -74,12 +78,19 @@
 	
 	[self setLabels:[[NSDictionary alloc] initWithObjects:values forKeys:keys]];
 	
-	[keys release];
-	[values release];
-	
 	// Read pref
 	
 	// Set picker index
+	NSString *savedKey = [appDelegate getLabelFilter];
+	int index = 0;
+	if ([values containsObject:savedKey]) {
+		NSArray *sortedValues = [values sortedArrayUsingSelector:@selector(compare:)];
+		index = [sortedValues indexOfObject:savedKey] + 1;
+	}
+	[picker selectRow:index inComponent:0 animated:YES];
+
+	[keys release];
+	[values release];
 }
 
 /*
@@ -159,18 +170,30 @@
 		}
 	}
 	
+	
+	
 	return view;
 }
 
 - (IBAction)filter:(id)sender {
 	// Read current picker setting
+	NSArray *values = [[labels allValues] sortedArrayUsingSelector:@selector(compare:)];
 	
+	int index = [picker selectedRowInComponent:0];
+	
+	NSString *label = @"All";
+	
+	if (index > 0) {
+		label = [values objectAtIndex:(index - 1)];
+	}
+
 	// Filter data
 	
 	// Store pref
+	[appDelegate setLabelFilter:label];
 	
 	// Refresh views
-	[[[UIApplication sharedApplication] delegate] refreshViewData];
+	[appDelegate refreshViewData];
 }
 
 
