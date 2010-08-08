@@ -15,6 +15,10 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		830859CC120F2FF300F74041 /* ClubzoneMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 830859C9120F2FF300F74041 /* ClubzoneMapAnnotation.m */; };
+		830859CD120F2FF300F74041 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 830859CB120F2FF300F74041 /* MapViewController.m */; };
+		830859D0120F300A00F74041 /* Map.xib in Resources */ = {isa = PBXBuildFile; fileRef = 830859CF120F300A00F74041 /* Map.xib */; };
+		830859E2120F30DE00F74041 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830859E1120F30DE00F74041 /* MapKit.framework */; };
 		830B12AA11EDC9EC004A9B25 /* 11-clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B4B11ED981200590A7A /* 11-clock.png */; };
 		830B12AC11EDCA05004A9B25 /* 83-calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424BA811ED981300590A7A /* 83-calendar.png */; };
 		830B12B811EDCA66004A9B25 /* Advanced.png in Resources */ = {isa = PBXBuildFile; fileRef = 830B12B511EDCA66004A9B25 /* Advanced.png */; };
@@ -78,6 +82,12 @@
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* incogito_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = incogito_Prefix.pch; sourceTree = "<group>"; };
+		830859C8120F2FF300F74041 /* ClubzoneMapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClubzoneMapAnnotation.h; sourceTree = "<group>"; };
+		830859C9120F2FF300F74041 /* ClubzoneMapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClubzoneMapAnnotation.m; sourceTree = "<group>"; };
+		830859CA120F2FF300F74041 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		830859CB120F2FF300F74041 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		830859CF120F300A00F74041 /* Map.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Map.xib; sourceTree = "<group>"; };
+		830859E1120F30DE00F74041 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		830B12B511EDCA66004A9B25 /* Advanced.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Advanced.png; sourceTree = "<group>"; };
 		830B12B611EDCA66004A9B25 /* Intermediate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Intermediate.png; sourceTree = "<group>"; };
 		830B12B711EDCA66004A9B25 /* Introductory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Introductory.png; sourceTree = "<group>"; };
@@ -288,6 +298,7 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */,
+				830859E2120F30DE00F74041 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +308,10 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				830859C8120F2FF300F74041 /* ClubzoneMapAnnotation.h */,
+				830859C9120F2FF300F74041 /* ClubzoneMapAnnotation.m */,
+				830859CA120F2FF300F74041 /* MapViewController.h */,
+				830859CB120F2FF300F74041 /* MapViewController.m */,
 				83D6C07011EF922500FBC0FE /* DetailedSessionViewController.h */,
 				83D6C07111EF922500FBC0FE /* DetailedSessionViewController.m */,
 				83D6BDC011EF051700FBC0FE /* SectionSessionHandler.h */,
@@ -344,6 +359,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				830859E1120F30DE00F74041 /* MapKit.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -529,6 +545,7 @@
 		83827C1A11F8797600A74CC1 /* Windows */ = {
 			isa = PBXGroup;
 			children = (
+				830859CF120F300A00F74041 /* Map.xib */,
 				834964D311F0910A008BB29F /* Update.xib */,
 				83D6C06F11EF922500FBC0FE /* DetailedSessionView.xib */,
 				83424B2111ED882F00590A7A /* Overview.xib */,
@@ -660,6 +677,7 @@
 				831F5332120BFFC40027A8A4 /* Settings.xib in Resources */,
 				831F5357120C03380027A8A4 /* all.png in Resources */,
 				831F535D120C03380027A8A4 /* enterprise-architecture-and-integration.png in Resources */,
+				830859D0120F300A00F74041 /* Map.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -697,6 +715,8 @@
 				831AE80811FF5254008CB371 /* RefreshCommonViewController.m in Sources */,
 				83576C7F120BF48A008CC97E /* ClubZoneViewController.m in Sources */,
 				831F5335120BFFD20027A8A4 /* SettingsViewController.m in Sources */,
+				830859CC120F2FF300F74041 /* ClubzoneMapAnnotation.m in Sources */,
+				830859CD120F2FF300F74041 /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
