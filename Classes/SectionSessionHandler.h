@@ -31,4 +31,8 @@
 
 - (void) setFavouriteForSession:(JZSession *)session withBoolean:(BOOL)favouriteFlag;
 
+- (NSDictionary *)getUniqueLabels;
+- (NSString *)getStoredFilter;
+- (NSArray *)filterSessionList:(NSArray *)sessions;
+
 @end

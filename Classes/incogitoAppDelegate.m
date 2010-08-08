@@ -289,8 +289,6 @@
 		NSLog(@"Retrieved label filter %@", label);
 	}
 
-	NSLog(@"Retrieved label filter %@", label);
-
 	return label;
 }
 

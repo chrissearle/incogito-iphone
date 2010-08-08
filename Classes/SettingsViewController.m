@@ -8,6 +8,7 @@
 
 #import "SettingsViewController.h"
 #import "IncogitoAppDelegate.h"
+#import "SectionSessionHandler.h"
 
 @implementation SettingsViewController
 
@@ -35,62 +36,20 @@
     [super viewDidLoad];
 	
 	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
-	
-	// Retrieve all keys/vals from CoreData instead of this hard coded set
-	
-	NSArray *keys = [[NSArray alloc] initWithObjects:@"enterprise-architecture-and-integration",
-					 @"agile-and-software-engineering",
-					 @"core-java",
-					 @"domain-driven-design",
-					 @"architecture-and-design",
-					 @"alternative-languages",
-					 @"frontend-technologies",
-					 @"innovative-use-of-it",
-					 @"tools-and-techniques",
-					 @"experience-reports",
-					 @"web-as-a-platform",
-					 @"java-frameworks",
-					 @"embedded",
-					 @"gaming",
-					 @"green-it",
-					 @"mobile",
-					 @"usability",
-					 nil];
-	
-	NSArray *values = [[NSArray alloc] initWithObjects:@"Enterprise Architecture and Integration",
-					   @"Agile and Software Engineering",
-					   @"Core Java",
-					   @"Domain-driven design",
-					   @"Architecture and Design",
-					   @"Alternative Languages",
-					   @"Frontend Technologies",
-					   @"Innovative use of IT",
-					   @"Tools and Techniques",
-					   @"Experience Reports",
-					   @"Web as a Platform",
-					   @"Java Frameworks",
-					   @"Embedded",
-					   @"Gaming",
-					   @"Green IT",
-					   @"Mobile",
-					   @"Usability",
-					   nil];
-	
-	[self setLabels:[[NSDictionary alloc] initWithObjects:values forKeys:keys]];
-	
-	// Read pref
+
+	[self setLabels:[appDelegate.sectionSessionHandler getUniqueLabels]];
 	
 	// Set picker index
 	NSString *savedKey = [appDelegate getLabelFilter];
+
+	NSArray *values = [[labels allValues] sortedArrayUsingSelector:@selector(compare:)];
+
 	int index = 0;
 	if ([values containsObject:savedKey]) {
 		NSArray *sortedValues = [values sortedArrayUsingSelector:@selector(compare:)];
 		index = [sortedValues indexOfObject:savedKey] + 1;
 	}
 	[picker selectRow:index inComponent:0 animated:YES];
-
-	[keys release];
-	[values release];
 }
 
 /*
@@ -183,17 +142,31 @@
 	
 	NSString *label = @"All";
 	
+	NSString *messageTitle = @"Session filter cleared";
+	NSString *message = @"Showing all sessions.";
+	
 	if (index > 0) {
 		label = [values objectAtIndex:(index - 1)];
+
+		messageTitle = @"Session filter applied";
+		message = [NSString stringWithFormat:@"Showing only %@. This setting will be remembered - if you can't see sessions you expect to see - remember to check back here.", label];
 	}
 
-	// Filter data
-	
 	// Store pref
 	[appDelegate setLabelFilter:label];
 	
 	// Refresh views
 	[appDelegate refreshViewData];
+
+	
+	UIAlertView *alert = [[UIAlertView alloc]
+						  initWithTitle: messageTitle
+						  message: message
+						  delegate:nil
+						  cancelButtonTitle:@"OK"
+						  otherButtonTitles:nil];
+	[alert show];
+	[alert release];
 }
 
 

@@ -16,6 +16,7 @@
 
 @synthesize managedObjectContext;
 
+
 - (NSArray *)getSections {
 	NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:@"Section" inManagedObjectContext:managedObjectContext];
@@ -80,7 +81,7 @@
 	NSArray *sessions = [NSArray arrayWithArray:mutableFetchResults];
 	[mutableFetchResults release];
 	
-	return sessions;
+	return [self filterSessionList:sessions];
 }
 
 - (NSArray *)getFavouriteSessionsForSection:(Section *)section {
@@ -117,7 +118,7 @@
 	
 	[mutableFetchResults release];
 	
-	return sessions;
+	return [self filterSessionList:sessions];
 }
 
 - (NSDictionary *)getSessions {
@@ -323,6 +324,78 @@
 			return;
 		}
 	}	
+}
+
+- (NSDictionary *)getUniqueLabels {
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"JZLabel" inManagedObjectContext:managedObjectContext];
+	
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	
+	[request setEntity:entityDescription];
+	[request setReturnsDistinctResults:YES];
+	
+	NSError *error = nil;
+	
+	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	[request release];
+	
+	if (nil != error) {
+		[mutableFetchResults release];
+		NSLog(@"%@:%s Error fetching uniqueLabels: %@", [self class], _cmd, [error localizedDescription]);
+		return nil;
+	}
+	
+	NSArray *labels = [NSArray arrayWithArray:mutableFetchResults];
+	[mutableFetchResults release];
+	
+	NSMutableArray *keys = [[NSMutableArray alloc] init];
+	
+	NSMutableArray *objects = [[NSMutableArray alloc] init];
+	
+	for (JZLabel *label in labels) {
+		[keys addObject:[label jzId]];
+		[objects addObject:[label title]];
+	}
+	
+	NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:[NSArray arrayWithArray:objects] forKeys:keys];
+	[objects release];
+	[keys release];
+	
+	return dictionary;	
+}
+
+- (NSString *)getStoredFilter {
+	NSString *label = @"All";
+
+	if (nil != [[NSUserDefaults standardUserDefaults] stringForKey:@"labelFilter"]) {
+		label = [[NSUserDefaults standardUserDefaults] stringForKey:@"labelFilter"];
+	}
+
+	return label;
+}
+
+- (NSArray *)filterSessionList:(NSArray *)sessions {
+	NSString *filter = [self getStoredFilter];
+	
+	if ([filter isEqual:@"All"]) {
+		return sessions;
+	}
+	
+	NSMutableArray *matchingSessions = [[NSMutableArray alloc] init];
+	
+	for (JZSession *session in sessions) {
+		for (JZLabel *label in [session labels]) {
+			if ([[label title] isEqual:filter]) {
+				[matchingSessions addObject:session];
+			}
+		}
+	}
+
+	NSArray *filteredSessions = [NSArray arrayWithArray:matchingSessions];
+	[matchingSessions release];
+	
+	return filteredSessions;
 }
 
 

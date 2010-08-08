@@ -253,6 +253,16 @@
 		[session addLabelsObject:lbl];
 	}
 
+	
+	if ([speakers count] % 2 == 0) {
+		JZLabel *lbl = (JZLabel *)[NSEntityDescription insertNewObjectForEntityForName:@"JZLabel" inManagedObjectContext:managedObjectContext];
+	
+		[lbl setJzId:@"enterprise-architecture-and-integration"];
+		[lbl setTitle:@"Enterprise Architecture and Integration XX"];
+	
+		[session addLabelsObject:lbl];
+	}
+		
 	error = nil;
 	
 	if (![managedObjectContext save:&error]) {

@@ -122,8 +122,6 @@
 		
 		NSMutableString *result = [[NSMutableString alloc] init];
 		
-		NSString *labelsSection = [NSString stringWithString:result];
-		
 		[result appendString:@"<h2>Labels</h2>"];
 
 		[result appendString:@"<ul>"];
@@ -134,8 +132,9 @@
 		
 		[result appendString:@"</ul>"];
 		
+		NSString *labelsSection = [NSString stringWithString:result];
 		[result release];
-		
+
 		return labelsSection;
 	}
 }

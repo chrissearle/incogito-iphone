@@ -16,16 +16,10 @@
 
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * jzId;
-@property (nonatomic, retain) NSSet* session;
+@property (nonatomic, retain) JZSession * session;
 
 @end
 
 
 @interface JZLabel (CoreDataGeneratedAccessors)
-- (void)addSessionObject:(JZSession *)value;
-- (void)removeSessionObject:(JZSession *)value;
-- (void)addSession:(NSSet *)value;
-- (void)removeSession:(NSSet *)value;
-
 @end
-
