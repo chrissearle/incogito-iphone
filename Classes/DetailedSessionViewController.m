@@ -124,7 +124,7 @@
 		
 		[result appendString:@"<h2>Labels</h2>"];
 
-		[result appendString:@"<ul>"];
+		[result appendString:@"<ul class=\"labels\">"];
 		
 		for (JZLabel *label in labels) {
 			[result appendFormat:@"<li class=\"label-%@\">%@</li>", [label jzId], [label title]];

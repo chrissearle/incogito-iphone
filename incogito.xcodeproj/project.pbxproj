@@ -310,37 +310,37 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				83F2D54411EBB56B0043A75E /* REST */,
 				830859C8120F2FF300F74041 /* ClubzoneMapAnnotation.h */,
 				830859C9120F2FF300F74041 /* ClubzoneMapAnnotation.m */,
-				830859CA120F2FF300F74041 /* MapViewController.h */,
-				830859CB120F2FF300F74041 /* MapViewController.m */,
-				83D6C07011EF922500FBC0FE /* DetailedSessionViewController.h */,
-				83D6C07111EF922500FBC0FE /* DetailedSessionViewController.m */,
-				83D6BDC011EF051700FBC0FE /* SectionSessionHandler.h */,
-				83D6BDC111EF051700FBC0FE /* SectionSessionHandler.m */,
-				83F2D54411EBB56B0043A75E /* REST */,
-				1D3623240D0F684500981E51 /* IncogitoAppDelegate.h */,
-				1D3623250D0F684500981E51 /* IncogitoAppDelegate.m */,
-				83424B2C11ED88E700590A7A /* OverviewViewController.h */,
-				83424B2D11ED88E700590A7A /* OverviewViewController.m */,
-				83424B2F11ED898B00590A7A /* RefreshViewController.h */,
-				83424B3011ED898B00590A7A /* RefreshViewController.m */,
-				83424E8E11EDB68000590A7A /* NowAndNextViewController.h */,
-				83424E8F11EDB68000590A7A /* NowAndNextViewController.m */,
-				83424EBA11EDB79400590A7A /* MyProgrammeViewController.h */,
-				83424EBB11EDB79400590A7A /* MyProgrammeViewController.m */,
-				83D6BCF711EEF3A100FBC0FE /* SectionInitializer.h */,
-				83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */,
-				834964C311F09016008BB29F /* UpdateViewController.h */,
-				834964C411F09016008BB29F /* UpdateViewController.m */,
-				83D1762311F18C3300D89884 /* SessionCommonViewController.h */,
-				83D1762411F18C3300D89884 /* SessionCommonViewController.m */,
-				831AE80611FF5254008CB371 /* RefreshCommonViewController.h */,
-				831AE80711FF5254008CB371 /* RefreshCommonViewController.m */,
 				83576C7D120BF48A008CC97E /* ClubZoneViewController.h */,
 				83576C7E120BF48A008CC97E /* ClubZoneViewController.m */,
+				83D6C07011EF922500FBC0FE /* DetailedSessionViewController.h */,
+				83D6C07111EF922500FBC0FE /* DetailedSessionViewController.m */,
+				1D3623240D0F684500981E51 /* IncogitoAppDelegate.h */,
+				1D3623250D0F684500981E51 /* IncogitoAppDelegate.m */,
+				830859CA120F2FF300F74041 /* MapViewController.h */,
+				830859CB120F2FF300F74041 /* MapViewController.m */,
+				83424EBA11EDB79400590A7A /* MyProgrammeViewController.h */,
+				83424EBB11EDB79400590A7A /* MyProgrammeViewController.m */,
+				83424E8E11EDB68000590A7A /* NowAndNextViewController.h */,
+				83424E8F11EDB68000590A7A /* NowAndNextViewController.m */,
+				83424B2C11ED88E700590A7A /* OverviewViewController.h */,
+				83424B2D11ED88E700590A7A /* OverviewViewController.m */,
+				831AE80611FF5254008CB371 /* RefreshCommonViewController.h */,
+				831AE80711FF5254008CB371 /* RefreshCommonViewController.m */,
+				83424B2F11ED898B00590A7A /* RefreshViewController.h */,
+				83424B3011ED898B00590A7A /* RefreshViewController.m */,
+				83D6BCF711EEF3A100FBC0FE /* SectionInitializer.h */,
+				83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */,
+				83D6BDC011EF051700FBC0FE /* SectionSessionHandler.h */,
+				83D6BDC111EF051700FBC0FE /* SectionSessionHandler.m */,
+				83D1762311F18C3300D89884 /* SessionCommonViewController.h */,
+				83D1762411F18C3300D89884 /* SessionCommonViewController.m */,
 				831F5333120BFFD20027A8A4 /* SettingsViewController.h */,
 				831F5334120BFFD20027A8A4 /* SettingsViewController.m */,
+				834964C311F09016008BB29F /* UpdateViewController.h */,
+				834964C411F09016008BB29F /* UpdateViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -738,7 +738,10 @@
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
 				INFOPLIST_FILE = "incogito-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
-				OTHER_CFLAGS = "-DNOW_AND_NEXT_USE_TEST_DATE=1";
+				OTHER_CFLAGS = (
+					"-DUSE_DUMMY_LABELS=1",
+					"-DNOW_AND_NEXT_USE_TEST_DATE=1",
+				);
 				PRODUCT_NAME = JavaZone;
 				SDKROOT = iphoneos4.0;
 			};

@@ -17,6 +17,11 @@ h3 {
   font-weight: normal;
 }
 
-li.label-enterprise-architecture-and-integration {
+
+ul.labels li {
+	list-style-image: url("all.png");
+}
+
+ul.labels li.label-enterprise-architecture-and-integration {
 	list-style-image: url("enterprise-architecture-and-integration.png");
 }

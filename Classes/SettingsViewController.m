@@ -120,11 +120,17 @@
 		if ([subview class] == [UIImageView class]) {
 			UIImageView *image = (UIImageView *)subview;
 			if (row == 0) {
-				[image setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", @"all"]]];
+				[image setImage:[UIImage imageNamed:@"all.png"]];
 			} else {
 				NSArray *keys = [[labels allKeys] sortedArrayUsingSelector:@selector(compare:)];
 				
-				[image setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [keys objectAtIndex:(row - 1)]]]];
+				UIImage *imageFile = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [keys objectAtIndex:(row - 1)]]];
+				
+				if (nil == imageFile) {
+					imageFile = [UIImage imageNamed:@"all.png"];
+				}
+				
+				[image setImage:imageFile];
 			}
 		}
 	}
