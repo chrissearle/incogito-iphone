@@ -49,6 +49,8 @@
 		83713C06120AD6A0000050A7 /* star-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 83713C03120AD6A0000050A7 /* star-checked.png */; };
 		83713C07120AD6A0000050A7 /* star-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 83713C04120AD6A0000050A7 /* star-pressed.png */; };
 		83713C08120AD6A0000050A7 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 83713C05120AD6A0000050A7 /* star.png */; };
+		83741768120F3AC500B816A2 /* 71-compass.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B9C11ED981300590A7A /* 71-compass.png */; };
+		83741769120F3AC700B816A2 /* 74-location.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B9F11ED981300590A7A /* 74-location.png */; };
 		8393654811F34EA700BBE43A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8393654711F34EA700BBE43A /* Default.png */; };
 		8394723C11EB98500075C4C1 /* JavazoneSessionsRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */; };
 		8394726611EB98B10075C4C1 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394725B11EB98B10075C4C1 /* NSObject+SBJSON.m */; };
@@ -359,7 +361,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				830859E1120F30DE00F74041 /* MapKit.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -388,6 +389,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				830859E1120F30DE00F74041 /* MapKit.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
@@ -678,6 +680,8 @@
 				831F5357120C03380027A8A4 /* all.png in Resources */,
 				831F535D120C03380027A8A4 /* enterprise-architecture-and-integration.png in Resources */,
 				830859D0120F300A00F74041 /* Map.xib in Resources */,
+				83741768120F3AC500B816A2 /* 71-compass.png in Resources */,
+				83741769120F3AC700B816A2 /* 74-location.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

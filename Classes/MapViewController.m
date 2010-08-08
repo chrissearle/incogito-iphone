@@ -13,6 +13,7 @@
 @implementation MapViewController
 
 @synthesize mapView;
+@synthesize locationToggle;
 
 
 /*
@@ -33,6 +34,8 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	showingLocation = NO;
+	
     [super viewDidLoad];
 
 	CLLocationCoordinate2D coordinate;
@@ -47,9 +50,15 @@
 	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.912149,10.765695} andName:@"Ivars Kro"] autorelease]];
 	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.913128,10.760233} andName:@"Dattera til Hagen"] autorelease]];
 	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.913696,10.756906} andName:@"Cafe Con Bar"] autorelease]];
+
+	mapView.showsUserLocation = showingLocation;
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mv viewForAnnotation:(id <MKAnnotation>)annotation {
+	if ([annotation class] == MKUserLocation.class) {
+        return nil;
+    }
+	
 	MKPinAnnotationView *pinView = (MKPinAnnotationView*)[mv dequeueReusableAnnotationViewWithIdentifier:@"Pin"];
 	
 	if(pinView == nil) {
@@ -92,6 +101,13 @@
 
 - (void) closeModalViewController:(id)sender {
 	[self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction)locationButton:(id)sender {
+	showingLocation = !showingLocation;
+	
+	mapView.showsUserLocation = showingLocation;
+	[locationToggle setSelected:showingLocation];
 }
 
 @end
