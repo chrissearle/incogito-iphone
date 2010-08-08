@@ -15,12 +15,16 @@
 	UIActivityIndicatorView		*spinner;
 	UITextView					*refreshStatus;
 	UIProgressView				*progressView;
+	IBOutlet UIButton			*closeButton;
+	IBOutlet UILabel			*firstTimeText;
+	BOOL						*hideFirstTimeText;
 }
 
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView	*spinner;
 @property (nonatomic, retain) IBOutlet UITextView				*refreshStatus;
 @property (nonatomic, retain) IncogitoAppDelegate				*appDelegate;
 @property (nonatomic, retain) IBOutlet UIProgressView			*progressView;
+@property (nonatomic, retain) UILabel							*firstTimeText;
 
 - (void) refreshSessions;
 - (void)taskDone:(id)arg;
@@ -28,5 +32,7 @@
 - (void)showProgressBar:(id)arg;
 - (void)setProgressTo:(id)progress;
 	
+- (void) closeModalViewController:(id)sender;
+- (void) setFirstTimeTextVisibility:(BOOL) visibility;
 
 @end

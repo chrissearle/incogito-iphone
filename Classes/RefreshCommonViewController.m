@@ -16,13 +16,26 @@
 @synthesize refreshStatus;
 @synthesize appDelegate;
 @synthesize progressView;
+@synthesize firstTimeText;
 
 NSInteger sessionCount;
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+	[super viewDidLoad];
+	
 	[progressView setHidden:YES];
 	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
+
+	[spinner startAnimating];
+	[refreshStatus setText:@""];
+	
+	firstTimeText.hidden = hideFirstTimeText;
+
+		
+#ifdef LOG_FUNCTION_TIMES
+		NSLog(@"%@ Start of update sync", [[[NSDate alloc] init] autorelease]);
+#endif
+	[NSThread detachNewThreadSelector:@selector(refreshSessions) toTarget:self withObject:nil];
 }
 
 /*
@@ -83,6 +96,8 @@ NSInteger sessionCount;
 	[status release];
 	
 	[appDelegate refreshViewData];
+
+	[closeButton setEnabled:YES];
 }
 
 - (void)showProgressBar:(id)arg {
@@ -95,6 +110,14 @@ NSInteger sessionCount;
 	NSNumber *value = (NSNumber *)progress;
 	
 	[progressView setProgress:[value floatValue]];
+}
+
+- (void) closeModalViewController:(id)sender {
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+- (void) setFirstTimeTextVisibility:(BOOL) visibility {
+	hideFirstTimeText = !visibility;
 }
 
 @end

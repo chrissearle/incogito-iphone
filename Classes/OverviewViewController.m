@@ -9,7 +9,7 @@
 #import "OverviewViewController.h"
 #import "IncogitoAppDelegate.h"
 #import "SectionSessionHandler.h"
-#import "UpdateViewController.h"
+#import "RefreshCommonViewController.h"
 
 @implementation OverviewViewController
 
@@ -41,7 +41,8 @@
 	NSUInteger count = [handler getActiveSessionCount];
 	
 	if (count == 0) {
-		UpdateViewController *controller = [[UpdateViewController alloc] initWithNibName:@"Update" bundle:[NSBundle mainBundle]];
+		RefreshCommonViewController *controller = [[RefreshCommonViewController alloc] initWithNibName:@"Update" bundle:[NSBundle mainBundle]];
+		[controller setFirstTimeTextVisibility:YES];
 		[self.tabBarController presentModalViewController:controller animated:YES];
 		[controller release];
 	}

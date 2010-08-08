@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 #import "IncogitoAppDelegate.h"
 #import "SectionSessionHandler.h"
+#import "RefreshCommonViewController.h"
 
 @implementation SettingsViewController
 
@@ -175,5 +176,11 @@
 	[alert release];
 }
 
+- (IBAction)sync:(id)sender {
+	RefreshCommonViewController *controller = [[RefreshCommonViewController alloc] initWithNibName:@"Update" bundle:[NSBundle mainBundle]];
+	[controller setFirstTimeTextVisibility:NO];
+	[self.tabBarController presentModalViewController:controller animated:YES];
+	[controller release];
+}
 
 @end

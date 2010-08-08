@@ -35,13 +35,10 @@
 		834243EB11E74CAD00B438A8 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 834243EA11E74CAD00B438A8 /* Icon.png */; };
 		83424B2211ED882F00590A7A /* Overview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424B2111ED882F00590A7A /* Overview.xib */; };
 		83424B2E11ED88E700590A7A /* OverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83424B2D11ED88E700590A7A /* OverviewViewController.m */; };
-		83424B3111ED898B00590A7A /* RefreshViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83424B3011ED898B00590A7A /* RefreshViewController.m */; };
-		83424B3311ED899E00590A7A /* Refresh.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424B3211ED899E00590A7A /* Refresh.xib */; };
 		83424E9011EDB68000590A7A /* NowAndNextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83424E8F11EDB68000590A7A /* NowAndNextViewController.m */; };
 		83424E9211EDB68D00590A7A /* NowAndNext.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424E9111EDB68D00590A7A /* NowAndNext.xib */; };
 		83424EBC11EDB79400590A7A /* MyProgrammeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83424EBB11EDB79400590A7A /* MyProgrammeViewController.m */; };
 		83424EC111EDB7E300590A7A /* MyProgramme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424EC011EDB7E300590A7A /* MyProgramme.xib */; };
-		834964C511F09016008BB29F /* UpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834964C411F09016008BB29F /* UpdateViewController.m */; };
 		834964D411F0910A008BB29F /* Update.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834964D311F0910A008BB29F /* Update.xib */; };
 		83576C7C120BF478008CC97E /* ClubZone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83576C7B120BF478008CC97E /* ClubZone.xib */; };
 		83576C7F120BF48A008CC97E /* ClubZoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83576C7E120BF48A008CC97E /* ClubZoneViewController.m */; };
@@ -105,9 +102,6 @@
 		83424B2111ED882F00590A7A /* Overview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Overview.xib; sourceTree = "<group>"; };
 		83424B2C11ED88E700590A7A /* OverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverviewViewController.h; sourceTree = "<group>"; };
 		83424B2D11ED88E700590A7A /* OverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverviewViewController.m; sourceTree = "<group>"; };
-		83424B2F11ED898B00590A7A /* RefreshViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshViewController.h; sourceTree = "<group>"; };
-		83424B3011ED898B00590A7A /* RefreshViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshViewController.m; sourceTree = "<group>"; };
-		83424B3211ED899E00590A7A /* Refresh.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Refresh.xib; sourceTree = "<group>"; };
 		83424B3711ED981200590A7A /* 01-refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-refresh.png"; sourceTree = "<group>"; };
 		83424B3811ED981200590A7A /* 02-redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-redo.png"; sourceTree = "<group>"; };
 		83424B3911ED981200590A7A /* 03-loopback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-loopback.png"; sourceTree = "<group>"; };
@@ -244,8 +238,6 @@
 		83424EBA11EDB79400590A7A /* MyProgrammeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProgrammeViewController.h; sourceTree = "<group>"; };
 		83424EBB11EDB79400590A7A /* MyProgrammeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProgrammeViewController.m; sourceTree = "<group>"; };
 		83424EC011EDB7E300590A7A /* MyProgramme.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProgramme.xib; sourceTree = "<group>"; };
-		834964C311F09016008BB29F /* UpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateViewController.h; sourceTree = "<group>"; };
-		834964C411F09016008BB29F /* UpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateViewController.m; sourceTree = "<group>"; };
 		834964D311F0910A008BB29F /* Update.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Update.xib; sourceTree = "<group>"; };
 		83576C7B120BF478008CC97E /* ClubZone.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClubZone.xib; sourceTree = "<group>"; };
 		83576C7D120BF48A008CC97E /* ClubZoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClubZoneViewController.h; sourceTree = "<group>"; };
@@ -329,8 +321,6 @@
 				83424B2D11ED88E700590A7A /* OverviewViewController.m */,
 				831AE80611FF5254008CB371 /* RefreshCommonViewController.h */,
 				831AE80711FF5254008CB371 /* RefreshCommonViewController.m */,
-				83424B2F11ED898B00590A7A /* RefreshViewController.h */,
-				83424B3011ED898B00590A7A /* RefreshViewController.m */,
 				83D6BCF711EEF3A100FBC0FE /* SectionInitializer.h */,
 				83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */,
 				83D6BDC011EF051700FBC0FE /* SectionSessionHandler.h */,
@@ -339,8 +329,6 @@
 				83D1762411F18C3300D89884 /* SessionCommonViewController.m */,
 				831F5333120BFFD20027A8A4 /* SettingsViewController.h */,
 				831F5334120BFFD20027A8A4 /* SettingsViewController.m */,
-				834964C311F09016008BB29F /* UpdateViewController.h */,
-				834964C411F09016008BB29F /* UpdateViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -552,7 +540,6 @@
 				83D6C06F11EF922500FBC0FE /* DetailedSessionView.xib */,
 				83424B2111ED882F00590A7A /* Overview.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
-				83424B3211ED899E00590A7A /* Refresh.xib */,
 				83424E9111EDB68D00590A7A /* NowAndNext.xib */,
 				83424EC011EDB7E300590A7A /* MyProgramme.xib */,
 				83576C7B120BF478008CC97E /* ClubZone.xib */,
@@ -656,7 +643,6 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				834243EB11E74CAD00B438A8 /* Icon.png in Resources */,
 				83424B2211ED882F00590A7A /* Overview.xib in Resources */,
-				83424B3311ED899E00590A7A /* Refresh.xib in Resources */,
 				83424E9211EDB68D00590A7A /* NowAndNext.xib in Resources */,
 				83424EC111EDB7E300590A7A /* MyProgramme.xib in Resources */,
 				830B12AA11EDC9EC004A9B25 /* 11-clock.png in Resources */,
@@ -703,7 +689,6 @@
 				8394726A11EB98B10075C4C1 /* SBJsonParser.m in Sources */,
 				8394726B11EB98B10075C4C1 /* SBJsonWriter.m in Sources */,
 				83424B2E11ED88E700590A7A /* OverviewViewController.m in Sources */,
-				83424B3111ED898B00590A7A /* RefreshViewController.m in Sources */,
 				83424E9011EDB68000590A7A /* NowAndNextViewController.m in Sources */,
 				83424EBC11EDB79400590A7A /* MyProgrammeViewController.m in Sources */,
 				83D6BCF911EEF3A100FBC0FE /* SectionInitializer.m in Sources */,
@@ -714,7 +699,6 @@
 				83D6BFF211EF3A7B00FBC0FE /* JZSessionBio.m in Sources */,
 				83D6BFF311EF3A7B00FBC0FE /* UserSession.m in Sources */,
 				83D6C07311EF922500FBC0FE /* DetailedSessionViewController.m in Sources */,
-				834964C511F09016008BB29F /* UpdateViewController.m in Sources */,
 				83D1762511F18C3300D89884 /* SessionCommonViewController.m in Sources */,
 				831AE80811FF5254008CB371 /* RefreshCommonViewController.m in Sources */,
 				83576C7F120BF48A008CC97E /* ClubZoneViewController.m in Sources */,

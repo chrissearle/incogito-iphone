@@ -23,5 +23,6 @@
 @property (nonatomic, retain) IncogitoAppDelegate *appDelegate;
 
 - (IBAction)filter:(id)sender;
+- (IBAction)sync:(id)sender;
 
 @end
