@@ -19,7 +19,9 @@
 @property (nonatomic, retain) MKMapView *mapView;
 @property (nonatomic, retain) UIButton *locationToggle;
 
+
 - (void) closeModalViewController:(id)sender;
 - (IBAction)locationButton:(id)sender;
+- (void) goToDefaultLocationAndZoom;
 
 @end

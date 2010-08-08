@@ -38,13 +38,8 @@
 	
     [super viewDidLoad];
 
-	CLLocationCoordinate2D coordinate;
-	
-	coordinate.latitude = 59.912337;
-	coordinate.longitude = 10.760036;
-	
-	mapView.region = MKCoordinateRegionMakeWithDistance(coordinate, 750, 750);
-	
+	[self goToDefaultLocationAndZoom];
+
 	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.912958,10.754421} andName:@"JavaZone - Oslo Spektrum"] autorelease]];
 	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.91291,10.761501} andName:@"Gloria Flames"] autorelease]];
 	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.912149,10.765695} andName:@"Ivars Kro"] autorelease]];
@@ -52,6 +47,23 @@
 	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.913696,10.756906} andName:@"Cafe Con Bar"] autorelease]];
 
 	mapView.showsUserLocation = showingLocation;
+	
+	[self.mapView.userLocation addObserver:self  
+								forKeyPath:@"location"  
+								   options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)  
+								   context:NULL];
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath  
+                     ofObject:(id)object  
+                       change:(NSDictionary *)change  
+                      context:(void *)context {  
+	
+    if ([self.mapView showsUserLocation]) {  
+		mapView.region = MKCoordinateRegionMakeWithDistance([[[self.mapView userLocation] location] coordinate], 750, 750);
+    } else {
+		[self goToDefaultLocationAndZoom];
+	}
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mv viewForAnnotation:(id <MKAnnotation>)annotation {
@@ -108,6 +120,19 @@
 	
 	mapView.showsUserLocation = showingLocation;
 	[locationToggle setSelected:showingLocation];
+	
+	if (showingLocation == NO) {
+		[self goToDefaultLocationAndZoom];
+	}
+}
+
+- (void) goToDefaultLocationAndZoom {
+	CLLocationCoordinate2D coordinate;
+	
+	coordinate.latitude = 59.912337;
+	coordinate.longitude = 10.760036;
+	
+	mapView.region = MKCoordinateRegionMakeWithDistance(coordinate, 750, 750);
 }
 
 @end
