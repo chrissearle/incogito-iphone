@@ -40,11 +40,21 @@
 
 	[self goToDefaultLocationAndZoom];
 
-	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.912958,10.754421} andName:@"JavaZone - Oslo Spektrum"] autorelease]];
-	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.91291,10.761501} andName:@"Gloria Flames"] autorelease]];
-	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.912149,10.765695} andName:@"Ivars Kro"] autorelease]];
-	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.913128,10.760233} andName:@"Dattera til Hagen"] autorelease]];
-	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.913696,10.756906} andName:@"Cafe Con Bar"] autorelease]];
+	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.912958,10.754421}
+																	  andName:@"JavaZone"
+															 andEntertainment:@"Oslo Spektrum"] autorelease]];
+	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.91291,10.761501}
+																	  andName:@"Gloria Flames"
+															 andEntertainment:@"Piano Bar"] autorelease]];
+	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.912149,10.765695}
+																	  andName:@"Ivars Kro"
+															 andEntertainment:@"Cover Band"] autorelease]];
+	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.913128,10.760233}
+																	  andName:@"Dattera til Hagen"
+															 andEntertainment:@"Stand-Up"] autorelease]];
+	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.913696,10.756906}
+																	  andName:@"Cafe Con Bar"
+															 andEntertainment:@"DJ"] autorelease]];
 
 	mapView.showsUserLocation = showingLocation;
 	
