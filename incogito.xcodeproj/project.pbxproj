@@ -25,24 +25,8 @@
 		831F532B120BFFB60027A8A4 /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B6811ED981300590A7A /* 19-gear.png */; };
 		831F5332120BFFC40027A8A4 /* Settings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 831F5331120BFFC40027A8A4 /* Settings.xib */; };
 		831F5335120BFFD20027A8A4 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831F5334120BFFD20027A8A4 /* SettingsViewController.m */; };
-		831F5356120C03380027A8A4 /* agile-and-software-engineering.png in Resources */ = {isa = PBXBuildFile; fileRef = 831F5344120C03380027A8A4 /* agile-and-software-engineering.png */; };
 		831F5357120C03380027A8A4 /* all.png in Resources */ = {isa = PBXBuildFile; fileRef = 831F5345120C03380027A8A4 /* all.png */; };
-		831F5358120C03380027A8A4 /* alternative-languages.png in Resources */ = {isa = PBXBuildFile; fileRef = 831F5346120C03380027A8A4 /* alternative-languages.png */; };
-		831F5359120C03380027A8A4 /* architecture-and-design.png in Resources */ = {isa = PBXBuildFile; fileRef = 831F5347120C03380027A8A4 /* architecture-and-design.png */; };
-		831F535A120C03380027A8A4 /* core-java.png in Resources */ = {isa = PBXBuildFile; fileRef = 831F5348120C03380027A8A4 /* core-java.png */; };
-		831F535B120C03380027A8A4 /* domain-driven-design.png in Resources */ = {isa = PBXBuildFile; fileRef = 831F5349120C03380027A8A4 /* domain-driven-design.png */; };
-		831F535C120C03380027A8A4 /* embedded.png in Resources */ = {isa = PBXBuildFile; fileRef = 831F534A120C03380027A8A4 /* embedded.png */; };
 		831F535D120C03380027A8A4 /* enterprise-architecture-and-integration.png in Resources */ = {isa = PBXBuildFile; fileRef = 831F534B120C03380027A8A4 /* enterprise-architecture-and-integration.png */; };
-		831F535E120C03380027A8A4 /* experience-reports.png in Resources */ = {isa = PBXBuildFile; fileRef = 831F534C120C03380027A8A4 /* experience-reports.png */; };
-		831F535F120C03380027A8A4 /* frontend-technologies.png in Resources */ = {isa = PBXBuildFile; fileRef = 831F534D120C03380027A8A4 /* frontend-technologies.png */; };
-		831F5360120C03380027A8A4 /* gaming.png in Resources */ = {isa = PBXBuildFile; fileRef = 831F534E120C03380027A8A4 /* gaming.png */; };
-		831F5361120C03380027A8A4 /* green-it.png in Resources */ = {isa = PBXBuildFile; fileRef = 831F534F120C03380027A8A4 /* green-it.png */; };
-		831F5362120C03380027A8A4 /* innovative-use-of-it.png in Resources */ = {isa = PBXBuildFile; fileRef = 831F5350120C03380027A8A4 /* innovative-use-of-it.png */; };
-		831F5363120C03380027A8A4 /* java-frameworks.png in Resources */ = {isa = PBXBuildFile; fileRef = 831F5351120C03380027A8A4 /* java-frameworks.png */; };
-		831F5364120C03380027A8A4 /* mobile.png in Resources */ = {isa = PBXBuildFile; fileRef = 831F5352120C03380027A8A4 /* mobile.png */; };
-		831F5365120C03380027A8A4 /* tools-and-techniques.png in Resources */ = {isa = PBXBuildFile; fileRef = 831F5353120C03380027A8A4 /* tools-and-techniques.png */; };
-		831F5366120C03380027A8A4 /* usability.png in Resources */ = {isa = PBXBuildFile; fileRef = 831F5354120C03380027A8A4 /* usability.png */; };
-		831F5367120C03380027A8A4 /* web-as-a-platform.png in Resources */ = {isa = PBXBuildFile; fileRef = 831F5355120C03380027A8A4 /* web-as-a-platform.png */; };
 		833A524411F840AD00E070D2 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 833A524311F840AD00E070D2 /* style.css */; };
 		834243EB11E74CAD00B438A8 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 834243EA11E74CAD00B438A8 /* Icon.png */; };
 		83424B2211ED882F00590A7A /* Overview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424B2111ED882F00590A7A /* Overview.xib */; };
@@ -102,24 +86,8 @@
 		831F5331120BFFC40027A8A4 /* Settings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Settings.xib; sourceTree = "<group>"; };
 		831F5333120BFFD20027A8A4 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		831F5334120BFFD20027A8A4 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		831F5344120C03380027A8A4 /* agile-and-software-engineering.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "agile-and-software-engineering.png"; sourceTree = "<group>"; };
 		831F5345120C03380027A8A4 /* all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = all.png; sourceTree = "<group>"; };
-		831F5346120C03380027A8A4 /* alternative-languages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alternative-languages.png"; sourceTree = "<group>"; };
-		831F5347120C03380027A8A4 /* architecture-and-design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "architecture-and-design.png"; sourceTree = "<group>"; };
-		831F5348120C03380027A8A4 /* core-java.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "core-java.png"; sourceTree = "<group>"; };
-		831F5349120C03380027A8A4 /* domain-driven-design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "domain-driven-design.png"; sourceTree = "<group>"; };
-		831F534A120C03380027A8A4 /* embedded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = embedded.png; sourceTree = "<group>"; };
 		831F534B120C03380027A8A4 /* enterprise-architecture-and-integration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enterprise-architecture-and-integration.png"; sourceTree = "<group>"; };
-		831F534C120C03380027A8A4 /* experience-reports.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "experience-reports.png"; sourceTree = "<group>"; };
-		831F534D120C03380027A8A4 /* frontend-technologies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frontend-technologies.png"; sourceTree = "<group>"; };
-		831F534E120C03380027A8A4 /* gaming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gaming.png; sourceTree = "<group>"; };
-		831F534F120C03380027A8A4 /* green-it.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green-it.png"; sourceTree = "<group>"; };
-		831F5350120C03380027A8A4 /* innovative-use-of-it.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "innovative-use-of-it.png"; sourceTree = "<group>"; };
-		831F5351120C03380027A8A4 /* java-frameworks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "java-frameworks.png"; sourceTree = "<group>"; };
-		831F5352120C03380027A8A4 /* mobile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mobile.png; sourceTree = "<group>"; };
-		831F5353120C03380027A8A4 /* tools-and-techniques.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tools-and-techniques.png"; sourceTree = "<group>"; };
-		831F5354120C03380027A8A4 /* usability.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = usability.png; sourceTree = "<group>"; };
-		831F5355120C03380027A8A4 /* web-as-a-platform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "web-as-a-platform.png"; sourceTree = "<group>"; };
 		833A524311F840AD00E070D2 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		834243EA11E74CAD00B438A8 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		83424B2111ED882F00590A7A /* Overview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Overview.xib; sourceTree = "<group>"; };
@@ -415,24 +383,8 @@
 		831F5339120C03170027A8A4 /* labels */ = {
 			isa = PBXGroup;
 			children = (
-				831F5344120C03380027A8A4 /* agile-and-software-engineering.png */,
 				831F5345120C03380027A8A4 /* all.png */,
-				831F5346120C03380027A8A4 /* alternative-languages.png */,
-				831F5347120C03380027A8A4 /* architecture-and-design.png */,
-				831F5348120C03380027A8A4 /* core-java.png */,
-				831F5349120C03380027A8A4 /* domain-driven-design.png */,
-				831F534A120C03380027A8A4 /* embedded.png */,
 				831F534B120C03380027A8A4 /* enterprise-architecture-and-integration.png */,
-				831F534C120C03380027A8A4 /* experience-reports.png */,
-				831F534D120C03380027A8A4 /* frontend-technologies.png */,
-				831F534E120C03380027A8A4 /* gaming.png */,
-				831F534F120C03380027A8A4 /* green-it.png */,
-				831F5350120C03380027A8A4 /* innovative-use-of-it.png */,
-				831F5351120C03380027A8A4 /* java-frameworks.png */,
-				831F5352120C03380027A8A4 /* mobile.png */,
-				831F5353120C03380027A8A4 /* tools-and-techniques.png */,
-				831F5354120C03380027A8A4 /* usability.png */,
-				831F5355120C03380027A8A4 /* web-as-a-platform.png */,
 			);
 			path = labels;
 			sourceTree = "<group>";
@@ -706,24 +658,8 @@
 				83576C82120BF54C008CC97E /* 112-group.png in Resources */,
 				831F532B120BFFB60027A8A4 /* 19-gear.png in Resources */,
 				831F5332120BFFC40027A8A4 /* Settings.xib in Resources */,
-				831F5356120C03380027A8A4 /* agile-and-software-engineering.png in Resources */,
 				831F5357120C03380027A8A4 /* all.png in Resources */,
-				831F5358120C03380027A8A4 /* alternative-languages.png in Resources */,
-				831F5359120C03380027A8A4 /* architecture-and-design.png in Resources */,
-				831F535A120C03380027A8A4 /* core-java.png in Resources */,
-				831F535B120C03380027A8A4 /* domain-driven-design.png in Resources */,
-				831F535C120C03380027A8A4 /* embedded.png in Resources */,
 				831F535D120C03380027A8A4 /* enterprise-architecture-and-integration.png in Resources */,
-				831F535E120C03380027A8A4 /* experience-reports.png in Resources */,
-				831F535F120C03380027A8A4 /* frontend-technologies.png in Resources */,
-				831F5360120C03380027A8A4 /* gaming.png in Resources */,
-				831F5361120C03380027A8A4 /* green-it.png in Resources */,
-				831F5362120C03380027A8A4 /* innovative-use-of-it.png in Resources */,
-				831F5363120C03380027A8A4 /* java-frameworks.png in Resources */,
-				831F5364120C03380027A8A4 /* mobile.png in Resources */,
-				831F5365120C03380027A8A4 /* tools-and-techniques.png in Resources */,
-				831F5366120C03380027A8A4 /* usability.png in Resources */,
-				831F5367120C03380027A8A4 /* web-as-a-platform.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
