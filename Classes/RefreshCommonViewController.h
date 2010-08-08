@@ -17,7 +17,7 @@
 	UIProgressView				*progressView;
 	IBOutlet UIButton			*closeButton;
 	IBOutlet UILabel			*firstTimeText;
-	BOOL						*hideFirstTimeText;
+	BOOL						hideFirstTimeText;
 }
 
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView	*spinner;

@@ -56,7 +56,6 @@
 		8394726911EB98B10075C4C1 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394726111EB98B10075C4C1 /* SBJsonBase.m */; };
 		8394726A11EB98B10075C4C1 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394726311EB98B10075C4C1 /* SBJsonParser.m */; };
 		8394726B11EB98B10075C4C1 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394726511EB98B10075C4C1 /* SBJsonWriter.m */; };
-		83BA298A11F5A99F00767706 /* 03-loopback.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B3911ED981200590A7A /* 03-loopback.png */; };
 		83D1762511F18C3300D89884 /* SessionCommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1762411F18C3300D89884 /* SessionCommonViewController.m */; };
 		83D6BCF911EEF3A100FBC0FE /* SectionInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */; };
 		83D6BDC211EF051700FBC0FE /* SectionSessionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6BDC111EF051700FBC0FE /* SectionSessionHandler.m */; };
@@ -654,7 +653,6 @@
 				8317CED711F038BB00DE7415 /* 28-star.png in Resources */,
 				834964D411F0910A008BB29F /* Update.xib in Resources */,
 				8393654811F34EA700BBE43A /* Default.png in Resources */,
-				83BA298A11F5A99F00767706 /* 03-loopback.png in Resources */,
 				833A524411F840AD00E070D2 /* style.css in Resources */,
 				83713C06120AD6A0000050A7 /* star-checked.png in Resources */,
 				83713C07120AD6A0000050A7 /* star-pressed.png in Resources */,
