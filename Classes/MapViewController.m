@@ -122,6 +122,7 @@
 
 
 - (void)dealloc {
+	[mapView.userLocation removeObserver:self forKeyPath:@"location"];
     [super dealloc];
 }
 
