@@ -38,7 +38,7 @@
 
 	if (nil != error) {
 		[mutableFetchResults release];
-		NSLog(@"%@:%s Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
+		NSLog(@"%@:%@ Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
 		return nil;
 	}
 	
@@ -74,7 +74,7 @@
 	
 	if (nil != error) {
 		[mutableFetchResults release];
-		NSLog(@"%@:%s Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		NSLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
 		return nil;
 	}
 	
@@ -110,7 +110,7 @@
 	
 	if (nil != error) {
 		[mutableFetchResults release];
-		NSLog(@"%@:%s Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		NSLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
 		return nil;
 	}
 
@@ -159,7 +159,7 @@
 	
 	if (nil != error) {
 		[mutableFetchResults release];
-		NSLog(@"%@:%s Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
+		NSLog(@"%@:%@ Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
 		return nil;
 	}
 
@@ -200,7 +200,7 @@
 	
 	if (nil != error) {
 		[mutableFetchResults release];
-		NSLog(@"%@:%s Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
+		NSLog(@"%@:%@ Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
 		return nil;
 	}
 	
@@ -235,7 +235,7 @@
 
 	if (nil != error) {
 		[mutableFetchResults release];
-		NSLog(@"%@:%s Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		NSLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
 		return nil;
 	}
 	
@@ -291,7 +291,7 @@
 	NSUInteger count = [managedObjectContext countForFetchRequest:request error:&error];
 
 	if (nil != error) {
-		NSLog(@"%@:%s Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		NSLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
 		return 0;
 	}
 	
@@ -320,7 +320,7 @@
 	
 	if (![managedObjectContext save:&error]) {
 		if (nil != error) {
-			NSLog(@"%@:%s Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
+			NSLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
 			return;
 		}
 	}	
@@ -342,7 +342,7 @@
 	
 	if (nil != error) {
 		[mutableFetchResults release];
-		NSLog(@"%@:%s Error fetching uniqueLabels: %@", [self class], _cmd, [error localizedDescription]);
+		NSLog(@"%@:%@ Error fetching uniqueLabels: %@", [self class], _cmd, [error localizedDescription]);
 		return nil;
 	}
 	

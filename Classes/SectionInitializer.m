@@ -79,7 +79,7 @@
 	
 	if (![managedObjectContext save:&error]) {
 		if (nil != error) {
-			NSLog(@"%@:%s Error saving sections: %@", [self class], _cmd, [error localizedDescription]);
+			NSLog(@"%@:%@ Error saving sections: %@", [self class], _cmd, [error localizedDescription]);
 			return;
 		}
 	}
@@ -105,7 +105,7 @@
 	
 	if (nil != error) {
 		[mutableFetchResults release];
-		NSLog(@"%@:%s Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
+		NSLog(@"%@:%@ Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
 		return 0;
 	}
 
@@ -133,7 +133,7 @@
 	NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];
 	
 	if (nil != error) {
-		NSLog(@"%@:%s Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
+		NSLog(@"%@:%@ Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
 		return;
 	}
 
@@ -153,7 +153,7 @@
 	
 	if (![managedObjectContext save:&error]) {
 		if (nil != error) {
-			NSLog(@"%@:%s Error saving sections: %@", [self class], _cmd, [error localizedDescription]);
+			NSLog(@"%@:%@ Error saving sections: %@", [self class], _cmd, [error localizedDescription]);
 			return;
 		}
 	}

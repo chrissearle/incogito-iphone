@@ -42,7 +42,7 @@
 	
 	
 	if (nil != error) {
-		NSLog(@"%@:%s Error retrieving sessions: %@", [self class], _cmd, [error localizedDescription]);
+		NSLog(@"%@:%@ Error retrieving sessions: %@", [self class], _cmd, [error localizedDescription]);
 		return 0;
 	}
 	
@@ -72,7 +72,7 @@
 	[parser release];
 	
 	if (nil != error) {
-		NSLog(@"%@:%s Error parsing sessions: %@", [self class], _cmd, [error localizedDescription]);
+		NSLog(@"%@:%@ Error parsing sessions: %@", [self class], _cmd, [error localizedDescription]);
 		return 0;
 	}
 	
@@ -131,7 +131,7 @@
 	NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];
 
 	if (nil != error) {
-		NSLog(@"%@:%s Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		NSLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
 		return;
 	}
 	
@@ -144,7 +144,7 @@
 	
 	if (![managedObjectContext save:&error]) {
 		if (nil != error) {
-			NSLog(@"%@:%s Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
+			NSLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
 			return;
 		}
 	}	
@@ -171,7 +171,7 @@
 	NSArray *sessions = [managedObjectContext executeFetchRequest:request error:&error];
 
 	if (nil != error) {
-		NSLog(@"%@:%s Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		NSLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
 		return;
 	}
 	
@@ -286,7 +286,7 @@
 	
 	if (![managedObjectContext save:&error]) {
 		if (nil != error) {
-			NSLog(@"%@:%s Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
+			NSLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
 			return;
 		}
 	}
@@ -326,7 +326,7 @@
 	
 	if (![managedObjectContext save:&error]) {
 		if (nil != error) {
-			NSLog(@"%@:%s Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
+			NSLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
 			return;
 		}
 	}	
