@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 
 #import <MapKit/MapKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface MapViewController : UIViewController <MKMapViewDelegate> {
 	IBOutlet MKMapView *mapView;
 	IBOutlet UIButton *locationToggle;
-	BOOL showingLocation;
+	BOOL followingLocation;
 }
 
 @property (nonatomic, retain) MKMapView *mapView;

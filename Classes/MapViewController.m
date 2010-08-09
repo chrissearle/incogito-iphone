@@ -34,12 +34,13 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-	showingLocation = NO;
+	followingLocation = NO;
 	
     [super viewDidLoad];
 
-	[self goToDefaultLocationAndZoom];
-
+	[[locationToggle layer] setCornerRadius:8.0f];
+	[[locationToggle layer] setMasksToBounds:YES];
+	
 	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.912958,10.754421}
 																	  andName:@"JavaZone"
 															 andEntertainment:@"Oslo Spektrum"] autorelease]];
@@ -56,12 +57,14 @@
 																	  andName:@"Cafe Con Bar"
 															 andEntertainment:@"DJ"] autorelease]];
 
-	mapView.showsUserLocation = showingLocation;
+	mapView.showsUserLocation = YES;
 	
 	[self.mapView.userLocation addObserver:self  
 								forKeyPath:@"location"  
 								   options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)  
 								   context:NULL];
+	
+	[self goToDefaultLocationAndZoom];
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath  
@@ -69,8 +72,8 @@
                        change:(NSDictionary *)change  
                       context:(void *)context {  
 	
-    if ([self.mapView showsUserLocation]) {  
-		mapView.region = MKCoordinateRegionMakeWithDistance([[[self.mapView userLocation] location] coordinate], 750, 750);
+    if (followingLocation) {
+		[mapView setCenterCoordinate:[[[self.mapView userLocation] location] coordinate] animated:YES];
     } else {
 		[self goToDefaultLocationAndZoom];
 	}
@@ -126,13 +129,16 @@
 }
 
 - (IBAction)locationButton:(id)sender {
-	showingLocation = !showingLocation;
+	followingLocation = !followingLocation;
 	
-	mapView.showsUserLocation = showingLocation;
-	[locationToggle setSelected:showingLocation];
+	[locationToggle setSelected:followingLocation];
 	
-	if (showingLocation == NO) {
+	if (followingLocation == NO) {
+		[locationToggle setBackgroundColor:[UIColor clearColor]];
 		[self goToDefaultLocationAndZoom];
+	} else {
+		[locationToggle setBackgroundColor:[UIColor blueColor]];
+		mapView.region = MKCoordinateRegionMakeWithDistance([[[self.mapView userLocation] location] coordinate], 750, 750);
 	}
 }
 
@@ -142,7 +148,7 @@
 	coordinate.latitude = 59.912337;
 	coordinate.longitude = 10.760036;
 	
-	mapView.region = MKCoordinateRegionMakeWithDistance(coordinate, 750, 750);
+	[mapView setRegion:MKCoordinateRegionMakeWithDistance(coordinate, 750, 750) animated:YES];
 }
 
 @end
