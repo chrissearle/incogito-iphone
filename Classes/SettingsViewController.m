@@ -105,6 +105,9 @@
 		
 		[view addSubview:image];
 		[view addSubview:label];
+		
+		[image release];
+		[label release];
 	}
 	
 	for (UIView *subview in view.subviews) {
@@ -135,8 +138,6 @@
 			}
 		}
 	}
-	
-	
 	
 	return view;
 }

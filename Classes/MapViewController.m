@@ -95,6 +95,7 @@
 	} else {
 		pinView.annotation = annotation;
 	}
+	
 	return pinView;
 }
 
