@@ -114,8 +114,8 @@
 	DetailedSessionViewController *controller = [[DetailedSessionViewController alloc] initWithNibName:@"DetailedSessionView" bundle:[NSBundle mainBundle]];
 	controller.session = [[sessions objectForKey:sectionTitle] objectAtIndex:indexPath.row];
 	
-	[self.tabBarController presentModalViewController:controller animated:YES];
-	[controller release];
+	[[self navigationController] pushViewController:controller animated:YES];
+	[controller release], controller = nil;
 }
 
 @end

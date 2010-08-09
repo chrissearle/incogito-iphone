@@ -14,6 +14,7 @@
 #import "SectionSessionHandler.h"
 #import "SessionCommonViewController.h"
 #import "MyProgrammeViewController.h"
+#import "DetailedSessionViewController.h"
 
 @implementation IncogitoAppDelegate
 
@@ -249,26 +250,46 @@
 
 - (void)refreshFavouriteViewData {
 	for (UIViewController *controller in [rootController viewControllers]) {
-		if ([controller isKindOfClass:[MyProgrammeViewController class]]) {
-			NSLog(@"Sending reload to %@", [controller class]);
+		if ([controller isKindOfClass:[UINavigationController class]]) {
+			UINavigationController *navController = (UINavigationController *)controller;
 			
-			SessionCommonViewController *c = (SessionCommonViewController *)controller;
+			for (UIViewController *subController in [navController viewControllers]) {
+				NSLog(@"Saw a %@", [subController class]);
+				if ([subController isKindOfClass:[MyProgrammeViewController class]]) {
+					NSLog(@"Sending reload to %@", [subController class]);
 			
-			[c loadSessionData];
-			[[c tv] reloadData];
+					SessionCommonViewController *c = (SessionCommonViewController *)subController;
+			
+					[c loadSessionData];
+					[[c tv] reloadData];
+				}
+				if ([subController isKindOfClass:[DetailedSessionViewController class]]) {
+					DetailedSessionViewController *c = (DetailedSessionViewController *)subController;
+					
+					[c reloadSession];
+				}
+			}
 		}
 	}
 }
 
 - (void)refreshViewData {
 	for (UIViewController *controller in [rootController viewControllers]) {
-		if ([controller isKindOfClass:[SessionCommonViewController class]]) {
-			NSLog(@"Sending reload to %@", [controller class]);
+		if ([controller isKindOfClass:[UINavigationController class]]) {
+			UINavigationController *navController = (UINavigationController *)controller;
 			
-			SessionCommonViewController *c = (SessionCommonViewController *)controller;
+			for (UIViewController *subController in [navController viewControllers]) {
+				NSLog(@"Saw a %@", [subController class]);
+				if ([subController isKindOfClass:[SessionCommonViewController class]]) {
+					NSLog(@"Sending reload to %@", [subController class]);
 			
-			[c loadSessionData];
-			[[c tv] reloadData];
+					SessionCommonViewController *c = (SessionCommonViewController *)subController;
+			
+					[c loadSessionData];
+					[[c tv] reloadData];
+					
+				}
+			}
 		}
 	}
 }

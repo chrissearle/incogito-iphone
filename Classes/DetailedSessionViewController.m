@@ -15,7 +15,6 @@
 @implementation DetailedSessionViewController
 
 @synthesize session;
-@synthesize sessionTitle;
 @synthesize sessionLocation;
 @synthesize details;
 @synthesize level;
@@ -24,29 +23,32 @@
 @synthesize appDelegate;
 
 - (void)viewDidLoad {
-	checkboxSelected = 0;
-	
     [super viewDidLoad];
-	
+
 	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
-	
 	handler = [appDelegate sectionSessionHandler];
+
+	[self displaySession];
+}
+
+- (void)displaySession {
+	checkboxSelected = 0;
 	
 	NSDateFormatter *startFormatter = [[NSDateFormatter alloc] init];
 	[startFormatter setDateFormat:@"hh:mm"];
 	NSDateFormatter *endFormatter = [[NSDateFormatter alloc] init];
 	[endFormatter setDateFormat:@"hh:mm"];
 	
-	[sessionTitle setText:session.title];
 	[sessionLocation setText:[NSString stringWithFormat:@"%@ - %@ in room %@",
 							  [startFormatter stringFromDate:[session startDate]],
 							  [endFormatter stringFromDate:[session endDate]],
 							  [session room]]];
-
+	
 	NSString *path = [[NSBundle mainBundle] bundlePath];
 	NSURL *baseURL = [NSURL fileURLWithPath:path];
-
+	
 	[details loadHTMLString:[self buildPage:[session detail]
+								  withTitle:[session title]
 							withSpeakerInfo:[self buildSpeakersSection:[session speakers]]
 							  andLabelsInfo:[self buildLabelsSection:[session labels]]]
 					baseURL:baseURL];
@@ -61,7 +63,18 @@
 	if ([session userSession]) {
 		checkboxSelected = 1;
 		[checkboxButton setSelected:YES];
+	} else {
+		[checkboxButton setSelected:NO];
 	}
+	
+	self.title = [session title];
+	
+}
+
+- (void)reloadSession {
+	session = [handler getSessionForJZId:[session jzId]];
+
+	[self displaySession];
 }
 
 - (IBAction)checkboxButton:(id)sender{
@@ -93,10 +106,6 @@
 
 - (void)dealloc {
     [super dealloc];
-}
-
-- (void) closeModalViewController:(id)sender {
-	[self dismissModalViewControllerAnimated:YES];
 }
 
 - (NSString *)buildSpeakersSection:(NSSet *)speakers {
@@ -139,19 +148,21 @@
 	}
 }
 
-- (NSString *)buildPage:(NSString *)content withSpeakerInfo:(NSString *)speakerInfo andLabelsInfo:(NSString *)labelsInfo {
+- (NSString *)buildPage:(NSString *)content withTitle:(NSString *)title withSpeakerInfo:(NSString *)speakerInfo andLabelsInfo:(NSString *)labelsInfo {
 	NSString *page = [NSString stringWithFormat:@""
 					  "<html>"
 					  "<head>"
 					  "<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\"/>"
 					  "</head>"
 					  "<body>"
+					  "<h1>%@</h1>"
 					  "%@"
 					  "%@"
 					  "<h2>Speakers</h2>"
 					  "%@"
 					  "</body>"
 					  "</html>",
+					  title,
 					  content,
 					  labelsInfo,
 					  speakerInfo];

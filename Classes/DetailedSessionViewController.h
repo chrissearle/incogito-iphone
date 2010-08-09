@@ -15,7 +15,6 @@
 @interface DetailedSessionViewController : UIViewController {
 	JZSession		*session;
 	UIWebView		*details;
-	UILabel			*sessionTitle;
 	UILabel			*sessionLocation;
 	UILabel			*level;
 	UIImageView		*levelImage;
@@ -27,18 +26,19 @@
 
 @property (nonatomic, retain) JZSession		*session;
 @property (nonatomic, retain) IBOutlet UIWebView	*details;
-@property (nonatomic, retain) IBOutlet UILabel		*sessionTitle;
 @property (nonatomic, retain) IBOutlet UILabel		*sessionLocation;
 @property (nonatomic, retain) IBOutlet UILabel		*level;
 @property (nonatomic, retain) IBOutlet UIImageView	*levelImage;
 @property (nonatomic, retain) SectionSessionHandler *handler;
 @property (nonatomic, retain) IncogitoAppDelegate	*appDelegate;
 
-- (void) closeModalViewController:(id)sender;
-- (NSString *)buildPage:(NSString *)content withSpeakerInfo:(NSString *)speakerInfo andLabelsInfo:(NSString *)labels;
+- (NSString *)buildPage:(NSString *)content withTitle:(NSString *)title withSpeakerInfo:(NSString *)speakerInfo andLabelsInfo:(NSString *)labels;
 - (NSString *)buildSpeakersSection:(NSSet *)speakers;
 - (NSString *)buildLabelsSection:(NSSet *)labels;
 
 - (IBAction)checkboxButton:(id)sender;
+
+- (void)reloadSession;
+- (void)displaySession;
 
 @end
