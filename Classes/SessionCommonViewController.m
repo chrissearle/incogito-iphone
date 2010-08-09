@@ -71,7 +71,7 @@
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"sessionCell"];
 	
 	if (nil == cell) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"sessionCell"];
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"sessionCell"] autorelease];
 
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 

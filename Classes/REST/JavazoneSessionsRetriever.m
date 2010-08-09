@@ -300,7 +300,7 @@
 							[jsonDate objectForKey:@"hour"],
 							[jsonDate objectForKey:@"minute"]];
 
-	NSDate *date = [[NSDate alloc] initWithString:dateString];
+	NSDate *date = [[[NSDate alloc] initWithString:dateString] autorelease];
 	
 	return date;
 }

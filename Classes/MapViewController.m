@@ -87,7 +87,7 @@
 	MKPinAnnotationView *pinView = (MKPinAnnotationView*)[mv dequeueReusableAnnotationViewWithIdentifier:@"Pin"];
 	
 	if(pinView == nil) {
-		pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Pin"];
+		pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Pin"] autorelease];
 		
 		pinView.pinColor = MKPinAnnotationColorPurple;
 		pinView.animatesDrop = YES;

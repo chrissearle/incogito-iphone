@@ -95,7 +95,7 @@
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
 	if (nil == view) {
-		view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 260, 32)];
+		view = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 260, 32)] autorelease];
 		
 		UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(11.0, 11.0, 10, 10)];
 		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(32, 0.0, 228, 32)];
