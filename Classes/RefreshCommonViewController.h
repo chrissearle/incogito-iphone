@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 @class IncogitoAppDelegate;
 
@@ -16,6 +17,7 @@
 	UITextView					*refreshStatus;
 	UIProgressView				*progressView;
 	IBOutlet UIButton			*closeButton;
+	IBOutlet UIView				*greyView;
 	IBOutlet UILabel			*firstTimeText;
 	BOOL						hideFirstTimeText;
 }

@@ -24,6 +24,13 @@ NSInteger sessionCount;
 	[super viewDidLoad];
 	
 	[progressView setHidden:YES];
+	[closeButton setEnabled:NO];
+	greyView.frame = closeButton.frame;
+	greyView.alpha = 0.6;
+	[[greyView layer] setCornerRadius:10.0f];
+	[[greyView layer] setMasksToBounds:YES];
+	[greyView setHidden:NO];
+
 	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
 
 	[spinner startAnimating];
@@ -97,6 +104,7 @@ NSInteger sessionCount;
 	
 	[appDelegate refreshViewData];
 
+	[greyView setHidden:YES];
 	[closeButton setEnabled:YES];
 }
 
