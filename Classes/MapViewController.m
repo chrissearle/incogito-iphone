@@ -14,7 +14,7 @@
 
 @synthesize mapView;
 @synthesize locationToggle;
-
+@synthesize clubZoom;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -38,8 +38,24 @@
 	
     [super viewDidLoad];
 
+	CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
+	const CGFloat myColor[] = {0.62, 0.62, 0.62, 1.0};
+	CGColorRef colour = CGColorCreate(rgb, myColor);
+	CGColorSpaceRelease(rgb);
+	
 	[[locationToggle layer] setCornerRadius:8.0f];
 	[[locationToggle layer] setMasksToBounds:YES];
+	[locationToggle setBackgroundColor:[UIColor whiteColor]];
+	[[locationToggle layer] setBorderWidth:1.0];
+	[[locationToggle layer] setBorderColor:colour];
+
+	[[clubZoom layer] setCornerRadius:8.0f];
+	[[clubZoom layer] setMasksToBounds:YES];
+	[clubZoom setBackgroundColor:[UIColor whiteColor]];
+	[[clubZoom layer] setBorderWidth:1.0];
+	[[clubZoom layer] setBorderColor:colour];
+	
+	CGColorRelease(colour);
 	
 	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.912958,10.754421}
 																	  andName:@"JavaZone"
@@ -74,8 +90,6 @@
 	
     if (followingLocation) {
 		[mapView setCenterCoordinate:[[[self.mapView userLocation] location] coordinate] animated:YES];
-    } else {
-		[self goToDefaultLocationAndZoom];
 	}
 }
 
@@ -136,8 +150,7 @@
 	[locationToggle setSelected:followingLocation];
 	
 	if (followingLocation == NO) {
-		[locationToggle setBackgroundColor:[UIColor clearColor]];
-		[self goToDefaultLocationAndZoom];
+		[locationToggle setBackgroundColor:[UIColor whiteColor]];
 	} else {
 		[locationToggle setBackgroundColor:[UIColor blueColor]];
 		mapView.region = MKCoordinateRegionMakeWithDistance([[[self.mapView userLocation] location] coordinate], 750, 750);
@@ -151,6 +164,14 @@
 	coordinate.longitude = 10.760036;
 	
 	[mapView setRegion:MKCoordinateRegionMakeWithDistance(coordinate, 750, 750) animated:YES];
+}
+
+- (IBAction)clubZoomButton:(id)sender {
+	if (followingLocation) {
+		[self locationButton:sender];
+	}
+	
+	[self goToDefaultLocationAndZoom];
 }
 
 @end

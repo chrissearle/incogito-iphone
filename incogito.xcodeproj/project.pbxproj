@@ -31,6 +31,7 @@
 		831F5335120BFFD20027A8A4 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831F5334120BFFD20027A8A4 /* SettingsViewController.m */; };
 		831F5357120C03380027A8A4 /* all.png in Resources */ = {isa = PBXBuildFile; fileRef = 831F5345120C03380027A8A4 /* all.png */; };
 		831F535D120C03380027A8A4 /* enterprise-architecture-and-integration.png in Resources */ = {isa = PBXBuildFile; fileRef = 831F534B120C03380027A8A4 /* enterprise-architecture-and-integration.png */; };
+		83294ABD12112CCE009FD6C8 /* 72-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B9D11ED981300590A7A /* 72-pin.png */; };
 		833A524411F840AD00E070D2 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 833A524311F840AD00E070D2 /* style.css */; };
 		834243EB11E74CAD00B438A8 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 834243EA11E74CAD00B438A8 /* Icon.png */; };
 		83424B2211ED882F00590A7A /* Overview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424B2111ED882F00590A7A /* Overview.xib */; };
@@ -672,6 +673,7 @@
 				830859D0120F300A00F74041 /* Map.xib in Resources */,
 				83741769120F3AC700B816A2 /* 74-location.png in Resources */,
 				83C3C17C120FD8FA00B23253 /* 74-location-active.png in Resources */,
+				83294ABD12112CCE009FD6C8 /* 72-pin.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
