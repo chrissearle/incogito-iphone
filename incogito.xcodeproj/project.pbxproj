@@ -287,6 +287,7 @@
 		83D6C07011EF922500FBC0FE /* DetailedSessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedSessionViewController.h; sourceTree = "<group>"; };
 		83D6C07111EF922500FBC0FE /* DetailedSessionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedSessionViewController.m; sourceTree = "<group>"; };
 		83D794B312127B960080F7D1 /* incogito.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = incogito.plist; sourceTree = "<group>"; };
+		83F3BABF12130CB90042EB5E /* 20-gear2-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear2-active.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* incogito-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "incogito-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -408,6 +409,7 @@
 		83424B3611ED981200590A7A /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				83F3BABF12130CB90042EB5E /* 20-gear2-active.png */,
 				83C3C17B120FD8FA00B23253 /* 74-location-active.png */,
 				83424B3711ED981200590A7A /* 01-refresh.png */,
 				83424B3811ED981200590A7A /* 02-redo.png */,

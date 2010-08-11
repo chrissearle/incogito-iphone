@@ -16,22 +16,6 @@
 @synthesize locationToggle;
 @synthesize clubZoom;
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	followingLocation = NO;
@@ -54,7 +38,7 @@
 	[clubZoom setBackgroundColor:[UIColor whiteColor]];
 	[[clubZoom layer] setBorderWidth:1.0];
 	[[clubZoom layer] setBorderColor:colour];
-	
+
 	CGColorRelease(colour);
 	
 	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.912958,10.754421}
@@ -113,14 +97,6 @@
 	return pinView;
 }
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -172,6 +148,19 @@
 	}
 	
 	[self goToDefaultLocationAndZoom];
+}
+
+- (IBAction)typeSegmentSelected:(id)sender {
+	UISegmentedControl* segCtl = sender;
+
+	if ([segCtl selectedSegmentIndex] == 0) {
+		[mapView setMapType:MKMapTypeStandard];
+	} else if ([segCtl selectedSegmentIndex] == 1) {
+		[mapView setMapType:MKMapTypeSatellite];
+	} else if ([segCtl selectedSegmentIndex] == 2) {
+		[mapView setMapType:MKMapTypeHybrid];
+	}
+		
 }
 
 @end

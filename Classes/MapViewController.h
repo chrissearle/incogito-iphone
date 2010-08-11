@@ -24,8 +24,11 @@
 
 
 - (void) closeModalViewController:(id)sender;
+
 - (IBAction)locationButton:(id)sender;
 - (IBAction)clubZoomButton:(id)sender;
+- (IBAction)typeSegmentSelected:(id)sender;
+
 - (void) goToDefaultLocationAndZoom;
 
 @end
