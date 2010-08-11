@@ -28,6 +28,16 @@
 	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
 	handler = [appDelegate sectionSessionHandler];
 
+	CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
+	const CGFloat myColor[] = {0.18, 0.21, 0.26, 1.0};
+	CGColorRef colour = CGColorCreate(rgb, myColor);
+	CGColorSpaceRelease(rgb);
+	
+	[[details layer] setCornerRadius:8.0f];
+	[[details layer] setMasksToBounds:YES];
+	[[details layer] setBorderWidth:1.0];
+	[[details layer] setBorderColor:colour];
+	
 	[self displaySession];
 }
 
