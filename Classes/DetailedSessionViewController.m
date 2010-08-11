@@ -29,7 +29,7 @@
 	handler = [appDelegate sectionSessionHandler];
 
 	CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
-	const CGFloat myColor[] = {0.18, 0.21, 0.26, 1.0};
+	const CGFloat myColor[] = {0.67, 0.67, 0.67, 1.0};
 	CGColorRef colour = CGColorCreate(rgb, myColor);
 	CGColorSpaceRelease(rgb);
 	
