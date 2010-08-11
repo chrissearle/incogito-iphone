@@ -13,14 +13,13 @@
 
 @interface MapViewController : UIViewController <MKMapViewDelegate> {
 	IBOutlet MKMapView *mapView;
-	IBOutlet UIButton *locationToggle;
-	IBOutlet UIButton *clubZoom;
+	IBOutlet UIToolbar *toolbar;
 	BOOL followingLocation;
 }
 
 @property (nonatomic, retain) MKMapView *mapView;
-@property (nonatomic, retain) UIButton *locationToggle;
-@property (nonatomic, retain) UIButton *clubZoom;
+@property (nonatomic, retain) UIToolbar *toolbar;
+
 
 
 - (void) closeModalViewController:(id)sender;
