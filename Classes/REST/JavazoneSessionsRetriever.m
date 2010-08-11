@@ -17,10 +17,15 @@
 @synthesize managedObjectContext;
 @synthesize refreshCommonViewController;
 
-- (NSUInteger)retrieveSessionsWithUrl:(NSString *)urlString {
-	NSMutableURLRequest *urlRequest;
+- (NSUInteger)retrieveSessions {
+	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"incogito" ofType:@"plist"];
+	NSDictionary* plistDict = [[NSDictionary alloc] initWithContentsOfFile:filePath];
+
+	NSString *urlString = [plistDict objectForKey:@"SessionUrl"];
+	NSLog(@"Session URL %@", urlString);
 	
-	urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+	NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+	[plistDict release];
 	
 	[urlRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	

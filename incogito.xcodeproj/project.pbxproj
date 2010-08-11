@@ -68,6 +68,7 @@
 		83D6BFF311EF3A7B00FBC0FE /* UserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6BFEE11EF3A7B00FBC0FE /* UserSession.m */; };
 		83D6C07211EF922500FBC0FE /* DetailedSessionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D6C06F11EF922500FBC0FE /* DetailedSessionView.xib */; };
 		83D6C07311EF922500FBC0FE /* DetailedSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6C07111EF922500FBC0FE /* DetailedSessionViewController.m */; };
+		83D794B412127B960080F7D1 /* incogito.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83D794B312127B960080F7D1 /* incogito.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -283,6 +284,7 @@
 		83D6C06F11EF922500FBC0FE /* DetailedSessionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailedSessionView.xib; sourceTree = "<group>"; };
 		83D6C07011EF922500FBC0FE /* DetailedSessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedSessionViewController.h; sourceTree = "<group>"; };
 		83D6C07111EF922500FBC0FE /* DetailedSessionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedSessionViewController.m; sourceTree = "<group>"; };
+		83D794B312127B960080F7D1 /* incogito.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = incogito.plist; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* incogito-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "incogito-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -374,6 +376,7 @@
 				2819305F112F816700ECF9B4 /* incogito.xcdatamodeld */,
 				8D1107310486CEB800E47090 /* incogito-Info.plist */,
 				833A524311F840AD00E070D2 /* style.css */,
+				83D794B312127B960080F7D1 /* incogito.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -674,6 +677,7 @@
 				83741769120F3AC700B816A2 /* 74-location.png in Resources */,
 				83C3C17C120FD8FA00B23253 /* 74-location-active.png in Resources */,
 				83294ABD12112CCE009FD6C8 /* 72-pin.png in Resources */,
+				83D794B412127B960080F7D1 /* incogito.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

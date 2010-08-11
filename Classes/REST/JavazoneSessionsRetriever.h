@@ -8,7 +8,7 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) RefreshCommonViewController *refreshCommonViewController;
 
-- (NSUInteger)retrieveSessionsWithUrl:(NSString *)urlString;
+- (NSUInteger)retrieveSessions;
 - (void) addSession:(NSDictionary *)item;
 - (void) invalidateSessions;
 - (NSDate *)getDateFromJson:(NSDictionary *)jsonDate;

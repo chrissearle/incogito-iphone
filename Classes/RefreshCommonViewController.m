@@ -79,7 +79,7 @@ NSInteger sessionCount;
 	retriever.managedObjectContext = [appDelegate managedObjectContext];
 	retriever.refreshCommonViewController = self;
 	
-	sessionCount = [retriever retrieveSessionsWithUrl:@"http://javazone.no/incogito10/rest/events/JavaZone%202010/sessions"];
+	sessionCount = [retriever retrieveSessions];
 	[self performSelectorOnMainThread:@selector(taskDone:) withObject:nil waitUntilDone:NO];
 	[pool drain];
 }
