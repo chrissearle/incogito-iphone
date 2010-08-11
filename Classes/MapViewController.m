@@ -62,10 +62,10 @@
 															 andEntertainment:@"Oslo Spektrum"] autorelease]];
 	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.91291,10.761501}
 																	  andName:@"Gloria Flames"
-															 andEntertainment:@"Piano Bar"] autorelease]];
-	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.912149,10.765695}
-																	  andName:@"Ivars Kro"
 															 andEntertainment:@"Cover Band"] autorelease]];
+	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.9130091,10.760917}
+																	  andName:@"Ivars Kro"
+															 andEntertainment:@"Piano Bar"] autorelease]];
 	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.913128,10.760233}
 																	  andName:@"Dattera til Hagen"
 															 andEntertainment:@"Stand-Up"] autorelease]];
@@ -153,15 +153,15 @@
 		[locationToggle setBackgroundColor:[UIColor whiteColor]];
 	} else {
 		[locationToggle setBackgroundColor:[UIColor blueColor]];
-		mapView.region = MKCoordinateRegionMakeWithDistance([[[self.mapView userLocation] location] coordinate], 750, 750);
+		mapView.region = MKCoordinateRegionMakeWithDistance([[[self.mapView userLocation] location] coordinate], 200, 200);
 	}
 }
 
 - (void) goToDefaultLocationAndZoom {
 	CLLocationCoordinate2D coordinate;
 	
-	coordinate.latitude = 59.912337;
-	coordinate.longitude = 10.760036;
+	coordinate.latitude = 59.913192;
+	coordinate.longitude = 10.75813;
 	
 	[mapView setRegion:MKCoordinateRegionMakeWithDistance(coordinate, 750, 750) animated:YES];
 }
