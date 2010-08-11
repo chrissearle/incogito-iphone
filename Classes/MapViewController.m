@@ -153,7 +153,7 @@
 		[locationToggle setBackgroundColor:[UIColor whiteColor]];
 	} else {
 		[locationToggle setBackgroundColor:[UIColor blueColor]];
-		mapView.region = MKCoordinateRegionMakeWithDistance([[[self.mapView userLocation] location] coordinate], 200, 200);
+		mapView.region = MKCoordinateRegionMakeWithDistance([[[self.mapView userLocation] location] coordinate], 750, 750);
 	}
 }
 
@@ -163,7 +163,7 @@
 	coordinate.latitude = 59.913192;
 	coordinate.longitude = 10.75813;
 	
-	[mapView setRegion:MKCoordinateRegionMakeWithDistance(coordinate, 750, 750) animated:YES];
+	[mapView setRegion:MKCoordinateRegionMakeWithDistance(coordinate, 400, 400) animated:YES];
 }
 
 - (IBAction)clubZoomButton:(id)sender {
