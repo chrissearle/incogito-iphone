@@ -114,6 +114,10 @@
 	DetailedSessionViewController *controller = [[DetailedSessionViewController alloc] initWithNibName:@"DetailedSessionView" bundle:[NSBundle mainBundle]];
 	controller.session = [[sessions objectForKey:sectionTitle] objectAtIndex:indexPath.row];
 	
+#ifndef SHOW_TAB_BAR_ON_DETAILS_VIEW
+	[controller setHidesBottomBarWhenPushed:YES];
+#endif
+	
 	[[self navigationController] pushViewController:controller animated:YES];
 	[controller release], controller = nil;
 }

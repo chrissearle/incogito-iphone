@@ -33,6 +33,7 @@
 		831F535D120C03380027A8A4 /* enterprise-architecture-and-integration.png in Resources */ = {isa = PBXBuildFile; fileRef = 831F534B120C03380027A8A4 /* enterprise-architecture-and-integration.png */; };
 		83294ABD12112CCE009FD6C8 /* 72-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B9D11ED981300590A7A /* 72-pin.png */; };
 		833A524411F840AD00E070D2 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 833A524311F840AD00E070D2 /* style.css */; };
+		8341FA141212CFB4004A45F4 /* ClubZone.png in Resources */ = {isa = PBXBuildFile; fileRef = 8341FA131212CFB4004A45F4 /* ClubZone.png */; };
 		834243EB11E74CAD00B438A8 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 834243EA11E74CAD00B438A8 /* Icon.png */; };
 		83424B2211ED882F00590A7A /* Overview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424B2111ED882F00590A7A /* Overview.xib */; };
 		83424B2E11ED88E700590A7A /* OverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83424B2D11ED88E700590A7A /* OverviewViewController.m */; };
@@ -100,6 +101,7 @@
 		831F5345120C03380027A8A4 /* all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = all.png; sourceTree = "<group>"; };
 		831F534B120C03380027A8A4 /* enterprise-architecture-and-integration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enterprise-architecture-and-integration.png"; sourceTree = "<group>"; };
 		833A524311F840AD00E070D2 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		8341FA131212CFB4004A45F4 /* ClubZone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ClubZone.png; sourceTree = "<group>"; };
 		834243EA11E74CAD00B438A8 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		83424B2111ED882F00590A7A /* Overview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Overview.xib; sourceTree = "<group>"; };
 		83424B2C11ED88E700590A7A /* OverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverviewViewController.h; sourceTree = "<group>"; };
@@ -570,6 +572,7 @@
 				83424B3611ED981200590A7A /* icons */,
 				8393654711F34EA700BBE43A /* Default.png */,
 				834243EA11E74CAD00B438A8 /* Icon.png */,
+				8341FA131212CFB4004A45F4 /* ClubZone.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -678,6 +681,7 @@
 				83C3C17C120FD8FA00B23253 /* 74-location-active.png in Resources */,
 				83294ABD12112CCE009FD6C8 /* 72-pin.png in Resources */,
 				83D794B412127B960080F7D1 /* incogito.plist in Resources */,
+				8341FA141212CFB4004A45F4 /* ClubZone.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

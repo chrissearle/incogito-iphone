@@ -254,7 +254,6 @@
 			UINavigationController *navController = (UINavigationController *)controller;
 			
 			for (UIViewController *subController in [navController viewControllers]) {
-				NSLog(@"Saw a %@", [subController class]);
 				if ([subController isKindOfClass:[MyProgrammeViewController class]]) {
 					NSLog(@"Sending reload to %@", [subController class]);
 			
@@ -263,11 +262,15 @@
 					[c loadSessionData];
 					[[c tv] reloadData];
 				}
+
+#ifdef SHOW_TAB_BAR_ON_DETAILS_VIEW
 				if ([subController isKindOfClass:[DetailedSessionViewController class]]) {
 					DetailedSessionViewController *c = (DetailedSessionViewController *)subController;
 					
 					[c reloadSession];
 				}
+#endif
+				
 			}
 		}
 	}
@@ -279,7 +282,6 @@
 			UINavigationController *navController = (UINavigationController *)controller;
 			
 			for (UIViewController *subController in [navController viewControllers]) {
-				NSLog(@"Saw a %@", [subController class]);
 				if ([subController isKindOfClass:[SessionCommonViewController class]]) {
 					NSLog(@"Sending reload to %@", [subController class]);
 			

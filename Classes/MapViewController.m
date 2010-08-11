@@ -62,7 +62,7 @@
 															 andEntertainment:@"Oslo Spektrum"] autorelease]];
 	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.91291,10.761501}
 																	  andName:@"Gloria Flames"
-															 andEntertainment:@"Cover Band"] autorelease]];
+															 andEntertainment:@"Blotsbrødre - A tribute to norwegian rock"] autorelease]];
 	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.9130091,10.760917}
 																	  andName:@"Ivars Kro"
 															 andEntertainment:@"Piano Bar"] autorelease]];
@@ -71,7 +71,7 @@
 															 andEntertainment:@"Stand-Up"] autorelease]];
 	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.913696,10.756906}
 																	  andName:@"Cafe Con Bar"
-															 andEntertainment:@"DJ"] autorelease]];
+															 andEntertainment:@"DJ Mario"] autorelease]];
 
 	mapView.showsUserLocation = YES;
 	
