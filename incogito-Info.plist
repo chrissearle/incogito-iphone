@@ -19,7 +19,7 @@
 	<key>CFBundleSignature</key>
 	<string>ICOG</string>
 	<key>CFBundleVersion</key>
-	<string>0.9.4</string>
+	<string>1.0.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMainNibFile</key>
