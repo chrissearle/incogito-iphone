@@ -20,23 +20,28 @@
 	followingLocation = NO;
 	
     [super viewDidLoad];
-
-	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.912958,10.754421}
-																	  andName:@"JavaZone"
-															 andEntertainment:@"Oslo Spektrum"] autorelease]];
-	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.91291,10.761501}
-																	  andName:@"Gloria Flames"
-															 andEntertainment:@"Blotsbrødre - A tribute to norwegian rock"] autorelease]];
-	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.9130091,10.760917}
-																	  andName:@"Ivars Kro"
-															 andEntertainment:@"Piano Bar"] autorelease]];
-	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.913128,10.760233}
-																	  andName:@"Dattera til Hagen"
-															 andEntertainment:@"Stand-Up"] autorelease]];
-	[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:(CLLocationCoordinate2D){59.913696,10.756906}
-																	  andName:@"Cafe Con Bar"
-															 andEntertainment:@"DJ Mario"] autorelease]];
-
+	
+	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"incogito" ofType:@"plist"];
+	NSDictionary* plistDict = [[NSDictionary alloc] initWithContentsOfFile:filePath];
+	
+	NSArray *pins = [plistDict objectForKey:@"ClubZone"];
+	
+	for (NSDictionary *pin in pins) {
+		CLLocationCoordinate2D coordinate = {
+			[[pin objectForKey:@"Latitude"] doubleValue],
+			[[pin objectForKey:@"Longitude"] doubleValue]
+		};
+		
+		NSString *title = [[[NSString alloc] initWithString:[pin objectForKey:@"Title"]] autorelease];
+		NSString *subtitle = [[[NSString alloc] initWithString:[pin objectForKey:@"Subtitle"]] autorelease];
+		
+		NSLog(@"Adding pin at %f, %f : %@ - %@", coordinate.latitude, coordinate.longitude, title, subtitle);
+		
+		[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:coordinate andTitle:title andSubtitle:subtitle] autorelease]];
+	}
+	
+	[plistDict release];
+	
 	mapView.showsUserLocation = YES;
 	
 	[self.mapView.userLocation addObserver:self  

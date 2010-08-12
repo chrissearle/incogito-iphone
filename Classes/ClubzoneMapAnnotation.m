@@ -11,27 +11,18 @@
 
 @implementation ClubzoneMapAnnotation
 
+@synthesize title = _title;
+@synthesize subtitle = _subtitle;
 @synthesize coordinate=_coordinate;
-@synthesize name=_name;
-@synthesize entertainment=_entertainment;
 
-- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate andName:(NSString *)name andEntertainment:(NSString *)entertainment{
+- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate andTitle:(NSString *)title andSubtitle:(NSString *)subtitle {
 	self = [super init];
 	if (self != nil) {
 		_coordinate = coordinate;
-		_name = name;
-		_entertainment = entertainment;
+		self.title = title;
+		self.subtitle = subtitle;
 	}
 	return self;
-}
-
-
-- (NSString *)title {
-	return _name;
-}
-
-- (NSString *)subtitle {
-	return _entertainment;
 }
 
 @end

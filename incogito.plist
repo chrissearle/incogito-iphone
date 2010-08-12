@@ -2,6 +2,59 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ClubZone</key>
+	<array>
+		<dict>
+			<key>Latitude</key>
+			<real>59.912958</real>
+			<key>Longitude</key>
+			<real>10.754421</real>
+			<key>Subtitle</key>
+			<string>Oslo Spektrum</string>
+			<key>Title</key>
+			<string>JavaZone</string>
+		</dict>
+		<dict>
+			<key>Latitude</key>
+			<real>59.91291</real>
+			<key>Longitude</key>
+			<real>10.761501</real>
+			<key>Subtitle</key>
+			<string>Blotsbrødre - A tribute to norwegian rock</string>
+			<key>Title</key>
+			<string>Gloria Flames</string>
+		</dict>
+		<dict>
+			<key>Latitude</key>
+			<real>59.9130091</real>
+			<key>Longitude</key>
+			<real>10.760917</real>
+			<key>Subtitle</key>
+			<string>Piano Bar</string>
+			<key>Title</key>
+			<string>Ivars Kro</string>
+		</dict>
+		<dict>
+			<key>Latitude</key>
+			<real>59.913128</real>
+			<key>Longitude</key>
+			<real>10.760233</real>
+			<key>Subtitle</key>
+			<string>Stand-Up</string>
+			<key>Title</key>
+			<string>Dattera til Hagen</string>
+		</dict>
+		<dict>
+			<key>Latitude</key>
+			<real>59.913696</real>
+			<key>Longitude</key>
+			<real>10.756906</real>
+			<key>Subtitle</key>
+			<string>DJ Mario</string>
+			<key>Title</key>
+			<string>Cafe Con Bar</string>
+		</dict>
+	</array>
 	<key>SessionUrl</key>
 	<string>http://javazone.no/incogito10/rest/events/JavaZone%202010/sessions</string>
 </dict>

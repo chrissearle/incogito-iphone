@@ -38,6 +38,8 @@
 	[[details layer] setBorderWidth:1.0];
 	[[details layer] setBorderColor:colour];
 	
+	CGColorRelease(colour);
+	
 	[self displaySession];
 }
 

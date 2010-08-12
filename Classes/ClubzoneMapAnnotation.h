@@ -10,14 +10,15 @@
 
 
 @interface ClubzoneMapAnnotation : NSObject <MKAnnotation> {
-	CLLocationCoordinate2D _coordinate; 
-	NSString *_name;
-	NSString *_entertainment;
+	CLLocationCoordinate2D _coordinate;
+
+	NSString *_title;
+	NSString *_subtitle;
 }
 
-@property (nonatomic, retain) NSString *name;
-@property (nonatomic, retain) NSString *entertainment;
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSString *subtitle;
 
-- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate andName:(NSString *)name andEntertainment:(NSString *)entertainment;
+- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate andTitle:(NSString *)title andSubtitle:(NSString *)subtitle;
 
 @end
