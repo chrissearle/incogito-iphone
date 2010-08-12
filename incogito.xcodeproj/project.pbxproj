@@ -778,17 +778,53 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chris Searle (3QT967G4GA)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
 				INFOPLIST_FILE = "incogito-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				PRODUCT_NAME = JavaZone;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.2;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "36810C82-B7E6-4B40-B2C2-FF664B85F568";
+				SDKROOT = iphoneos4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
+		};
+		8304D57112149F2B006DF31F /* Debug no extra code */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "";
+				PREBINDING = NO;
+				SDKROOT = iphoneos4.0;
+			};
+			name = "Debug no extra code";
+		};
+		8304D57212149F2B006DF31F /* Debug no extra code */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = incogito_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "incogito-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				OTHER_CFLAGS = (
+					"-DUSE_DUMMY_LABELS=1",
+					"-DNOW_AND_NEXT_USE_TEST_DATE=1",
+				);
+				PRODUCT_NAME = JavaZone;
+				SDKROOT = iphoneos4.0;
+			};
+			name = "Debug no extra code";
 		};
 		83632E3A1200208C00F0E82B /* Distribution */ = {
 			isa = XCBuildConfiguration;
@@ -894,6 +930,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
+				8304D57212149F2B006DF31F /* Debug no extra code */,
 				838660C811F2EA0D0017058B /* Debug with trace logging */,
 				1D6058950D05DD3E006BFB54 /* Release */,
 				83632E3B1200208C00F0E82B /* Distribution */,
@@ -905,6 +942,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
+				8304D57112149F2B006DF31F /* Debug no extra code */,
 				838660C711F2EA0D0017058B /* Debug with trace logging */,
 				C01FCF5008A954540054247B /* Release */,
 				83632E3A1200208C00F0E82B /* Distribution */,
