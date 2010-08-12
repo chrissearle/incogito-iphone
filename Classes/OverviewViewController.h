@@ -13,6 +13,8 @@
 	IBOutlet UITextField *search;
 	
 	NSString *currentSearch;
+	
+	BOOL justCleared;
 }
 
 @property (nonatomic, retain) UITextField *search;

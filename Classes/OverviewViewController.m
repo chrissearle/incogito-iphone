@@ -25,6 +25,7 @@
 #endif
 
 	currentSearch = @"";
+	justCleared = NO;
 	
 	[self checkForData];
 	
@@ -99,8 +100,19 @@
 	[self search:sender];
 }
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+	if (justCleared == YES) {
+		justCleared = NO;
+		
+		[self search:textField];
+		
+		return NO;
+	}
+	return YES;
+}
+
 - (BOOL)textFieldShouldClear:(UITextField *)textField {
-	[search resignFirstResponder];
+	justCleared = YES;
 	return YES;
 }
 
