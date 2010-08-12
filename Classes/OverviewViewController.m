@@ -96,10 +96,6 @@
 	[tv reloadData];
 }
 
--(IBAction) dismissKeyboard:(id)sender {
-	[self search:sender];
-}
-
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
 	if (justCleared == YES) {
 		justCleared = NO;

@@ -22,6 +22,5 @@
 
 - (void) checkForData;
 - (IBAction) search:(id)sender;
-- (IBAction) dismissKeyboard:(id)sender;
 
 @end
