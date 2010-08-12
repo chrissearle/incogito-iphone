@@ -97,6 +97,7 @@
 
 
 - (void)dealloc {
+	mapView.showsUserLocation = NO;
 	[mapView.userLocation removeObserver:self forKeyPath:@"location"];
     [super dealloc];
 }
