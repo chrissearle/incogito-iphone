@@ -38,19 +38,7 @@
 	
 	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
 
-	[self setLabels:[appDelegate.sectionSessionHandler getUniqueLabels]];
-	
-	// Set picker index
-	NSString *savedKey = [appDelegate getLabelFilter];
-
-	NSArray *values = [[labels allValues] sortedArrayUsingSelector:@selector(compare:)];
-
-	int index = 0;
-	if ([values containsObject:savedKey]) {
-		NSArray *sortedValues = [values sortedArrayUsingSelector:@selector(compare:)];
-		index = [sortedValues indexOfObject:savedKey] + 1;
-	}
-	[picker selectRow:index inComponent:0 animated:YES];
+	[self loadData];
 }
 
 /*
@@ -182,6 +170,28 @@
 	[controller setFirstTimeTextVisibility:NO];
 	[self.tabBarController presentModalViewController:controller animated:YES];
 	[controller release];
+}
+
+- (void)refreshPicker {
+	[self loadData];
+
+	[picker reloadAllComponents];
+}
+
+- (void)loadData {
+	[self setLabels:[appDelegate.sectionSessionHandler getUniqueLabels]];
+	
+	// Set picker index
+	NSString *savedKey = [appDelegate getLabelFilter];
+	
+	NSArray *values = [[labels allValues] sortedArrayUsingSelector:@selector(compare:)];
+	
+	int index = 0;
+	if ([values containsObject:savedKey]) {
+		NSArray *sortedValues = [values sortedArrayUsingSelector:@selector(compare:)];
+		index = [sortedValues indexOfObject:savedKey] + 1;
+	}
+	[picker selectRow:index inComponent:0 animated:YES];
 }
 
 @end

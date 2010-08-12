@@ -25,4 +25,8 @@
 - (IBAction)filter:(id)sender;
 - (IBAction)sync:(id)sender;
 
+- (void)refreshPicker;
+
+- (void)loadData;
+
 @end

@@ -15,6 +15,7 @@
 #import "SessionCommonViewController.h"
 #import "MyProgrammeViewController.h"
 #import "DetailedSessionViewController.h"
+#import "SettingsViewController.h"
 
 @implementation IncogitoAppDelegate
 
@@ -292,6 +293,13 @@
 					
 				}
 			}
+		}
+		if ([controller isKindOfClass:[SettingsViewController class]]) {
+			NSLog(@"Sending reload to %@", [controller class]);
+			
+			SettingsViewController *c = (SettingsViewController *)controller;
+			
+			[c refreshPicker];
 		}
 	}
 }

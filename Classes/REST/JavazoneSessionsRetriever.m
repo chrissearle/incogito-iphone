@@ -263,15 +263,15 @@
 	if ([speakers count] % 2 == 0) {
 		JZLabel *lbl = (JZLabel *)[NSEntityDescription insertNewObjectForEntityForName:@"JZLabel" inManagedObjectContext:managedObjectContext];
 
-		[lbl setJzId:@"enterprise-architecture-and-integration"];
-		[lbl setTitle:@"Enterprise Architecture and Integration"];
+		[lbl setJzId:@"enterprise"];
+		[lbl setTitle:@"Enterprise"];
 
 		[session addLabelsObject:lbl];
 	} else {
 		JZLabel *lbl = (JZLabel *)[NSEntityDescription insertNewObjectForEntityForName:@"JZLabel" inManagedObjectContext:managedObjectContext];
 		
-		[lbl setJzId:@"foo"];
-		[lbl setTitle:@"Foo Label"];
+		[lbl setJzId:@"core-jvm"];
+		[lbl setTitle:@"Core/JVM"];
 		
 		[session addLabelsObject:lbl];
 	}
@@ -279,8 +279,8 @@
 	if ([[item objectForKey:@"title"] hasPrefix:@"H"]) {
 		JZLabel *lbl = (JZLabel *)[NSEntityDescription insertNewObjectForEntityForName:@"JZLabel" inManagedObjectContext:managedObjectContext];
 		
-		[lbl setJzId:@"bar"];
-		[lbl setTitle:@"Bar Label"];
+		[lbl setJzId:@"tooling"];
+		[lbl setTitle:@"Tooling"];
 		
 		[session addLabelsObject:lbl];
 	}
