@@ -9,9 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "SessionCommonViewController.h"
 
-@interface OverviewViewController : SessionCommonViewController {
+@interface OverviewViewController : SessionCommonViewController <UITextFieldDelegate> {
+	IBOutlet UITextField *search;
+	
+	NSString *currentSearch;
 }
 
+@property (nonatomic, retain) UITextField *search;
+@property (nonatomic, retain) NSString *currentSearch;
+
 - (void) checkForData;
+- (IBAction) search:(id)sender;
+- (IBAction) dismissKeyboard:(id)sender;
 
 @end

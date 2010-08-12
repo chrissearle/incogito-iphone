@@ -84,6 +84,42 @@
 	return [self filterSessionList:sessions];
 }
 
+- (NSArray *)getSessionsForSection:(Section *)section matching:(NSString *)search {
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
+	
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	
+	[request setEntity:entityDescription];
+	
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"room" ascending:YES];
+	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+	[request setSortDescriptors:sortDescriptors];
+	[sortDescriptors release];
+	[sortDescriptor release];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:
+							  @"(active == %@) AND (startDate >= %@) AND (endDate <= %@) AND (title contains[cd] %@ OR ANY speakers.name  contains[cd] %@)", [NSNumber numberWithBool:true], [section startDate], [section endDate], search, search];
+	
+	[request setPredicate:predicate];
+	
+	NSError *error = nil;
+	
+	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	[request release];
+	
+	if (nil != error) {
+		[mutableFetchResults release];
+		NSLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		return nil;
+	}
+	
+	NSArray *sessions = [NSArray arrayWithArray:mutableFetchResults];
+	[mutableFetchResults release];
+	
+	return [self filterSessionList:sessions];
+}
+
 - (NSArray *)getFavouriteSessionsForSection:(Section *)section {
 	NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
@@ -128,8 +164,34 @@
 	NSMutableArray *objects = [[NSMutableArray alloc] initWithCapacity:[sections count]];
 	
 	for (Section *section in sections) {
-		[keys addObject:[section title]];
-		[objects addObject:[self getSessionsForSection:section]];
+		NSArray *sessions = [self getSessionsForSection:section];
+		
+		if ([sessions count] > 0) {
+			[keys addObject:[section title]];
+			[objects addObject:sessions];
+		}
+	}
+	
+	NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:[NSArray arrayWithArray:objects] forKeys:keys];
+	[objects release];
+	[keys release];
+	
+	return dictionary;
+}
+
+- (NSDictionary *)getSessionsMatching:(NSString *)search {
+	NSArray *sections = [self getSections];
+	
+	NSMutableArray *keys = [[NSMutableArray alloc] initWithCapacity:[sections count]];
+	NSMutableArray *objects = [[NSMutableArray alloc] initWithCapacity:[sections count]];
+	
+	for (Section *section in sections) {
+		NSArray *sessions = [self getSessionsForSection:section matching:search];
+		
+		if ([sessions count] > 0) {
+			[keys addObject:[section title]];
+			[objects addObject:sessions];
+		}
 	}
 	
 	NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:[NSArray arrayWithArray:objects] forKeys:keys];

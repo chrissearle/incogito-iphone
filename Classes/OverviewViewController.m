@@ -13,6 +13,9 @@
 
 @implementation OverviewViewController
 
+@synthesize search;
+@synthesize currentSearch;
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,6 +24,8 @@
 	NSLog(@"%@ Overview - about to check for data", [[[NSDate alloc] init] autorelease]);
 #endif
 
+	currentSearch = @"";
+	
 	[self checkForData];
 	
 #ifdef LOG_FUNCTION_TIMES
@@ -51,7 +56,11 @@
 - (void) loadSessionData {
 	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
 	
-	sessions = [[handler getSessions] retain];
+	if ([currentSearch isEqual:@""]) {
+		sessions = [[handler getSessions] retain];
+	} else {
+		sessions = [[handler getSessionsMatching:currentSearch] retain];
+	}
 	
 	NSMutableArray *titles = [NSMutableArray arrayWithArray:[sessions allKeys]];
 	
@@ -76,6 +85,23 @@
 
 - (void)dealloc {
     [super dealloc];
+}
+
+- (IBAction) search:(id)sender {
+	[search resignFirstResponder];
+
+	self.currentSearch = [search text];
+	[self loadSessionData];
+	[tv reloadData];
+}
+
+-(IBAction) dismissKeyboard:(id)sender {
+	[self search:sender];
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField {
+	[search resignFirstResponder];
+	return YES;
 }
 
 @end

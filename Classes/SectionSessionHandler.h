@@ -23,7 +23,9 @@
 - (JZSession *)getSessionForJZId:(NSString *)jzId;
 
 - (NSDictionary *)getSessions;
+- (NSDictionary *)getSessionsMatching:(NSString *)search;
 - (NSArray *)getSessionsForSection:(Section *)section;
+- (NSArray *)getSessionsForSection:(Section *)section matching:(NSString *)search;
 - (NSDictionary *)getFavouriteSessions;
 - (NSArray *)getFavouriteSessionsForSection:(Section *)section;
 
