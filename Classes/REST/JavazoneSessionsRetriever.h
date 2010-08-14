@@ -1,3 +1,9 @@
+//
+//  JavazoneSessionsRetriever.m
+//
+//  Copyright 2010 Chris Searle. All rights reserved.
+//
+
 @class RefreshCommonViewController;
 
 @interface JavazoneSessionsRetriever : NSObject {

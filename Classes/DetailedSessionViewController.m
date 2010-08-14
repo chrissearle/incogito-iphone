@@ -1,8 +1,6 @@
 //
 //  DetailedSessionViewController.m
-//  incogito
 //
-//  Created by Markuz Lindgren on 15.07.10.
 //  Copyright 2010 Chris Searle. All rights reserved.
 //
 

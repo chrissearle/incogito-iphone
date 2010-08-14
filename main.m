@@ -1,8 +1,6 @@
 //
 //  main.m
-//  incogito
 //
-//  Created by Chris Searle on 09.07.10.
 //  Copyright 2010 Chris Searle. All rights reserved.
 //
 

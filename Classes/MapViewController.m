@@ -1,9 +1,7 @@
-    //
-//  MapViewController.m
-//  Untitled
 //
-//  Created by Chris Searle on 08.08.10.
-//  Copyright 2010 Itera Consulting. All rights reserved.
+//  MapViewController.m
+//
+//  Copyright 2010 Chris Searle. All rights reserved.
 //
 
 #import "MapViewController.h"

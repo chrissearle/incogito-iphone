@@ -1,8 +1,6 @@
-    //
-//  SessionCommonViewController.m
-//  incogito
 //
-//  Created by Chris Searle on 17.07.10.
+//  SessionCommonViewController.m
+//
 //  Copyright 2010 Chris Searle. All rights reserved.
 //
 
