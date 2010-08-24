@@ -20,13 +20,13 @@
 - (void)loadSessionData {
 	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
 	
-	sessions = [[handler getFavouriteSessions] retain];
+	[self setSessions:[handler getFavouriteSessions]];
 	
 	NSMutableArray *titles = [NSMutableArray arrayWithArray:[sessions allKeys]];
 	
 	[titles sortUsingSelector:@selector(compare:)];
 	
-	sectionTitles = [[[NSArray alloc] initWithArray:titles] retain];
+	[self setSectionTitles:[[[NSArray alloc] initWithArray:titles] autorelease]];
 }
 
 - (void)didReceiveMemoryWarning {
