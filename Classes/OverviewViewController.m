@@ -56,16 +56,16 @@
 	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
 	
 	if ([currentSearch isEqual:@""]) {
-		sessions = [[handler getSessions] retain];
+		[self setSessions:[handler getSessions]];
 	} else {
-		sessions = [[handler getSessionsMatching:currentSearch] retain];
+		[self setSessions:[handler getSessionsMatching:currentSearch]];
 	}
 	
 	NSMutableArray *titles = [NSMutableArray arrayWithArray:[sessions allKeys]];
 	
 	[titles sortUsingSelector:@selector(compare:)];
-	
-	sectionTitles = [[[NSArray alloc] initWithArray:titles] retain];
+
+	[self setSectionTitles:[[[NSArray alloc] initWithArray:titles] autorelease]];
 }
 
 - (void)didReceiveMemoryWarning {

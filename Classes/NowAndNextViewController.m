@@ -21,7 +21,7 @@
 - (void)loadSessionData {
 	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
 	
-	sessions = [[handler getSessions] retain];
+	[self setSessions:[handler getSessions]];
 	
 	NSMutableArray *titles = [[NSMutableArray alloc] init];
 	NSMutableArray *footerTexts = [[NSMutableArray alloc] init];
@@ -54,8 +54,8 @@
 		[titles addObject:@"Next"];
 	}
 	
-	sectionTitles = [[[NSArray alloc] initWithArray:titles] retain];
-	footers = [[[NSArray alloc] initWithArray:footerTexts] retain];
+	[self setSectionTitles:[[[NSArray alloc] initWithArray:titles] autorelease]];
+	[self setFooters:[[[NSArray alloc] initWithArray:footerTexts] autorelease]];
 	
 	[titles release];
 	[footerTexts release];
