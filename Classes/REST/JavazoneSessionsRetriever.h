@@ -21,4 +21,6 @@
 
 - (void) removeAllEntitiesByName:(NSString *)entityName;
 
+- (NSString *)getPossibleNilString:(NSString *)key fromDict:(NSDictionary *)dict;
+
 @end

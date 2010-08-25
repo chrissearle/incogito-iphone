@@ -40,7 +40,7 @@
 		return nil;
 	}
 	
-	NSArray *sections = [NSArray arrayWithArray:mutableFetchResults];
+	NSArray *sections = [[[NSArray alloc] initWithArray:mutableFetchResults] autorelease];
 	[mutableFetchResults release];
 	
 	return sections;
@@ -76,7 +76,7 @@
 		return nil;
 	}
 	
-	NSArray *sessions = [NSArray arrayWithArray:mutableFetchResults];
+	NSArray *sessions = [[[NSArray alloc] initWithArray:mutableFetchResults] autorelease];
 	[mutableFetchResults release];
 	
 	return [self filterSessionList:sessions];
@@ -112,7 +112,7 @@
 		return nil;
 	}
 	
-	NSArray *sessions = [NSArray arrayWithArray:mutableFetchResults];
+	NSArray *sessions = [[[NSArray alloc] initWithArray:mutableFetchResults] autorelease];
 	[mutableFetchResults release];
 	
 	return [self filterSessionList:sessions];
@@ -148,8 +148,7 @@
 		return nil;
 	}
 
-	NSArray *sessions = [NSArray arrayWithArray:mutableFetchResults];
-	
+	NSArray *sessions = [[[NSArray alloc] initWithArray:mutableFetchResults] autorelease];
 	[mutableFetchResults release];
 	
 	return [self filterSessionList:sessions];
@@ -170,7 +169,7 @@
 		}
 	}
 	
-	NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:[NSArray arrayWithArray:objects] forKeys:keys];
+	NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
 	[objects release];
 	[keys release];
 	
@@ -192,7 +191,7 @@
 		}
 	}
 	
-	NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:[NSArray arrayWithArray:objects] forKeys:keys];
+	NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
 	[objects release];
 	[keys release];
 	
@@ -223,8 +222,7 @@
 		return nil;
 	}
 
-	NSArray *sections = [NSArray arrayWithArray:mutableFetchResults];
-	
+	NSArray *sections = [[[NSArray alloc] initWithArray:mutableFetchResults] autorelease];
 	[mutableFetchResults release];
 	
 	if (nil == sections || [sections count] == 0) {
@@ -264,7 +262,7 @@
 		return nil;
 	}
 	
-	NSArray *sections = [NSArray arrayWithArray:mutableFetchResults];
+	NSArray *sections = [[[NSArray alloc] initWithArray:mutableFetchResults] autorelease];
 	
 	[mutableFetchResults release];
 	
@@ -299,8 +297,7 @@
 		return nil;
 	}
 	
-	NSArray *sessions = [NSArray arrayWithArray:mutableFetchResults];
-	
+	NSArray *sessions = [[[NSArray alloc] initWithArray:mutableFetchResults] autorelease];
 	[mutableFetchResults release];
 	
 	if (nil == sessions || [sessions count] == 0) {
@@ -326,7 +323,7 @@
 		}
 	}
 	
-	NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:[NSArray arrayWithArray:objects] forKeys:keys];
+	NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
 	[objects release];
 	[keys release];
 	
@@ -406,7 +403,7 @@
 		return nil;
 	}
 	
-	NSArray *labels = [NSArray arrayWithArray:mutableFetchResults];
+	NSArray *labels = [[[NSArray alloc] initWithArray:mutableFetchResults] autorelease];
 	[mutableFetchResults release];
 	
 	NSMutableArray *keys = [[NSMutableArray alloc] init];
@@ -418,7 +415,7 @@
 		[objects addObject:[label title]];
 	}
 	
-	NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:[NSArray arrayWithArray:objects] forKeys:keys];
+	NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
 	[objects release];
 	[keys release];
 	
@@ -452,7 +449,7 @@
 		}
 	}
 
-	NSArray *filteredSessions = [NSArray arrayWithArray:matchingSessions];
+	NSArray *filteredSessions = [[[NSArray alloc] initWithArray:matchingSessions] autorelease];
 	[matchingSessions release];
 	
 	return filteredSessions;
