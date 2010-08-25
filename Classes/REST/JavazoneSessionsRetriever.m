@@ -18,7 +18,7 @@
 - (NSUInteger)retrieveSessions {
 	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"incogito" ofType:@"plist"];
 	NSDictionary* plistDict = [[NSDictionary alloc] initWithContentsOfFile:filePath];
-
+	
 	NSString *urlString = [plistDict objectForKey:@"SessionUrl"];
 	NSLog(@"Session URL %@", urlString);
 	
@@ -26,9 +26,10 @@
 	[plistDict release];
 	
 	[urlRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	[urlRequest setValue:@"incogito-iPhone" forHTTPHeaderField:@"User-Agent"];
 	
 	NSError *error = nil;
-
+	
 #ifdef LOG_FUNCTION_TIMES
 	NSLog(@"%@ Calling update URL", [[[NSDate alloc] init] autorelease]);
 #endif
@@ -38,7 +39,7 @@
 	
 	// Perform request and get JSON back as a NSData object
 	NSData *response = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:&error];
-
+	
 #ifdef LOG_FUNCTION_TIMES
 	NSLog(@"%@ Called update URL", [[[NSDate alloc] init] autorelease]);
 #endif
@@ -50,13 +51,13 @@
 	}
 	
 	app.networkActivityIndicatorVisible = NO;
-
+	
 	// Create new SBJSON parser object
 	SBJSON *parser = [[SBJSON alloc] init];
-
+	
 	// Get JSON as a NSString from NSData response
 	NSString *json_string = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-
+	
 	error = nil;
 	
 #ifdef LOG_FUNCTION_TIMES
@@ -88,10 +89,10 @@
 	
 	// Remove speakers - they will get added for all active sessions.
 	[self removeAllEntitiesByName:@"JZSessionBio"];
-
+	
 	// Remove labels - they will get added for all active sessions.
 	[self removeAllEntitiesByName:@"JZLabel"];
-
+	
 #ifdef LOG_FUNCTION_TIMES
 	NSLog(@"%@ Adding sessions", [[[NSDate alloc] init] autorelease]);
 #endif
@@ -107,10 +108,10 @@
 		float progress = (1.0 / [array count]) * counter;
 		
 		[refreshCommonViewController performSelectorOnMainThread:@selector(setProgressTo:) withObject:[NSNumber numberWithFloat:progress] waitUntilDone:YES];
-
+		
 		[self addSession:item];
 	}
-
+	
 #ifdef LOG_FUNCTION_TIMES
 	NSLog(@"%@ Added sessions", [[[NSDate alloc] init] autorelease]);
 #endif
@@ -128,11 +129,11 @@
 	
 	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	[request setEntity:entityDescription];
-
+	
 	NSError *error = nil;
-
+	
 	NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];
-
+	
 	if (nil != error) {
 		NSLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
 		return;
@@ -151,7 +152,7 @@
 			return;
 		}
 	}	
-
+	
 #ifdef LOG_FUNCTION_TIMES
 	NSLog(@"%@ Invalidated sessions", [[[NSDate alloc] init] autorelease]);
 #endif
@@ -168,17 +169,17 @@
 							  @"(jzId like[cd] %@)", [item objectForKey:@"id"]];
 	
 	[request setPredicate:predicate];
-
+	
 	NSError *error = nil;
-
+	
 	NSArray *sessions = [managedObjectContext executeFetchRequest:request error:&error];
-
+	
 	if (nil != error) {
 		NSLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
 		return;
 	}
 	
-	JZSession *session;						  
+	JZSession *session;
 	
 	if (sessions == nil)
 	{
@@ -193,34 +194,29 @@
 			session = (JZSession *)[sessions objectAtIndex:0];
 		}
 	}
-
+	
 #ifdef LOG_FUNCTION_TIMES
 	NSLog(@"%@ Adding session with title %@", [[[NSDate alloc] init] autorelease], [item objectForKey:@"title"]);
 #endif
 	
-	[session setTitle:[item objectForKey:@"title"]];
 	[session setJzId:[item objectForKey:@"id"]];
 	[session setActive:[NSNumber numberWithBool:TRUE]];
-
-	NSObject *roomString = [item objectForKey:@"room"];
-
-	if ([roomString class] == [NSNull class]) {
+	
+	[session setTitle:[self getPossibleNilString:@"title" fromDict:item]];
+	
+	NSString *roomString = [self getPossibleNilString:@"room" fromDict:item];
+	
+	if (roomString == @"") {
 		[session setRoom:0];
 	} else {
-		[session setRoom:[NSNumber numberWithInt:[[[item objectForKey:@"room"]
-											   stringByReplacingOccurrencesOfString:@"Sal " withString:@""] intValue]]];
+		[session setRoom:[NSNumber numberWithInt:[[roomString
+												   stringByReplacingOccurrencesOfString:@"Sal " withString:@""] intValue]]];
 	}
 	
 	[session setLevel:[[item objectForKey:@"level"] objectForKey:@"id"]];
 	
-	NSString *body = [item objectForKey:@"bodyHtml"];
+	[session setDetail:[self getPossibleNilString:@"bodyHtml" fromDict:item]];
 	
-	if ([body isKindOfClass:[NSNull class]]) {
-		NSLog(@"No body found for %@", [item objectForKey:@"title"]);
-	} else {
-		[session setDetail:body];
-	}
-
 	// Dates
 	NSObject *start = [item objectForKey:@"start"];
 	if ([start class] != [NSNull class]) {
@@ -233,14 +229,14 @@
 		NSDictionary *end = [item objectForKey:@"end"];
 		[session setEndDate:[self getDateFromJson:end]];
 	}
-		
+	
 	NSArray *speakers = [item objectForKey:@"speakers"];
 	
 	for (NSDictionary *speaker in speakers) {
 		JZSessionBio *sessionBio = (JZSessionBio *)[NSEntityDescription insertNewObjectForEntityForName:@"JZSessionBio" inManagedObjectContext:managedObjectContext];
-
-		[sessionBio setBio:[speaker objectForKey:@"bioHtml"]];
-		[sessionBio setName:[speaker objectForKey:@"name"]];
+		
+		[sessionBio setBio:[self getPossibleNilString:@"bioHtml" fromDict:speaker]];
+		[sessionBio setName:[self getPossibleNilString:@"name" fromDict:speaker]];
 		
 		[session addSpeakersObject:sessionBio];
 	}
@@ -251,19 +247,20 @@
 		JZLabel *lbl = (JZLabel *)[NSEntityDescription insertNewObjectForEntityForName:@"JZLabel" inManagedObjectContext:managedObjectContext];
 		
 		[lbl setJzId:[label objectForKey:@"id"]];
-		[lbl setTitle:[label objectForKey:@"displayName"]];
+		
+		[lbl setTitle:[self getPossibleNilString:@"displayName" fromDict:label]];
 		
 		[session addLabelsObject:lbl];
 	}
-
+	
 #ifdef USE_DUMMY_LABELS
-
+	
 	if ([speakers count] % 2 == 0) {
 		JZLabel *lbl = (JZLabel *)[NSEntityDescription insertNewObjectForEntityForName:@"JZLabel" inManagedObjectContext:managedObjectContext];
-
+		
 		[lbl setJzId:@"enterprise"];
 		[lbl setTitle:@"Enterprise"];
-
+		
 		[session addLabelsObject:lbl];
 	} else {
 		JZLabel *lbl = (JZLabel *)[NSEntityDescription insertNewObjectForEntityForName:@"JZLabel" inManagedObjectContext:managedObjectContext];
@@ -302,7 +299,7 @@
 							[jsonDate objectForKey:@"day"],
 							[jsonDate objectForKey:@"hour"],
 							[jsonDate objectForKey:@"minute"]];
-
+	
 	NSDate *date = [[[NSDate alloc] initWithString:dateString] autorelease];
 	
 	return date;
@@ -333,10 +330,28 @@
 			return;
 		}
 	}	
-
+	
 #ifdef LOG_FUNCTION_TIMES
 	NSLog(@"%@ Removed all %@", [[[NSDate alloc] init] autorelease], entityName);
 #endif
+}
+
+- (NSString *)getPossibleNilString:(NSString *)key fromDict:(NSDictionary *)dict {
+	NSString *value = [dict objectForKey:key];
+	
+	if ([value isKindOfClass:[NSNull class]]) {
+		NSString *id = [dict objectForKey:@"id"];
+		
+		if ([id isKindOfClass:[NSNull class]]) {
+			NSLog(@"No %@ found for unknown object", key);
+		} else {
+			NSLog(@"No %@ found for %@", key, id);
+		}
+		
+		return @"";
+	}
+	
+	return value;
 }
 
 @end
