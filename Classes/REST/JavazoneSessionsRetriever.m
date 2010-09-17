@@ -9,6 +9,7 @@
 #import "JZSession.h"
 #import "JZSessionBio.h"
 #import "JZLabel.h"
+#import "FlurryAPI.h"
 
 @implementation JavazoneSessionsRetriever
 
@@ -16,6 +17,8 @@
 @synthesize refreshCommonViewController;
 
 - (NSUInteger)retrieveSessions {
+	[FlurryAPI logEvent:@"Session Retrieval" timed:YES];
+	
 	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"incogito" ofType:@"plist"];
 	NSDictionary* plistDict = [[NSDictionary alloc] initWithContentsOfFile:filePath];
 	
@@ -115,6 +118,8 @@
 #ifdef LOG_FUNCTION_TIMES
 	NSLog(@"%@ Added sessions", [[[NSDate alloc] init] autorelease]);
 #endif
+	
+	[FlurryAPI endTimedEvent:@"Session Retrieval" withParameters:nil];
 	
 	return [array count];
 }

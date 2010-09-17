@@ -47,6 +47,7 @@
 		83713C07120AD6A0000050A7 /* star-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 83713C04120AD6A0000050A7 /* star-pressed.png */; };
 		83713C08120AD6A0000050A7 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 83713C05120AD6A0000050A7 /* star.png */; };
 		83741769120F3AC700B816A2 /* 74-location.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B9F11ED981300590A7A /* 74-location.png */; };
+		8389EA6E1243E8CD00021474 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8389EA6D1243E8CD00021474 /* libFlurry.a */; };
 		8393654811F34EA700BBE43A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8393654711F34EA700BBE43A /* Default.png */; };
 		8394723C11EB98500075C4C1 /* JavazoneSessionsRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */; };
 		8394726611EB98B10075C4C1 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394725B11EB98B10075C4C1 /* NSObject+SBJSON.m */; };
@@ -254,6 +255,9 @@
 		83713C03120AD6A0000050A7 /* star-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-checked.png"; sourceTree = "<group>"; };
 		83713C04120AD6A0000050A7 /* star-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-pressed.png"; sourceTree = "<group>"; };
 		83713C05120AD6A0000050A7 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		8389EA6B1243E8CD00021474 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
+		8389EA6C1243E8CD00021474 /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
+		8389EA6D1243E8CD00021474 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		8393654711F34EA700BBE43A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8394723A11EB98500075C4C1 /* JavazoneSessionsRetriever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavazoneSessionsRetriever.h; sourceTree = "<group>"; };
 		8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavazoneSessionsRetriever.m; sourceTree = "<group>"; };
@@ -315,6 +319,7 @@
 				28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */,
 				830859E2120F30DE00F74041 /* MapKit.framework in Frameworks */,
 				83C3C1D5120FDC6500B23253 /* QuartzCore.framework in Frameworks */,
+				8389EA6E1243E8CD00021474 /* libFlurry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +329,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8389EA6A1243E8CC00021474 /* FlurryLib */,
 				83F2D54411EBB56B0043A75E /* REST */,
 				830859C8120F2FF300F74041 /* ClubzoneMapAnnotation.h */,
 				830859C9120F2FF300F74041 /* ClubzoneMapAnnotation.m */,
@@ -598,6 +604,16 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		8389EA6A1243E8CC00021474 /* FlurryLib */ = {
+			isa = PBXGroup;
+			children = (
+				8389EA6B1243E8CD00021474 /* FlurryAdDelegate.h */,
+				8389EA6C1243E8CD00021474 /* FlurryAPI.h */,
+				8389EA6D1243E8CD00021474 /* libFlurry.a */,
+			);
+			path = FlurryLib;
+			sourceTree = "<group>";
+		};
 		8394725811EB98B10075C4C1 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -772,6 +788,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "incogito-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/FlurryLib\"",
+				);
 				OTHER_CFLAGS = (
 					"-DUSE_DUMMY_LABELS=1",
 					"-DNOW_AND_NEXT_USE_TEST_DATE=1",
@@ -791,6 +811,10 @@
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
 				INFOPLIST_FILE = "incogito-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/FlurryLib\"",
+				);
 				PRODUCT_NAME = JavaZone;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "36810C82-B7E6-4B40-B2C2-FF664B85F568";
 				SDKROOT = iphoneos4.0;
@@ -824,6 +848,10 @@
 				GCC_VERSION = 4.2;
 				INFOPLIST_FILE = "incogito-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/FlurryLib\"",
+				);
 				PRODUCT_NAME = JavaZone;
 				SDKROOT = iphoneos4.1;
 			};
@@ -854,6 +882,10 @@
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
 				INFOPLIST_FILE = "incogito-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/FlurryLib\"",
+				);
 				PRODUCT_NAME = JavaZone;
 				SDKROOT = iphoneos4.0;
 				VALIDATE_PRODUCT = YES;
@@ -889,6 +921,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "incogito-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/FlurryLib\"",
+				);
 				OTHER_CFLAGS = (
 					"-DLOG_FUNCTION_TIMES=1",
 					"-DNOW_AND_NEXT_USE_TEST_DATE=1",

@@ -14,6 +14,7 @@
 #import "MyProgrammeViewController.h"
 #import "DetailedSessionViewController.h"
 #import "SettingsViewController.h"
+#import "FlurryAPI.h"
 
 @implementation IncogitoAppDelegate
 
@@ -24,12 +25,20 @@
 #pragma mark -
 #pragma mark Application lifecycle
 
+void uncaughtExceptionHandler(NSException *exception) {
+    [FlurryAPI logError:@"Uncaught" message:@"Crash!" exception:exception];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
 	
 #ifdef LOG_FUNCTION_TIMES
 	NSLog(@"%@ Start of application:didFinishLaunchingWithOptions", [[[NSDate alloc] init] autorelease]);
 #endif
-
+	
+	NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+	[FlurryAPI startSession:@"747T2PGB7H2SD3XAN92D"];
+	[FlurryAPI countPageViews:rootController];
+	
 #ifdef LOG_FUNCTION_TIMES
 	NSLog(@"%@ Calling sectionInitializer", [[[NSDate alloc] init] autorelease]);
 #endif
