@@ -9,6 +9,7 @@
 #import "JZSessionBio.h"
 #import "DetailedSessionViewController.h"
 #import "IncogitoAppDelegate.h"
+#import "FlurryAPI.h"
 
 @implementation SessionCommonViewController
 
@@ -25,6 +26,8 @@
 	[super viewDidLoad];
 	
 	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
+	
+	[FlurryAPI countPageViews:[self navigationController]];
 }
 
 - (void)didReceiveMemoryWarning {
