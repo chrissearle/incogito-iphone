@@ -9,6 +9,7 @@
 #import "JZSessionBio.h"
 #import "SectionSessionHandler.h"
 #import "IncogitoAppDelegate.h"
+#import "ExtrasController.h"
 
 @implementation DetailedSessionViewController
 
@@ -78,7 +79,10 @@
 	}
 	
 	self.title = [session title];
+
+	UIBarButtonItem *button = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showExtras:)] autorelease];
 	
+	self.navigationItem.rightBarButtonItem = button;
 }
 
 - (void)reloadSession {
@@ -178,6 +182,14 @@
 					  speakerInfo];
 	
 	return page;
+}
+
+- (void) showExtras:(id)sender {
+	ExtrasController *controller = [[ExtrasController alloc] initWithNibName:@"DetailedViewExtras" bundle:[NSBundle mainBundle]];
+	controller.session = session;
+	
+	[[self navigationController] pushViewController:controller animated:YES];
+	[controller release], controller = nil;
 }
 
 @end

@@ -40,4 +40,6 @@
 - (void)reloadSession;
 - (void)displaySession;
 
+- (void)showExtras:(id)sender;
+
 @end
