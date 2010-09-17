@@ -134,6 +134,7 @@
 		83D6C07211EF922500FBC0FE /* DetailedSessionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D6C06F11EF922500FBC0FE /* DetailedSessionView.xib */; };
 		83D6C07311EF922500FBC0FE /* DetailedSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6C07111EF922500FBC0FE /* DetailedSessionViewController.m */; };
 		83D794B412127B960080F7D1 /* incogito.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83D794B312127B960080F7D1 /* incogito.plist */; };
+		83E44EBA1243EF2700F0C291 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E44EB91243EF2700F0C291 /* libFlurry.a */; };
 		83E94C4312142C9B00596D30 /* alternative-languages.png in Resources */ = {isa = PBXBuildFile; fileRef = 83E94C3912142C9B00596D30 /* alternative-languages.png */; };
 		83E94C4412142C9B00596D30 /* concurrency-scalability.png in Resources */ = {isa = PBXBuildFile; fileRef = 83E94C3A12142C9B00596D30 /* concurrency-scalability.png */; };
 		83E94C4512142C9B00596D30 /* core-jvm.png in Resources */ = {isa = PBXBuildFile; fileRef = 83E94C3B12142C9B00596D30 /* core-jvm.png */; };
@@ -491,6 +492,9 @@
 		83D6C07011EF922500FBC0FE /* DetailedSessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedSessionViewController.h; sourceTree = "<group>"; };
 		83D6C07111EF922500FBC0FE /* DetailedSessionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedSessionViewController.m; sourceTree = "<group>"; };
 		83D794B312127B960080F7D1 /* incogito.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = incogito.plist; sourceTree = "<group>"; };
+		83E44EB71243EF2700F0C291 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
+		83E44EB81243EF2700F0C291 /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
+		83E44EB91243EF2700F0C291 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		83E94C3812142C9B00596D30 /* all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = all.png; sourceTree = "<group>"; };
 		83E94C3912142C9B00596D30 /* alternative-languages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alternative-languages.png"; sourceTree = "<group>"; };
 		83E94C3A12142C9B00596D30 /* concurrency-scalability.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "concurrency-scalability.png"; sourceTree = "<group>"; };
@@ -518,6 +522,7 @@
 				83281F1112437D2900792990 /* MessageUI.framework in Frameworks */,
 				83281F1312437D2900792990 /* Security.framework in Frameworks */,
 				83281F1512437D2900792990 /* SystemConfiguration.framework in Frameworks */,
+				83E44EBA1243EF2700F0C291 /* libFlurry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +532,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				83E44EB61243EF2700F0C291 /* FlurryLib */,
 				83281E3012437D0000792990 /* ShareKit */,
 				83F2D54411EBB56B0043A75E /* REST */,
 				830859C8120F2FF300F74041 /* ClubzoneMapAnnotation.h */,
@@ -1202,6 +1208,16 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
+		83E44EB61243EF2700F0C291 /* FlurryLib */ = {
+			isa = PBXGroup;
+			children = (
+				83E44EB71243EF2700F0C291 /* FlurryAdDelegate.h */,
+				83E44EB81243EF2700F0C291 /* FlurryAPI.h */,
+				83E44EB91243EF2700F0C291 /* libFlurry.a */,
+			);
+			path = FlurryLib;
+			sourceTree = "<group>";
+		};
 		83F2D54411EBB56B0043A75E /* REST */ = {
 			isa = PBXGroup;
 			children = (
@@ -1420,6 +1436,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "incogito-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/FlurryLib\"",
+				);
 				OTHER_CFLAGS = (
 					"-DUSE_DUMMY_LABELS=1",
 					"-DNOW_AND_NEXT_USE_TEST_DATE=1",
@@ -1439,6 +1459,10 @@
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
 				INFOPLIST_FILE = "incogito-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/FlurryLib\"",
+				);
 				PRODUCT_NAME = JavaZone;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "36810C82-B7E6-4B40-B2C2-FF664B85F568";
 				SDKROOT = iphoneos4.0;
@@ -1472,6 +1496,10 @@
 				GCC_VERSION = 4.2;
 				INFOPLIST_FILE = "incogito-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/FlurryLib\"",
+				);
 				PRODUCT_NAME = JavaZone;
 				SDKROOT = iphoneos4.1;
 			};
@@ -1502,6 +1530,10 @@
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
 				INFOPLIST_FILE = "incogito-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/FlurryLib\"",
+				);
 				PRODUCT_NAME = JavaZone;
 				SDKROOT = iphoneos4.0;
 				VALIDATE_PRODUCT = YES;
@@ -1537,6 +1569,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "incogito-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/FlurryLib\"",
+				);
 				OTHER_CFLAGS = (
 					"-DLOG_FUNCTION_TIMES=1",
 					"-DNOW_AND_NEXT_USE_TEST_DATE=1",
