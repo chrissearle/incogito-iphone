@@ -11,7 +11,6 @@
 
 @implementation OverviewViewController
 
-@synthesize search;
 @synthesize currentSearch;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -23,7 +22,6 @@
 #endif
 
 	currentSearch = @"";
-	justCleared = NO;
 	
 	[self checkForData];
 	
@@ -86,28 +84,50 @@
     [super dealloc];
 }
 
-- (IBAction) search:(id)sender {
-	[search resignFirstResponder];
-
-	self.currentSearch = [search text];
+- (void) search:(NSString *)searchText {
+	self.currentSearch = searchText;
 	[self loadSessionData];
 	[tv reloadData];
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-	if (justCleared == YES) {
-		justCleared = NO;
-		
-		[self search:textField];
-		
-		return NO;
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+	if ([searchText length] == 0) {
+        [self performSelector:@selector(hideKeyboardWithSearchBar:) withObject:searchBar afterDelay:0];
 	}
-	return YES;
+	[self search:[searchBar text]];
 }
 
-- (BOOL)textFieldShouldClear:(UITextField *)textField {
-	justCleared = YES;
-	return YES;
+- (void)hideKeyboardWithSearchBar:(UISearchBar *)searchBar
+{   
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar resignFirstResponder];   
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:YES animated:YES];
+	
+    tv.allowsSelection = NO;
+    tv.scrollEnabled = NO;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    searchBar.text = @"";
+    
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar resignFirstResponder];
+	
+    tv.allowsSelection = YES;
+    tv.scrollEnabled = YES;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+	[self search:[searchBar text]];
+	
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar resignFirstResponder];
+	
+    tv.allowsSelection = YES;
+    tv.scrollEnabled = YES;
 }
 
 @end
