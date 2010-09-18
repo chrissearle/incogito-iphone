@@ -9,12 +9,15 @@
 
 #import "IncogitoAppDelegate.h"
 #import "Section.h"
+#import "FlurryAPI.h"
 
 @implementation NowAndNextViewController
 
 @synthesize footers;
 
 - (void) viewWillAppear:(BOOL)animated {
+	[FlurryAPI logEvent:@"Showing Now and Next"];
+
 	[self loadSessionData];
 }
 

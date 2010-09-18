@@ -7,6 +7,7 @@
 #import "ExtrasController.h"
 #import "SHK.h"
 #import "JZSession.h"
+#import "FlurryAPI.h"
 
 @implementation ExtrasController
 
@@ -19,6 +20,15 @@
     [super viewDidLoad];
 	
 	self.title = @"Extras";
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[FlurryAPI logEvent:@"Showing Extras" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+														  [session title],
+														  @"Title",
+														  [session jzId],
+														  @"ID", 
+														  nil]];
 }
 
 - (void)didReceiveMemoryWarning {

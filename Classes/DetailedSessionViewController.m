@@ -10,6 +10,7 @@
 #import "SectionSessionHandler.h"
 #import "IncogitoAppDelegate.h"
 #import "ExtrasController.h"
+#import "FlurryAPI.h"
 
 @implementation DetailedSessionViewController
 
@@ -23,10 +24,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+	
 	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
 	handler = [appDelegate sectionSessionHandler];
-
+	
 	CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
 	const CGFloat myColor[] = {0.67, 0.67, 0.67, 1.0};
 	CGColorRef colour = CGColorCreate(rgb, myColor);
@@ -40,6 +41,15 @@
 	CGColorRelease(colour);
 	
 	[self displaySession];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[FlurryAPI logEvent:@"Showing detail view" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+															   [session title],
+															   @"Title",
+															   [session jzId],
+															   @"ID", 
+															   nil]];
 }
 
 - (void)displaySession {
@@ -79,7 +89,7 @@
 	}
 	
 	self.title = [session title];
-
+	
 	UIBarButtonItem *button = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showExtras:)] autorelease];
 	
 	self.navigationItem.rightBarButtonItem = button;
@@ -87,7 +97,7 @@
 
 - (void)reloadSession {
 	session = [handler getSessionForJZId:[session jzId]];
-
+	
 	[self displaySession];
 }
 
@@ -146,7 +156,7 @@
 		NSMutableString *result = [[NSMutableString alloc] init];
 		
 		[result appendString:@"<h2>Labels</h2>"];
-
+		
 		[result appendString:@"<ul class=\"labels\">"];
 		
 		for (JZLabel *label in labels) {
@@ -157,7 +167,7 @@
 		
 		NSString *labelsSection = [NSString stringWithString:result];
 		[result release];
-
+		
 		return labelsSection;
 	}
 }

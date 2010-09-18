@@ -7,6 +7,7 @@
 #import "MyProgrammeViewController.h"
 #import "IncogitoAppDelegate.h"
 #import "SectionSessionHandler.h"
+#import "FlurryAPI.h"
 
 @implementation MyProgrammeViewController
 
@@ -15,6 +16,10 @@
     [super viewDidLoad];
 
 	[self loadSessionData];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[FlurryAPI logEvent:@"Showing Favourites"];
 }
 
 - (void)loadSessionData {
