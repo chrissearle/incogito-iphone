@@ -95,10 +95,20 @@
 			} else {
 				NSArray *keys = [[labels allKeys] sortedArrayUsingSelector:@selector(compare:)];
 				
-				UIImage *imageFile = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [keys objectAtIndex:(row - 1)]]];
+				NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 				
-				if (nil == imageFile) {
+				NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",[docDir stringByAppendingPathComponent:@"labelIcons"],[keys objectAtIndex:(row - 1)]];
+				
+				NSData *data1 = [NSData dataWithContentsOfFile:pngFilePath];
+
+				UIImage *imageFile;
+				
+				if (nil == data1) {
+					NSLog(@"File not found %@", pngFilePath);
+					
 					imageFile = [UIImage imageNamed:@"all.png"];
+				} else {
+					imageFile = [UIImage imageWithData:data1];
 				}
 				
 				[image setImage:imageFile];

@@ -76,7 +76,15 @@
 	
 	[level setText:[session level]];
 	
-	[levelImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [session level]]]];
+	NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+	
+	NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",[docDir stringByAppendingPathComponent:@"levelIcons"],[session level]];
+	
+	NSData *data1 = [NSData dataWithContentsOfFile:pngFilePath];
+	
+	UIImage *imageFile = [UIImage imageWithData:data1];
+	
+	[levelImage setImage:imageFile];
 	
 	[startFormatter release];
 	[endFormatter release];
