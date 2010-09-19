@@ -9,19 +9,6 @@
 
 @implementation JavaZone2011Controller
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-	CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
-	const CGFloat myColor[] = {0.129, 0.129, 0.129, 1.0};
-	CGColorRef colour = CGColorCreate(rgb, myColor);
-	CGColorSpaceRelease(rgb);
-	
-	[[self view] setBackgroundColor:[[[UIColor alloc] initWithCGColor:colour] autorelease]];
-
-	CGColorRelease(colour);
-}	
-
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
