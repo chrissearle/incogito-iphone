@@ -5,9 +5,14 @@
 //
 
 #import "JavaZone2011Controller.h"
-#import <QuartzCore/QuartzCore.h>
+#import "FlurryAPI.h"
 
 @implementation JavaZone2011Controller
+
+- (void)viewWillAppear:(BOOL)animated {
+	[FlurryAPI logEvent:@"Showing 2011"];
+}
+
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
