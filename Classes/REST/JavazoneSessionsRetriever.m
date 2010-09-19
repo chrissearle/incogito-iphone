@@ -15,6 +15,8 @@
 
 @synthesize managedObjectContext;
 @synthesize refreshCommonViewController;
+@synthesize labelUrls;
+@synthesize levelUrls;
 
 - (NSUInteger)retrieveSessions {
 	[FlurryAPI logEvent:@"Session Retrieval" timed:YES];
@@ -117,6 +119,8 @@
 	// Each element in statuses is a single status
 	// represented as a NSDictionary
 	int counter = 0;
+	self.labelUrls = [[[NSMutableSet alloc] init] retain];
+	self.levelUrls = [[[NSMutableSet alloc] init] retain];
 	
 	for (NSDictionary *item in array)
 	{
@@ -132,6 +136,12 @@
 #ifdef LOG_FUNCTION_TIMES
 	NSLog(@"%@ Added sessions", [[[NSDate alloc] init] autorelease]);
 #endif
+	
+	NSLog(@"Levels %@", self.levelUrls);
+	NSLog(@"Labels %@", self.labelUrls);
+	
+	[self.labelUrls release];
+	[self.levelUrls release];
 	
 	[FlurryAPI endTimedEvent:@"Storing" withParameters:nil];
 
@@ -233,7 +243,8 @@
 	}
 	
 	[session setLevel:[[item objectForKey:@"level"] objectForKey:@"id"]];
-	
+	[levelUrls addObject:[self getPossibleNilString:@"iconUrl" fromDict:[item objectForKey:@"level"]]];
+
 	[session setDetail:[self getPossibleNilString:@"bodyHtml" fromDict:item]];
 	
 	// Dates
@@ -268,6 +279,8 @@
 		[lbl setJzId:[label objectForKey:@"id"]];
 		
 		[lbl setTitle:[self getPossibleNilString:@"displayName" fromDict:label]];
+		
+		[labelUrls addObject:[self getPossibleNilString:@"iconUrl" fromDict:label]];
 		
 		[session addLabelsObject:lbl];
 	}

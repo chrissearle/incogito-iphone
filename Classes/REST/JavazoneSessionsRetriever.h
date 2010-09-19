@@ -9,10 +9,15 @@
 @interface JavazoneSessionsRetriever : NSObject {
 	NSManagedObjectContext *managedObjectContext;
 	RefreshCommonViewController *refreshCommonViewController;
+	
+	NSMutableSet *labelUrls;
+	NSMutableSet *levelUrls;
 }
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) RefreshCommonViewController *refreshCommonViewController;
+@property (nonatomic, retain) NSMutableSet *labelUrls;
+@property (nonatomic, retain) NSMutableSet *levelUrls;
 
 - (NSUInteger)retrieveSessions;
 - (void) addSession:(NSDictionary *)item;
