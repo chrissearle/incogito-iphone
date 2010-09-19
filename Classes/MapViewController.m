@@ -7,6 +7,7 @@
 #import "MapViewController.h"
 
 #import "ClubzoneMapAnnotation.h"
+#import "FlurryAPI.h"
 
 @implementation MapViewController
 
@@ -48,6 +49,10 @@
 								   context:NULL];
 	
 	[self goToDefaultLocationAndZoom];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[FlurryAPI logEvent:@"Showing Map"];
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath  

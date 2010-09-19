@@ -55,6 +55,10 @@
 	
 	app.networkActivityIndicatorVisible = NO;
 	
+	[FlurryAPI endTimedEvent:@"Session Retrieval" withParameters:nil];
+	
+	[FlurryAPI logEvent:@"JSON Parsing" timed:YES];
+
 	// Create new SBJSON parser object
 	SBJSON *parser = [[SBJSON alloc] init];
 	
@@ -75,6 +79,8 @@
 	NSLog(@"%@ Parsed JSON", [[[NSDate alloc] init] autorelease]);
 #endif
 	
+	[FlurryAPI endTimedEvent:@"JSON Parsing" withParameters:nil];
+
 	[json_string release];
 	[parser release];
 	
@@ -85,8 +91,11 @@
 	
 	[refreshCommonViewController performSelectorOnMainThread:@selector(showProgressBar:) withObject:nil waitUntilDone:YES];
 	
+
 	NSArray *array = [object objectForKey:@"sessions"];
 	
+	[FlurryAPI logEvent:@"Clearing" timed:YES];
+
 	// Set all sessions inactive. Active flag will be set for existing and new sessions retrieved.
 	[self invalidateSessions];
 	
@@ -95,11 +104,16 @@
 	
 	// Remove labels - they will get added for all active sessions.
 	[self removeAllEntitiesByName:@"JZLabel"];
+
 	
+	[FlurryAPI endTimedEvent:@"Clearing" withParameters:nil];
+
 #ifdef LOG_FUNCTION_TIMES
 	NSLog(@"%@ Adding sessions", [[[NSDate alloc] init] autorelease]);
 #endif
 	
+	[FlurryAPI logEvent:@"Storing" timed:YES];
+
 	// Each element in statuses is a single status
 	// represented as a NSDictionary
 	int counter = 0;
@@ -119,8 +133,8 @@
 	NSLog(@"%@ Added sessions", [[[NSDate alloc] init] autorelease]);
 #endif
 	
-	[FlurryAPI endTimedEvent:@"Session Retrieval" withParameters:nil];
-	
+	[FlurryAPI endTimedEvent:@"Storing" withParameters:nil];
+
 	return [array count];
 }
 

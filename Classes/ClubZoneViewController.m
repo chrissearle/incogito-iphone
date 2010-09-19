@@ -6,8 +6,13 @@
 
 #import "ClubZoneViewController.h"
 #import "MapViewController.h"
+#import "FlurryAPI.h"
 
 @implementation ClubZoneViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+	[FlurryAPI logEvent:@"Showing Clubzone"];
+}
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.

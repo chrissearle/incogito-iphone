@@ -8,6 +8,7 @@
 #import "IncogitoAppDelegate.h"
 #import "SectionSessionHandler.h"
 #import "RefreshCommonViewController.h"
+#import "FlurryAPI.h"
 
 @implementation OverviewViewController
 
@@ -35,6 +36,10 @@
 	NSLog(@"%@ Overview - loaded data", [[[NSDate alloc] init] autorelease]);
 #endif
 	
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+	[FlurryAPI logEvent:@"Showing Overview"];
 }
 
 - (void) checkForData {
@@ -85,6 +90,11 @@
 }
 
 - (void) search:(NSString *)searchText {
+	[FlurryAPI logEvent:@"Searched" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+													searchText,
+													@"Search Text",
+													nil]];
+	
 	self.currentSearch = searchText;
 	[self loadSessionData];
 	[tv reloadData];
