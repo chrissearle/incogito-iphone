@@ -167,8 +167,12 @@
 		
 		[result appendString:@"<ul class=\"labels\">"];
 		
+		NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+
 		for (JZLabel *label in labels) {
-			[result appendFormat:@"<li class=\"label-%@\">%@</li>", [label jzId], [label title]];
+			NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",[docDir stringByAppendingPathComponent:@"labelIcons"],[label jzId]];
+			
+			[result appendFormat:@"<li style=\"list-style-image: url('file://%@')\">%@</li>", pngFilePath, [label title]];
 		}
 		
 		[result appendString:@"</ul>"];
