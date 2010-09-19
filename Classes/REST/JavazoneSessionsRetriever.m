@@ -15,6 +15,8 @@
 
 @synthesize managedObjectContext;
 @synthesize refreshCommonViewController;
+@synthesize labelUrls;
+@synthesize levelUrls;
 
 - (NSUInteger)retrieveSessions {
 	[FlurryAPI logEvent:@"Session Retrieval" timed:YES];
@@ -117,6 +119,8 @@
 	// Each element in statuses is a single status
 	// represented as a NSDictionary
 	int counter = 0;
+	self.labelUrls = [[[NSMutableDictionary alloc] init] retain];
+	self.levelUrls = [[[NSMutableDictionary alloc] init] retain];
 	
 	for (NSDictionary *item in array)
 	{
@@ -132,6 +136,17 @@
 #ifdef LOG_FUNCTION_TIMES
 	NSLog(@"%@ Added sessions", [[[NSDate alloc] init] autorelease]);
 #endif
+	
+	for (NSString *name in self.levelUrls) {
+		[self downloadIconFromUrl:[self.levelUrls objectForKey:name] withName:name toPrefix:@"levelIcons"];
+	}
+	for (NSString *name in self.labelUrls) {
+		[self downloadIconFromUrl:[self.labelUrls objectForKey:name] withName:name toPrefix:@"labelIcons"];
+	}
+	
+	
+	[self.labelUrls release];
+	[self.levelUrls release];
 	
 	[FlurryAPI endTimedEvent:@"Storing" withParameters:nil];
 
@@ -175,6 +190,19 @@
 #ifdef LOG_FUNCTION_TIMES
 	NSLog(@"%@ Invalidated sessions", [[[NSDate alloc] init] autorelease]);
 #endif
+	
+
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	
+	NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+	NSString *levelPath = [docDir stringByAppendingPathComponent:@"levelIcons"];
+	NSString *labelPath = [docDir stringByAppendingPathComponent:@"labelIcons"];
+	
+	[fileManager removeItemAtPath:levelPath error:NULL];
+	[fileManager removeItemAtPath:labelPath error:NULL];
+
+	[fileManager createDirectoryAtPath:levelPath withIntermediateDirectories:YES attributes:nil error:NULL];
+	[fileManager createDirectoryAtPath:labelPath withIntermediateDirectories:YES attributes:nil error:NULL];
 }
 
 - (void) addSession:(NSDictionary *)item {
@@ -232,8 +260,11 @@
 												   stringByReplacingOccurrencesOfString:@"Sal " withString:@""] intValue]]];
 	}
 	
-	[session setLevel:[[item objectForKey:@"level"] objectForKey:@"id"]];
+	NSDictionary *level = [item objectForKey:@"level"];
 	
+	[session setLevel:[level objectForKey:@"id"]];
+	[levelUrls setObject:[self getPossibleNilString:@"iconUrl" fromDict:level] forKey:[session level]];
+
 	[session setDetail:[self getPossibleNilString:@"bodyHtml" fromDict:item]];
 	
 	// Dates
@@ -268,6 +299,8 @@
 		[lbl setJzId:[label objectForKey:@"id"]];
 		
 		[lbl setTitle:[self getPossibleNilString:@"displayName" fromDict:label]];
+		
+		[labelUrls setObject:[self getPossibleNilString:@"iconUrl" fromDict:label] forKey:[lbl jzId]];
 		
 		[session addLabelsObject:lbl];
 	}
@@ -372,5 +405,25 @@
 	
 	return value;
 }
+
+- (void)downloadIconFromUrl:(NSString *)url withName:(NSString *)name toPrefix:(NSString *)prefix {
+	UIApplication* app = [UIApplication sharedApplication];
+
+	NSLog(@"Download %@ from %@ to %@", name, url, prefix);
+
+	app.networkActivityIndicatorVisible = YES;
+	UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
+	app.networkActivityIndicatorVisible = NO;
+	
+	NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+	
+	NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",[docDir stringByAppendingPathComponent:prefix],name];
+	NSData *data1 = [NSData dataWithData:UIImagePNGRepresentation(image)];
+	[data1 writeToFile:pngFilePath atomically:YES];
+	
+	[image release];
+}
+
+
 
 @end
