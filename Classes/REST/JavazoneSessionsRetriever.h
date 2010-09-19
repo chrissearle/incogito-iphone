@@ -10,14 +10,14 @@
 	NSManagedObjectContext *managedObjectContext;
 	RefreshCommonViewController *refreshCommonViewController;
 	
-	NSMutableSet *labelUrls;
-	NSMutableSet *levelUrls;
+	NSMutableDictionary *labelUrls;
+	NSMutableDictionary *levelUrls;
 }
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) RefreshCommonViewController *refreshCommonViewController;
-@property (nonatomic, retain) NSMutableSet *labelUrls;
-@property (nonatomic, retain) NSMutableSet *levelUrls;
+@property (nonatomic, retain) NSMutableDictionary *labelUrls;
+@property (nonatomic, retain) NSMutableDictionary *levelUrls;
 
 - (NSUInteger)retrieveSessions;
 - (void) addSession:(NSDictionary *)item;
@@ -27,5 +27,7 @@
 - (void) removeAllEntitiesByName:(NSString *)entityName;
 
 - (NSString *)getPossibleNilString:(NSString *)key fromDict:(NSDictionary *)dict;
+
+- (void)downloadIconFromUrl:(NSString *)url withName:(NSString *)name toPrefix:(NSString *)prefix;
 
 @end
