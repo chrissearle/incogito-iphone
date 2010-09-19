@@ -8,19 +8,10 @@
 
 @class JZSession;
 
-@interface ExtrasController : UIViewController {
-	IBOutlet UIButton *shareButton;
-	IBOutlet UIButton *sharePicButton;
-	IBOutlet UIButton *shareLinkButton;
+@interface ExtrasController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
 	JZSession		*session;
 }
 
-@property (nonatomic,retain) UIButton *shareButton;
-@property (nonatomic,retain) UIButton *shareLinkButton;
-@property (nonatomic,retain) UIButton *sharePicButton;
 @property (nonatomic, retain) JZSession		*session;
-
-- (void)share:(id)sender;
-- (void)shareLink:(id)sender;
 
 @end
