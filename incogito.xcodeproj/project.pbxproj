@@ -145,6 +145,10 @@
 		83E94C4A12142C9B00596D30 /* tooling.png in Resources */ = {isa = PBXBuildFile; fileRef = 83E94C4012142C9B00596D30 /* tooling.png */; };
 		83E94C4B12142C9B00596D30 /* web-frontend.png in Resources */ = {isa = PBXBuildFile; fileRef = 83E94C4112142C9B00596D30 /* web-frontend.png */; };
 		83E94C6512142EAA00596D30 /* all.png in Resources */ = {isa = PBXBuildFile; fileRef = 83E94C3812142C9B00596D30 /* all.png */; };
+		83FA5A5212460435008CA85C /* 60-signpost.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B9111ED981300590A7A /* 60-signpost.png */; };
+		83FA5AB612460451008CA85C /* JavaZone2011.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83FA5AB512460451008CA85C /* JavaZone2011.xib */; };
+		83FA5AC012460531008CA85C /* JavaZone2011.png in Resources */ = {isa = PBXBuildFile; fileRef = 83FA5ABF12460531008CA85C /* JavaZone2011.png */; };
+		83FA5ADA124607B3008CA85C /* JavaZone2011Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FA5AD9124607B3008CA85C /* JavaZone2011Controller.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -505,6 +509,10 @@
 		83E94C3F12142C9B00596D30 /* testing-craftmanship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "testing-craftmanship.png"; sourceTree = "<group>"; };
 		83E94C4012142C9B00596D30 /* tooling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tooling.png; sourceTree = "<group>"; };
 		83E94C4112142C9B00596D30 /* web-frontend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "web-frontend.png"; sourceTree = "<group>"; };
+		83FA5AB512460451008CA85C /* JavaZone2011.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JavaZone2011.xib; sourceTree = "<group>"; };
+		83FA5ABF12460531008CA85C /* JavaZone2011.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JavaZone2011.png; sourceTree = "<group>"; };
+		83FA5AD8124607B3008CA85C /* JavaZone2011Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaZone2011Controller.h; sourceTree = "<group>"; };
+		83FA5AD9124607B3008CA85C /* JavaZone2011Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaZone2011Controller.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* incogito-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "incogito-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -545,6 +553,8 @@
 				83281F1E12437F5100792990 /* ExtrasController.m */,
 				1D3623240D0F684500981E51 /* IncogitoAppDelegate.h */,
 				1D3623250D0F684500981E51 /* IncogitoAppDelegate.m */,
+				83FA5AD8124607B3008CA85C /* JavaZone2011Controller.h */,
+				83FA5AD9124607B3008CA85C /* JavaZone2011Controller.m */,
 				830859CA120F2FF300F74041 /* MapViewController.h */,
 				830859CB120F2FF300F74041 /* MapViewController.m */,
 				83424EBA11EDB79400590A7A /* MyProgrammeViewController.h */,
@@ -1166,6 +1176,7 @@
 				83576C7B120BF478008CC97E /* ClubZone.xib */,
 				831F5331120BFFC40027A8A4 /* Settings.xib */,
 				83281F1A12437F2B00792990 /* DetailedViewExtras.xib */,
+				83FA5AB512460451008CA85C /* JavaZone2011.xib */,
 			);
 			path = Windows;
 			sourceTree = "<group>";
@@ -1180,6 +1191,7 @@
 				830B12B511EDCA66004A9B25 /* Advanced.png */,
 				830B12B611EDCA66004A9B25 /* Intermediate.png */,
 				830B12B711EDCA66004A9B25 /* Introductory.png */,
+				83FA5ABF12460531008CA85C /* JavaZone2011.png */,
 				83424B3611ED981200590A7A /* icons */,
 				8393654711F34EA700BBE43A /* Default.png */,
 				834243EA11E74CAD00B438A8 /* Icon.png */,
@@ -1320,6 +1332,9 @@
 				83281ED112437D0000792990 /* SHKSharers.plist in Resources */,
 				83281EEE12437D0000792990 /* FBConnect.bundle in Resources */,
 				83281F1B12437F2B00792990 /* DetailedViewExtras.xib in Resources */,
+				83FA5A5212460435008CA85C /* 60-signpost.png in Resources */,
+				83FA5AB612460451008CA85C /* JavaZone2011.xib in Resources */,
+				83FA5AC012460531008CA85C /* JavaZone2011.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1418,6 +1433,7 @@
 				83281F0912437D0000792990 /* SHKViewControllerWrapper.m in Sources */,
 				83281F0A12437D0000792990 /* Reachability.m in Sources */,
 				83281F1F12437F5100792990 /* ExtrasController.m in Sources */,
+				83FA5ADA124607B3008CA85C /* JavaZone2011Controller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
