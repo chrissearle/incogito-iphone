@@ -22,7 +22,7 @@
 	[FlurryAPI logEvent:@"Session Retrieval" timed:YES];
 	
 	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"incogito" ofType:@"plist"];
-	NSDictionary* plistDict = [[NSDictionary alloc] initWithContentsOfFile:filePath];
+	NSDictionary* plistDict = [[[NSDictionary alloc] initWithContentsOfFile:filePath] retain];
 	
 	NSString *urlString = [plistDict objectForKey:@"SessionUrl"];
 	NSLog(@"Session URL %@", urlString);

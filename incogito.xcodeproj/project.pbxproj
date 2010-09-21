@@ -26,6 +26,8 @@
 		831F532B120BFFB60027A8A4 /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B6811ED981300590A7A /* 19-gear.png */; };
 		831F5332120BFFC40027A8A4 /* Settings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 831F5331120BFFC40027A8A4 /* Settings.xib */; };
 		831F5335120BFFD20027A8A4 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831F5334120BFFD20027A8A4 /* SettingsViewController.m */; };
+		83265D0A1248B1C2002A8333 /* Feedback.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83265D091248B1C2002A8333 /* Feedback.xib */; };
+		83265D101248B363002A8333 /* FeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83265D0F1248B363002A8333 /* FeedbackController.m */; };
 		83281ECD12437D0000792990 /* SHKCustomFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83281E3512437D0000792990 /* SHKCustomFormController.m */; };
 		83281ECE12437D0000792990 /* SHKCustomFormFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83281E3712437D0000792990 /* SHKCustomFormFieldCell.m */; };
 		83281ECF12437D0000792990 /* SHKCustomShareMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 83281E3A12437D0000792990 /* SHKCustomShareMenu.m */; };
@@ -162,6 +164,9 @@
 		831F5331120BFFC40027A8A4 /* Settings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Settings.xib; sourceTree = "<group>"; };
 		831F5333120BFFD20027A8A4 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		831F5334120BFFD20027A8A4 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		83265D091248B1C2002A8333 /* Feedback.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Feedback.xib; sourceTree = "<group>"; };
+		83265D0E1248B363002A8333 /* FeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackController.h; sourceTree = "<group>"; };
+		83265D0F1248B363002A8333 /* FeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackController.m; sourceTree = "<group>"; };
 		83281E3112437D0000792990 /* SHKConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKConfig.h; sourceTree = "<group>"; };
 		83281E3412437D0000792990 /* SHKCustomFormController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKCustomFormController.h; sourceTree = "<group>"; };
 		83281E3512437D0000792990 /* SHKCustomFormController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHKCustomFormController.m; sourceTree = "<group>"; };
@@ -527,6 +532,8 @@
 				83D6C07111EF922500FBC0FE /* DetailedSessionViewController.m */,
 				83281F1D12437F5100792990 /* ExtrasController.h */,
 				83281F1E12437F5100792990 /* ExtrasController.m */,
+				83265D0E1248B363002A8333 /* FeedbackController.h */,
+				83265D0F1248B363002A8333 /* FeedbackController.m */,
 				1D3623240D0F684500981E51 /* IncogitoAppDelegate.h */,
 				1D3623250D0F684500981E51 /* IncogitoAppDelegate.m */,
 				83FA5AD8124607B3008CA85C /* JavaZone2011Controller.h */,
@@ -1144,6 +1151,7 @@
 				831F5331120BFFC40027A8A4 /* Settings.xib */,
 				83281F1A12437F2B00792990 /* DetailedViewExtras.xib */,
 				83FA5AB512460451008CA85C /* JavaZone2011.xib */,
+				83265D091248B1C2002A8333 /* Feedback.xib */,
 			);
 			path = Windows;
 			sourceTree = "<group>";
@@ -1287,6 +1295,7 @@
 				83FA5A5212460435008CA85C /* 60-signpost.png in Resources */,
 				83FA5AB612460451008CA85C /* JavaZone2011.xib in Resources */,
 				83FA5AC012460531008CA85C /* JavaZone2011.png in Resources */,
+				83265D0A1248B1C2002A8333 /* Feedback.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1386,6 +1395,7 @@
 				83281F0A12437D0000792990 /* Reachability.m in Sources */,
 				83281F1F12437F5100792990 /* ExtrasController.m in Sources */,
 				83FA5ADA124607B3008CA85C /* JavaZone2011Controller.m in Sources */,
+				83265D101248B363002A8333 /* FeedbackController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
