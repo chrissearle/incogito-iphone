@@ -257,6 +257,10 @@
 	
 	NSArray *speakers = [item objectForKey:@"speakers"];
 	
+	
+	NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+	NSString *bioPath = [docDir stringByAppendingPathComponent:@"bioIcons"];
+
 	for (NSDictionary *speaker in speakers) {
 		JZSessionBio *sessionBio = (JZSessionBio *)[NSEntityDescription insertNewObjectForEntityForName:@"JZSessionBio" inManagedObjectContext:managedObjectContext];
 		
@@ -264,6 +268,12 @@
 		[sessionBio setName:[self getPossibleNilString:@"name" fromDict:speaker]];
 		
 		[session addSpeakersObject:sessionBio];
+		
+		NSString *speakerPic = [self getPossibleNilString:@"photoUrl" fromDict:speaker];
+		
+		if (speakerPic != nil) {
+			[self getJsonImage:speakerPic toFile:[sessionBio name] inPath:bioPath];
+		}
 	}
 	
 	NSArray *labels = [item objectForKey:@"labels"];
@@ -397,4 +407,38 @@
 	[image release];
 }
 
+- (void)getJsonImage:(NSString *)urlString toFile:(NSString *)file inPath:(NSString *)path {
+	NSLog(@"Fetching pic %@ to %@ in %@", urlString, file, path);
+	
+	UIApplication* app = [UIApplication sharedApplication];
+	
+	app.networkActivityIndicatorVisible = YES;
+	
+	NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+	
+	[urlRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	[urlRequest setValue:@"incogito-iPhone" forHTTPHeaderField:@"User-Agent"];
+	
+	NSError *error = nil;
+	
+	NSData *response = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:&error];
+
+	app.networkActivityIndicatorVisible = NO;
+
+	if (nil != error) {
+		NSLog(@"%@:%@ Error retrieving image: %@", [self class], _cmd, [error localizedDescription]);
+		return;
+	}	
+	
+	if ([response length] > 0) {
+		UIImage *image = [UIImage imageWithData:response];
+	
+		NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",path,file];
+		NSLog(@"Got data for %@  %d", pngFilePath, [image size]);
+	
+		[[NSData dataWithData:UIImagePNGRepresentation(image)] writeToFile:pngFilePath atomically:YES];
+	
+		[image release];
+	}
+}
 @end

@@ -151,11 +151,21 @@
 	NSMutableString *result = [[NSMutableString alloc] init];
 	
 	for (JZSessionBio *speaker in speakers) {
-		NSString *speakerLine = [NSString stringWithFormat:@"<h3>%@</h3>%@", [speaker name], [speaker bio]];
+		[result appendString:[NSString stringWithFormat:@"<h3>%@</h3>", [speaker name]]];
 		
-		[result appendString:speakerLine];
+		NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+		
+		NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",[docDir stringByAppendingPathComponent:@"bioIcons"],[speaker name]];
+		
+		NSFileManager *fileManager = [NSFileManager defaultManager];
+
+		if ([fileManager fileExistsAtPath:pngFilePath]) {
+			[result appendString:[NSString stringWithFormat:@"<img src='file://%@' width='50px' style='float: left; margin-right: 3px; margin-bottom: 3px'/>", pngFilePath]];
+		}
+
+		[result appendString:[speaker bio]];
 	}
-	
+
 	NSString *speakerSection = [NSString stringWithString:result];
 	
 	[result release];

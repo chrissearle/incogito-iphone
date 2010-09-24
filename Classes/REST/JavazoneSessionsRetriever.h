@@ -41,5 +41,6 @@
 - (NSString *)getPossibleNilString:(NSString *)key fromDict:(NSDictionary *)dict;
 
 - (void)downloadIconFromUrl:(NSString *)url withName:(NSString *)name toFolder:(NSString *)folder;
+- (void)getJsonImage:(NSString *)urlString toFile:(NSString *)file inPath:(NSString *)path;
 
 @end
