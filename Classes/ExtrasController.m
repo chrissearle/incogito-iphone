@@ -8,6 +8,7 @@
 #import "SHK.h"
 #import "JZSession.h"
 #import "FlurryAPI.h"
+#import "FeedbackController.h"
 
 @implementation ExtrasController
 
@@ -47,7 +48,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 1;
+	return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -55,10 +56,13 @@
 		case 0:
 			return 2; // Sharing
 			break;
+		case 1:
+			return 1; // Rating
+			break;
 		default:
 			break;
 	}
-
+	
 	return 0;
 }
 
@@ -67,6 +71,9 @@
 	switch (section) {
 		case 0:
 			return @"Sharing";
+			break;
+		case 1:
+			return @"Rating";
 			break;
 		default:
 			break;
@@ -81,23 +88,37 @@
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"extrasCell"] autorelease];
 		
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		
-//		cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.0];
-//		cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
 	}
 	
-	switch (indexPath.row) {
+	switch (indexPath.section) {
 		case 0:
-			cell.textLabel.text = @"Share";
+			switch (indexPath.row) {
+				case 0:
+					cell.textLabel.text = @"Share";
+					break;
+				case 1:
+					cell.textLabel.text = @"Share link";
+					break;
+				default:
+					cell.textLabel.text = @"";
+					break;
+			}
 			break;
 		case 1:
-			cell.textLabel.text = @"Share link";
+			switch (indexPath.row) {
+				case 0:
+					cell.textLabel.text = @"Rate or give feedback";
+					break;
+				default:
+					cell.textLabel.text = @"";
+					break;
+			}
 			break;
 		default:
 			cell.textLabel.text = @"";
 			break;
 	}
-
+	
 	return cell;
 }
 
@@ -135,6 +156,21 @@
 			[actionSheet showInView:[self view]];
 			break;
 		}
+		case 1:
+			switch (indexPath.row) {
+				case 0:
+				{
+					FeedbackController *controller = [[FeedbackController alloc] initWithNibName:@"Feedback" bundle:[NSBundle mainBundle]];
+					controller.session = session;
+					
+					[[self navigationController] pushViewController:controller animated:YES];
+					[controller release], controller = nil;
+					break;
+				}
+				default:
+					break;
+			}
+			break;
 		default:
 			break;
 	}

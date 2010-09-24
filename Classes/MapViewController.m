@@ -21,7 +21,7 @@
     [super viewDidLoad];
 	
 	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"incogito" ofType:@"plist"];
-	NSDictionary* plistDict = [[NSDictionary alloc] initWithContentsOfFile:filePath];
+	NSDictionary* plistDict = [[[NSDictionary alloc] initWithContentsOfFile:filePath] retain];
 	
 	NSArray *pins = [plistDict objectForKey:@"ClubZone"];
 	
