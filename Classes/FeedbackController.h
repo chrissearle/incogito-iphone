@@ -9,7 +9,7 @@
 
 @class JZSession;
 
-@interface FeedbackController : UIViewController <UIAlertViewDelegate> {
+@interface FeedbackController : UIViewController <UIAlertViewDelegate, UITextFieldDelegate> {
 	JZSession		*session;
 	IBOutlet UITextField *nameField;
 	IBOutlet UITextField *emailField;
@@ -20,6 +20,10 @@
 	IBOutlet UIButton *ratingButton3;
 	IBOutlet UIButton *ratingButton4;
 	IBOutlet UIButton *ratingButton5;
+	
+	IBOutlet UIScrollView *scrollView;
+	
+	BOOL clearView;
 }
 
 @property (nonatomic, retain) JZSession		*session;
@@ -32,6 +36,8 @@
 @property (nonatomic, retain) UIButton *ratingButton3;
 @property (nonatomic, retain) UIButton *ratingButton4;
 @property (nonatomic, retain) UIButton *ratingButton5;
+
+@property (nonatomic, retain) UIScrollView *scrollView;
 
 - (void)send:(id) sender;
 - (void)ratingButtonClicked:(id)sender;

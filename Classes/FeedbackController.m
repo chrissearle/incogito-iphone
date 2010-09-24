@@ -1,8 +1,6 @@
-    //
-//  FeedbackController.m
-//  incogito
 //
-//  Created by Chris Searle on 21.09.10.
+//  FeedbackController.m
+//
 //  Copyright 2010 Chris Searle. All rights reserved.
 //
 
@@ -23,8 +21,15 @@
 @synthesize ratingButton4;
 @synthesize ratingButton5;
 
+@synthesize scrollView;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	// Default scroll view to fit window
+	scrollView.frame = CGRectMake(0, 0, 320, 460);
+	[scrollView setContentSize:CGSizeMake(320, 460)];
+	
 	
 	self.title = @"Feedback";
 	
@@ -50,11 +55,67 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[FlurryAPI logEvent:@"Showing Feedback" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
-														  [session title],
-														  @"Title",
-														  [session jzId],
-														  @"ID", 
-														  nil]];
+															[session title],
+															@"Title",
+															[session jzId],
+															@"ID", 
+															nil]];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(keyboardDidShow:) 
+												 name:UIKeyboardDidShowNotification 
+											   object:self.view.window]; 
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(keyboardDidHide:)
+												 name:UIKeyboardDidHideNotification
+											   object:nil];
+}
+
+-(void) viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] 
+	 removeObserver:self 
+	 name:UIKeyboardWillShowNotification 
+	 object:nil];
+	
+    [[NSNotificationCenter defaultCenter] 
+	 removeObserver:self 
+	 name:UIKeyboardWillHideNotification 
+	 object:nil];
+}
+
+- (BOOL) scrollToFieldIfFirstResponder:(UIView *)field {
+	if ([field isFirstResponder]) {
+		CGRect fieldRect = [field frame];
+		[scrollView scrollRectToVisible:fieldRect animated:YES];
+		return YES;
+	}
+	
+	return NO;
+}
+
+-(void) keyboardDidShow:(NSNotification *) notification {
+    NSDictionary* info = [notification userInfo];
+    
+    NSValue *aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];
+    CGSize keyboardSize = [aValue CGRectValue].size;
+	
+    CGRect viewFrame = [scrollView frame];
+    viewFrame.size.height -= keyboardSize.height;
+    scrollView.frame = viewFrame;
+    
+    [self scrollToFieldIfFirstResponder:commentField];
+}
+
+-(void) keyboardDidHide:(NSNotification *) notification {
+    NSDictionary* info = [notification userInfo];
+    
+    NSValue* aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];
+    CGSize keyboardSize = [aValue CGRectValue].size;
+    
+    CGRect viewFrame = [scrollView frame];
+    viewFrame.size.height += keyboardSize.height;
+    scrollView.frame = viewFrame;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,7 +144,7 @@
 	NSString *url = [plistDict objectForKey:@"FeedbackUrl"];
 	
 	[plistDict release];
-
+	
 	int rating = 0;
 	
 	if (self.ratingButton5.selected) {
@@ -97,33 +158,45 @@
 	} else if (self.ratingButton1.selected) {
 		rating = 1;
 	}
-
-	UIApplication* app = [UIApplication sharedApplication];
-	app.networkActivityIndicatorVisible = YES;
-
-	NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-    [urlRequest setHTTPMethod:@"POST"];
-
-    
-	NSString *postString = [NSString stringWithFormat:@"jzid=%@&title=%@&name=%@&email=%@&rating=%d&comment=%@",
-							[session jzId],
-							[session title],
-							[nameField text],
-							[emailField text],
-							rating,
-							[commentField text]];
 	
-	NSLog(@"post: %@", postString);
+	if (rating > 1) {
+		UIApplication* app = [UIApplication sharedApplication];
+		app.networkActivityIndicatorVisible = YES;
+		
+		NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+		[urlRequest setHTTPMethod:@"POST"];
+		
+		
+		NSString *postString = [NSString stringWithFormat:@"jzid=%@&title=%@&name=%@&email=%@&rating=%d&comment=%@",
+								[session jzId],
+								[session title],
+								[nameField text],
+								[emailField text],
+								rating,
+								[commentField text]];
+		
+		NSLog(@"post: %@", postString);
+		
+		[urlRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+		
+		[NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:nil];
+		
+		app.networkActivityIndicatorVisible = NO;
+	}
 	
-	[urlRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+	NSString* alertTitle = @"Feedback sent";
+	NSString* alertMessage = @"Thankyou for your feedback";
+	clearView = YES;
 	
-	[NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:nil];
+	if (rating == 0) {
+		alertTitle = @"Not rated";
+		alertMessage = @"You need to choose a rating between 1 and 5 stars";
+		clearView = NO;
+	}
 	
-	app.networkActivityIndicatorVisible = NO;
-
 	UIAlertView *alert = [[UIAlertView alloc]
-						  initWithTitle: @"Feedback sent"
-						  message: @"Thankyou for your feedback"
+						  initWithTitle: alertTitle
+						  message: alertMessage
 						  delegate:self
 						  cancelButtonTitle:@"OK"
 						  otherButtonTitles:nil];
@@ -132,13 +205,18 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	[self.navigationController popViewControllerAnimated:YES];
+	if (clearView == YES) {
+		[self.navigationController popViewControllerAnimated:YES];
+	}
 }
 
 - (void)ratingButtonClicked:(id)sender {
-
+	if ([commentField isFirstResponder]) {
+		[commentField resignFirstResponder];
+	}
+	
 	NSArray *buttons = [NSArray arrayWithObjects: self.ratingButton1, self.ratingButton2, self.ratingButton3, self.ratingButton4, self.ratingButton5, nil];
-
+	
 	self.ratingButton5.selected = NO;
 	self.ratingButton4.selected = NO;
 	self.ratingButton3.selected = NO;
@@ -157,6 +235,11 @@
 		default:
 			self.ratingButton1.selected = YES;
 	}
+}
+
+-(BOOL) textFieldShouldReturn:(UITextField *) textFieldView {  
+    [textFieldView resignFirstResponder];
+    return NO;
 }
 
 @end
