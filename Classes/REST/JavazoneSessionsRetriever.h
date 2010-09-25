@@ -12,6 +12,9 @@
 	
 	NSMutableDictionary *labelUrls;
 	NSMutableDictionary *levelUrls;
+	
+	NSString *labelsPath;
+	NSString *levelsPath;
 }
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
@@ -19,7 +22,10 @@
 @property (nonatomic, retain) NSMutableDictionary *labelUrls;
 @property (nonatomic, retain) NSMutableDictionary *levelUrls;
 
-- (NSUInteger)retrieveSessions;
+@property (nonatomic, retain) NSString *levelsPath;
+@property (nonatomic, retain) NSString *labelsPath;
+
+- (NSUInteger)retrieveSessions:(NSString *)urlString;
 - (void) addSession:(NSDictionary *)item;
 - (void) invalidateSessions;
 - (NSDate *)getDateFromJson:(NSDictionary *)jsonDate;
@@ -28,6 +34,6 @@
 
 - (NSString *)getPossibleNilString:(NSString *)key fromDict:(NSDictionary *)dict;
 
-- (void)downloadIconFromUrl:(NSString *)url withName:(NSString *)name toPrefix:(NSString *)prefix;
+- (void)downloadIconFromUrl:(NSString *)url withName:(NSString *)name toFolder:(NSString *)folder;
 
 @end

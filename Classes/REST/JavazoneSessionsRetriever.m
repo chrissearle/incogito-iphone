@@ -5,7 +5,9 @@
 //
 
 #import "JavazoneSessionsRetriever.h"
-#import "JSON.h"
+#import "SessionDownloader.h"
+#import "SessionParser.h"
+
 #import "JZSession.h"
 #import "JZSessionBio.h"
 #import "JZLabel.h"
@@ -18,146 +20,121 @@
 @synthesize labelUrls;
 @synthesize levelUrls;
 
-- (NSUInteger)retrieveSessions {
-	[FlurryAPI logEvent:@"Session Retrieval" timed:YES];
+@synthesize levelsPath;
+@synthesize labelsPath;
+
+-(id) init {
+    self = [super init];
+
+	NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 	
-	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"incogito" ofType:@"plist"];
-	NSDictionary* plistDict = [[[NSDictionary alloc] initWithContentsOfFile:filePath] retain];
+	self.levelsPath = [docDir stringByAppendingPathComponent:@"levelIcons"];
+	self.labelsPath = [docDir stringByAppendingPathComponent:@"labelIcons"];
+
+	self.labelUrls = [[NSMutableDictionary alloc] init];
+	self.levelUrls = [[NSMutableDictionary alloc] init];
 	
-	NSString *urlString = [plistDict objectForKey:@"SessionUrl"];
-	NSLog(@"Session URL %@", urlString);
-	
-	NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-	[plistDict release];
-	
-	[urlRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-	[urlRequest setValue:@"incogito-iPhone" forHTTPHeaderField:@"User-Agent"];
-	
+	return self;
+}
+
+-(void)clearPath:(NSString *)path {
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+
 	NSError *error = nil;
-	
-#ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Calling update URL", [[[NSDate alloc] init] autorelease]);
-#endif
-	
-	UIApplication* app = [UIApplication sharedApplication];
-	app.networkActivityIndicatorVisible = YES;
-	
-	// Perform request and get JSON back as a NSData object
-	NSData *response = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:&error];
-	
-#ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Called update URL", [[[NSDate alloc] init] autorelease]);
-#endif
-	
-	
+
+	[fileManager removeItemAtPath:path error:&error];
 	if (nil != error) {
-		NSLog(@"%@:%@ Error retrieving sessions: %@", [self class], _cmd, [error localizedDescription]);
-		return 0;
+		[FlurryAPI logError:@"Error removing path" message:[NSString stringWithFormat:@"Unable to remove items at path %@", path] error:error];
+		return;
 	}
-	
-	app.networkActivityIndicatorVisible = NO;
-	
-	[FlurryAPI endTimedEvent:@"Session Retrieval" withParameters:nil];
-	
-	[FlurryAPI logEvent:@"JSON Parsing" timed:YES];
 
-	// Create new SBJSON parser object
-	SBJSON *parser = [[SBJSON alloc] init];
-	
-	// Get JSON as a NSString from NSData response
-	NSString *json_string = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-	
-	error = nil;
-	
-#ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Parsing JSON", [[[NSDate alloc] init] autorelease]);
-#endif
-	
-	// parse the JSON response into an object
-	// Here we're using NSArray since we're parsing an array of JSON status objects
-	NSDictionary *object = [parser objectWithString:json_string error:&error];
-	
-#ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Parsed JSON", [[[NSDate alloc] init] autorelease]);
-#endif
-	
-	[FlurryAPI endTimedEvent:@"JSON Parsing" withParameters:nil];
-
-	[json_string release];
-	[parser release];
-	
+	[fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
 	if (nil != error) {
-		NSLog(@"%@:%@ Error parsing sessions: %@", [self class], _cmd, [error localizedDescription]);
-		return 0;
+		[FlurryAPI logError:@"Error creating path" message:[NSString stringWithFormat:@"Unable to create path %@", path] error:error];
+		return;
 	}
-	
-	[refreshCommonViewController performSelectorOnMainThread:@selector(showProgressBar:) withObject:nil waitUntilDone:YES];
-	
+}
 
-	NSArray *array = [object objectForKey:@"sessions"];
-	
+- (void)clearData {
 	[FlurryAPI logEvent:@"Clearing" timed:YES];
-
+	
 	// Set all sessions inactive. Active flag will be set for existing and new sessions retrieved.
 	[self invalidateSessions];
+	
+	// Remove any downloaded icons
+	[self clearPath:self.levelsPath];
+	[self clearPath:self.labelsPath];
 	
 	// Remove speakers - they will get added for all active sessions.
 	[self removeAllEntitiesByName:@"JZSessionBio"];
 	
 	// Remove labels - they will get added for all active sessions.
 	[self removeAllEntitiesByName:@"JZLabel"];
-
+	
 	
 	[FlurryAPI endTimedEvent:@"Clearing" withParameters:nil];
+}
 
-#ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Adding sessions", [[[NSDate alloc] init] autorelease]);
-#endif
+- (NSUInteger)retrieveSessions:(NSString *)urlString {
+	// Download
+	SessionDownloader *downloader = [[[SessionDownloader alloc] initWithUrl:[NSURL URLWithString:urlString]] retain];
 	
+	NSData *responseData = [downloader sessionData];
+	
+	[downloader release];
+	
+	if (responseData == nil) {
+		return 0;
+	}
+	
+	[refreshCommonViewController performSelectorOnMainThread:@selector(showProgressBar:) withObject:nil waitUntilDone:YES];
+	
+	// Parse
+	SessionParser *parser = [[[SessionParser alloc] initWithData:responseData] retain];
+	
+	NSArray *sessions = [parser sessions];
+	
+	[parser release];
+
+	if (sessions == nil) {
+		return 0;
+	}
+	
+	// Cleanup
+	[self clearData];
+
+	// Store
 	[FlurryAPI logEvent:@"Storing" timed:YES];
 
-	// Each element in statuses is a single status
-	// represented as a NSDictionary
 	int counter = 0;
-	self.labelUrls = [[[NSMutableDictionary alloc] init] retain];
-	self.levelUrls = [[[NSMutableDictionary alloc] init] retain];
 	
-	for (NSDictionary *item in array)
+	for (NSDictionary *session in sessions)
 	{
 		counter++;
 		
-		float progress = (1.0 / [array count]) * counter;
+		float progress = (1.0 / [sessions count]) * counter;
 		
 		[refreshCommonViewController performSelectorOnMainThread:@selector(setProgressTo:) withObject:[NSNumber numberWithFloat:progress] waitUntilDone:YES];
 		
-		[self addSession:item];
+		[self addSession:session];
 	}
-	
-#ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Added sessions", [[[NSDate alloc] init] autorelease]);
-#endif
 	
 	for (NSString *name in self.levelUrls) {
-		[self downloadIconFromUrl:[self.levelUrls objectForKey:name] withName:name toPrefix:@"levelIcons"];
+		[self downloadIconFromUrl:[self.levelUrls objectForKey:name] withName:name toFolder:self.levelsPath];
 	}
 	for (NSString *name in self.labelUrls) {
-		[self downloadIconFromUrl:[self.labelUrls objectForKey:name] withName:name toPrefix:@"labelIcons"];
+		[self downloadIconFromUrl:[self.labelUrls objectForKey:name] withName:name toFolder:self.labelsPath];
 	}
-	
 	
 	[self.labelUrls release];
 	[self.levelUrls release];
 	
 	[FlurryAPI endTimedEvent:@"Storing" withParameters:nil];
 
-	return [array count];
+	return [sessions count];
 }
 
 - (void) invalidateSessions {
-#ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Invalidating sessions", [[[NSDate alloc] init] autorelease]);
-#endif
-	
 	NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
 	
@@ -169,7 +146,7 @@
 	NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];
 	
 	if (nil != error) {
-		NSLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		[FlurryAPI logError:@"Error fetching sessions" message:@"Unable to fetch sessions for invalidation" error:error];
 		return;
 	}
 	
@@ -182,27 +159,11 @@
 	
 	if (![managedObjectContext save:&error]) {
 		if (nil != error) {
+			[FlurryAPI logError:@"Error fetching sessions" message:@"Unable to persist sessions after invalidation" error:error];
 			NSLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
 			return;
 		}
 	}	
-	
-#ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Invalidated sessions", [[[NSDate alloc] init] autorelease]);
-#endif
-	
-
-	NSFileManager *fileManager = [NSFileManager defaultManager];
-	
-	NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	NSString *levelPath = [docDir stringByAppendingPathComponent:@"levelIcons"];
-	NSString *labelPath = [docDir stringByAppendingPathComponent:@"labelIcons"];
-	
-	[fileManager removeItemAtPath:levelPath error:NULL];
-	[fileManager removeItemAtPath:labelPath error:NULL];
-
-	[fileManager createDirectoryAtPath:levelPath withIntermediateDirectories:YES attributes:nil error:NULL];
-	[fileManager createDirectoryAtPath:labelPath withIntermediateDirectories:YES attributes:nil error:NULL];
 }
 
 - (void) addSession:(NSDictionary *)item {
@@ -406,18 +367,16 @@
 	return value;
 }
 
-- (void)downloadIconFromUrl:(NSString *)url withName:(NSString *)name toPrefix:(NSString *)prefix {
+- (void)downloadIconFromUrl:(NSString *)url withName:(NSString *)name toFolder:(NSString *)folder {
 	UIApplication* app = [UIApplication sharedApplication];
 
-	NSLog(@"Download %@ from %@ to %@", name, url, prefix);
+	NSLog(@"Download %@ from %@ to %@", name, url, folder);
 
 	app.networkActivityIndicatorVisible = YES;
 	UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
 	app.networkActivityIndicatorVisible = NO;
 	
-	NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	
-	NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",[docDir stringByAppendingPathComponent:prefix],name];
+	NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",folder,name];
 	NSData *data1 = [NSData dataWithData:UIImagePNGRepresentation(image)];
 	[data1 writeToFile:pngFilePath atomically:YES];
 	

@@ -62,6 +62,17 @@ NSInteger sessionCount;
     [super dealloc];
 }
 
+- (NSString *)getSessionUrl {
+	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"incogito" ofType:@"plist"];
+	NSDictionary* plistDict = [[[NSDictionary alloc] initWithContentsOfFile:filePath] retain];
+	
+	NSString *urlString = [plistDict objectForKey:@"SessionUrl"];
+	NSLog(@"Session URL %@", urlString);
+	[plistDict release];
+	
+	return urlString;
+}	
+
 - (void) refreshSessions {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	JavazoneSessionsRetriever *retriever = [[[JavazoneSessionsRetriever alloc] init] autorelease];
@@ -69,7 +80,7 @@ NSInteger sessionCount;
 	retriever.managedObjectContext = [appDelegate managedObjectContext];
 	retriever.refreshCommonViewController = self;
 	
-	sessionCount = [retriever retrieveSessions];
+	sessionCount = [retriever retrieveSessions:[self getSessionUrl]];
 	[self performSelectorOnMainThread:@selector(taskDone:) withObject:nil waitUntilDone:NO];
 	[pool drain];
 }

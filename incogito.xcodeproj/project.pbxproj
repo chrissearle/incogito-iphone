@@ -113,6 +113,8 @@
 		83713C07120AD6A0000050A7 /* star-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 83713C04120AD6A0000050A7 /* star-pressed.png */; };
 		83713C08120AD6A0000050A7 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 83713C05120AD6A0000050A7 /* star.png */; };
 		83741769120F3AC700B816A2 /* 74-location.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B9F11ED981300590A7A /* 74-location.png */; };
+		837C2CF2124DE0D500F09611 /* SessionDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 837C2CF1124DE0D500F09611 /* SessionDownloader.m */; };
+		837C2CF9124DE2A100F09611 /* SessionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 837C2CF8124DE2A100F09611 /* SessionParser.m */; };
 		8393654811F34EA700BBE43A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8393654711F34EA700BBE43A /* Default.png */; };
 		8394723C11EB98500075C4C1 /* JavazoneSessionsRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */; };
 		8394726611EB98B10075C4C1 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394725B11EB98B10075C4C1 /* NSObject+SBJSON.m */; };
@@ -449,6 +451,10 @@
 		83713C03120AD6A0000050A7 /* star-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-checked.png"; sourceTree = "<group>"; };
 		83713C04120AD6A0000050A7 /* star-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-pressed.png"; sourceTree = "<group>"; };
 		83713C05120AD6A0000050A7 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		837C2CF0124DE0D500F09611 /* SessionDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionDownloader.h; sourceTree = "<group>"; };
+		837C2CF1124DE0D500F09611 /* SessionDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionDownloader.m; sourceTree = "<group>"; };
+		837C2CF7124DE2A100F09611 /* SessionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionParser.h; sourceTree = "<group>"; };
+		837C2CF8124DE2A100F09611 /* SessionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionParser.m; sourceTree = "<group>"; };
 		8393654711F34EA700BBE43A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8394723A11EB98500075C4C1 /* JavazoneSessionsRetriever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavazoneSessionsRetriever.h; sourceTree = "<group>"; };
 		8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavazoneSessionsRetriever.m; sourceTree = "<group>"; };
@@ -1208,6 +1214,10 @@
 				8394723A11EB98500075C4C1 /* JavazoneSessionsRetriever.h */,
 				8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */,
 				8394725811EB98B10075C4C1 /* JSON */,
+				837C2CF0124DE0D500F09611 /* SessionDownloader.h */,
+				837C2CF1124DE0D500F09611 /* SessionDownloader.m */,
+				837C2CF7124DE2A100F09611 /* SessionParser.h */,
+				837C2CF8124DE2A100F09611 /* SessionParser.m */,
 			);
 			path = REST;
 			sourceTree = "<group>";
@@ -1396,6 +1406,8 @@
 				83281F1F12437F5100792990 /* ExtrasController.m in Sources */,
 				83FA5ADA124607B3008CA85C /* JavaZone2011Controller.m in Sources */,
 				83265D101248B363002A8333 /* FeedbackController.m in Sources */,
+				837C2CF2124DE0D500F09611 /* SessionDownloader.m in Sources */,
+				837C2CF9124DE2A100F09611 /* SessionParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
