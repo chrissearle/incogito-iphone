@@ -9,9 +9,11 @@
 
 @interface OverviewViewController : SessionCommonViewController <UISearchBarDelegate, UITextFieldDelegate> {
 	NSString *currentSearch;
+	IBOutlet UISearchBar *sb;
 }
 
 @property (nonatomic, retain) NSString *currentSearch;
+@property (nonatomic, retain) UISearchBar *sb;
 
 - (void) checkForData;
 - (void) search:(NSString *)searchText;

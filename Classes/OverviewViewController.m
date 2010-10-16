@@ -13,6 +13,7 @@
 @implementation OverviewViewController
 
 @synthesize currentSearch;
+@synthesize sb;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -116,7 +117,6 @@
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     [searchBar setShowsCancelButton:YES animated:YES];
 	
-    tv.allowsSelection = NO;
     tv.scrollEnabled = NO;
 }
 
@@ -126,7 +126,6 @@
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
 	
-    tv.allowsSelection = YES;
     tv.scrollEnabled = YES;
 }
 
@@ -136,8 +135,15 @@
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
 	
-    tv.allowsSelection = YES;
     tv.scrollEnabled = YES;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [sb setShowsCancelButton:NO animated:YES];
+    [sb resignFirstResponder];
+	
+    tv.scrollEnabled = YES;
+	
+	[super tableView:tableView didSelectRowAtIndexPath:indexPath];
+}
 @end
