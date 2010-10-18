@@ -160,7 +160,6 @@
 	if (nil == labels || [labels count] == 0) {
 		return @"";
 	} else {
-		
 		NSMutableString *result = [[NSMutableString alloc] init];
 		
 		[result appendString:@"<h2>Labels</h2>"];
@@ -169,7 +168,11 @@
 		
 		NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 
-		for (JZLabel *label in labels) {
+		NSSortDescriptor * titleDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES] autorelease];
+		
+		NSArray * descriptors = [NSArray arrayWithObjects:titleDescriptor, nil];
+		
+		for (JZLabel *label in [[labels allObjects] sortedArrayUsingDescriptors:descriptors]) {
 			NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",[docDir stringByAppendingPathComponent:@"labelIcons"],[label jzId]];
 			
 			[result appendFormat:@"<li style=\"list-style-image: url('file://%@')\">%@</li>", pngFilePath, [label title]];

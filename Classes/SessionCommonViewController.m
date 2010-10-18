@@ -75,7 +75,11 @@
 	if (!(nil == labels || [labels count] == 0)) {
 		NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 		
-		for (JZLabel *label in labels) {
+		NSSortDescriptor * titleDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES] autorelease];
+		
+		NSArray * descriptors = [NSArray arrayWithObjects:titleDescriptor, nil];
+		
+		for (JZLabel *label in [[labels allObjects] sortedArrayUsingDescriptors:descriptors]) {
 			NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",[docDir stringByAppendingPathComponent:@"labelIcons"],[label jzId]];
 
 			NSData *data1 = [NSData dataWithContentsOfFile:pngFilePath];
