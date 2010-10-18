@@ -125,6 +125,7 @@
 		8394726911EB98B10075C4C1 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394726111EB98B10075C4C1 /* SBJsonBase.m */; };
 		8394726A11EB98B10075C4C1 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394726311EB98B10075C4C1 /* SBJsonParser.m */; };
 		8394726B11EB98B10075C4C1 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394726511EB98B10075C4C1 /* SBJsonWriter.m */; };
+		83A37C1A126CD14E0014A61C /* jz_pin_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A37C19126CD14E0014A61C /* jz_pin_logo.png */; };
 		83C3C1D5120FDC6500B23253 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C3C1D4120FDC6500B23253 /* QuartzCore.framework */; };
 		83D1762511F18C3300D89884 /* SessionCommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1762411F18C3300D89884 /* SessionCommonViewController.m */; };
 		83D6BCF911EEF3A100FBC0FE /* SectionInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */; };
@@ -476,6 +477,7 @@
 		8394726311EB98B10075C4C1 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		8394726411EB98B10075C4C1 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		8394726511EB98B10075C4C1 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		83A37C19126CD14E0014A61C /* jz_pin_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jz_pin_logo.png; sourceTree = "<group>"; };
 		83C3C1D4120FDC6500B23253 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		83D1762311F18C3300D89884 /* SessionCommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionCommonViewController.h; sourceTree = "<group>"; };
 		83D1762411F18C3300D89884 /* SessionCommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionCommonViewController.m; sourceTree = "<group>"; };
@@ -1173,6 +1175,7 @@
 		83827C2611F87A1A00A74CC1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				83A37C19126CD14E0014A61C /* jz_pin_logo.png */,
 				831F5339120C03170027A8A4 /* labels */,
 				83713C03120AD6A0000050A7 /* star-checked.png */,
 				83713C04120AD6A0000050A7 /* star-pressed.png */,
@@ -1315,6 +1318,7 @@
 				83FA5AC012460531008CA85C /* JavaZone2011.png in Resources */,
 				83265D0A1248B1C2002A8333 /* Feedback.xib in Resources */,
 				834B3DEE126C8F0700D66D41 /* SessionCell.xib in Resources */,
+				83A37C1A126CD14E0014A61C /* jz_pin_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,6 +15,8 @@
 			<string>Oslo Spektrum</string>
 			<key>Title</key>
 			<string>JavaZone</string>
+			<key>Pin</key>
+			<string>jz_pin_logo.png</string>
 		</dict>
 		<dict>
 			<key>Latitude</key>
