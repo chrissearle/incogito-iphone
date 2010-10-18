@@ -18,4 +18,6 @@
 
 @synthesize iconBarView;
 
+@synthesize jzId;
+
 @end

@@ -354,6 +354,15 @@
 	
 	return count;
 }
+- (void) toggleFavouriteForSession:(NSString *)jzId {
+	JZSession *session = [self getSessionForJZId:jzId];
+	
+	if ([session userSession]) {
+		[self setFavouriteForSession:session withBoolean:NO];
+	} else {
+		[self setFavouriteForSession:session withBoolean:YES];
+	}
+}
 
 - (void) setFavouriteForSession:(JZSession *)session withBoolean:(BOOL)favouriteFlag {
 	JZSession *sessionInContext = [self getSessionForJZId:[session jzId]];

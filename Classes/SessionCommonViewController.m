@@ -11,6 +11,7 @@
 #import "IncogitoAppDelegate.h"
 #import "FlurryAPI.h"
 #import "SessionTableViewCell.h"
+#import "SectionSessionHandler.h"
 
 @implementation SessionCommonViewController
 
@@ -124,6 +125,8 @@
 		}
 	}
 	
+	cell.jzId = session.jzId;
+	
 	NSMutableArray *speakerNames = [[NSMutableArray alloc] initWithCapacity:[session.speakers count]];
 	
 	for (JZSessionBio *bio in session.speakers) {
@@ -147,13 +150,15 @@
 
 	[levelImageView setImage:levelImageFile];
 	
-	UIImageView *favouriteImageView = [cell favouriteImage];
-	
+	UIButton *favouriteImage = [cell favouriteImage];
+
 	if ([session userSession]) {
-		[favouriteImageView setImage:[UIImage imageNamed:@"star-checked.png"]];
+		[favouriteImage setSelected:YES];
 	} else {
-		[favouriteImageView setImage:[UIImage imageNamed:@"star.png"]];
+		[favouriteImage setSelected:NO];
 	}
+	
+	[favouriteImage addTarget:self action:@selector(toggleFavourite:) forControlEvents:UIControlEventTouchUpInside];
 	
 	[self addLabels:[session labels] toCell:cell];
 	
@@ -183,6 +188,30 @@
 	
 	[[self navigationController] pushViewController:controller animated:YES];
 	[controller release], controller = nil;
+}
+
+- (IBAction)toggleFavourite:(id)sender {
+	UIButton *button = (UIButton *)sender;
+
+	UIView *view = [button superview];
+	
+	while (view != nil) {
+		if ([view isKindOfClass:[SessionTableViewCell class]]) {
+			SessionTableViewCell *cell = (SessionTableViewCell *)view;
+			
+			NSLog(@"JZ %@", [cell jzId]);
+
+			SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
+			
+			[handler toggleFavouriteForSession:[cell jzId]];
+			
+			[appDelegate refreshViewData];
+			
+			break;
+		}
+
+		view = [view superview];
+	}
 }
 
 @end

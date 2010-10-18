@@ -27,5 +27,6 @@
 - (void)loadSessionData;
 - (NSString *)getSelectedSessionTitle:(NSInteger)section;
 
+- (IBAction)toggleFavourite:(id)sender;
 
 @end
