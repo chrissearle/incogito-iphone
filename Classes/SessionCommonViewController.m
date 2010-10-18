@@ -30,7 +30,7 @@
 	
 	[FlurryAPI countPageViews:[self navigationController]];
 	
-	tv.rowHeight = 100;
+	tv.rowHeight = 85;
 }
 
 - (void)didReceiveMemoryWarning {
