@@ -10,6 +10,7 @@
 #import "DetailedSessionViewController.h"
 #import "IncogitoAppDelegate.h"
 #import "FlurryAPI.h"
+#import "SessionTableViewCell.h"
 
 @implementation SessionCommonViewController
 
@@ -28,6 +29,8 @@
 	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
 	
 	[FlurryAPI countPageViews:[self navigationController]];
+	
+	tv.rowHeight = 85;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,18 +69,59 @@
 	}
 }
 
+- (void)addLabels:(NSSet *)labels toCell:(SessionTableViewCell *)cell {
+	int offset = 0;
+	
+	for (UIView *view in cell.iconBarView.subviews) {
+		[view removeFromSuperview];
+	}
+	
+	if (!(nil == labels || [labels count] == 0)) {
+		NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+		
+		NSSortDescriptor * titleDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES] autorelease];
+		
+		NSArray * descriptors = [NSArray arrayWithObjects:titleDescriptor, nil];
+		
+		for (JZLabel *label in [[labels allObjects] sortedArrayUsingDescriptors:descriptors]) {
+			NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",[docDir stringByAppendingPathComponent:@"labelIcons"],[label jzId]];
+
+			NSData *data1 = [NSData dataWithContentsOfFile:pngFilePath];
+			
+			UIImage *labelImageFile = [UIImage imageWithData:data1];
+			
+			CGRect frame = CGRectMake(offset, 0, labelImageFile.size.width, labelImageFile.size.height);
+			
+			offset += 15;
+			
+			UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
+			
+			[imageView setImage:labelImageFile];
+			
+			[cell.iconBarView addSubview:imageView];
+			
+			[imageView release];
+		}
+	}
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	JZSession *session = [[sessions objectForKey:[self getSelectedSessionTitle:indexPath.section]] objectAtIndex:indexPath.row];
+
+	static NSString *cellId = @"SessionCell";
 	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"sessionCell"];
-	
+	SessionTableViewCell *cell = (SessionTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellId];
+
 	if (nil == cell) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"sessionCell"] autorelease];
-
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-		cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.0];
-		cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
+		NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SessionCell" owner:nil options:nil];
+	
+		for (id currentObject in topLevelObjects) {
+			if ([currentObject isKindOfClass:[UITableViewCell class]]) {
+				cell = (SessionTableViewCell *)currentObject;
+				break;
+			}
+		}
 	}
 	
 	NSMutableArray *speakerNames = [[NSMutableArray alloc] initWithCapacity:[session.speakers count]];
@@ -86,12 +130,12 @@
 		[speakerNames addObject:[bio name]];
 	}
 	
-	cell.textLabel.text = session.title;
-	cell.detailTextLabel.text = [NSString stringWithFormat:@"Room %@ - %@", session.room, [speakerNames componentsJoinedByString:@", "]];
+	cell.sessionLabel.text = session.title;
+	cell.speakerLabel.text = [NSString stringWithFormat:@"Room %@ - %@", session.room, [speakerNames componentsJoinedByString:@", "]];
 
 	[speakerNames release];
 	
-	UIImageView *imageView = [cell imageView];
+	UIImageView *levelImageView = [cell levelImage];
 	
 	NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 	
@@ -99,9 +143,19 @@
 	
 	NSData *data1 = [NSData dataWithContentsOfFile:pngFilePath];
 	
-	UIImage *imageFile = [UIImage imageWithData:data1];
+	UIImage *levelImageFile = [UIImage imageWithData:data1];
 
-	[imageView setImage:imageFile];
+	[levelImageView setImage:levelImageFile];
+	
+	UIImageView *favouriteImageView = [cell favouriteImage];
+	
+	if ([session userSession]) {
+		[favouriteImageView setImage:[UIImage imageNamed:@"star-checked.png"]];
+	} else {
+		[favouriteImageView setImage:[UIImage imageNamed:@"star.png"]];
+	}
+	
+	[self addLabels:[session labels] toCell:cell];
 	
 	return cell;
 }

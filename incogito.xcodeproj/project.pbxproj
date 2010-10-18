@@ -106,6 +106,8 @@
 		83424EBC11EDB79400590A7A /* MyProgrammeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83424EBB11EDB79400590A7A /* MyProgrammeViewController.m */; };
 		83424EC111EDB7E300590A7A /* MyProgramme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424EC011EDB7E300590A7A /* MyProgramme.xib */; };
 		834964D411F0910A008BB29F /* Update.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834964D311F0910A008BB29F /* Update.xib */; };
+		834B3DEE126C8F0700D66D41 /* SessionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834B3DED126C8F0700D66D41 /* SessionCell.xib */; };
+		834B3DF6126C913600D66D41 /* SessionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 834B3DF5126C913600D66D41 /* SessionTableViewCell.m */; };
 		83576C7C120BF478008CC97E /* ClubZone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83576C7B120BF478008CC97E /* ClubZone.xib */; };
 		83576C7F120BF48A008CC97E /* ClubZoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83576C7E120BF48A008CC97E /* ClubZoneViewController.m */; };
 		83576C82120BF54C008CC97E /* 112-group.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B4E11ED981200590A7A /* 112-group.png */; };
@@ -444,6 +446,9 @@
 		83424EBB11EDB79400590A7A /* MyProgrammeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProgrammeViewController.m; sourceTree = "<group>"; };
 		83424EC011EDB7E300590A7A /* MyProgramme.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProgramme.xib; sourceTree = "<group>"; };
 		834964D311F0910A008BB29F /* Update.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Update.xib; sourceTree = "<group>"; };
+		834B3DED126C8F0700D66D41 /* SessionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SessionCell.xib; sourceTree = "<group>"; };
+		834B3DF4126C913600D66D41 /* SessionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionTableViewCell.h; sourceTree = "<group>"; };
+		834B3DF5126C913600D66D41 /* SessionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionTableViewCell.m; sourceTree = "<group>"; };
 		83576C7B120BF478008CC97E /* ClubZone.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClubZone.xib; sourceTree = "<group>"; };
 		83576C7D120BF48A008CC97E /* ClubZoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClubZoneViewController.h; sourceTree = "<group>"; };
 		83576C7E120BF48A008CC97E /* ClubZoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClubZoneViewController.m; sourceTree = "<group>"; };
@@ -560,6 +565,8 @@
 				83D6BDC111EF051700FBC0FE /* SectionSessionHandler.m */,
 				83D1762311F18C3300D89884 /* SessionCommonViewController.h */,
 				83D1762411F18C3300D89884 /* SessionCommonViewController.m */,
+				834B3DF4126C913600D66D41 /* SessionTableViewCell.h */,
+				834B3DF5126C913600D66D41 /* SessionTableViewCell.m */,
 				831F5333120BFFD20027A8A4 /* SettingsViewController.h */,
 				831F5334120BFFD20027A8A4 /* SettingsViewController.m */,
 			);
@@ -1158,6 +1165,7 @@
 				83281F1A12437F2B00792990 /* DetailedViewExtras.xib */,
 				83FA5AB512460451008CA85C /* JavaZone2011.xib */,
 				83265D091248B1C2002A8333 /* Feedback.xib */,
+				834B3DED126C8F0700D66D41 /* SessionCell.xib */,
 			);
 			path = Windows;
 			sourceTree = "<group>";
@@ -1306,6 +1314,7 @@
 				83FA5AB612460451008CA85C /* JavaZone2011.xib in Resources */,
 				83FA5AC012460531008CA85C /* JavaZone2011.png in Resources */,
 				83265D0A1248B1C2002A8333 /* Feedback.xib in Resources */,
+				834B3DEE126C8F0700D66D41 /* SessionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1408,6 +1417,7 @@
 				83265D101248B363002A8333 /* FeedbackController.m in Sources */,
 				837C2CF2124DE0D500F09611 /* SessionDownloader.m in Sources */,
 				837C2CF9124DE2A100F09611 /* SessionParser.m in Sources */,
+				834B3DF6126C913600D66D41 /* SessionTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
