@@ -72,6 +72,10 @@
 - (void)addLabels:(NSSet *)labels toCell:(SessionTableViewCell *)cell {
 	int offset = 0;
 	
+	for (UIView *view in cell.iconBarView.subviews) {
+		[view removeFromSuperview];
+	}
+	
 	if (!(nil == labels || [labels count] == 0)) {
 		NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 		
