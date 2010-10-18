@@ -69,6 +69,35 @@
 	}
 }
 
+- (void)addLabels:(NSSet *)labels toCell:(SessionTableViewCell *)cell {
+	int offset = 0;
+	
+	if (!(nil == labels || [labels count] == 0)) {
+		NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+		
+		for (JZLabel *label in labels) {
+			NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",[docDir stringByAppendingPathComponent:@"labelIcons"],[label jzId]];
+
+			NSData *data1 = [NSData dataWithContentsOfFile:pngFilePath];
+			
+			UIImage *labelImageFile = [UIImage imageWithData:data1];
+			
+			CGRect frame = CGRectMake(offset, 0, labelImageFile.size.width, labelImageFile.size.height);
+			
+			offset += 15;
+			
+			UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
+			
+			[imageView setImage:labelImageFile];
+			
+			[cell.iconBarView addSubview:imageView];
+			
+			[imageView release];
+		}
+	}
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	JZSession *session = [[sessions objectForKey:[self getSelectedSessionTitle:indexPath.section]] objectAtIndex:indexPath.row];
 
@@ -117,6 +146,8 @@
 	} else {
 		[favouriteImageView setImage:[UIImage imageNamed:@"star.png"]];
 	}
+	
+	[self addLabels:[session labels] toCell:cell];
 	
 	return cell;
 }
