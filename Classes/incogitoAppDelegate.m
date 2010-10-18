@@ -256,34 +256,6 @@ void uncaughtExceptionHandler(NSException *exception) {
 	return sectionSessionHandler_;
 }
 
-- (void)refreshFavouriteViewData {
-	for (UIViewController *controller in [rootController viewControllers]) {
-		if ([controller isKindOfClass:[UINavigationController class]]) {
-			UINavigationController *navController = (UINavigationController *)controller;
-			
-			for (UIViewController *subController in [navController viewControllers]) {
-				if ([subController isKindOfClass:[MyProgrammeViewController class]]) {
-					NSLog(@"Sending reload to %@", [subController class]);
-			
-					SessionCommonViewController *c = (SessionCommonViewController *)subController;
-			
-					[c loadSessionData];
-					[[c tv] reloadData];
-				}
-
-#ifdef SHOW_TAB_BAR_ON_DETAILS_VIEW
-				if ([subController isKindOfClass:[DetailedSessionViewController class]]) {
-					DetailedSessionViewController *c = (DetailedSessionViewController *)subController;
-					
-					[c reloadSession];
-				}
-#endif
-				
-			}
-		}
-	}
-}
-
 - (void)refreshViewData {
 	for (UIViewController *controller in [rootController viewControllers]) {
 		if ([controller isKindOfClass:[UINavigationController class]]) {

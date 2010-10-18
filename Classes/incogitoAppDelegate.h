@@ -34,7 +34,6 @@
 - (NSString *)applicationDocumentsDirectory;
 
 - (void)refreshViewData;
-- (void)refreshFavouriteViewData;
 
 - (NSString *)getLabelFilter;
 - (void)setLabelFilter:(NSString *)labelFilter;

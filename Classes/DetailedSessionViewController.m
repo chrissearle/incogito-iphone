@@ -120,7 +120,7 @@
 		[handler setFavouriteForSession:session withBoolean:NO];
 	}
 	
-	[appDelegate refreshFavouriteViewData];
+	[appDelegate refreshViewData];
 }
 
 - (void)didReceiveMemoryWarning {
