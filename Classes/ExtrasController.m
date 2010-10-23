@@ -160,7 +160,13 @@
 			switch (indexPath.row) {
 				case 0:
 				{
-					FeedbackController *controller = [[FeedbackController alloc] initWithNibName:@"Feedback" bundle:[NSBundle mainBundle]];
+					FeedbackController *controller;
+					if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+					{
+						controller = [[FeedbackController alloc] initWithNibName:@"Feedback-iPad" bundle:[NSBundle mainBundle]];
+					} else {
+						controller = [[FeedbackController alloc] initWithNibName:@"Feedback" bundle:[NSBundle mainBundle]];
+					}
 					controller.session = session;
 					
 					[[self navigationController] pushViewController:controller animated:YES];

@@ -27,9 +27,11 @@
     [super viewDidLoad];
 	
 	// Default scroll view to fit window
-	scrollView.frame = CGRectMake(0, 0, 320, 460);
-	[scrollView setContentSize:CGSizeMake(320, 460)];
-	
+	if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
+	{
+		scrollView.frame = CGRectMake(0, 0, 320, 460);
+		[scrollView setContentSize:CGSizeMake(320, 460)];
+	}	
 	
 	self.title = @"Feedback";
 	
@@ -85,37 +87,46 @@
 }
 
 - (BOOL) scrollToFieldIfFirstResponder:(UIView *)field {
-	if ([field isFirstResponder]) {
-		CGRect fieldRect = [field frame];
-		[scrollView scrollRectToVisible:fieldRect animated:YES];
-		return YES;
+	if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
+	{
+		if ([field isFirstResponder]) {
+			CGRect fieldRect = [field frame];
+			[scrollView scrollRectToVisible:fieldRect animated:YES];
+			return YES;
+		}
 	}
 	
 	return NO;
 }
 
 -(void) keyboardDidShow:(NSNotification *) notification {
-    NSDictionary* info = [notification userInfo];
-    
-    NSValue *aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];
-    CGSize keyboardSize = [aValue CGRectValue].size;
-	
-    CGRect viewFrame = [scrollView frame];
-    viewFrame.size.height -= keyboardSize.height;
-    scrollView.frame = viewFrame;
-    
-    [self scrollToFieldIfFirstResponder:commentField];
+	if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
+	{
+		NSDictionary* info = [notification userInfo];
+		
+		NSValue *aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];
+		CGSize keyboardSize = [aValue CGRectValue].size;
+		
+		CGRect viewFrame = [scrollView frame];
+		viewFrame.size.height -= keyboardSize.height;
+		scrollView.frame = viewFrame;
+		
+		[self scrollToFieldIfFirstResponder:commentField];
+	}
 }
 
 -(void) keyboardDidHide:(NSNotification *) notification {
-    NSDictionary* info = [notification userInfo];
-    
-    NSValue* aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];
-    CGSize keyboardSize = [aValue CGRectValue].size;
-    
-    CGRect viewFrame = [scrollView frame];
-    viewFrame.size.height += keyboardSize.height;
-    scrollView.frame = viewFrame;
+	if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
+	{
+		NSDictionary* info = [notification userInfo];
+		
+		NSValue* aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];
+		CGSize keyboardSize = [aValue CGRectValue].size;
+		
+		CGRect viewFrame = [scrollView frame];
+		viewFrame.size.height += keyboardSize.height;
+		scrollView.frame = viewFrame;
+	}
 }
 
 - (void)didReceiveMemoryWarning {
