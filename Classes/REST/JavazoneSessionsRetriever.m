@@ -42,12 +42,14 @@
 
 	NSError *error = nil;
 
-	[fileManager removeItemAtPath:path error:&error];
-	if (nil != error) {
-		[FlurryAPI logError:@"Error removing path" message:[NSString stringWithFormat:@"Unable to remove items at path %@", path] error:error];
-		return;
+	if ([fileManager fileExistsAtPath:path]) {
+		[fileManager removeItemAtPath:path error:&error];
+		if (nil != error) {
+			[FlurryAPI logError:@"Error removing path" message:[NSString stringWithFormat:@"Unable to remove items at path %@", path] error:error];
+			return;
+		}
 	}
-
+	
 	[fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
 	if (nil != error) {
 		[FlurryAPI logError:@"Error creating path" message:[NSString stringWithFormat:@"Unable to create path %@", path] error:error];
