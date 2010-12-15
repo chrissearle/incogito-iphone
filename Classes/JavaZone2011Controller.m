@@ -47,7 +47,8 @@
 - (void)playVideo:(id)sender {
 	[FlurryAPI logEvent:@"Playing Movie"];
 	
-	NSURL *movieUrl = [[NSBundle mainBundle] URLForResource:@"jz11_you_are_invited.mp4" withExtension:nil];
+	// iOS 4 only	NSURL *movieUrl = [[NSBundle mainBundle] URLForResource:@"jz11_you_are_invited.mp4" withExtension:nil];
+	NSURL *movieUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"jz11_you_are_invited" ofType:@"mp4"]];
 	
     movie = [[MPMoviePlayerViewController alloc] initWithContentURL:movieUrl];
 	
