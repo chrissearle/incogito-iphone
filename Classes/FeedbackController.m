@@ -97,7 +97,7 @@
 -(void) keyboardDidShow:(NSNotification *) notification {
     NSDictionary* info = [notification userInfo];
     
-    NSValue *aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];
+    NSValue *aValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
     CGSize keyboardSize = [aValue CGRectValue].size;
 	
     CGRect viewFrame = [scrollView frame];
@@ -110,7 +110,7 @@
 -(void) keyboardDidHide:(NSNotification *) notification {
     NSDictionary* info = [notification userInfo];
     
-    NSValue* aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];
+    NSValue* aValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
     CGSize keyboardSize = [aValue CGRectValue].size;
     
     CGRect viewFrame = [scrollView frame];
