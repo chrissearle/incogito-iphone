@@ -103,14 +103,14 @@
 	if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
 	{
 		NSDictionary* info = [notification userInfo];
-		
-		NSValue *aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];
+    
+		NSValue *aValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
 		CGSize keyboardSize = [aValue CGRectValue].size;
-		
+	
 		CGRect viewFrame = [scrollView frame];
 		viewFrame.size.height -= keyboardSize.height;
 		scrollView.frame = viewFrame;
-		
+    
 		[self scrollToFieldIfFirstResponder:commentField];
 	}
 }
@@ -119,10 +119,10 @@
 	if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
 	{
 		NSDictionary* info = [notification userInfo];
-		
-		NSValue* aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];
+    
+		NSValue* aValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
 		CGSize keyboardSize = [aValue CGRectValue].size;
-		
+    
 		CGRect viewFrame = [scrollView frame];
 		viewFrame.size.height += keyboardSize.height;
 		scrollView.frame = viewFrame;

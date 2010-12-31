@@ -134,6 +134,8 @@
 		8394726A11EB98B10075C4C1 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394726311EB98B10075C4C1 /* SBJsonParser.m */; };
 		8394726B11EB98B10075C4C1 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394726511EB98B10075C4C1 /* SBJsonWriter.m */; };
 		83A37C1A126CD14E0014A61C /* jz_pin_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A37C19126CD14E0014A61C /* jz_pin_logo.png */; };
+		83A5A81212CDF06E009FE6A7 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A5A81112CDF06E009FE6A7 /* MediaPlayer.framework */; };
+		83A5A81512CDF0A7009FE6A7 /* jz11_you_are_invited.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 83A5A81412CDF0A7009FE6A7 /* jz11_you_are_invited.mp4 */; };
 		83C3C1D5120FDC6500B23253 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C3C1D4120FDC6500B23253 /* QuartzCore.framework */; };
 		83D1762511F18C3300D89884 /* SessionCommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1762411F18C3300D89884 /* SessionCommonViewController.m */; };
 		83D6BCF911EEF3A100FBC0FE /* SectionInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */; };
@@ -494,6 +496,8 @@
 		8394726411EB98B10075C4C1 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		8394726511EB98B10075C4C1 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		83A37C19126CD14E0014A61C /* jz_pin_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jz_pin_logo.png; sourceTree = "<group>"; };
+		83A5A81112CDF06E009FE6A7 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		83A5A81412CDF0A7009FE6A7 /* jz11_you_are_invited.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = jz11_you_are_invited.mp4; sourceTree = "<group>"; };
 		83C3C1D4120FDC6500B23253 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		83D1762311F18C3300D89884 /* SessionCommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionCommonViewController.h; sourceTree = "<group>"; };
 		83D1762411F18C3300D89884 /* SessionCommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionCommonViewController.m; sourceTree = "<group>"; };
@@ -541,6 +545,7 @@
 				83281F1312437D2900792990 /* Security.framework in Frameworks */,
 				83281F1512437D2900792990 /* SystemConfiguration.framework in Frameworks */,
 				83E44EBA1243EF2700F0C291 /* libFlurry.a in Frameworks */,
+				83A5A81212CDF06E009FE6A7 /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -646,6 +651,7 @@
 				83281F1012437D2900792990 /* MessageUI.framework */,
 				83281F1212437D2900792990 /* Security.framework */,
 				83281F1412437D2900792990 /* SystemConfiguration.framework */,
+				83A5A81112CDF06E009FE6A7 /* MediaPlayer.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1192,6 +1198,7 @@
 		83827C2611F87A1A00A74CC1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				83A5A81412CDF0A7009FE6A7 /* jz11_you_are_invited.mp4 */,
 				83A37C19126CD14E0014A61C /* jz_pin_logo.png */,
 				831F5339120C03170027A8A4 /* labels */,
 				83713C03120AD6A0000050A7 /* star-checked.png */,
@@ -1368,6 +1375,7 @@
 				838D65FF12733C5C009D50AF /* DetailedSessionView-iPad.xib in Resources */,
 				838D661C12733E7D009D50AF /* JavaZone2011-iPad.xib in Resources */,
 				838D664212734242009D50AF /* Feedback-iPad.xib in Resources */,
+				83A5A81512CDF0A7009FE6A7 /* jz11_you_are_invited.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1499,7 +1507,7 @@
 					"-DNOW_AND_NEXT_USE_TEST_DATE=1",
 				);
 				PRODUCT_NAME = JavaZone;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1522,7 +1530,7 @@
 				);
 				PRODUCT_NAME = JavaZone;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "36810C82-B7E6-4B40-B2C2-FF664B85F568";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1560,7 +1568,7 @@
 					"\"$(SRCROOT)/Classes/FlurryLib\"",
 				);
 				PRODUCT_NAME = JavaZone;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Debug no extra code";
@@ -1597,7 +1605,7 @@
 					"\"$(SRCROOT)/Classes/FlurryLib\"",
 				);
 				PRODUCT_NAME = JavaZone;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1642,7 +1650,7 @@
 					"-DNOW_AND_NEXT_USE_TEST_DATE=1",
 				);
 				PRODUCT_NAME = JavaZone;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Debug with trace logging";
