@@ -119,6 +119,12 @@
 		837C2CF9124DE2A100F09611 /* SessionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 837C2CF8124DE2A100F09611 /* SessionParser.m */; };
 		838D658412732B8A009D50AF /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 838D658212732B8A009D50AF /* Icon-72.png */; };
 		838D658512732B8A009D50AF /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 838D658312732B8A009D50AF /* Icon@2x.png */; };
+		838D65AF12733322009D50AF /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 838D65AE12733322009D50AF /* MainWindow-iPad.xib */; };
+		838D65D812733A42009D50AF /* Default-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 838D65D612733A42009D50AF /* Default-iPad.png */; };
+		838D65D912733A42009D50AF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 838D65D712733A42009D50AF /* Default@2x.png */; };
+		838D65FF12733C5C009D50AF /* DetailedSessionView-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 838D65FE12733C5C009D50AF /* DetailedSessionView-iPad.xib */; };
+		838D661C12733E7D009D50AF /* JavaZone2011-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 838D661B12733E7D009D50AF /* JavaZone2011-iPad.xib */; };
+		838D664212734242009D50AF /* Feedback-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 838D664112734242009D50AF /* Feedback-iPad.xib */; };
 		8393654811F34EA700BBE43A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8393654711F34EA700BBE43A /* Default.png */; };
 		8394723C11EB98500075C4C1 /* JavazoneSessionsRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */; };
 		8394726611EB98B10075C4C1 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394725B11EB98B10075C4C1 /* NSObject+SBJSON.m */; };
@@ -128,8 +134,9 @@
 		8394726A11EB98B10075C4C1 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394726311EB98B10075C4C1 /* SBJsonParser.m */; };
 		8394726B11EB98B10075C4C1 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394726511EB98B10075C4C1 /* SBJsonWriter.m */; };
 		83A37C1A126CD14E0014A61C /* jz_pin_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A37C19126CD14E0014A61C /* jz_pin_logo.png */; };
-		83B6FD1312B66AD300DBB88D /* jz11_you_are_invited.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 83B6FD1212B66AD300DBB88D /* jz11_you_are_invited.mp4 */; };
-		83B6FD3112B66F8A00DBB88D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B6FD3012B66F8A00DBB88D /* MediaPlayer.framework */; };
+		83A5A81212CDF06E009FE6A7 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A5A81112CDF06E009FE6A7 /* MediaPlayer.framework */; };
+		83A5A81512CDF0A7009FE6A7 /* jz11_you_are_invited.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 83A5A81412CDF0A7009FE6A7 /* jz11_you_are_invited.mp4 */; };
+		83A5A85712CDF7F2009FE6A7 /* AbstractFeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A5A85612CDF7F2009FE6A7 /* AbstractFeedbackController.m */; };
 		83C3C1D5120FDC6500B23253 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C3C1D4120FDC6500B23253 /* QuartzCore.framework */; };
 		83D1762511F18C3300D89884 /* SessionCommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1762411F18C3300D89884 /* SessionCommonViewController.m */; };
 		83D6BCF911EEF3A100FBC0FE /* SectionInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */; };
@@ -467,6 +474,12 @@
 		837C2CF8124DE2A100F09611 /* SessionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionParser.m; sourceTree = "<group>"; };
 		838D658212732B8A009D50AF /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		838D658312732B8A009D50AF /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		838D65AE12733322009D50AF /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		838D65D612733A42009D50AF /* Default-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-iPad.png"; sourceTree = "<group>"; };
+		838D65D712733A42009D50AF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		838D65FE12733C5C009D50AF /* DetailedSessionView-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "DetailedSessionView-iPad.xib"; sourceTree = "<group>"; };
+		838D661B12733E7D009D50AF /* JavaZone2011-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "JavaZone2011-iPad.xib"; sourceTree = "<group>"; };
+		838D664112734242009D50AF /* Feedback-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "Feedback-iPad.xib"; sourceTree = "<group>"; };
 		8393654711F34EA700BBE43A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8394723A11EB98500075C4C1 /* JavazoneSessionsRetriever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavazoneSessionsRetriever.h; sourceTree = "<group>"; };
 		8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavazoneSessionsRetriever.m; sourceTree = "<group>"; };
@@ -484,8 +497,10 @@
 		8394726411EB98B10075C4C1 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		8394726511EB98B10075C4C1 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		83A37C19126CD14E0014A61C /* jz_pin_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jz_pin_logo.png; sourceTree = "<group>"; };
-		83B6FD1212B66AD300DBB88D /* jz11_you_are_invited.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = jz11_you_are_invited.mp4; sourceTree = "<group>"; };
-		83B6FD3012B66F8A00DBB88D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		83A5A81112CDF06E009FE6A7 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		83A5A81412CDF0A7009FE6A7 /* jz11_you_are_invited.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = jz11_you_are_invited.mp4; sourceTree = "<group>"; };
+		83A5A85512CDF7F2009FE6A7 /* AbstractFeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFeedbackController.h; sourceTree = "<group>"; };
+		83A5A85612CDF7F2009FE6A7 /* AbstractFeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFeedbackController.m; sourceTree = "<group>"; };
 		83C3C1D4120FDC6500B23253 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		83D1762311F18C3300D89884 /* SessionCommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionCommonViewController.h; sourceTree = "<group>"; };
 		83D1762411F18C3300D89884 /* SessionCommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionCommonViewController.m; sourceTree = "<group>"; };
@@ -533,7 +548,7 @@
 				83281F1312437D2900792990 /* Security.framework in Frameworks */,
 				83281F1512437D2900792990 /* SystemConfiguration.framework in Frameworks */,
 				83E44EBA1243EF2700F0C291 /* libFlurry.a in Frameworks */,
-				83B6FD3112B66F8A00DBB88D /* MediaPlayer.framework in Frameworks */,
+				83A5A81212CDF06E009FE6A7 /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +561,8 @@
 				83E44EB61243EF2700F0C291 /* FlurryLib */,
 				83281E3012437D0000792990 /* ShareKit */,
 				83F2D54411EBB56B0043A75E /* REST */,
+				83A5A85512CDF7F2009FE6A7 /* AbstractFeedbackController.h */,
+				83A5A85612CDF7F2009FE6A7 /* AbstractFeedbackController.m */,
 				830859C8120F2FF300F74041 /* ClubzoneMapAnnotation.h */,
 				830859C9120F2FF300F74041 /* ClubzoneMapAnnotation.m */,
 				83576C7D120BF48A008CC97E /* ClubZoneViewController.h */,
@@ -598,6 +615,7 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				838D65AD1273331F009D50AF /* Resources-iPad */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -638,7 +656,7 @@
 				83281F1012437D2900792990 /* MessageUI.framework */,
 				83281F1212437D2900792990 /* Security.framework */,
 				83281F1412437D2900792990 /* SystemConfiguration.framework */,
-				83B6FD3012B66F8A00DBB88D /* MediaPlayer.framework */,
+				83A5A81112CDF06E009FE6A7 /* MediaPlayer.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1185,7 +1203,7 @@
 		83827C2611F87A1A00A74CC1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				83B6FD1212B66AD300DBB88D /* jz11_you_are_invited.mp4 */,
+				83A5A81412CDF0A7009FE6A7 /* jz11_you_are_invited.mp4 */,
 				83A37C19126CD14E0014A61C /* jz_pin_logo.png */,
 				831F5339120C03170027A8A4 /* labels */,
 				83713C03120AD6A0000050A7 /* star-checked.png */,
@@ -1194,12 +1212,34 @@
 				83FA5ABF12460531008CA85C /* JavaZone2011.png */,
 				83424B3611ED981200590A7A /* icons */,
 				8393654711F34EA700BBE43A /* Default.png */,
+				838D65D712733A42009D50AF /* Default@2x.png */,
+				838D65D612733A42009D50AF /* Default-iPad.png */,
 				834243EA11E74CAD00B438A8 /* Icon.png */,
 				838D658312732B8A009D50AF /* Icon@2x.png */,
 				838D658212732B8A009D50AF /* Icon-72.png */,
 				8341FA131212CFB4004A45F4 /* ClubZone.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		838D65AD1273331F009D50AF /* Resources-iPad */ = {
+			isa = PBXGroup;
+			children = (
+				838D65F512733B27009D50AF /* Windows */,
+			);
+			name = "Resources-iPad";
+			sourceTree = "<group>";
+		};
+		838D65F512733B27009D50AF /* Windows */ = {
+			isa = PBXGroup;
+			children = (
+				838D65FE12733C5C009D50AF /* DetailedSessionView-iPad.xib */,
+				838D65AE12733322009D50AF /* MainWindow-iPad.xib */,
+				838D664112734242009D50AF /* Feedback-iPad.xib */,
+				838D661B12733E7D009D50AF /* JavaZone2011-iPad.xib */,
+			);
+			name = Windows;
+			path = "Resources-iPad/Windows";
 			sourceTree = "<group>";
 		};
 		8394725811EB98B10075C4C1 /* JSON */ = {
@@ -1334,7 +1374,13 @@
 				83A37C1A126CD14E0014A61C /* jz_pin_logo.png in Resources */,
 				838D658412732B8A009D50AF /* Icon-72.png in Resources */,
 				838D658512732B8A009D50AF /* Icon@2x.png in Resources */,
-				83B6FD1312B66AD300DBB88D /* jz11_you_are_invited.mp4 in Resources */,
+				838D65AF12733322009D50AF /* MainWindow-iPad.xib in Resources */,
+				838D65D812733A42009D50AF /* Default-iPad.png in Resources */,
+				838D65D912733A42009D50AF /* Default@2x.png in Resources */,
+				838D65FF12733C5C009D50AF /* DetailedSessionView-iPad.xib in Resources */,
+				838D661C12733E7D009D50AF /* JavaZone2011-iPad.xib in Resources */,
+				838D664212734242009D50AF /* Feedback-iPad.xib in Resources */,
+				83A5A81512CDF0A7009FE6A7 /* jz11_you_are_invited.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1438,6 +1484,7 @@
 				837C2CF2124DE0D500F09611 /* SessionDownloader.m in Sources */,
 				837C2CF9124DE2A100F09611 /* SessionParser.m in Sources */,
 				834B3DF6126C913600D66D41 /* SessionTableViewCell.m in Sources */,
+				83A5A85712CDF7F2009FE6A7 /* AbstractFeedbackController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1448,6 +1495,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1466,6 +1514,7 @@
 				);
 				PRODUCT_NAME = JavaZone;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1473,10 +1522,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chris Searle (3QT967G4GA)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
+				GCC_VERSION = 4.2;
 				INFOPLIST_FILE = "incogito-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				LIBRARY_SEARCH_PATHS = (
@@ -1486,6 +1537,7 @@
 				PRODUCT_NAME = JavaZone;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "36810C82-B7E6-4B40-B2C2-FF664B85F568";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1508,6 +1560,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1522,6 +1575,7 @@
 				);
 				PRODUCT_NAME = JavaZone;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Debug no extra code";
 		};
@@ -1545,9 +1599,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
+				GCC_VERSION = 4.2;
 				INFOPLIST_FILE = "incogito-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				LIBRARY_SEARCH_PATHS = (
@@ -1556,6 +1612,7 @@
 				);
 				PRODUCT_NAME = JavaZone;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Distribution;
@@ -1581,46 +1638,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = incogito_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "incogito-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Classes/FlurryLib\"",
-				);
-				OTHER_CFLAGS = (
-					"-DLOG_FUNCTION_TIMES=1",
-					"-DNOW_AND_NEXT_USE_TEST_DATE=1",
-				);
-				PRODUCT_NAME = JavaZone;
-				SDKROOT = iphoneos;
-			};
-			name = "Debug with trace logging";
-		};
-		838E475C12BA2AE20075FC92 /* Ad Hoc (debug) */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				OTHER_CFLAGS = "-DNOW_AND_NEXT_USE_TEST_DATE=1";
-				PREBINDING = NO;
-				SDKROOT = iphoneos4.0;
-			};
-			name = "Ad Hoc (debug)";
-		};
-		838E475D12BA2AE20075FC92 /* Ad Hoc (debug) */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chris Searle";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1634,14 +1652,14 @@
 					"\"$(SRCROOT)/Classes/FlurryLib\"",
 				);
 				OTHER_CFLAGS = (
-					"-DUSE_DUMMY_LABELS=1",
+					"-DLOG_FUNCTION_TIMES=1",
 					"-DNOW_AND_NEXT_USE_TEST_DATE=1",
 				);
 				PRODUCT_NAME = JavaZone;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C4CB931B-BA4B-476C-A328-D18151CF89B7";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = "Ad Hoc (debug)";
+			name = "Debug with trace logging";
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1678,7 +1696,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
-				838E475D12BA2AE20075FC92 /* Ad Hoc (debug) */,
 				8304D57212149F2B006DF31F /* Debug no extra code */,
 				838660C811F2EA0D0017058B /* Debug with trace logging */,
 				1D6058950D05DD3E006BFB54 /* Release */,
@@ -1691,7 +1708,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
-				838E475C12BA2AE20075FC92 /* Ad Hoc (debug) */,
 				8304D57112149F2B006DF31F /* Debug no extra code */,
 				838660C711F2EA0D0017058B /* Debug with trace logging */,
 				C01FCF5008A954540054247B /* Release */,

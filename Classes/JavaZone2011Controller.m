@@ -10,9 +10,12 @@
 @implementation JavaZone2011Controller
 
 @synthesize movie;
+@synthesize details;
 
 - (void)viewWillAppear:(BOOL)animated {
 	[FlurryAPI logEvent:@"Showing 2011"];
+
+	[details setBackgroundColor:[UIColor clearColor]];
 }
 
 
@@ -40,6 +43,8 @@
 		[[NSUserDefaults standardUserDefaults] synchronize];
 	
 		[self playVideo:self];
+	} else {
+		[details setAlpha:1.0];
 	}
 }
 
@@ -77,6 +82,11 @@
 	 removeObserver: self
 	 name: MPMoviePlayerPlaybackDidFinishNotification
 	 object: nil];
+	
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:3.0];
+	[details setAlpha:1.0];
+	[UIView commitAnimations];
 }
 
 @end

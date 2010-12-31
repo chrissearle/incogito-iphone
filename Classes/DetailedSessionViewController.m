@@ -14,7 +14,6 @@
 
 @implementation DetailedSessionViewController
 
-@synthesize session;
 @synthesize sessionLocation;
 @synthesize details;
 @synthesize level;
@@ -44,6 +43,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	
 	[FlurryAPI logEvent:@"Showing detail view" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
 															   [session title],
 															   @"Title",
