@@ -6,6 +6,7 @@
 
 #import "FeedbackController.h"
 #import "FlurryAPI.h"
+#import "JZSession.h"
 
 @implementation FeedbackController
 
