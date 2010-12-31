@@ -22,7 +22,6 @@
 		830B12AA11EDC9EC004A9B25 /* 11-clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B4B11ED981200590A7A /* 11-clock.png */; };
 		830B12AC11EDCA05004A9B25 /* 83-calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424BA811ED981300590A7A /* 83-calendar.png */; };
 		8317CED711F038BB00DE7415 /* 28-star.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B7111ED981300590A7A /* 28-star.png */; };
-		831AE80811FF5254008CB371 /* RefreshCommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831AE80711FF5254008CB371 /* RefreshCommonViewController.m */; };
 		831F532B120BFFB60027A8A4 /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B6811ED981300590A7A /* 19-gear.png */; };
 		831F5332120BFFC40027A8A4 /* Settings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 831F5331120BFFC40027A8A4 /* Settings.xib */; };
 		831F5335120BFFD20027A8A4 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831F5334120BFFD20027A8A4 /* SettingsViewController.m */; };
@@ -117,6 +116,9 @@
 		83741769120F3AC700B816A2 /* 74-location.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B9F11ED981300590A7A /* 74-location.png */; };
 		837C2CF2124DE0D500F09611 /* SessionDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 837C2CF1124DE0D500F09611 /* SessionDownloader.m */; };
 		837C2CF9124DE2A100F09611 /* SessionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 837C2CF8124DE2A100F09611 /* SessionParser.m */; };
+		8381B19912CE220C008760FF /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8381B19812CE220C008760FF /* MBProgressHUD.m */; };
+		8381B22A12CE2A8E008760FF /* SessionProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 8381B22912CE2A8E008760FF /* SessionProperties.m */; };
+		8381B2A412CE31E8008760FF /* 117-todo.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B5311ED981200590A7A /* 117-todo.png */; };
 		838D658412732B8A009D50AF /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 838D658212732B8A009D50AF /* Icon-72.png */; };
 		838D658512732B8A009D50AF /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 838D658312732B8A009D50AF /* Icon@2x.png */; };
 		838D65AF12733322009D50AF /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 838D65AE12733322009D50AF /* MainWindow-iPad.xib */; };
@@ -175,8 +177,6 @@
 		830859CB120F2FF300F74041 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		830859CF120F300A00F74041 /* Map.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Map.xib; sourceTree = "<group>"; };
 		830859E1120F30DE00F74041 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		831AE80611FF5254008CB371 /* RefreshCommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshCommonViewController.h; sourceTree = "<group>"; };
-		831AE80711FF5254008CB371 /* RefreshCommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshCommonViewController.m; sourceTree = "<group>"; };
 		831F5331120BFFC40027A8A4 /* Settings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Settings.xib; sourceTree = "<group>"; };
 		831F5333120BFFD20027A8A4 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		831F5334120BFFD20027A8A4 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
@@ -472,6 +472,10 @@
 		837C2CF1124DE0D500F09611 /* SessionDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionDownloader.m; sourceTree = "<group>"; };
 		837C2CF7124DE2A100F09611 /* SessionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionParser.h; sourceTree = "<group>"; };
 		837C2CF8124DE2A100F09611 /* SessionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionParser.m; sourceTree = "<group>"; };
+		8381B19712CE220C008760FF /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		8381B19812CE220C008760FF /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		8381B22812CE2A8E008760FF /* SessionProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionProperties.h; sourceTree = "<group>"; };
+		8381B22912CE2A8E008760FF /* SessionProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionProperties.m; sourceTree = "<group>"; };
 		838D658212732B8A009D50AF /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		838D658312732B8A009D50AF /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		838D65AE12733322009D50AF /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "MainWindow-iPad.xib"; sourceTree = "<group>"; };
@@ -558,6 +562,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8381B19112CE21DD008760FF /* HUD */,
 				83E44EB61243EF2700F0C291 /* FlurryLib */,
 				83281E3012437D0000792990 /* ShareKit */,
 				83F2D54411EBB56B0043A75E /* REST */,
@@ -585,8 +590,6 @@
 				83424E8F11EDB68000590A7A /* NowAndNextViewController.m */,
 				83424B2C11ED88E700590A7A /* OverviewViewController.h */,
 				83424B2D11ED88E700590A7A /* OverviewViewController.m */,
-				831AE80611FF5254008CB371 /* RefreshCommonViewController.h */,
-				831AE80711FF5254008CB371 /* RefreshCommonViewController.m */,
 				83D6BCF711EEF3A100FBC0FE /* SectionInitializer.h */,
 				83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */,
 				83D6BDC011EF051700FBC0FE /* SectionSessionHandler.h */,
@@ -1180,6 +1183,15 @@
 			path = icons;
 			sourceTree = "<group>";
 		};
+		8381B19112CE21DD008760FF /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				8381B19712CE220C008760FF /* MBProgressHUD.h */,
+				8381B19812CE220C008760FF /* MBProgressHUD.m */,
+			);
+			path = HUD;
+			sourceTree = "<group>";
+		};
 		83827C1A11F8797600A74CC1 /* Windows */ = {
 			isa = PBXGroup;
 			children = (
@@ -1282,6 +1294,8 @@
 				837C2CF1124DE0D500F09611 /* SessionDownloader.m */,
 				837C2CF7124DE2A100F09611 /* SessionParser.h */,
 				837C2CF8124DE2A100F09611 /* SessionParser.m */,
+				8381B22812CE2A8E008760FF /* SessionProperties.h */,
+				8381B22912CE2A8E008760FF /* SessionProperties.m */,
 			);
 			path = REST;
 			sourceTree = "<group>";
@@ -1381,6 +1395,7 @@
 				838D661C12733E7D009D50AF /* JavaZone2011-iPad.xib in Resources */,
 				838D664212734242009D50AF /* Feedback-iPad.xib in Resources */,
 				83A5A81512CDF0A7009FE6A7 /* jz11_you_are_invited.mp4 in Resources */,
+				8381B2A412CE31E8008760FF /* 117-todo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1413,7 +1428,6 @@
 				83D6BFF311EF3A7B00FBC0FE /* UserSession.m in Sources */,
 				83D6C07311EF922500FBC0FE /* DetailedSessionViewController.m in Sources */,
 				83D1762511F18C3300D89884 /* SessionCommonViewController.m in Sources */,
-				831AE80811FF5254008CB371 /* RefreshCommonViewController.m in Sources */,
 				83576C7F120BF48A008CC97E /* ClubZoneViewController.m in Sources */,
 				831F5335120BFFD20027A8A4 /* SettingsViewController.m in Sources */,
 				830859CC120F2FF300F74041 /* ClubzoneMapAnnotation.m in Sources */,
@@ -1485,6 +1499,8 @@
 				837C2CF9124DE2A100F09611 /* SessionParser.m in Sources */,
 				834B3DF6126C913600D66D41 /* SessionTableViewCell.m in Sources */,
 				83A5A85712CDF7F2009FE6A7 /* AbstractFeedbackController.m in Sources */,
+				8381B19912CE220C008760FF /* MBProgressHUD.m in Sources */,
+				8381B22A12CE2A8E008760FF /* SessionProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

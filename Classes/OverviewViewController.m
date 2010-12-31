@@ -7,7 +7,6 @@
 #import "OverviewViewController.h"
 #import "IncogitoAppDelegate.h"
 #import "SectionSessionHandler.h"
-#import "RefreshCommonViewController.h"
 #import "FlurryAPI.h"
 
 @implementation OverviewViewController
@@ -49,10 +48,7 @@
 	NSUInteger count = [handler getActiveSessionCount];
 	
 	if (count == 0) {
-		RefreshCommonViewController *controller = [[RefreshCommonViewController alloc] initWithNibName:@"Update" bundle:[NSBundle mainBundle]];
-		[controller setFirstTimeTextVisibility:YES];
-		[self.tabBarController presentModalViewController:controller animated:YES];
-		[controller release];
+		[self sync];
 	}
 }
 

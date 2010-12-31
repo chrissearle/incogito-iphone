@@ -13,10 +13,14 @@
 #import "JZLabel.h"
 #import "FlurryAPI.h"
 
+#import <unistd.h>
+
 @implementation JavazoneSessionsRetriever
 
 @synthesize managedObjectContext;
-@synthesize refreshCommonViewController;
+@synthesize urlString;
+
+@synthesize HUD;
 @synthesize labelUrls;
 @synthesize levelUrls;
 
@@ -77,7 +81,9 @@
 	[FlurryAPI endTimedEvent:@"Clearing" withParameters:nil];
 }
 
-- (NSUInteger)retrieveSessions:(NSString *)urlString {
+- (NSUInteger)retrieveSessions:(id)sender {
+	HUD.labelText = @"Downloading";
+
 	// Download
 	SessionDownloader *downloader = [[[SessionDownloader alloc] initWithUrl:[NSURL URLWithString:urlString]] retain];
 	
@@ -88,8 +94,6 @@
 	if (responseData == nil) {
 		return 0;
 	}
-	
-	[refreshCommonViewController performSelectorOnMainThread:@selector(showProgressBar:) withObject:nil waitUntilDone:YES];
 	
 	// Parse
 	SessionParser *parser = [[[SessionParser alloc] initWithData:responseData] retain];
@@ -108,6 +112,9 @@
 	// Store
 	[FlurryAPI logEvent:@"Storing" timed:YES];
 
+	HUD.mode = MBProgressHUDModeDeterminate;
+	HUD.labelText = @"Storing";
+	
 	int counter = 0;
 	
 	for (NSDictionary *session in sessions)
@@ -116,10 +123,13 @@
 		
 		float progress = (1.0 / [sessions count]) * counter;
 		
-		[refreshCommonViewController performSelectorOnMainThread:@selector(setProgressTo:) withObject:[NSNumber numberWithFloat:progress] waitUntilDone:YES];
-		
+		HUD.progress = progress;
+
 		[self addSession:session];
 	}
+	
+	HUD.mode = MBProgressHUDModeIndeterminate;
+	HUD.labelText = @"Retrieving icons";
 	
 	for (NSString *name in self.levelUrls) {
 		[self downloadIconFromUrl:[self.levelUrls objectForKey:name] withName:name toFolder:self.levelsPath];
@@ -133,6 +143,12 @@
 	
 	[FlurryAPI endTimedEvent:@"Storing" withParameters:nil];
 
+	HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"117-Todo.png"]] autorelease];
+	HUD.mode = MBProgressHUDModeCustomView;
+	HUD.labelText = @"Complete";
+	HUD.detailsLabelText = [[NSString alloc] initWithFormat:@"%d sessions available.", [sessions count]];
+	sleep(2);
+	
 	return [sessions count];
 }
 
@@ -384,7 +400,5 @@
 	
 	[image release];
 }
-
-
 
 @end
