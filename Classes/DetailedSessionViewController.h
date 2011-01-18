@@ -41,4 +41,7 @@
 
 - (void)showExtras:(id)sender;
 
+- (void)shareText:(id)sender;
+- (void)shareLink:(id)sender;
+
 @end

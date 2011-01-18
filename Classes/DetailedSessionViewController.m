@@ -11,6 +11,7 @@
 #import "IncogitoAppDelegate.h"
 #import "ExtrasController.h"
 #import "FlurryAPI.h"
+#import "SHK.h"
 
 @implementation DetailedSessionViewController
 
@@ -99,9 +100,14 @@
 	
 	self.title = [session title];
 	
-	UIBarButtonItem *button = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showExtras:)] autorelease];
+	if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+		UIBarButtonItem *button = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showExtras:)] autorelease];
 	
-	self.navigationItem.rightBarButtonItem = button;
+		self.navigationItem.rightBarButtonItem = button;
+	} else {
+		self.navigationItem.rightBarButtonItem = nil;
+	}
+
 }
 
 - (void)reloadSession {
@@ -217,5 +223,30 @@
 	[[self navigationController] pushViewController:controller animated:YES];
 	[controller release], controller = nil;
 }
+
+- (void)shareText:(id)sender {
+	NSString *text = [NSString stringWithFormat:@"#JavaZone - %@", [session title]];
+	
+	SHKItem *item = [SHKItem text:text];
+	
+	// Get the ShareKit action sheet
+	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+	
+	// Display the action sheet
+	[actionSheet showInView:[self view]];
+}
+
+- (void)shareLink:(id)sender {
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://javazone.no/incogito10/events/JavaZone%202010/sessions/%@", [session title]]];
+	
+	SHKItem *item = [SHKItem URL:url title:[session title]];
+
+	// Get the ShareKit action sheet
+	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+	
+	// Display the action sheet
+	[actionSheet showInView:[self view]];
+}
+
 
 @end

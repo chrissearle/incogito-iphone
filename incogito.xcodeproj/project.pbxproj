@@ -126,7 +126,6 @@
 		838D65D912733A42009D50AF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 838D65D712733A42009D50AF /* Default@2x.png */; };
 		838D65FF12733C5C009D50AF /* DetailedSessionView-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 838D65FE12733C5C009D50AF /* DetailedSessionView-iPad.xib */; };
 		838D661C12733E7D009D50AF /* JavaZone2011-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 838D661B12733E7D009D50AF /* JavaZone2011-iPad.xib */; };
-		838D664212734242009D50AF /* Feedback-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 838D664112734242009D50AF /* Feedback-iPad.xib */; };
 		8393654811F34EA700BBE43A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8393654711F34EA700BBE43A /* Default.png */; };
 		8394723C11EB98500075C4C1 /* JavazoneSessionsRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */; };
 		8394726611EB98B10075C4C1 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394725B11EB98B10075C4C1 /* NSObject+SBJSON.m */; };
@@ -483,7 +482,6 @@
 		838D65D712733A42009D50AF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		838D65FE12733C5C009D50AF /* DetailedSessionView-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "DetailedSessionView-iPad.xib"; sourceTree = "<group>"; };
 		838D661B12733E7D009D50AF /* JavaZone2011-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "JavaZone2011-iPad.xib"; sourceTree = "<group>"; };
-		838D664112734242009D50AF /* Feedback-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "Feedback-iPad.xib"; sourceTree = "<group>"; };
 		8393654711F34EA700BBE43A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8394723A11EB98500075C4C1 /* JavazoneSessionsRetriever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavazoneSessionsRetriever.h; sourceTree = "<group>"; };
 		8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavazoneSessionsRetriever.m; sourceTree = "<group>"; };
@@ -1247,7 +1245,6 @@
 			children = (
 				838D65FE12733C5C009D50AF /* DetailedSessionView-iPad.xib */,
 				838D65AE12733322009D50AF /* MainWindow-iPad.xib */,
-				838D664112734242009D50AF /* Feedback-iPad.xib */,
 				838D661B12733E7D009D50AF /* JavaZone2011-iPad.xib */,
 			);
 			name = Windows;
@@ -1393,7 +1390,6 @@
 				838D65D912733A42009D50AF /* Default@2x.png in Resources */,
 				838D65FF12733C5C009D50AF /* DetailedSessionView-iPad.xib in Resources */,
 				838D661C12733E7D009D50AF /* JavaZone2011-iPad.xib in Resources */,
-				838D664212734242009D50AF /* Feedback-iPad.xib in Resources */,
 				83A5A81512CDF0A7009FE6A7 /* jz11_you_are_invited.mp4 in Resources */,
 				8381B2A412CE31E8008760FF /* 117-todo.png in Resources */,
 			);
