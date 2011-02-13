@@ -140,11 +140,9 @@
 
 - (void)send:(id) sender {
 	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"incogito" ofType:@"plist"];
-	NSDictionary* plistDict = [[[NSDictionary alloc] initWithContentsOfFile:filePath] retain];
+	NSDictionary* plistDict = [[[NSDictionary alloc] initWithContentsOfFile:filePath] autorelease];
 	
 	NSString *url = [plistDict objectForKey:@"FeedbackUrl"];
-	
-	[plistDict release];
 	
 	int rating = 0;
 	

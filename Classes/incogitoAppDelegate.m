@@ -15,6 +15,7 @@
 #import "DetailedSessionViewController.h"
 #import "SettingsViewController.h"
 #import "FlurryAPI.h"
+#import "TabInitializer.h"
 
 @implementation IncogitoAppDelegate
 
@@ -52,6 +53,8 @@ void uncaughtExceptionHandler(NSException *exception) {
 	NSLog(@"%@ Called sectionInitializer", [[[NSDate alloc] init] autorelease]);
 #endif
 	
+	TabInitializer *tabInitializer = [[[TabInitializer alloc] initWithControllers:rootController.viewControllers] autorelease];
+	[rootController setViewControllers:[tabInitializer validControllers] animated:NO];
 	
 	[window addSubview:rootController.view];
     [window makeKeyAndVisible];

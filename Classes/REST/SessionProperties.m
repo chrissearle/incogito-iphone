@@ -11,11 +11,10 @@
 
 - (NSString *)getSessionUrl {
 	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"incogito" ofType:@"plist"];
-	NSDictionary* plistDict = [[[NSDictionary alloc] initWithContentsOfFile:filePath] retain];
+	NSDictionary* plistDict = [[[NSDictionary alloc] initWithContentsOfFile:filePath] autorelease];
 	
 	NSString *urlString = [plistDict objectForKey:@"SessionUrl"];
 	NSLog(@"Session URL %@", urlString);
-	[plistDict release];
 	
 	return urlString;
 }	

@@ -21,7 +21,7 @@
     [super viewDidLoad];
 	
 	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"incogito" ofType:@"plist"];
-	NSDictionary* plistDict = [[[NSDictionary alloc] initWithContentsOfFile:filePath] retain];
+	NSDictionary* plistDict = [[[NSDictionary alloc] initWithContentsOfFile:filePath] autorelease];
 	
 	NSArray *pins = [plistDict objectForKey:@"ClubZone"];
 	
@@ -44,8 +44,6 @@
 		
 		[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:coordinate andTitle:title andSubtitle:subtitle andPinIcon:pinIcon] autorelease]];
 	}
-	
-	[plistDict release];
 	
 	mapView.showsUserLocation = YES;
 	
