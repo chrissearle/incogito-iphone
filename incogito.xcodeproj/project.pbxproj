@@ -25,6 +25,7 @@
 		831F532B120BFFB60027A8A4 /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B6811ED981300590A7A /* 19-gear.png */; };
 		831F5332120BFFC40027A8A4 /* Settings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 831F5331120BFFC40027A8A4 /* Settings.xib */; };
 		831F5335120BFFD20027A8A4 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831F5334120BFFD20027A8A4 /* SettingsViewController.m */; };
+		8320A3C61307EF90000B34E4 /* TabInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8320A3C51307EF90000B34E4 /* TabInitializer.m */; };
 		83265D0A1248B1C2002A8333 /* Feedback.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83265D091248B1C2002A8333 /* Feedback.xib */; };
 		83265D101248B363002A8333 /* FeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83265D0F1248B363002A8333 /* FeedbackController.m */; };
 		83281ECD12437D0000792990 /* SHKCustomFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83281E3512437D0000792990 /* SHKCustomFormController.m */; };
@@ -126,6 +127,7 @@
 		838D65D912733A42009D50AF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 838D65D712733A42009D50AF /* Default@2x.png */; };
 		838D65FF12733C5C009D50AF /* DetailedSessionView-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 838D65FE12733C5C009D50AF /* DetailedSessionView-iPad.xib */; };
 		838D661C12733E7D009D50AF /* JavaZone2011-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 838D661B12733E7D009D50AF /* JavaZone2011-iPad.xib */; };
+		838D664212734242009D50AF /* Feedback-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 838D664112734242009D50AF /* Feedback-iPad.xib */; };
 		8393654811F34EA700BBE43A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8393654711F34EA700BBE43A /* Default.png */; };
 		8394723C11EB98500075C4C1 /* JavazoneSessionsRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */; };
 		8394726611EB98B10075C4C1 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394725B11EB98B10075C4C1 /* NSObject+SBJSON.m */; };
@@ -179,6 +181,8 @@
 		831F5331120BFFC40027A8A4 /* Settings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Settings.xib; sourceTree = "<group>"; };
 		831F5333120BFFD20027A8A4 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		831F5334120BFFD20027A8A4 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		8320A3C41307EF90000B34E4 /* TabInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabInitializer.h; sourceTree = "<group>"; };
+		8320A3C51307EF90000B34E4 /* TabInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabInitializer.m; sourceTree = "<group>"; };
 		83265D091248B1C2002A8333 /* Feedback.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Feedback.xib; sourceTree = "<group>"; };
 		83265D0E1248B363002A8333 /* FeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackController.h; sourceTree = "<group>"; };
 		83265D0F1248B363002A8333 /* FeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackController.m; sourceTree = "<group>"; };
@@ -482,6 +486,7 @@
 		838D65D712733A42009D50AF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		838D65FE12733C5C009D50AF /* DetailedSessionView-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "DetailedSessionView-iPad.xib"; sourceTree = "<group>"; };
 		838D661B12733E7D009D50AF /* JavaZone2011-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "JavaZone2011-iPad.xib"; sourceTree = "<group>"; };
+		838D664112734242009D50AF /* Feedback-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "Feedback-iPad.xib"; sourceTree = "<group>"; };
 		8393654711F34EA700BBE43A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8394723A11EB98500075C4C1 /* JavazoneSessionsRetriever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavazoneSessionsRetriever.h; sourceTree = "<group>"; };
 		8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavazoneSessionsRetriever.m; sourceTree = "<group>"; };
@@ -560,6 +565,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8320A3C31307EF5A000B34E4 /* Initializers */,
 				8381B19112CE21DD008760FF /* HUD */,
 				83E44EB61243EF2700F0C291 /* FlurryLib */,
 				83281E3012437D0000792990 /* ShareKit */,
@@ -588,8 +594,6 @@
 				83424E8F11EDB68000590A7A /* NowAndNextViewController.m */,
 				83424B2C11ED88E700590A7A /* OverviewViewController.h */,
 				83424B2D11ED88E700590A7A /* OverviewViewController.m */,
-				83D6BCF711EEF3A100FBC0FE /* SectionInitializer.h */,
-				83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */,
 				83D6BDC011EF051700FBC0FE /* SectionSessionHandler.h */,
 				83D6BDC111EF051700FBC0FE /* SectionSessionHandler.m */,
 				83D1762311F18C3300D89884 /* SessionCommonViewController.h */,
@@ -668,6 +672,17 @@
 				83E94C3812142C9B00596D30 /* all.png */,
 			);
 			path = labels;
+			sourceTree = "<group>";
+		};
+		8320A3C31307EF5A000B34E4 /* Initializers */ = {
+			isa = PBXGroup;
+			children = (
+				83D6BCF711EEF3A100FBC0FE /* SectionInitializer.h */,
+				83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */,
+				8320A3C41307EF90000B34E4 /* TabInitializer.h */,
+				8320A3C51307EF90000B34E4 /* TabInitializer.m */,
+			);
+			path = Initializers;
 			sourceTree = "<group>";
 		};
 		83281E3012437D0000792990 /* ShareKit */ = {
@@ -1245,6 +1260,7 @@
 			children = (
 				838D65FE12733C5C009D50AF /* DetailedSessionView-iPad.xib */,
 				838D65AE12733322009D50AF /* MainWindow-iPad.xib */,
+				838D664112734242009D50AF /* Feedback-iPad.xib */,
 				838D661B12733E7D009D50AF /* JavaZone2011-iPad.xib */,
 			);
 			name = Windows;
@@ -1390,6 +1406,7 @@
 				838D65D912733A42009D50AF /* Default@2x.png in Resources */,
 				838D65FF12733C5C009D50AF /* DetailedSessionView-iPad.xib in Resources */,
 				838D661C12733E7D009D50AF /* JavaZone2011-iPad.xib in Resources */,
+				838D664212734242009D50AF /* Feedback-iPad.xib in Resources */,
 				83A5A81512CDF0A7009FE6A7 /* jz11_you_are_invited.mp4 in Resources */,
 				8381B2A412CE31E8008760FF /* 117-todo.png in Resources */,
 			);
@@ -1497,6 +1514,7 @@
 				83A5A85712CDF7F2009FE6A7 /* AbstractFeedbackController.m in Sources */,
 				8381B19912CE220C008760FF /* MBProgressHUD.m in Sources */,
 				8381B22A12CE2A8E008760FF /* SessionProperties.m in Sources */,
+				8320A3C61307EF90000B34E4 /* TabInitializer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1520,10 +1538,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/FlurryLib\"",
 				);
-				OTHER_CFLAGS = (
-					"-DUSE_DUMMY_LABELS=1",
-					"-DNOW_AND_NEXT_USE_TEST_DATE=1",
-				);
+				OTHER_CFLAGS = "-DHIDE_NOWANDNEXT=1";
 				PRODUCT_NAME = JavaZone;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

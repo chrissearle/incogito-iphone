@@ -85,22 +85,18 @@
 	HUD.labelText = @"Downloading";
 
 	// Download
-	SessionDownloader *downloader = [[[SessionDownloader alloc] initWithUrl:[NSURL URLWithString:urlString]] retain];
+	SessionDownloader *downloader = [[[SessionDownloader alloc] initWithUrl:[NSURL URLWithString:urlString]] autorelease];
 	
 	NSData *responseData = [downloader sessionData];
-	
-	[downloader release];
 	
 	if (responseData == nil) {
 		return 0;
 	}
 	
 	// Parse
-	SessionParser *parser = [[[SessionParser alloc] initWithData:responseData] retain];
+	SessionParser *parser = [[[SessionParser alloc] initWithData:responseData] autorelease];
 	
 	NSArray *sessions = [parser sessions];
-	
-	[parser release];
 
 	if (sessions == nil) {
 		return 0;
