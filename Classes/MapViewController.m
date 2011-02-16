@@ -8,6 +8,7 @@
 
 #import "ClubzoneMapAnnotation.h"
 #import "FlurryAPI.h"
+#import "Preferences.h"
 
 @implementation MapViewController
 
@@ -19,11 +20,8 @@
 	followingLocation = NO;
 	
     [super viewDidLoad];
-	
-	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"incogito" ofType:@"plist"];
-	NSDictionary* plistDict = [[[NSDictionary alloc] initWithContentsOfFile:filePath] autorelease];
-	
-	NSArray *pins = [plistDict objectForKey:@"ClubZone"];
+
+	NSArray *pins = [Preferences getPreferenceAsArray:@"ClubZone"];
 	
 	for (NSDictionary *pin in pins) {
 		CLLocationCoordinate2D coordinate = {

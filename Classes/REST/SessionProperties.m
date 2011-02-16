@@ -5,15 +5,13 @@
 //
 
 #import "SessionProperties.h"
-
+#import "Preferences.h"
 
 @implementation SessionProperties
 
 - (NSString *)getSessionUrl {
-	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"incogito" ofType:@"plist"];
-	NSDictionary* plistDict = [[[NSDictionary alloc] initWithContentsOfFile:filePath] autorelease];
-	
-	NSString *urlString = [plistDict objectForKey:@"SessionUrl"];
+	NSString *urlString = [Preferences getPreferenceAsString:@"SessionUrl"];
+
 	NSLog(@"Session URL %@", urlString);
 	
 	return urlString;

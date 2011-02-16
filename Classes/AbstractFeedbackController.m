@@ -7,6 +7,7 @@
 #import "AbstractFeedbackController.h"
 #import "FlurryAPI.h"
 #import "JZSession.h"
+#import "Preferences.h"
 
 @implementation AbstractFeedbackController
 
@@ -139,10 +140,7 @@
 
 
 - (void)send:(id) sender {
-	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"incogito" ofType:@"plist"];
-	NSDictionary* plistDict = [[[NSDictionary alloc] initWithContentsOfFile:filePath] autorelease];
-	
-	NSString *url = [plistDict objectForKey:@"FeedbackUrl"];
+	NSString *url = [Preferences getPreferenceAsString:@"FeedbackUrl"];
 	
 	int rating = 0;
 	

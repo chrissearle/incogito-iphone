@@ -6,11 +6,13 @@
 
 #import "JavaZone2011Controller.h"
 #import "FlurryAPI.h"
+#import "Preferences.h"
 
 @implementation JavaZone2011Controller
 
 @synthesize movie;
 @synthesize details;
+@synthesize cfpButton;
 
 - (void)viewWillAppear:(BOOL)animated {
 	[FlurryAPI logEvent:@"Showing 2011"];
@@ -38,6 +40,14 @@
 }
 
 - (void)viewDidLoad {
+	NSDate *cfpDeadline = [Preferences getPreferenceAsDate:@"CFPDate"];
+	
+	NSLog(@"Deadline seen: %@", cfpDeadline);
+	
+	if ([cfpDeadline compare:[NSDate date]] == NSOrderedAscending) {
+		[cfpButton setHidden:YES];
+	}
+	
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"seenVideo"] == NO) {
 		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"seenVideo"];
 		[[NSUserDefaults standardUserDefaults] synchronize];
@@ -87,6 +97,12 @@
 	[UIView setAnimationDuration:3.0];
 	[details setAlpha:1.0];
 	[UIView commitAnimations];
+}
+
+- (void)openCfp:(id)sender {
+	[FlurryAPI logEvent:@"Going to CFP"];
+
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[Preferences getPreferenceAsString:@"CFPUrl"]]];
 }
 
 @end

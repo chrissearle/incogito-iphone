@@ -11,12 +11,16 @@
 	MPMoviePlayerViewController *movie;
 	
 	IBOutlet UIView *details;
+	
+	IBOutlet UIButton *cfpButton;
 }
 
 @property (nonatomic,retain) MPMoviePlayerViewController *movie;
 @property (nonatomic,retain) UIView *details;
+@property (nonatomic,retain) UIButton *cfpButton;
 
 - (void)playVideo:(id)sender;
 - (void)endVideo:(NSNotification*) aNotification;
+- (void)openCfp:(id)sender;
 
 @end
