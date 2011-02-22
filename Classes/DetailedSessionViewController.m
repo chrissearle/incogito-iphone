@@ -9,10 +9,12 @@
 #import "JZSessionBio.h"
 #import "SectionSessionHandler.h"
 #import "IncogitoAppDelegate.h"
+#import "ExtrasController.h"
+#import "FlurryAPI.h"
+#import "SHK.h"
 
 @implementation DetailedSessionViewController
 
-@synthesize session;
 @synthesize sessionLocation;
 @synthesize details;
 @synthesize level;
@@ -22,10 +24,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+	
 	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
 	handler = [appDelegate sectionSessionHandler];
-
+	
 	CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
 	const CGFloat myColor[] = {0.67, 0.67, 0.67, 1.0};
 	CGColorRef colour = CGColorCreate(rgb, myColor);
@@ -39,6 +41,17 @@
 	CGColorRelease(colour);
 	
 	[self displaySession];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	
+	[FlurryAPI logEvent:@"Showing detail view" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+															   [session title],
+															   @"Title",
+															   [session jzId],
+															   @"ID", 
+															   nil]];
 }
 
 - (void)displaySession {
@@ -65,7 +78,15 @@
 	
 	[level setText:[session level]];
 	
-	[levelImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [session level]]]];
+	NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+	
+	NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",[docDir stringByAppendingPathComponent:@"levelIcons"],[session level]];
+	
+	NSData *data1 = [NSData dataWithContentsOfFile:pngFilePath];
+	
+	UIImage *imageFile = [UIImage imageWithData:data1];
+	
+	[levelImage setImage:imageFile];
 	
 	[startFormatter release];
 	[endFormatter release];
@@ -79,11 +100,19 @@
 	
 	self.title = [session title];
 	
+	if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+		UIBarButtonItem *button = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showExtras:)] autorelease];
+	
+		self.navigationItem.rightBarButtonItem = button;
+	} else {
+		self.navigationItem.rightBarButtonItem = nil;
+	}
+
 }
 
 - (void)reloadSession {
 	session = [handler getSessionForJZId:[session jzId]];
-
+	
 	[self displaySession];
 }
 
@@ -98,7 +127,7 @@
 		[handler setFavouriteForSession:session withBoolean:NO];
 	}
 	
-	[appDelegate refreshFavouriteViewData];
+	[appDelegate refreshViewData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -138,22 +167,29 @@
 	if (nil == labels || [labels count] == 0) {
 		return @"";
 	} else {
-		
 		NSMutableString *result = [[NSMutableString alloc] init];
 		
 		[result appendString:@"<h2>Labels</h2>"];
-
+		
 		[result appendString:@"<ul class=\"labels\">"];
 		
-		for (JZLabel *label in labels) {
-			[result appendFormat:@"<li class=\"label-%@\">%@</li>", [label jzId], [label title]];
+		NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+
+		NSSortDescriptor * titleDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES] autorelease];
+		
+		NSArray * descriptors = [NSArray arrayWithObjects:titleDescriptor, nil];
+		
+		for (JZLabel *label in [[labels allObjects] sortedArrayUsingDescriptors:descriptors]) {
+			NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",[docDir stringByAppendingPathComponent:@"labelIcons"],[label jzId]];
+			
+			[result appendFormat:@"<li style=\"list-style-image: url('file://%@')\">%@</li>", pngFilePath, [label title]];
 		}
 		
 		[result appendString:@"</ul>"];
 		
 		NSString *labelsSection = [NSString stringWithString:result];
 		[result release];
-
+		
 		return labelsSection;
 	}
 }
@@ -179,5 +215,38 @@
 	
 	return page;
 }
+
+- (void) showExtras:(id)sender {
+	ExtrasController *controller = [[ExtrasController alloc] initWithNibName:@"DetailedViewExtras" bundle:[NSBundle mainBundle]];
+	controller.session = session;
+	
+	[[self navigationController] pushViewController:controller animated:YES];
+	[controller release], controller = nil;
+}
+
+- (void)shareText:(id)sender {
+	NSString *text = [NSString stringWithFormat:@"#JavaZone - %@", [session title]];
+	
+	SHKItem *item = [SHKItem text:text];
+	
+	// Get the ShareKit action sheet
+	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+	
+	// Display the action sheet
+	[actionSheet showInView:[self view]];
+}
+
+- (void)shareLink:(id)sender {
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://javazone.no/incogito10/events/JavaZone%202010/sessions/%@", [session title]]];
+	
+	SHKItem *item = [SHKItem URL:url title:[session title]];
+
+	// Get the ShareKit action sheet
+	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+	
+	// Display the action sheet
+	[actionSheet showInView:[self view]];
+}
+
 
 @end

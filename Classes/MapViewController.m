@@ -7,6 +7,8 @@
 #import "MapViewController.h"
 
 #import "ClubzoneMapAnnotation.h"
+#import "FlurryAPI.h"
+#import "Preferences.h"
 
 @implementation MapViewController
 
@@ -18,11 +20,8 @@
 	followingLocation = NO;
 	
     [super viewDidLoad];
-	
-	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"incogito" ofType:@"plist"];
-	NSDictionary* plistDict = [[NSDictionary alloc] initWithContentsOfFile:filePath];
-	
-	NSArray *pins = [plistDict objectForKey:@"ClubZone"];
+
+	NSArray *pins = [Preferences getPreferenceAsArray:@"ClubZone"];
 	
 	for (NSDictionary *pin in pins) {
 		CLLocationCoordinate2D coordinate = {
@@ -32,13 +31,17 @@
 		
 		NSString *title = [[[NSString alloc] initWithString:[pin objectForKey:@"Title"]] autorelease];
 		NSString *subtitle = [[[NSString alloc] initWithString:[pin objectForKey:@"Subtitle"]] autorelease];
+
+		NSString *pinIcon;
 		
-		NSLog(@"Adding pin at %f, %f : %@ - %@", coordinate.latitude, coordinate.longitude, title, subtitle);
+		if ([[pin allKeys] containsObject:@"Pin"]) {
+			pinIcon = [[[NSString alloc] initWithString:[pin objectForKey:@"Pin"]] autorelease];
+		} else {
+			pinIcon = nil;
+		}
 		
-		[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:coordinate andTitle:title andSubtitle:subtitle] autorelease]];
+		[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:coordinate andTitle:title andSubtitle:subtitle andPinIcon:pinIcon] autorelease]];
 	}
-	
-	[plistDict release];
 	
 	mapView.showsUserLocation = YES;
 	
@@ -48,6 +51,10 @@
 								   context:NULL];
 	
 	[self goToDefaultLocationAndZoom];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[FlurryAPI logEvent:@"Showing Map"];
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath  
@@ -75,6 +82,15 @@
 		pinView.canShowCallout = YES;
 	} else {
 		pinView.annotation = annotation;
+	}
+	
+	if ([annotation isKindOfClass:[ClubzoneMapAnnotation class]]) {
+		ClubzoneMapAnnotation *czAnnotation = (ClubzoneMapAnnotation *)annotation;
+		
+		if (czAnnotation.pin != nil) {
+			UIImageView *leftIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[czAnnotation pin]]];
+			pinView.leftCalloutAccessoryView = leftIconView;
+		}
 	}
 	
 	return pinView;
@@ -134,7 +150,7 @@
 
 - (IBAction)typeSegmentSelected:(id)sender {
 	UISegmentedControl* segCtl = sender;
-
+	
 	if ([segCtl selectedSegmentIndex] == 0) {
 		[mapView setMapType:MKMapTypeStandard];
 	} else if ([segCtl selectedSegmentIndex] == 1) {
@@ -142,7 +158,7 @@
 	} else if ([segCtl selectedSegmentIndex] == 2) {
 		[mapView setMapType:MKMapTypeHybrid];
 	}
-		
+	
 }
 
 @end

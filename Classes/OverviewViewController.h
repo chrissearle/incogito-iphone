@@ -7,18 +7,16 @@
 #import <UIKit/UIKit.h>
 #import "SessionCommonViewController.h"
 
-@interface OverviewViewController : SessionCommonViewController <UITextFieldDelegate> {
-	IBOutlet UITextField *search;
-	
+@interface OverviewViewController : SessionCommonViewController <UISearchBarDelegate, UITextFieldDelegate> {
 	NSString *currentSearch;
-	
-	BOOL justCleared;
+	IBOutlet UISearchBar *sb;
 }
 
-@property (nonatomic, retain) UITextField *search;
 @property (nonatomic, retain) NSString *currentSearch;
+@property (nonatomic, retain) UISearchBar *sb;
 
 - (void) checkForData;
-- (IBAction) search:(id)sender;
+- (void) search:(NSString *)searchText;
+- (void)hideKeyboardWithSearchBar:(UISearchBar *)searchBar;
 
 @end

@@ -5,16 +5,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
 @class IncogitoAppDelegate;
 
-@interface SessionCommonViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface SessionCommonViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MBProgressHUDDelegate> {
 	IBOutlet UITableView			*tv;
 
 	NSArray			*sectionTitles;
 	NSDictionary	*sessions;
 
 	IncogitoAppDelegate	*appDelegate;
+	
+	MBProgressHUD *HUD;
 }
 
 @property (nonatomic, retain) NSArray		*sectionTitles;
@@ -27,5 +30,8 @@
 - (void)loadSessionData;
 - (NSString *)getSelectedSessionTitle:(NSInteger)section;
 
+- (IBAction)toggleFavourite:(id)sender;
+
+- (void)sync;
 
 @end

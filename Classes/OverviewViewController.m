@@ -7,12 +7,12 @@
 #import "OverviewViewController.h"
 #import "IncogitoAppDelegate.h"
 #import "SectionSessionHandler.h"
-#import "RefreshCommonViewController.h"
+#import "FlurryAPI.h"
 
 @implementation OverviewViewController
 
-@synthesize search;
 @synthesize currentSearch;
+@synthesize sb;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -23,7 +23,6 @@
 #endif
 
 	currentSearch = @"";
-	justCleared = NO;
 	
 	[self checkForData];
 	
@@ -39,16 +38,17 @@
 	
 }
 
+- (void) viewWillAppear:(BOOL)animated {
+	[FlurryAPI logEvent:@"Showing Overview"];
+}
+
 - (void) checkForData {
 	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
 	
 	NSUInteger count = [handler getActiveSessionCount];
 	
 	if (count == 0) {
-		RefreshCommonViewController *controller = [[RefreshCommonViewController alloc] initWithNibName:@"Update" bundle:[NSBundle mainBundle]];
-		[controller setFirstTimeTextVisibility:YES];
-		[self.tabBarController presentModalViewController:controller animated:YES];
-		[controller release];
+		[self sync];
 	}
 }
 
@@ -86,28 +86,60 @@
     [super dealloc];
 }
 
-- (IBAction) search:(id)sender {
-	[search resignFirstResponder];
-
-	self.currentSearch = [search text];
+- (void) search:(NSString *)searchText {
+	[FlurryAPI logEvent:@"Searched" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+													searchText,
+													@"Search Text",
+													nil]];
+	
+	self.currentSearch = searchText;
 	[self loadSessionData];
 	[tv reloadData];
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-	if (justCleared == YES) {
-		justCleared = NO;
-		
-		[self search:textField];
-		
-		return NO;
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+	if ([searchText length] == 0) {
+        [self performSelector:@selector(hideKeyboardWithSearchBar:) withObject:searchBar afterDelay:0];
 	}
-	return YES;
+	[self search:[searchBar text]];
 }
 
-- (BOOL)textFieldShouldClear:(UITextField *)textField {
-	justCleared = YES;
-	return YES;
+- (void)hideKeyboardWithSearchBar:(UISearchBar *)searchBar
+{   
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar resignFirstResponder];   
 }
 
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:YES animated:YES];
+	
+    tv.scrollEnabled = NO;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    searchBar.text = @"";
+    
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar resignFirstResponder];
+	
+    tv.scrollEnabled = YES;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+	[self search:[searchBar text]];
+	
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar resignFirstResponder];
+	
+    tv.scrollEnabled = YES;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [sb setShowsCancelButton:NO animated:YES];
+    [sb resignFirstResponder];
+	
+    tv.scrollEnabled = YES;
+	
+	[super tableView:tableView didSelectRowAtIndexPath:indexPath];
+}
 @end

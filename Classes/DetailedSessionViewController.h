@@ -6,13 +6,13 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "AbstractFeedbackController.h"
 
 @class JZSession;
 @class SectionSessionHandler;
 @class IncogitoAppDelegate;
 
-@interface DetailedSessionViewController : UIViewController {
-	JZSession		*session;
+@interface DetailedSessionViewController : AbstractFeedbackController {
 	UIWebView		*details;
 	UILabel			*sessionLocation;
 	UILabel			*level;
@@ -23,7 +23,6 @@
 	IncogitoAppDelegate *appDelegate;
 }
 
-@property (nonatomic, retain) JZSession		*session;
 @property (nonatomic, retain) IBOutlet UIWebView	*details;
 @property (nonatomic, retain) IBOutlet UILabel		*sessionLocation;
 @property (nonatomic, retain) IBOutlet UILabel		*level;
@@ -39,5 +38,10 @@
 
 - (void)reloadSession;
 - (void)displaySession;
+
+- (void)showExtras:(id)sender;
+
+- (void)shareText:(id)sender;
+- (void)shareLink:(id)sender;
 
 @end

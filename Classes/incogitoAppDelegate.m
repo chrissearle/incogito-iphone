@@ -14,6 +14,8 @@
 #import "MyProgrammeViewController.h"
 #import "DetailedSessionViewController.h"
 #import "SettingsViewController.h"
+#import "FlurryAPI.h"
+#import "TabInitializer.h"
 
 @implementation IncogitoAppDelegate
 
@@ -24,12 +26,20 @@
 #pragma mark -
 #pragma mark Application lifecycle
 
+void uncaughtExceptionHandler(NSException *exception) {
+    [FlurryAPI logError:@"Uncaught" message:@"Crash!" exception:exception];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
 	
 #ifdef LOG_FUNCTION_TIMES
 	NSLog(@"%@ Start of application:didFinishLaunchingWithOptions", [[[NSDate alloc] init] autorelease]);
 #endif
-
+	
+	NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+	[FlurryAPI startSession:@"747T2PGB7H2SD3XAN92D"];
+	[FlurryAPI countPageViews:rootController];
+	
 #ifdef LOG_FUNCTION_TIMES
 	NSLog(@"%@ Calling sectionInitializer", [[[NSDate alloc] init] autorelease]);
 #endif
@@ -43,6 +53,8 @@
 	NSLog(@"%@ Called sectionInitializer", [[[NSDate alloc] init] autorelease]);
 #endif
 	
+	TabInitializer *tabInitializer = [[[TabInitializer alloc] initWithControllers:rootController.viewControllers] autorelease];
+	[rootController setViewControllers:[tabInitializer validControllers] animated:NO];
 	
 	[window addSubview:rootController.view];
     [window makeKeyAndVisible];
@@ -245,34 +257,6 @@
 	[sectionSessionHandler_ setManagedObjectContext:[self managedObjectContext]];
 	
 	return sectionSessionHandler_;
-}
-
-- (void)refreshFavouriteViewData {
-	for (UIViewController *controller in [rootController viewControllers]) {
-		if ([controller isKindOfClass:[UINavigationController class]]) {
-			UINavigationController *navController = (UINavigationController *)controller;
-			
-			for (UIViewController *subController in [navController viewControllers]) {
-				if ([subController isKindOfClass:[MyProgrammeViewController class]]) {
-					NSLog(@"Sending reload to %@", [subController class]);
-			
-					SessionCommonViewController *c = (SessionCommonViewController *)subController;
-			
-					[c loadSessionData];
-					[[c tv] reloadData];
-				}
-
-#ifdef SHOW_TAB_BAR_ON_DETAILS_VIEW
-				if ([subController isKindOfClass:[DetailedSessionViewController class]]) {
-					DetailedSessionViewController *c = (DetailedSessionViewController *)subController;
-					
-					[c reloadSession];
-				}
-#endif
-				
-			}
-		}
-	}
 }
 
 - (void)refreshViewData {

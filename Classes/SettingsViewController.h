@@ -5,15 +5,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
 @class IncogitoAppDelegate;
 
-@interface SettingsViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource> {
+@interface SettingsViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, MBProgressHUDDelegate> {
 	IBOutlet UIPickerView *picker;
 	
 	NSDictionary				*labels;
 	
 	IncogitoAppDelegate *appDelegate;
+	
+	MBProgressHUD *HUD;
 }
 
 @property (nonatomic, retain) NSDictionary						*labels;

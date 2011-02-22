@@ -7,29 +7,16 @@
 #import "SettingsViewController.h"
 #import "IncogitoAppDelegate.h"
 #import "SectionSessionHandler.h"
-#import "RefreshCommonViewController.h"
+#import "FlurryAPI.h"
+
+#import "JavazoneSessionsRetriever.h"
+#import "SessionProperties.h"
 
 @implementation SettingsViewController
 
 @synthesize labels;
 @synthesize picker;
 @synthesize appDelegate;
-
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,13 +26,9 @@
 	[self loadData];
 }
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (void) viewWillAppear:(BOOL)animated {
+	[FlurryAPI logEvent:@"Showing Settings"];
 }
-*/
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -114,10 +97,20 @@
 			} else {
 				NSArray *keys = [[labels allKeys] sortedArrayUsingSelector:@selector(compare:)];
 				
-				UIImage *imageFile = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [keys objectAtIndex:(row - 1)]]];
+				NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 				
-				if (nil == imageFile) {
+				NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",[docDir stringByAppendingPathComponent:@"labelIcons"],[keys objectAtIndex:(row - 1)]];
+				
+				NSData *data1 = [NSData dataWithContentsOfFile:pngFilePath];
+
+				UIImage *imageFile;
+				
+				if (nil == data1) {
+					NSLog(@"File not found %@", pngFilePath);
+					
 					imageFile = [UIImage imageNamed:@"all.png"];
+				} else {
+					imageFile = [UIImage imageWithData:data1];
 				}
 				
 				[image setImage:imageFile];
@@ -152,6 +145,11 @@
 	// Refresh views
 	[appDelegate refreshViewData];
 
+	[FlurryAPI logEvent:@"Filtered" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+															   message,
+															   @"Message",
+															   nil]];
+	
 	
 	UIAlertView *alert = [[UIAlertView alloc]
 						  initWithTitle: messageTitle
@@ -163,11 +161,28 @@
 	[alert release];
 }
 
+
 - (IBAction)sync:(id)sender {
-	RefreshCommonViewController *controller = [[RefreshCommonViewController alloc] initWithNibName:@"Update" bundle:[NSBundle mainBundle]];
-	[controller setFirstTimeTextVisibility:NO];
-	[self.tabBarController presentModalViewController:controller animated:YES];
-	[controller release];
+    HUD = [[MBProgressHUD alloc] initWithView:self.tabBarController.view];
+
+	JavazoneSessionsRetriever *retriever = [[[JavazoneSessionsRetriever alloc] init] autorelease];
+	
+	retriever.managedObjectContext = [appDelegate managedObjectContext];
+	retriever.HUD = HUD;
+	
+	SessionProperties *props = [[[SessionProperties alloc] init] autorelease];
+	retriever.urlString = [props getSessionUrl];
+	
+    // Add HUD to screen
+    [self.tabBarController.view addSubview:HUD];
+	
+    // Register for HUD callbacks so we can remove it from the window at the right time
+    HUD.delegate = self;
+	
+    HUD.labelText = @"Preparing";
+	
+    // Show the HUD while the provided method executes in a new thread
+    [HUD showWhileExecuting:@selector(retrieveSessions:) onTarget:retriever withObject:nil animated:YES];
 }
 
 - (void)refreshPicker {
@@ -190,6 +205,31 @@
 		index = [sortedValues indexOfObject:savedKey] + 1;
 	}
 	[picker selectRow:index inComponent:0 animated:YES];
+}
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD was hidded
+    [HUD removeFromSuperview];
+    [HUD release];
+
+	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
+	
+	NSUInteger count = [handler getActiveSessionCount];
+	
+	if (count == 0) {
+		UIAlertView *alert = [[UIAlertView alloc]
+							  initWithTitle: @"Download failed"
+							  message: @"Unable to download sessions - check your connection and try again"
+							  delegate:nil
+							  cancelButtonTitle:@"OK"
+							  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+		
+	} else {
+		[appDelegate refreshViewData];
+		[self loadData];
+	}
 }
 
 @end

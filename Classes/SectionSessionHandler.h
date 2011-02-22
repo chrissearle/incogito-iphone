@@ -30,6 +30,7 @@
 - (NSUInteger)getActiveSessionCount;
 
 - (void) setFavouriteForSession:(JZSession *)session withBoolean:(BOOL)favouriteFlag;
+- (void) toggleFavouriteForSession:(NSString *)jzId;
 
 - (NSDictionary *)getUniqueLabels;
 - (NSString *)getStoredFilter;

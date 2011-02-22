@@ -7,3 +7,5 @@ build/
 *.mode2v3
 
 .DS_Store
+
+SHKKeys.h
