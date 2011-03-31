@@ -158,6 +158,7 @@
 		83FA5AB612460451008CA85C /* JavaZone2011.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83FA5AB512460451008CA85C /* JavaZone2011.xib */; };
 		83FA5AC012460531008CA85C /* JavaZone2011.png in Resources */ = {isa = PBXBuildFile; fileRef = 83FA5ABF12460531008CA85C /* JavaZone2011.png */; };
 		83FA5ADA124607B3008CA85C /* JavaZone2011Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FA5AD9124607B3008CA85C /* JavaZone2011Controller.m */; };
+		F30C2BBF13445E4B008B180E /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F30C2BBE13445E4B008B180E /* Default-Portrait~ipad.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -539,6 +540,7 @@
 		83FA5AD8124607B3008CA85C /* JavaZone2011Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaZone2011Controller.h; sourceTree = "<group>"; };
 		83FA5AD9124607B3008CA85C /* JavaZone2011Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaZone2011Controller.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* incogito-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "incogito-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		F30C2BBE13445E4B008B180E /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1230,6 +1232,7 @@
 		83827C2611F87A1A00A74CC1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F30C2BBE13445E4B008B180E /* Default-Portrait~ipad.png */,
 				83A5A81412CDF0A7009FE6A7 /* jz11_you_are_invited.mp4 */,
 				83A37C19126CD14E0014A61C /* jz_pin_logo.png */,
 				831F5339120C03170027A8A4 /* labels */,
@@ -1418,6 +1421,7 @@
 				838D661C12733E7D009D50AF /* JavaZone2011-iPad.xib in Resources */,
 				83A5A81512CDF0A7009FE6A7 /* jz11_you_are_invited.mp4 in Resources */,
 				8381B2A412CE31E8008760FF /* 117-todo.png in Resources */,
+				F30C2BBF13445E4B008B180E /* Default-Portrait~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1590,8 +1594,10 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_CFLAGS = "";
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.0;
@@ -1627,9 +1633,10 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chris Searle";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DB50CA72-E0BF-400D-87D7-A452F50DBEF1";
@@ -1672,8 +1679,10 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_CFLAGS = (
 					"-DLOG_FUNCTION_TIMES=1",
 					"-DNOW_AND_NEXT_USE_TEST_DATE=1",
@@ -1716,8 +1725,10 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_CFLAGS = "-DNOW_AND_NEXT_USE_TEST_DATE=1";
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.0;
@@ -1730,8 +1741,10 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.0;
