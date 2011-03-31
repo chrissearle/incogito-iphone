@@ -15,9 +15,11 @@
 	
 	NSMutableDictionary *labelUrls;
 	NSMutableDictionary *levelUrls;
+	NSMutableDictionary *bioPics;
 	
 	NSString *labelsPath;
 	NSString *levelsPath;
+	NSString *bioPath;
 }
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
@@ -26,9 +28,11 @@
 @property (nonatomic, retain) MBProgressHUD *HUD;
 @property (nonatomic, retain) NSMutableDictionary *labelUrls;
 @property (nonatomic, retain) NSMutableDictionary *levelUrls;
+@property (nonatomic, retain) NSMutableDictionary *bioPics;
 
 @property (nonatomic, retain) NSString *levelsPath;
 @property (nonatomic, retain) NSString *labelsPath;
+@property (nonatomic, retain) NSString *bioPath;
 
 - (NSUInteger)retrieveSessions:(id)sender;
 

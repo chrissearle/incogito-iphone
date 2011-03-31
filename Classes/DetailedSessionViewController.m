@@ -12,6 +12,7 @@
 #import "ExtrasController.h"
 #import "FlurryAPI.h"
 #import "SHK.h"
+#import "JavaZonePrefs.h"
 
 @implementation DetailedSessionViewController
 
@@ -153,16 +154,18 @@
 	for (JZSessionBio *speaker in speakers) {
 		[result appendString:[NSString stringWithFormat:@"<h3>%@</h3>", [speaker name]]];
 		
-		NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        if ([JavaZonePrefs showBioPic]) {
+            NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 		
-		NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",[docDir stringByAppendingPathComponent:@"bioIcons"],[speaker name]];
+            NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",[docDir stringByAppendingPathComponent:@"bioIcons"],[speaker name]];
 		
-		NSFileManager *fileManager = [NSFileManager defaultManager];
+            NSFileManager *fileManager = [NSFileManager defaultManager];
 
-		if ([fileManager fileExistsAtPath:pngFilePath]) {
-			[result appendString:[NSString stringWithFormat:@"<img src='file://%@' width='50px' style='float: left; margin-right: 3px; margin-bottom: 3px'/>", pngFilePath]];
-		}
-
+            if ([fileManager fileExistsAtPath:pngFilePath]) {
+                [result appendString:[NSString stringWithFormat:@"<img src='file://%@' width='50px' style='float: left; margin-right: 3px; margin-bottom: 3px'/>", pngFilePath]];
+            }
+        }
+        
 		[result appendString:[speaker bio]];
 	}
 

@@ -11,6 +11,7 @@
 
 @interface SettingsViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, MBProgressHUDDelegate> {
 	IBOutlet UIPickerView *picker;
+    IBOutlet UISwitch *bioPicSwitch;
 	
 	NSDictionary				*labels;
 	
@@ -21,10 +22,12 @@
 
 @property (nonatomic, retain) NSDictionary						*labels;
 @property (nonatomic, retain) UIPickerView *picker;
+@property (nonatomic, retain) UISwitch *bioPicSwitch;
 @property (nonatomic, retain) IncogitoAppDelegate *appDelegate;
 
 - (IBAction)filter:(id)sender;
 - (IBAction)sync:(id)sender;
+- (IBAction)picSwitch:(id)sender;
 
 - (void)refreshPicker;
 

@@ -7,6 +7,7 @@
 #import "JavazoneSessionsRetriever.h"
 #import "SessionDownloader.h"
 #import "SessionParser.h"
+#import "JavaZonePrefs.h"
 
 #import "JZSession.h"
 #import "JZSessionBio.h"
@@ -23,9 +24,11 @@
 @synthesize HUD;
 @synthesize labelUrls;
 @synthesize levelUrls;
+@synthesize bioPics;
 
 @synthesize levelsPath;
 @synthesize labelsPath;
+@synthesize bioPath;
 
 -(id) init {
     self = [super init];
@@ -34,9 +37,12 @@
 	
 	self.levelsPath = [docDir stringByAppendingPathComponent:@"levelIcons"];
 	self.labelsPath = [docDir stringByAppendingPathComponent:@"labelIcons"];
+    self.bioPath    = [docDir stringByAppendingPathComponent:@"bioIcons"];
+
 
 	self.labelUrls = [[NSMutableDictionary alloc] init];
 	self.levelUrls = [[NSMutableDictionary alloc] init];
+	self.bioPics   = [[NSMutableDictionary alloc] init];
 	
 	return self;
 }
@@ -70,6 +76,7 @@
 	// Remove any downloaded icons
 	[self clearPath:self.levelsPath];
 	[self clearPath:self.labelsPath];
+    [self clearPath:self.bioPath];
 	
 	// Remove speakers - they will get added for all active sessions.
 	[self removeAllEntitiesByName:@"JZSessionBio"];
@@ -123,7 +130,16 @@
 
 		[self addSession:session];
 	}
-	
+    
+    if ([JavaZonePrefs showBioPic]) {
+        HUD.mode = MBProgressHUDModeIndeterminate;
+        HUD.labelText = @"Retrieving photos";
+
+        for (NSString *name in self.bioPics) {
+            [self getJsonImage:[self.bioPics objectForKey:name] toFile:name inPath:self.bioPath];
+        }
+    }
+    
 	HUD.mode = MBProgressHUDModeIndeterminate;
 	HUD.labelText = @"Retrieving icons";
 	
@@ -257,10 +273,6 @@
 	
 	NSArray *speakers = [item objectForKey:@"speakers"];
 	
-	
-	NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	NSString *bioPath = [docDir stringByAppendingPathComponent:@"bioIcons"];
-
 	for (NSDictionary *speaker in speakers) {
 		JZSessionBio *sessionBio = (JZSessionBio *)[NSEntityDescription insertNewObjectForEntityForName:@"JZSessionBio" inManagedObjectContext:managedObjectContext];
 		
@@ -269,11 +281,13 @@
 		
 		[session addSpeakersObject:sessionBio];
 		
-		NSString *speakerPic = [self getPossibleNilString:@"photoUrl" fromDict:speaker];
+        if ([JavaZonePrefs showBioPic]) {
+            NSString *speakerPic = [self getPossibleNilString:@"photoUrl" fromDict:speaker];
 		
-		if (speakerPic != nil) {
-			[self getJsonImage:speakerPic toFile:[sessionBio name] inPath:bioPath];
-		}
+            if (speakerPic != nil) {
+                [bioPics setObject:speakerPic forKey:[sessionBio name]];
+            }
+        }
 	}
 	
 	NSArray *labels = [item objectForKey:@"labels"];
@@ -407,14 +421,14 @@
 	[image release];
 }
 
-- (void)getJsonImage:(NSString *)urlString toFile:(NSString *)file inPath:(NSString *)path {
-	NSLog(@"Fetching pic %@ to %@ in %@", urlString, file, path);
-	
+- (void)getJsonImage:(NSString *)imageUrl toFile:(NSString *)file inPath:(NSString *)path {
+	NSLog(@"Fetching pic %@ to %@ in %@", imageUrl, file, path);
+
 	UIApplication* app = [UIApplication sharedApplication];
 	
 	app.networkActivityIndicatorVisible = YES;
 	
-	NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+	NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:imageUrl]];
 	
 	[urlRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	[urlRequest setValue:@"incogito-iPhone" forHTTPHeaderField:@"User-Agent"];
@@ -434,11 +448,9 @@
 		UIImage *image = [UIImage imageWithData:response];
 	
 		NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",path,file];
-		NSLog(@"Got data for %@  %d", pngFilePath, [image size]);
+		NSLog(@"Got data for %@  %.0f x %.0f", pngFilePath, image.size.height, image.size.width);
 	
 		[[NSData dataWithData:UIImagePNGRepresentation(image)] writeToFile:pngFilePath atomically:YES];
-	
-		[image release];
 	}
 }
 @end
