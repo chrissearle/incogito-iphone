@@ -17,6 +17,7 @@
 @synthesize labels;
 @synthesize picker;
 @synthesize appDelegate;
+@synthesize bioPicSwitch;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -204,6 +205,8 @@
 		index = [sortedValues indexOfObject:savedKey] + 1;
 	}
 	[picker selectRow:index inComponent:0 animated:YES];
+
+    [bioPicSwitch setOn:[JavaZonePrefs showBioPic] animated:YES];
 }
 
 - (void)hudWasHidden:(MBProgressHUD *)hud {
@@ -231,4 +234,7 @@
 	}
 }
 
+- (IBAction)picSwitch:(id)sender {
+    [JavaZonePrefs setShowBioPic:bioPicSwitch.on];
+}
 @end

@@ -29,4 +29,27 @@
     return [Preferences getPreferenceAsArray:@"ClubZone"];
 }
 
++ (BOOL)showBioPic {
+    BOOL flag = [[NSUserDefaults standardUserDefaults] boolForKey:@"showBioPic"];
+            
+    if (flag == YES) {
+        NSLog(@"Retrieved bio pic %@", @"On");
+    } else {
+        NSLog(@"Retrieved bio pic %@", @"Off");
+    }
+    
+    return flag;
+}
+
++ (void)setShowBioPic:(BOOL) flag {
+    if (flag == YES) {
+        NSLog(@"Setting bio pic %@", @"On");
+    } else {
+        NSLog(@"Setting bio pic %@", @"Off");
+    }
+    
+	[[NSUserDefaults standardUserDefaults] setBool:flag forKey:@"showBioPic"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 @end

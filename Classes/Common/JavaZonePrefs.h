@@ -17,4 +17,7 @@
 
 + (NSArray *)clubZonePins;
 
++ (BOOL)showBioPic;
++ (void)setShowBioPic:(BOOL) flag;
+
 @end
