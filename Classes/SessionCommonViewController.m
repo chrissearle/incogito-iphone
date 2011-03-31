@@ -12,7 +12,7 @@
 #import "FlurryAPI.h"
 #import "SessionTableViewCell.h"
 #import "SectionSessionHandler.h"
-#import "SessionProperties.h"
+#import "JavaZonePrefs.h"
 #import "JavazoneSessionsRetriever.h"
 
 @implementation SessionCommonViewController
@@ -254,8 +254,7 @@
 	retriever.managedObjectContext = [appDelegate managedObjectContext];
 	retriever.HUD = HUD;
 
-	SessionProperties *props = [[[SessionProperties alloc] init] autorelease];
-	retriever.urlString = [props getSessionUrl];
+	retriever.urlString = [JavaZonePrefs sessionUrl];
 
 	// Add HUD to screen
 	[self.tabBarController.view addSubview:HUD];

@@ -33,7 +33,6 @@
 }
 
 - (IBAction)openMap:(id)sender {
-	//	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://maps.google.com/?q=http://dl.dropbox.com/u/102984/ClubZone2010.kml"]];
 	MapViewController *controller = [[MapViewController alloc] initWithNibName:@"Map" bundle:[NSBundle mainBundle]];
 	
 	[self presentModalViewController:controller animated:YES];

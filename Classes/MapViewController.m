@@ -8,7 +8,7 @@
 
 #import "ClubzoneMapAnnotation.h"
 #import "FlurryAPI.h"
-#import "Preferences.h"
+#import "JavaZonePrefs.h"
 
 @implementation MapViewController
 
@@ -21,7 +21,7 @@
 	
     [super viewDidLoad];
 
-	NSArray *pins = [Preferences getPreferenceAsArray:@"ClubZone"];
+	NSArray *pins = [JavaZonePrefs clubZonePins];
 	
 	for (NSDictionary *pin in pins) {
 		CLLocationCoordinate2D coordinate = {

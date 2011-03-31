@@ -6,7 +6,7 @@
 
 #import "JavaZone2011Controller.h"
 #import "FlurryAPI.h"
-#import "Preferences.h"
+#import "JavaZonePrefs.h"
 
 @implementation JavaZone2011Controller
 
@@ -40,7 +40,7 @@
 }
 
 - (void)viewDidLoad {
-	NSDate *cfpDeadline = [Preferences getPreferenceAsDate:@"CFPDate"];
+	NSDate *cfpDeadline = [JavaZonePrefs callForPapersDate];
 	
 	NSLog(@"Deadline seen: %@", cfpDeadline);
 	
@@ -102,7 +102,7 @@
 - (void)openCfp:(id)sender {
 	[FlurryAPI logEvent:@"Going to CFP"];
 
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[Preferences getPreferenceAsString:@"CFPUrl"]]];
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[JavaZonePrefs callForPapersUrl]]];
 }
 
 @end

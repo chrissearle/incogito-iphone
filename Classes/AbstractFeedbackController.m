@@ -7,7 +7,7 @@
 #import "AbstractFeedbackController.h"
 #import "FlurryAPI.h"
 #import "JZSession.h"
-#import "Preferences.h"
+#import "JavaZonePrefs.h"
 
 @implementation AbstractFeedbackController
 
@@ -140,7 +140,7 @@
 
 
 - (void)send:(id) sender {
-	NSString *url = [Preferences getPreferenceAsString:@"FeedbackUrl"];
+	NSString *url = [JavaZonePrefs feedbackUrl];
 	
 	int rating = 0;
 	
