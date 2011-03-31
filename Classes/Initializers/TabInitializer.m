@@ -95,7 +95,7 @@
 	
 	id element;
 	
-	while(element = [enumerator nextObject]) {
+	while((element = [enumerator nextObject])) {
 		UIViewController *controller = (UIViewController *)element;
 		
 		if ([element isKindOfClass:[UINavigationController class]]) {
