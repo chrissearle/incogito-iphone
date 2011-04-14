@@ -16,6 +16,7 @@
 @synthesize session;
 @synthesize sections;
 @synthesize sectionCells;
+@synthesize movie;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -151,11 +152,38 @@
     } else if ([sectionTitle isEqualToString:@"Video"]) {
         NSString *streamingUrl = [VideoMapper streamingUrlForSession:[session jzId]];
         
-        NSLog(@"Streaming URL %@", streamingUrl);
+        [FlurryAPI logEvent:[NSString stringWithFormat:@"Streaming movie %@", streamingUrl]];
+        
+        NSURL *movieUrl = [NSURL URLWithString:streamingUrl];
+        
+        movie = [[MPMoviePlayerViewController alloc] initWithContentURL:movieUrl];
+        
+        [self presentModalViewController:movie animated:YES];
+        
+        // Movie playback is asynchronous, so this method returns immediately.
+        [movie.moviePlayer play];
+        
+        // Register for the playback finished notification
+        [[NSNotificationCenter defaultCenter]
+         addObserver: self
+         selector: @selector(endVideo:)
+         name: MPMoviePlayerPlaybackDidFinishNotification
+         object: movie.moviePlayer];
     }
 }
 
-
-
+- (void)endVideo:(NSNotification*) aNotification {
+	[FlurryAPI logEvent:@"Stopping stream"];
+    
+	[self dismissModalViewControllerAnimated:YES];
+	[movie.moviePlayer stop];
+	[movie release];
+	movie = NULL;
+	
+	[[NSNotificationCenter defaultCenter]
+	 removeObserver: self
+	 name: MPMoviePlayerPlaybackDidFinishNotification
+	 object: nil];
+}
 
 @end

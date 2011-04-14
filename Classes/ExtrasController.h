@@ -5,6 +5,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @class JZSession;
 
@@ -13,10 +14,15 @@
     
     NSArray *sections;
     NSDictionary *sectionCells;
+
+    MPMoviePlayerViewController *movie;
 }
 
 @property (nonatomic, retain) JZSession *session;
 @property (nonatomic, retain) NSArray *sections;
 @property (nonatomic, retain) NSDictionary *sectionCells;
+@property (nonatomic,retain) MPMoviePlayerViewController *movie;
+
+- (void)endVideo:(NSNotification*) aNotification;
 
 @end
