@@ -158,6 +158,8 @@
 		83FA5AC012460531008CA85C /* JavaZone2011.png in Resources */ = {isa = PBXBuildFile; fileRef = 83FA5ABF12460531008CA85C /* JavaZone2011.png */; };
 		83FA5ADA124607B3008CA85C /* JavaZone2011Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FA5AD9124607B3008CA85C /* JavaZone2011Controller.m */; };
 		F30C2BBF13445E4B008B180E /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F30C2BBE13445E4B008B180E /* Default-Portrait~ipad.png */; };
+		F35EC3A61356CFD70047294D /* VideoMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F35EC3A51356CFD70047294D /* VideoMapper.m */; };
+		F35EC3A91356F5A60047294D /* video.plist in Resources */ = {isa = PBXBuildFile; fileRef = F35EC3A81356F5A60047294D /* video.plist */; };
 		F3A65026134473EB005B1372 /* JavaZonePrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A65025134473EB005B1372 /* JavaZonePrefs.m */; };
 /* End PBXBuildFile section */
 
@@ -539,6 +541,9 @@
 		83FA5AD9124607B3008CA85C /* JavaZone2011Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaZone2011Controller.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* incogito-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "incogito-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		F30C2BBE13445E4B008B180E /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		F35EC3A41356CFD70047294D /* VideoMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoMapper.h; sourceTree = "<group>"; };
+		F35EC3A51356CFD70047294D /* VideoMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoMapper.m; sourceTree = "<group>"; };
+		F35EC3A81356F5A60047294D /* video.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = video.plist; sourceTree = "<group>"; };
 		F3A65024134473EB005B1372 /* JavaZonePrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaZonePrefs.h; sourceTree = "<group>"; };
 		F3A65025134473EB005B1372 /* JavaZonePrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaZonePrefs.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -643,6 +648,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F35EC3A81356F5A60047294D /* video.plist */,
 				83827C2611F87A1A00A74CC1 /* Images */,
 				83827C1A11F8797600A74CC1 /* Windows */,
 				2819305F112F816700ECF9B4 /* incogito.xcdatamodeld */,
@@ -1298,6 +1304,8 @@
 				F3A65025134473EB005B1372 /* JavaZonePrefs.m */,
 				83A7E15F130A672E00C8945F /* Preferences.h */,
 				83A7E160130A672E00C8945F /* Preferences.m */,
+				F35EC3A41356CFD70047294D /* VideoMapper.h */,
+				F35EC3A51356CFD70047294D /* VideoMapper.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1422,6 +1430,7 @@
 				83A5A81512CDF0A7009FE6A7 /* jz11_you_are_invited.mp4 in Resources */,
 				8381B2A412CE31E8008760FF /* 117-todo.png in Resources */,
 				F30C2BBF13445E4B008B180E /* Default-Portrait~ipad.png in Resources */,
+				F35EC3A91356F5A60047294D /* video.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1529,6 +1538,7 @@
 				8320A3C61307EF90000B34E4 /* TabInitializer.m in Sources */,
 				83A7E161130A672E00C8945F /* Preferences.m in Sources */,
 				F3A65026134473EB005B1372 /* JavaZonePrefs.m in Sources */,
+				F35EC3A61356CFD70047294D /* VideoMapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

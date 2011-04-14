@@ -9,9 +9,14 @@
 @class JZSession;
 
 @interface ExtrasController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
-	JZSession		*session;
+	JZSession *session;
+    
+    NSArray *sections;
+    NSDictionary *sectionCells;
 }
 
-@property (nonatomic, retain) JZSession		*session;
+@property (nonatomic, retain) JZSession *session;
+@property (nonatomic, retain) NSArray *sections;
+@property (nonatomic, retain) NSDictionary *sectionCells;
 
 @end
