@@ -38,8 +38,8 @@
         [cells  setObject:[NSArray arrayWithObjects:@"Stream video", nil] forKey:@"Video"];
     }
     
-    sections = [NSArray arrayWithArray:titles];
-    sectionCells = [NSDictionary dictionaryWithDictionary:cells];
+    sections = [[NSArray alloc] initWithArray:titles];
+    sectionCells = [[NSDictionary alloc] initWithDictionary:cells];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
