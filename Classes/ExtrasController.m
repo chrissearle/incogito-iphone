@@ -35,12 +35,12 @@
     }
     
     if ([VideoMapper streamingUrlForSession:[session jzId]] != nil) {
-        [titles addObject:@"Video"];
+        [titles addObject:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"Video", @"Video streams can take a while to start", nil] forKeys:[NSArray arrayWithObjects:@"Title", @"Footer", nil]]];
         [cells  setObject:[NSArray arrayWithObjects:@"Stream video", nil] forKey:@"Video"];
     }
     
-    sections = [[NSArray alloc] initWithArray:titles];
-    sectionCells = [[NSDictionary alloc] initWithDictionary:cells];
+    self.sections = [[[NSArray alloc] initWithArray:titles] autorelease];
+    self.sectionCells = [[[NSDictionary alloc] initWithDictionary:cells] autorelease];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -75,7 +75,31 @@
 }
 
 - (NSString *)getTitle:(NSInteger)section {
-    return [sections objectAtIndex:section];
+    NSObject *sectionData = [sections objectAtIndex:section];
+    
+    if ([sectionData isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *titleDict = (NSDictionary *)sectionData;
+        
+        return [titleDict objectForKey:@"Title"];
+    } else if ([sectionData isKindOfClass:[NSString class]]) {
+        NSString *titleString = (NSString *)sectionData;
+        
+        return titleString;
+    }
+    
+    return nil;
+}
+
+- (NSString *)getFooter:(NSInteger)section {
+    NSObject *sectionData = [sections objectAtIndex:section];
+    
+    if ([sectionData isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *footerDict = (NSDictionary *)sectionData;
+        
+        return [footerDict objectForKey:@"Footer"];
+    }
+    
+    return nil;
 }
 
 - (NSArray *)getCellsForTitle:(NSString *)title {
@@ -89,9 +113,12 @@
     return cellList.count;
 }
 
-
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return [self getTitle:section];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    return [self getFooter:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
