@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UILaunchImageFile</key>
-	<string>Default.png</string>
-	<key>UILaunchImageFile~ipad</key>
-	<string>Default-iPad.png</string>
-	<key>UILaunchImageFile~iphone</key>
-	<string>Default@2x.png</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleDisplayName</key>
@@ -31,13 +25,19 @@
 	<key>CFBundleSignature</key>
 	<string>ICOG</string>
 	<key>CFBundleVersion</key>
-	<string>2.0.0</string>
+	<string>2.0.1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>NSMainNibFile~ipad</key>
 	<string>MainWindow-iPad</string>
+	<key>UILaunchImageFile</key>
+	<string>Default.png</string>
+	<key>UILaunchImageFile~ipad</key>
+	<string>Default-iPad.png</string>
+	<key>UILaunchImageFile~iphone</key>
+	<string>Default@2x.png</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>wifi</string>
