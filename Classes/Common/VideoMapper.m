@@ -23,7 +23,13 @@
         return nil;
     }
 
-    return [NSString stringWithString:[plistDict objectForKey:sessionId]];   
+    NSString *url = [plistDict objectForKey:sessionId];
+    
+    if (url == nil) {
+        return nil;
+    }
+    
+    return [NSString stringWithString:url];
 }
 
 @end

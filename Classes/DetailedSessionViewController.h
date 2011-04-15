@@ -6,6 +6,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import <MediaPlayer/MediaPlayer.h>
 #import "AbstractFeedbackController.h"
 
 @class JZSession;
@@ -19,6 +20,10 @@
 	UIImageView		*levelImage;
 	BOOL			checkboxSelected;
 	IBOutlet		UIButton *checkboxButton;
+    IBOutlet        UIButton *videoButton;
+    IBOutlet        UILabel *videoLabel;
+    MPMoviePlayerViewController *movie;
+
 	SectionSessionHandler *handler;
 	IncogitoAppDelegate *appDelegate;
 }
@@ -29,6 +34,8 @@
 @property (nonatomic, retain) IBOutlet UIImageView	*levelImage;
 @property (nonatomic, retain) SectionSessionHandler *handler;
 @property (nonatomic, retain) IncogitoAppDelegate	*appDelegate;
+@property (nonatomic, retain) MPMoviePlayerViewController *movie;
+
 
 - (NSString *)buildPage:(NSString *)content withTitle:(NSString *)title withSpeakerInfo:(NSString *)speakerInfo andLabelsInfo:(NSString *)labels;
 - (NSString *)buildSpeakersSection:(NSSet *)speakers;
@@ -41,7 +48,10 @@
 
 - (void)showExtras:(id)sender;
 
-- (void)shareText:(id)sender;
-- (void)shareLink:(id)sender;
+- (IBAction)shareText:(id)sender;
+- (IBAction)shareLink:(id)sender;
+
+- (IBAction)playVideo:(id)sender;
+- (void)endVideo:(NSNotification*) aNotification;
 
 @end
