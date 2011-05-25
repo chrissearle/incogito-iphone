@@ -105,7 +105,6 @@
 		83424E9211EDB68D00590A7A /* NowAndNext.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424E9111EDB68D00590A7A /* NowAndNext.xib */; };
 		83424EBC11EDB79400590A7A /* MyProgrammeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83424EBB11EDB79400590A7A /* MyProgrammeViewController.m */; };
 		83424EC111EDB7E300590A7A /* MyProgramme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424EC011EDB7E300590A7A /* MyProgramme.xib */; };
-		834964D411F0910A008BB29F /* Update.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834964D311F0910A008BB29F /* Update.xib */; };
 		834B3DEE126C8F0700D66D41 /* SessionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834B3DED126C8F0700D66D41 /* SessionCell.xib */; };
 		834B3DF6126C913600D66D41 /* SessionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 834B3DF5126C913600D66D41 /* SessionTableViewCell.m */; };
 		83576C7C120BF478008CC97E /* ClubZone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83576C7B120BF478008CC97E /* ClubZone.xib */; };
@@ -122,11 +121,7 @@
 		838D658412732B8A009D50AF /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 838D658212732B8A009D50AF /* Icon-72.png */; };
 		838D658512732B8A009D50AF /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 838D658312732B8A009D50AF /* Icon@2x.png */; };
 		838D65AF12733322009D50AF /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 838D65AE12733322009D50AF /* MainWindow-iPad.xib */; };
-		838D65D812733A42009D50AF /* Default-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 838D65D612733A42009D50AF /* Default-iPad.png */; };
-		838D65D912733A42009D50AF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 838D65D712733A42009D50AF /* Default@2x.png */; };
 		838D65FF12733C5C009D50AF /* DetailedSessionView-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 838D65FE12733C5C009D50AF /* DetailedSessionView-iPad.xib */; };
-		838D661C12733E7D009D50AF /* JavaZone2011-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 838D661B12733E7D009D50AF /* JavaZone2011-iPad.xib */; };
-		8393654811F34EA700BBE43A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8393654711F34EA700BBE43A /* Default.png */; };
 		8394723C11EB98500075C4C1 /* JavazoneSessionsRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */; };
 		8394726611EB98B10075C4C1 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394725B11EB98B10075C4C1 /* NSObject+SBJSON.m */; };
 		8394726711EB98B10075C4C1 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394725D11EB98B10075C4C1 /* NSString+SBJSON.m */; };
@@ -136,7 +131,6 @@
 		8394726B11EB98B10075C4C1 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394726511EB98B10075C4C1 /* SBJsonWriter.m */; };
 		83A37C1A126CD14E0014A61C /* jz_pin_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A37C19126CD14E0014A61C /* jz_pin_logo.png */; };
 		83A5A81212CDF06E009FE6A7 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A5A81112CDF06E009FE6A7 /* MediaPlayer.framework */; };
-		83A5A81512CDF0A7009FE6A7 /* jz11_you_are_invited.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 83A5A81412CDF0A7009FE6A7 /* jz11_you_are_invited.mp4 */; };
 		83A5A85712CDF7F2009FE6A7 /* AbstractFeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A5A85612CDF7F2009FE6A7 /* AbstractFeedbackController.m */; };
 		83A7E161130A672E00C8945F /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A7E160130A672E00C8945F /* Preferences.m */; };
 		83C3C1D5120FDC6500B23253 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C3C1D4120FDC6500B23253 /* QuartzCore.framework */; };
@@ -154,10 +148,12 @@
 		83E44EBA1243EF2700F0C291 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E44EB91243EF2700F0C291 /* libFlurry.a */; };
 		83E94C6512142EAA00596D30 /* all.png in Resources */ = {isa = PBXBuildFile; fileRef = 83E94C3812142C9B00596D30 /* all.png */; };
 		83FA5A5212460435008CA85C /* 60-signpost.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B9111ED981300590A7A /* 60-signpost.png */; };
-		83FA5AB612460451008CA85C /* JavaZone2011.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83FA5AB512460451008CA85C /* JavaZone2011.xib */; };
 		83FA5AC012460531008CA85C /* JavaZone2011.png in Resources */ = {isa = PBXBuildFile; fileRef = 83FA5ABF12460531008CA85C /* JavaZone2011.png */; };
-		83FA5ADA124607B3008CA85C /* JavaZone2011Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FA5AD9124607B3008CA85C /* JavaZone2011Controller.m */; };
-		F30C2BBF13445E4B008B180E /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F30C2BBE13445E4B008B180E /* Default-Portrait~ipad.png */; };
+		F31ACFB1138CE0E4007F5CCF /* UITabBarController+Autorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = F31ACFB0138CE0E4007F5CCF /* UITabBarController+Autorotate.m */; };
+		F34BFA8F138CD81500605592 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F34BFA8E138CD81500605592 /* Default.png */; };
+		F34BFA92138CD81D00605592 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F34BFA91138CD81D00605592 /* Default@2x.png */; };
+		F34BFA94138CD82900605592 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F34BFA93138CD82900605592 /* Default-Portrait~ipad.png */; };
+		F34BFA96138CD83200605592 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F34BFA95138CD83200605592 /* Default-Landscape~ipad.png */; };
 		F35EC3A61356CFD70047294D /* VideoMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F35EC3A51356CFD70047294D /* VideoMapper.m */; };
 		F35EC3A91356F5A60047294D /* video.plist in Resources */ = {isa = PBXBuildFile; fileRef = F35EC3A81356F5A60047294D /* video.plist */; };
 		F3A65026134473EB005B1372 /* JavaZonePrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A65025134473EB005B1372 /* JavaZonePrefs.m */; };
@@ -463,7 +459,6 @@
 		83424EBA11EDB79400590A7A /* MyProgrammeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProgrammeViewController.h; sourceTree = "<group>"; };
 		83424EBB11EDB79400590A7A /* MyProgrammeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProgrammeViewController.m; sourceTree = "<group>"; };
 		83424EC011EDB7E300590A7A /* MyProgramme.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProgramme.xib; sourceTree = "<group>"; };
-		834964D311F0910A008BB29F /* Update.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Update.xib; sourceTree = "<group>"; };
 		834B3DED126C8F0700D66D41 /* SessionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SessionCell.xib; sourceTree = "<group>"; };
 		834B3DF4126C913600D66D41 /* SessionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionTableViewCell.h; sourceTree = "<group>"; };
 		834B3DF5126C913600D66D41 /* SessionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionTableViewCell.m; sourceTree = "<group>"; };
@@ -483,11 +478,7 @@
 		838D658212732B8A009D50AF /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		838D658312732B8A009D50AF /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		838D65AE12733322009D50AF /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "MainWindow-iPad.xib"; sourceTree = "<group>"; };
-		838D65D612733A42009D50AF /* Default-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-iPad.png"; sourceTree = "<group>"; };
-		838D65D712733A42009D50AF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		838D65FE12733C5C009D50AF /* DetailedSessionView-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "DetailedSessionView-iPad.xib"; sourceTree = "<group>"; };
-		838D661B12733E7D009D50AF /* JavaZone2011-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "JavaZone2011-iPad.xib"; sourceTree = "<group>"; };
-		8393654711F34EA700BBE43A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8394723A11EB98500075C4C1 /* JavazoneSessionsRetriever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavazoneSessionsRetriever.h; sourceTree = "<group>"; };
 		8394723B11EB98500075C4C1 /* JavazoneSessionsRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavazoneSessionsRetriever.m; sourceTree = "<group>"; };
 		8394725911EB98B10075C4C1 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
@@ -505,7 +496,6 @@
 		8394726511EB98B10075C4C1 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		83A37C19126CD14E0014A61C /* jz_pin_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jz_pin_logo.png; sourceTree = "<group>"; };
 		83A5A81112CDF06E009FE6A7 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		83A5A81412CDF0A7009FE6A7 /* jz11_you_are_invited.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = jz11_you_are_invited.mp4; sourceTree = "<group>"; };
 		83A5A85512CDF7F2009FE6A7 /* AbstractFeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFeedbackController.h; sourceTree = "<group>"; };
 		83A5A85612CDF7F2009FE6A7 /* AbstractFeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFeedbackController.m; sourceTree = "<group>"; };
 		83A7E15F130A672E00C8945F /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
@@ -535,12 +525,14 @@
 		83E44EB81243EF2700F0C291 /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
 		83E44EB91243EF2700F0C291 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		83E94C3812142C9B00596D30 /* all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = all.png; sourceTree = "<group>"; };
-		83FA5AB512460451008CA85C /* JavaZone2011.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JavaZone2011.xib; sourceTree = "<group>"; };
 		83FA5ABF12460531008CA85C /* JavaZone2011.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JavaZone2011.png; sourceTree = "<group>"; };
-		83FA5AD8124607B3008CA85C /* JavaZone2011Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaZone2011Controller.h; sourceTree = "<group>"; };
-		83FA5AD9124607B3008CA85C /* JavaZone2011Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaZone2011Controller.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* incogito-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "incogito-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		F30C2BBE13445E4B008B180E /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		F31ACFAF138CE0E4007F5CCF /* UITabBarController+Autorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+Autorotate.h"; sourceTree = "<group>"; };
+		F31ACFB0138CE0E4007F5CCF /* UITabBarController+Autorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+Autorotate.m"; sourceTree = "<group>"; };
+		F34BFA8E138CD81500605592 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		F34BFA91138CD81D00605592 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		F34BFA93138CD82900605592 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		F34BFA95138CD83200605592 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		F35EC3A41356CFD70047294D /* VideoMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoMapper.h; sourceTree = "<group>"; };
 		F35EC3A51356CFD70047294D /* VideoMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoMapper.m; sourceTree = "<group>"; };
 		F35EC3A81356F5A60047294D /* video.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = video.plist; sourceTree = "<group>"; };
@@ -593,8 +585,6 @@
 				83265D0F1248B363002A8333 /* FeedbackController.m */,
 				1D3623240D0F684500981E51 /* IncogitoAppDelegate.h */,
 				1D3623250D0F684500981E51 /* IncogitoAppDelegate.m */,
-				83FA5AD8124607B3008CA85C /* JavaZone2011Controller.h */,
-				83FA5AD9124607B3008CA85C /* JavaZone2011Controller.m */,
 				830859CA120F2FF300F74041 /* MapViewController.h */,
 				830859CB120F2FF300F74041 /* MapViewController.m */,
 				83424EBA11EDB79400590A7A /* MyProgrammeViewController.h */,
@@ -611,6 +601,8 @@
 				834B3DF5126C913600D66D41 /* SessionTableViewCell.m */,
 				831F5333120BFFD20027A8A4 /* SettingsViewController.h */,
 				831F5334120BFFD20027A8A4 /* SettingsViewController.m */,
+				F31ACFAF138CE0E4007F5CCF /* UITabBarController+Autorotate.h */,
+				F31ACFB0138CE0E4007F5CCF /* UITabBarController+Autorotate.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -626,6 +618,10 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				F34BFA95138CD83200605592 /* Default-Landscape~ipad.png */,
+				F34BFA93138CD82900605592 /* Default-Portrait~ipad.png */,
+				F34BFA91138CD81D00605592 /* Default@2x.png */,
+				F34BFA8E138CD81500605592 /* Default.png */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -1219,7 +1215,6 @@
 			isa = PBXGroup;
 			children = (
 				830859CF120F300A00F74041 /* Map.xib */,
-				834964D311F0910A008BB29F /* Update.xib */,
 				83D6C06F11EF922500FBC0FE /* DetailedSessionView.xib */,
 				83424B2111ED882F00590A7A /* Overview.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
@@ -1228,7 +1223,6 @@
 				83576C7B120BF478008CC97E /* ClubZone.xib */,
 				831F5331120BFFC40027A8A4 /* Settings.xib */,
 				83281F1A12437F2B00792990 /* DetailedViewExtras.xib */,
-				83FA5AB512460451008CA85C /* JavaZone2011.xib */,
 				83265D091248B1C2002A8333 /* Feedback.xib */,
 				834B3DED126C8F0700D66D41 /* SessionCell.xib */,
 			);
@@ -1238,8 +1232,6 @@
 		83827C2611F87A1A00A74CC1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				F30C2BBE13445E4B008B180E /* Default-Portrait~ipad.png */,
-				83A5A81412CDF0A7009FE6A7 /* jz11_you_are_invited.mp4 */,
 				83A37C19126CD14E0014A61C /* jz_pin_logo.png */,
 				831F5339120C03170027A8A4 /* labels */,
 				83713C03120AD6A0000050A7 /* star-checked.png */,
@@ -1247,9 +1239,6 @@
 				83713C05120AD6A0000050A7 /* star.png */,
 				83FA5ABF12460531008CA85C /* JavaZone2011.png */,
 				83424B3611ED981200590A7A /* icons */,
-				8393654711F34EA700BBE43A /* Default.png */,
-				838D65D712733A42009D50AF /* Default@2x.png */,
-				838D65D612733A42009D50AF /* Default-iPad.png */,
 				834243EA11E74CAD00B438A8 /* Icon.png */,
 				838D658312732B8A009D50AF /* Icon@2x.png */,
 				838D658212732B8A009D50AF /* Icon-72.png */,
@@ -1271,7 +1260,6 @@
 			children = (
 				838D65FE12733C5C009D50AF /* DetailedSessionView-iPad.xib */,
 				838D65AE12733322009D50AF /* MainWindow-iPad.xib */,
-				838D661B12733E7D009D50AF /* JavaZone2011-iPad.xib */,
 			);
 			name = Windows;
 			path = "Resources-iPad/Windows";
@@ -1395,8 +1383,6 @@
 				830B12AC11EDCA05004A9B25 /* 83-calendar.png in Resources */,
 				83D6C07211EF922500FBC0FE /* DetailedSessionView.xib in Resources */,
 				8317CED711F038BB00DE7415 /* 28-star.png in Resources */,
-				834964D411F0910A008BB29F /* Update.xib in Resources */,
-				8393654811F34EA700BBE43A /* Default.png in Resources */,
 				833A524411F840AD00E070D2 /* style.css in Resources */,
 				83713C06120AD6A0000050A7 /* star-checked.png in Resources */,
 				83713C07120AD6A0000050A7 /* star-pressed.png in Resources */,
@@ -1415,7 +1401,6 @@
 				83281EEE12437D0000792990 /* FBConnect.bundle in Resources */,
 				83281F1B12437F2B00792990 /* DetailedViewExtras.xib in Resources */,
 				83FA5A5212460435008CA85C /* 60-signpost.png in Resources */,
-				83FA5AB612460451008CA85C /* JavaZone2011.xib in Resources */,
 				83FA5AC012460531008CA85C /* JavaZone2011.png in Resources */,
 				83265D0A1248B1C2002A8333 /* Feedback.xib in Resources */,
 				834B3DEE126C8F0700D66D41 /* SessionCell.xib in Resources */,
@@ -1423,14 +1408,13 @@
 				838D658412732B8A009D50AF /* Icon-72.png in Resources */,
 				838D658512732B8A009D50AF /* Icon@2x.png in Resources */,
 				838D65AF12733322009D50AF /* MainWindow-iPad.xib in Resources */,
-				838D65D812733A42009D50AF /* Default-iPad.png in Resources */,
-				838D65D912733A42009D50AF /* Default@2x.png in Resources */,
 				838D65FF12733C5C009D50AF /* DetailedSessionView-iPad.xib in Resources */,
-				838D661C12733E7D009D50AF /* JavaZone2011-iPad.xib in Resources */,
-				83A5A81512CDF0A7009FE6A7 /* jz11_you_are_invited.mp4 in Resources */,
 				8381B2A412CE31E8008760FF /* 117-todo.png in Resources */,
-				F30C2BBF13445E4B008B180E /* Default-Portrait~ipad.png in Resources */,
 				F35EC3A91356F5A60047294D /* video.plist in Resources */,
+				F34BFA8F138CD81500605592 /* Default.png in Resources */,
+				F34BFA92138CD81D00605592 /* Default@2x.png in Resources */,
+				F34BFA94138CD82900605592 /* Default-Portrait~ipad.png in Resources */,
+				F34BFA96138CD83200605592 /* Default-Landscape~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1528,7 +1512,6 @@
 				83281F0912437D0000792990 /* SHKViewControllerWrapper.m in Sources */,
 				83281F0A12437D0000792990 /* Reachability.m in Sources */,
 				83281F1F12437F5100792990 /* ExtrasController.m in Sources */,
-				83FA5ADA124607B3008CA85C /* JavaZone2011Controller.m in Sources */,
 				83265D101248B363002A8333 /* FeedbackController.m in Sources */,
 				837C2CF2124DE0D500F09611 /* SessionDownloader.m in Sources */,
 				837C2CF9124DE2A100F09611 /* SessionParser.m in Sources */,
@@ -1539,6 +1522,7 @@
 				83A7E161130A672E00C8945F /* Preferences.m in Sources */,
 				F3A65026134473EB005B1372 /* JavaZonePrefs.m in Sources */,
 				F35EC3A61356CFD70047294D /* VideoMapper.m in Sources */,
+				F31ACFB1138CE0E4007F5CCF /* UITabBarController+Autorotate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

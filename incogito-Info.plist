@@ -32,12 +32,6 @@
 	<string>MainWindow</string>
 	<key>NSMainNibFile~ipad</key>
 	<string>MainWindow-iPad</string>
-	<key>UILaunchImageFile</key>
-	<string>Default.png</string>
-	<key>UILaunchImageFile~ipad</key>
-	<string>Default-iPad.png</string>
-	<key>UILaunchImageFile~iphone</key>
-	<string>Default@2x.png</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>wifi</string>

@@ -142,4 +142,9 @@
 	
 	[super tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
+
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return YES;
+}
+
 @end
