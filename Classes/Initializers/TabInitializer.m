@@ -15,9 +15,6 @@
 #ifdef HIDE_NOWANDNEXT
 #import "NowAndNextViewController.h"
 #endif
-#ifdef HIDE_JZ11
-#import "JavaZone2011Controller.h"
-#endif
 #ifdef HIDE_CLUBZONE
 #import "ClubZoneViewController.h"
 #endif
@@ -42,13 +39,6 @@
 - (BOOL)checkObject:(UIViewController *)controller {
 	BOOL remove = NO;
 	
-#ifdef HIDE_JZ11
-	if ([controller class] == [JavaZone2011Controller class]) {
-		NSLog(@"Removing %@", controller);
-			  
-		remove = YES;
-	}
-#endif
 #ifdef HIDE_CLUBZONE
 	if ([controller class] == [ClubZoneViewController class]) {
 		NSLog(@"Removing %@", controller);
