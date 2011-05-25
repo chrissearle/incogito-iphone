@@ -13,6 +13,7 @@
 #import "FlurryAPI.h"
 #import "SHK.h"
 #import "JavaZonePrefs.h"
+#import "VideoMapper.h"
 
 @implementation DetailedSessionViewController
 
@@ -22,6 +23,7 @@
 @synthesize levelImage;
 @synthesize handler;
 @synthesize appDelegate;
+@synthesize movie;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -109,6 +111,17 @@
 		self.navigationItem.rightBarButtonItem = nil;
 	}
 
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        NSString *streamingUrl = [VideoMapper streamingUrlForSession:[session jzId]];
+    
+        if (streamingUrl == nil) {
+            [videoButton setEnabled:NO];
+            [videoLabel setText:@"Video not available"];
+        } else {
+            [videoButton setEnabled:YES];
+            [videoLabel setText:@"Video streams can take a while to start"];
+        }
+    }
 }
 
 - (void)reloadSession {
@@ -237,7 +250,7 @@
 	[controller release], controller = nil;
 }
 
-- (void)shareText:(id)sender {
+- (IBAction)shareText:(id)sender {
 	NSString *text = [NSString stringWithFormat:@"#JavaZone - %@", [session title]];
 	
 	SHKItem *item = [SHKItem text:text];
@@ -249,7 +262,7 @@
 	[actionSheet showInView:[self view]];
 }
 
-- (void)shareLink:(id)sender {
+- (IBAction)shareLink:(id)sender {
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://javazone.no/incogito10/events/JavaZone%202010/sessions/%@", [session title]]];
 	
 	SHKItem *item = [SHKItem URL:url title:[session title]];
@@ -261,5 +274,42 @@
 	[actionSheet showInView:[self view]];
 }
 
+- (IBAction)playVideo:(id)sender {
+    NSString *streamingUrl = [VideoMapper streamingUrlForSession:[session jzId]];
+    
+    [FlurryAPI logEvent:[NSString stringWithFormat:@"Streaming movie %@", streamingUrl]];
+    
+    NSURL *movieUrl = [NSURL URLWithString:streamingUrl];
+    
+    movie = [[MPMoviePlayerViewController alloc] initWithContentURL:movieUrl];
+    
+    [self presentModalViewController:movie animated:YES];
+    
+    // Movie playback is asynchronous, so this method returns immediately.
+    [movie.moviePlayer play];
+    
+    // Register for the playback finished notification
+    [[NSNotificationCenter defaultCenter]
+     addObserver: self
+     selector: @selector(endVideo:)
+     name: MPMoviePlayerPlaybackDidFinishNotification
+     object: movie.moviePlayer];
+  
+}
+
+- (void)endVideo:(NSNotification*) aNotification {
+    [FlurryAPI logEvent:@"Stopping stream"];
+    
+	[self dismissModalViewControllerAnimated:YES];
+	[movie.moviePlayer stop];
+	[movie release];
+	movie = NULL;
+	
+	[[NSNotificationCenter defaultCenter]
+	 removeObserver: self
+	 name: MPMoviePlayerPlaybackDidFinishNotification
+	 object: nil];
+
+}
 
 @end
