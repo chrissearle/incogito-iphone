@@ -18,6 +18,31 @@
 @synthesize picker;
 @synthesize appDelegate;
 @synthesize bioPicSwitch;
+@synthesize applyButton;
+@synthesize refreshButton;
+@synthesize labelsLabel;
+@synthesize downloadLabel;
+
+- (void)redrawForOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    
+    if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
+        interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+        picker.frame = CGRectMake(0, 55, 250, 216);
+        labelsLabel.frame = CGRectMake(7, 20, 280, 34);
+        applyButton.frame = CGRectMake(258, 55, 202, 37);
+        refreshButton.frame = CGRectMake(258, 150, 202, 37);
+        downloadLabel.frame = CGRectMake(258, 195, 267, 21);
+        bioPicSwitch.frame = CGRectMake(366, 224, 94, 27);
+    } else {
+        picker.frame = CGRectMake(0, 62, 320, 216);
+        labelsLabel.frame = CGRectMake(20, 20, 280, 34);
+        applyButton.frame = CGRectMake(20, 286, 280, 37);
+        refreshButton.frame = CGRectMake(20, 331, 280, 37);
+        downloadLabel.frame = CGRectMake(20, 379, 178, 24);
+        bioPicSwitch.frame = CGRectMake(206, 376, 94, 27);
+    }
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,6 +54,8 @@
 
 - (void) viewWillAppear:(BOOL)animated {
 	[FlurryAPI logEvent:@"Showing Settings"];
+    
+    [self redrawForOrientation:[[UIDevice currentDevice] orientation]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -237,4 +264,18 @@
 - (IBAction)picSwitch:(id)sender {
     [JavaZonePrefs setShowBioPic:bioPicSwitch.on];
 }
+
+
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation 
+                                         duration:(NSTimeInterval)duration {
+
+    [self redrawForOrientation:toInterfaceOrientation];
+}
+
+
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return YES;
+}
+
 @end
