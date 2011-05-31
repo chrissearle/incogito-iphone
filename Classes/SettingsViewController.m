@@ -25,22 +25,40 @@
 
 - (void)redrawForOrientation:(UIInterfaceOrientation)interfaceOrientation {
     
-    if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
-        interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
-        picker.frame = CGRectMake(0, 55, 250, 216);
-        labelsLabel.frame = CGRectMake(7, 20, 280, 34);
-        applyButton.frame = CGRectMake(258, 55, 202, 37);
-        refreshButton.frame = CGRectMake(258, 150, 202, 37);
-        downloadLabel.frame = CGRectMake(258, 195, 267, 21);
-        bioPicSwitch.frame = CGRectMake(366, 224, 94, 27);
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+        if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
+            interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+            picker.frame = CGRectMake(0, 55, 250, 216);
+            labelsLabel.frame = CGRectMake(7, 20, 280, 34);
+            applyButton.frame = CGRectMake(258, 55, 202, 37);
+            refreshButton.frame = CGRectMake(258, 150, 202, 37);
+            downloadLabel.frame = CGRectMake(258, 195, 267, 21);
+            bioPicSwitch.frame = CGRectMake(366, 224, 94, 27);
+        } else {
+            picker.frame = CGRectMake(0, 62, 320, 216);
+            labelsLabel.frame = CGRectMake(20, 20, 280, 34);
+            applyButton.frame = CGRectMake(20, 286, 280, 37);
+            refreshButton.frame = CGRectMake(20, 331, 280, 37);
+            downloadLabel.frame = CGRectMake(20, 379, 178, 24);
+            bioPicSwitch.frame = CGRectMake(206, 376, 94, 27);
+        }
     } else {
-        picker.frame = CGRectMake(0, 62, 320, 216);
-        labelsLabel.frame = CGRectMake(20, 20, 280, 34);
-        applyButton.frame = CGRectMake(20, 286, 280, 37);
-        refreshButton.frame = CGRectMake(20, 331, 280, 37);
-        downloadLabel.frame = CGRectMake(20, 379, 178, 24);
-        bioPicSwitch.frame = CGRectMake(206, 376, 94, 27);
+        CGSize frameSize = self.view.frame.size;
+        
+        int mainWidth = 320;
+        int mainLeft = (frameSize.width - mainWidth) / 2;
+        
+        
+        int mainTop = (frameSize.height - 409) / 2;
+        int refreshTop = mainTop + 325;
+        
+        picker.frame = CGRectMake(mainLeft, mainTop, mainWidth, 216);
+        applyButton.frame = CGRectMake(mainLeft, mainTop + 224, mainWidth, 37);
+        refreshButton.frame = CGRectMake(mainLeft, refreshTop, mainWidth, 37);
+        downloadLabel.frame = CGRectMake(mainLeft, refreshTop + 60, mainWidth - 100, 24);
+        bioPicSwitch.frame = CGRectMake(mainLeft + mainWidth - 94, refreshTop + 57, 94, 27);
     }
+    
 }
 
 

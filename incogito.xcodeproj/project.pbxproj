@@ -501,6 +501,7 @@
 		83A7E15F130A672E00C8945F /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
 		83A7E160130A672E00C8945F /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preferences.m; sourceTree = "<group>"; };
 		83C3C1D4120FDC6500B23253 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		83CF55201395556000B5BAC6 /* Test.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Test.xib; sourceTree = "<group>"; };
 		83D1762311F18C3300D89884 /* SessionCommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionCommonViewController.h; sourceTree = "<group>"; };
 		83D1762411F18C3300D89884 /* SessionCommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionCommonViewController.m; sourceTree = "<group>"; };
 		83D6BCF711EEF3A100FBC0FE /* SectionInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionInitializer.h; sourceTree = "<group>"; };
@@ -1260,6 +1261,7 @@
 			children = (
 				838D65FE12733C5C009D50AF /* DetailedSessionView-iPad.xib */,
 				838D65AE12733322009D50AF /* MainWindow-iPad.xib */,
+				83CF55201395556000B5BAC6 /* Test.xib */,
 			);
 			name = Windows;
 			path = "Resources-iPad/Windows";
