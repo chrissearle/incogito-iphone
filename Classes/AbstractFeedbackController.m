@@ -24,18 +24,25 @@
 
 @synthesize scrollView;
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-	
-	// Default scroll view to fit window
-	if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
-	{
+- (void)redrawForOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
 		scrollView.frame = CGRectMake(0, 0, 320, 460);
 		[scrollView setContentSize:CGSizeMake(320, 460)];
-	} else {
-		scrollView.frame = CGRectMake(10, 75, 745, 865);
-		[scrollView setContentSize:CGSizeMake(745, 865)];
-	}
+    } else {
+        if (UIDeviceOrientationIsLandscape(interfaceOrientation)) {
+            scrollView.frame = CGRectMake(10, 75, 1004, 603);
+            [scrollView setContentSize:CGSizeMake(1004, 603)];
+        } else {
+            scrollView.frame = CGRectMake(10, 75, 745, 865);
+            [scrollView setContentSize:CGSizeMake(745, 865)];
+        }
+    }
+}
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
 	
 	self.title = @"Feedback";
 	
@@ -92,32 +99,47 @@
 }
 
 -(void) keyboardDidShow:(NSNotification *) notification {
-		NSDictionary* info = [notification userInfo];
-		
-		NSValue *aValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
-		CGSize keyboardSize = [aValue CGRectValue].size;
-		
-		CGRect viewFrame = [scrollView frame];
-		viewFrame.size.height -= keyboardSize.height;
-		scrollView.frame = viewFrame;
-
-		if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
-		{
-			[self scrollToFieldIfFirstResponder:commentField];
-		} else {
-			[scrollView scrollRectToVisible:CGRectMake(0, 570, 745, 295) animated:YES];
-		}
+    NSDictionary* info = [notification userInfo];
+    
+    NSValue *aValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGSize keyboardSize = [aValue CGRectValue].size;
+    
+    int keyboardHeight = keyboardSize.height;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        // Observation in the debugger shows height and width are reversed
+        if (UIDeviceOrientationIsLandscape([self interfaceOrientation])) {
+            keyboardHeight = keyboardSize.width;
+        }
+    }
+    
+    CGRect viewFrame = [scrollView frame];
+    viewFrame.size.height -= keyboardHeight;
+    scrollView.frame = viewFrame;
+    
+    [scrollView scrollRectToVisible:commentField.frame animated:YES];
 }
 
 -(void) keyboardDidHide:(NSNotification *) notification {
-		NSDictionary* info = [notification userInfo];
-		
-		NSValue* aValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
-		CGSize keyboardSize = [aValue CGRectValue].size;
-		
-		CGRect viewFrame = [scrollView frame];
-		viewFrame.size.height += keyboardSize.height;
-		scrollView.frame = viewFrame;
+    NSDictionary* info = [notification userInfo];
+    
+    NSValue* aValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGSize keyboardSize = [aValue CGRectValue].size;
+    
+    
+    int keyboardHeight = keyboardSize.height;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        // Observation in the debugger shows height and width are reversed
+        if (UIDeviceOrientationIsLandscape([self interfaceOrientation])) {
+            keyboardHeight = keyboardSize.width;
+        }
+    }
+    
+    
+    CGRect viewFrame = [scrollView frame];
+    viewFrame.size.height += keyboardHeight;
+    scrollView.frame = viewFrame;
 }
 
 - (void)didReceiveMemoryWarning {

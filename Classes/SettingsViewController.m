@@ -26,8 +26,7 @@
 - (void)redrawForOrientation:(UIInterfaceOrientation)interfaceOrientation {
     
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
-        if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
-            interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+        if (UIDeviceOrientationIsLandscape(interfaceOrientation)) {
             picker.frame = CGRectMake(0, 55, 250, 216);
             labelsLabel.frame = CGRectMake(7, 20, 280, 34);
             applyButton.frame = CGRectMake(258, 55, 202, 37);
@@ -73,7 +72,7 @@
 - (void) viewWillAppear:(BOOL)animated {
 	[FlurryAPI logEvent:@"Showing Settings"];
     
-    [self redrawForOrientation:[[UIDevice currentDevice] orientation]];
+    [self redrawForOrientation:[self interfaceOrientation]];
 }
 
 - (void)didReceiveMemoryWarning {

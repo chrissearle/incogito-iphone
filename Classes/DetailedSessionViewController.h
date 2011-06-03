@@ -23,6 +23,8 @@
     IBOutlet        UIButton *videoButton;
     IBOutlet        UILabel *videoLabel;
     MPMoviePlayerViewController *movie;
+    IBOutlet        UIView *feedbackView;
+    IBOutlet        UIView *shareView;
 
 	SectionSessionHandler *handler;
 	IncogitoAppDelegate *appDelegate;
@@ -35,6 +37,8 @@
 @property (nonatomic, retain) SectionSessionHandler *handler;
 @property (nonatomic, retain) IncogitoAppDelegate	*appDelegate;
 @property (nonatomic, retain) MPMoviePlayerViewController *movie;
+@property (nonatomic, retain) UIView                *feedbackView;
+@property (nonatomic, retain) UIView                *shareView;
 
 
 - (NSString *)buildPage:(NSString *)content withTitle:(NSString *)title withSpeakerInfo:(NSString *)speakerInfo andLabelsInfo:(NSString *)labels;

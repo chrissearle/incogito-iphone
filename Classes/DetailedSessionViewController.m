@@ -24,6 +24,33 @@
 @synthesize handler;
 @synthesize appDelegate;
 @synthesize movie;
+@synthesize feedbackView;
+@synthesize shareView;
+
+- (void)redrawForOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        CGRect frame = details.frame;
+        if (UIDeviceOrientationIsLandscape(interfaceOrientation)) {
+            frame.size.width = 1004;
+            frame.size.height = 300;
+        } else {
+            frame.size.width = 745;
+            frame.size.height = 562;
+        }
+        details.frame = frame;
+
+        CGRect feedbackFrame = feedbackView.frame;
+        feedbackFrame.origin.x = ((self.view.frame.size.width - feedbackFrame.size.width) / 2);
+        feedbackView.frame = feedbackFrame;
+
+        CGRect shareFrame = shareView.frame;
+        shareFrame.origin.x = ((self.view.frame.size.width - shareFrame.size.width) / 2);
+        shareView.frame = shareFrame;
+    }
+    
+    [super redrawForOrientation:interfaceOrientation];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,6 +82,8 @@
 															   [session jzId],
 															   @"ID", 
 															   nil]];
+
+    [self redrawForOrientation:[self interfaceOrientation]];
 }
 
 - (void)displaySession {
@@ -315,6 +344,12 @@
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation 
+                                         duration:(NSTimeInterval)duration {
+    
+    [self redrawForOrientation:toInterfaceOrientation];
 }
 
 @end

@@ -42,4 +42,6 @@
 - (void)send:(id) sender;
 - (void)ratingButtonClicked:(id)sender;
 
+- (void)redrawForOrientation:(UIInterfaceOrientation)interfaceOrientation;
+
 @end
