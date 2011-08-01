@@ -29,6 +29,10 @@
     return [Preferences getPreferenceAsArray:@"ClubZone"];
 }
 
++ (NSArray *)activeYears {
+    return [Preferences getPreferenceAsArray:@"ActiveYears"];
+}
+
 + (BOOL)showBioPic {
     BOOL flag = [[NSUserDefaults standardUserDefaults] boolForKey:@"showBioPic"];
             

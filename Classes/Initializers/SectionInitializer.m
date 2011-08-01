@@ -28,21 +28,21 @@
 #ifdef LOG_FUNCTION_TIMES
 		NSLog(@"%@ Adding sections", [[[NSDate alloc] init] autorelease]);
 #endif
-		[self addSectionForDay:1 startingAt:@"2010-09-08 09:00:00 +0200" endingAt:@"2010-09-08 10:00:00 +0200"];
-		[self addSectionForDay:1 startingAt:@"2010-09-08 10:15:00 +0200" endingAt:@"2010-09-08 11:15:00 +0200"];
-		[self addSectionForDay:1 startingAt:@"2010-09-08 11:45:00 +0200" endingAt:@"2010-09-08 12:45:00 +0200"];
-		[self addSectionForDay:1 startingAt:@"2010-09-08 13:00:00 +0200" endingAt:@"2010-09-08 14:00:00 +0200"];
-		[self addSectionForDay:1 startingAt:@"2010-09-08 14:15:00 +0200" endingAt:@"2010-09-08 15:15:00 +0200"];
-		[self addSectionForDay:1 startingAt:@"2010-09-08 15:45:00 +0200" endingAt:@"2010-09-08 16:45:00 +0200"];
-		[self addSectionForDay:1 startingAt:@"2010-09-08 17:00:00 +0200" endingAt:@"2010-09-08 18:00:00 +0200"];
-		[self addSectionForDay:1 startingAt:@"2010-09-08 18:15:00 +0200" endingAt:@"2010-09-08 19:15:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2010-09-09 09:00:00 +0200" endingAt:@"2010-09-09 10:00:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2010-09-09 10:15:00 +0200" endingAt:@"2010-09-09 11:15:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2010-09-09 11:45:00 +0200" endingAt:@"2010-09-09 12:45:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2010-09-09 13:00:00 +0200" endingAt:@"2010-09-09 14:00:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2010-09-09 14:15:00 +0200" endingAt:@"2010-09-09 15:15:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2010-09-09 15:45:00 +0200" endingAt:@"2010-09-09 16:45:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2010-09-09 17:00:00 +0200" endingAt:@"2010-09-09 18:00:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2011-09-07 09:00:00 +0200" endingAt:@"2011-09-07 10:00:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2011-09-07 10:20:00 +0200" endingAt:@"2011-09-07 11:20:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2011-09-07 11:40:00 +0200" endingAt:@"2011-09-07 12:40:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2011-09-07 13:00:00 +0200" endingAt:@"2011-09-07 14:00:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2011-09-07 14:20:00 +0200" endingAt:@"2011-09-07 15:20:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2011-09-07 15:40:00 +0200" endingAt:@"2011-09-07 16:40:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2011-09-07 17:00:00 +0200" endingAt:@"2011-09-07 18:00:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2011-09-07 18:20:00 +0200" endingAt:@"2011-09-07 19:20:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2011-09-08 09:00:00 +0200" endingAt:@"2011-09-08 10:00:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2011-09-08 10:20:00 +0200" endingAt:@"2011-09-08 11:20:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2011-09-08 11:40:00 +0200" endingAt:@"2011-09-08 12:40:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2011-09-08 13:00:00 +0200" endingAt:@"2011-09-08 14:00:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2011-09-08 14:20:00 +0200" endingAt:@"2011-09-08 15:20:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2011-09-08 15:40:00 +0200" endingAt:@"2011-09-08 16:40:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2011-09-08 17:00:00 +0200" endingAt:@"2011-09-08 18:00:00 +0200"];
 	}
 }
 

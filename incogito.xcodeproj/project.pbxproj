@@ -157,6 +157,7 @@
 		F35EC3A61356CFD70047294D /* VideoMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F35EC3A51356CFD70047294D /* VideoMapper.m */; };
 		F35EC3A91356F5A60047294D /* video.plist in Resources */ = {isa = PBXBuildFile; fileRef = F35EC3A81356F5A60047294D /* video.plist */; };
 		F3A65026134473EB005B1372 /* JavaZonePrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A65025134473EB005B1372 /* JavaZonePrefs.m */; };
+		F3F0CD6F13E688F100EC1149 /* ClearDataInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F0CD6E13E688F100EC1149 /* ClearDataInitializer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -538,6 +539,8 @@
 		F35EC3A81356F5A60047294D /* video.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = video.plist; sourceTree = "<group>"; };
 		F3A65024134473EB005B1372 /* JavaZonePrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaZonePrefs.h; sourceTree = "<group>"; };
 		F3A65025134473EB005B1372 /* JavaZonePrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaZonePrefs.m; sourceTree = "<group>"; };
+		F3F0CD6D13E688F100EC1149 /* ClearDataInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearDataInitializer.h; sourceTree = "<group>"; };
+		F3F0CD6E13E688F100EC1149 /* ClearDataInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearDataInitializer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -687,6 +690,8 @@
 				83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */,
 				8320A3C41307EF90000B34E4 /* TabInitializer.h */,
 				8320A3C51307EF90000B34E4 /* TabInitializer.m */,
+				F3F0CD6D13E688F100EC1149 /* ClearDataInitializer.h */,
+				F3F0CD6E13E688F100EC1149 /* ClearDataInitializer.m */,
 			);
 			path = Initializers;
 			sourceTree = "<group>";
@@ -1523,6 +1528,7 @@
 				F3A65026134473EB005B1372 /* JavaZonePrefs.m in Sources */,
 				F35EC3A61356CFD70047294D /* VideoMapper.m in Sources */,
 				F31ACFB1138CE0E4007F5CCF /* UITabBarController+Autorotate.m in Sources */,
+				F3F0CD6F13E688F100EC1149 /* ClearDataInitializer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

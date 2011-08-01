@@ -464,5 +464,38 @@
 	return filteredSessions;
 }
 
+- (NSArray *)getAllSessions {
+    NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
+	
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	
+	[request setEntity:entityDescription];
+	
+	NSError *error = nil;
+    
+	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	[request release];
+    
+	if (nil != error) {
+		[mutableFetchResults release];
+		NSLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		return nil;
+	}
+	
+	NSArray *sessions = [[[NSArray alloc] initWithArray:mutableFetchResults] autorelease];
+	[mutableFetchResults release];
+	
+	return sessions;
+}
+
+- (void)deleteSession:(JZSession *)session {
+    [managedObjectContext deleteObject:session];
+}
+
+- (void)deleteSection:(Section *)section {
+    [managedObjectContext deleteObject:section];
+}
+
 
 @end

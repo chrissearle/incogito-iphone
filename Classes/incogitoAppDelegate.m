@@ -16,6 +16,7 @@
 #import "SettingsViewController.h"
 #import "FlurryAPI.h"
 #import "TabInitializer.h"
+#import "ClearDataInitializer.h"
 
 @implementation IncogitoAppDelegate
 
@@ -44,6 +45,11 @@ void uncaughtExceptionHandler(NSException *exception) {
 	NSLog(@"%@ Calling sectionInitializer", [[[NSDate alloc] init] autorelease]);
 #endif
 	
+    ClearDataInitializer *clearDataInitializer = [[ClearDataInitializer alloc] initWithSectionSessionHandler:[self sectionSessionHandler]];
+    [clearDataInitializer clearOldSessions];
+    [clearDataInitializer clearOldSections];
+    [clearDataInitializer release];
+    
 	SectionInitializer *sectionInitializer = [[SectionInitializer alloc] init];
 	[sectionInitializer setManagedObjectContext:[self managedObjectContext]];
 	[sectionInitializer initializeSections];
