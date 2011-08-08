@@ -490,6 +490,9 @@
 }
 
 - (void)deleteSession:(JZSession *)session {
+    if ([session userSession] != nil) {
+        [managedObjectContext deleteObject:[session userSession]];
+    }
     [managedObjectContext deleteObject:session];
 }
 

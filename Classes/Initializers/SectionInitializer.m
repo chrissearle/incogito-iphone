@@ -73,15 +73,21 @@
 	[start release];
 	[end release];
 	
-	NSError *error = nil;
-	
-	if (![managedObjectContext save:&error]) {
-		if (nil != error) {
-			NSLog(@"%@:%@ Error saving sections: %@", [self class], _cmd, [error localizedDescription]);
-			return;
-		}
-	}
-	
+    
+    NSError* error;
+    if(![managedObjectContext save:&error]) {
+        NSLog(@"Failed to save to data store: %@", [error localizedDescription]);
+        NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+        if(detailedErrors != nil && [detailedErrors count] > 0) {
+            for(NSError* detailedError in detailedErrors) {
+                NSLog(@"  DetailedError: %@", [detailedError userInfo]);
+            }
+        }
+        else {
+            NSLog(@"  %@", [error userInfo]);
+        }
+    }
+    
 #ifdef LOG_FUNCTION_TIMES
 	NSLog(@"%@ End of addSectionForDay:startingAt", [[[NSDate alloc] init] autorelease]);
 #endif
