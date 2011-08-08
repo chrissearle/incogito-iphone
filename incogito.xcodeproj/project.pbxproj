@@ -157,6 +157,10 @@
 		F35EC3A61356CFD70047294D /* VideoMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F35EC3A51356CFD70047294D /* VideoMapper.m */; };
 		F35EC3A91356F5A60047294D /* video.plist in Resources */ = {isa = PBXBuildFile; fileRef = F35EC3A81356F5A60047294D /* video.plist */; };
 		F3A65026134473EB005B1372 /* JavaZonePrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A65025134473EB005B1372 /* JavaZonePrefs.m */; };
+		F3D8EEA613EFF7D3002C9427 /* AweZoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D8EEA413EFF7D3002C9427 /* AweZoneController.m */; };
+		F3D8EEA813EFFA27002C9427 /* 95-equalizer.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424BB411ED981300590A7A /* 95-equalizer.png */; };
+		F3D8EEAA13EFFA78002C9427 /* AweZone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D8EEA913EFFA78002C9427 /* AweZone.xib */; };
+		F3D8EEAC13EFFADC002C9427 /* awezone.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D8EEAB13EFFADC002C9427 /* awezone.png */; };
 		F3F0CD6F13E688F100EC1149 /* ClearDataInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F0CD6E13E688F100EC1149 /* ClearDataInitializer.m */; };
 /* End PBXBuildFile section */
 
@@ -539,6 +543,10 @@
 		F35EC3A81356F5A60047294D /* video.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = video.plist; sourceTree = "<group>"; };
 		F3A65024134473EB005B1372 /* JavaZonePrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaZonePrefs.h; sourceTree = "<group>"; };
 		F3A65025134473EB005B1372 /* JavaZonePrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaZonePrefs.m; sourceTree = "<group>"; };
+		F3D8EEA313EFF7D3002C9427 /* AweZoneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AweZoneController.h; sourceTree = "<group>"; };
+		F3D8EEA413EFF7D3002C9427 /* AweZoneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AweZoneController.m; sourceTree = "<group>"; };
+		F3D8EEA913EFFA78002C9427 /* AweZone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AweZone.xib; sourceTree = "<group>"; };
+		F3D8EEAB13EFFADC002C9427 /* awezone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = awezone.png; sourceTree = "<group>"; };
 		F3F0CD6D13E688F100EC1149 /* ClearDataInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearDataInitializer.h; sourceTree = "<group>"; };
 		F3F0CD6E13E688F100EC1149 /* ClearDataInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearDataInitializer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -606,6 +614,8 @@
 				831F5334120BFFD20027A8A4 /* SettingsViewController.m */,
 				F31ACFAF138CE0E4007F5CCF /* UITabBarController+Autorotate.h */,
 				F31ACFB0138CE0E4007F5CCF /* UITabBarController+Autorotate.m */,
+				F3D8EEA313EFF7D3002C9427 /* AweZoneController.h */,
+				F3D8EEA413EFF7D3002C9427 /* AweZoneController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1219,6 +1229,7 @@
 		83827C1A11F8797600A74CC1 /* Windows */ = {
 			isa = PBXGroup;
 			children = (
+				F3D8EEA913EFFA78002C9427 /* AweZone.xib */,
 				830859CF120F300A00F74041 /* Map.xib */,
 				83D6C06F11EF922500FBC0FE /* DetailedSessionView.xib */,
 				83424B2111ED882F00590A7A /* Overview.xib */,
@@ -1237,6 +1248,7 @@
 		83827C2611F87A1A00A74CC1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F3D8EEAB13EFFADC002C9427 /* awezone.png */,
 				83A37C19126CD14E0014A61C /* jz_pin_logo.png */,
 				831F5339120C03170027A8A4 /* labels */,
 				83713C03120AD6A0000050A7 /* star-checked.png */,
@@ -1379,6 +1391,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3D8EEA813EFFA27002C9427 /* 95-equalizer.png in Resources */,
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				834243EB11E74CAD00B438A8 /* Icon.png in Resources */,
 				83424B2211ED882F00590A7A /* Overview.xib in Resources */,
@@ -1420,6 +1433,8 @@
 				F34BFA92138CD81D00605592 /* Default@2x.png in Resources */,
 				F34BFA94138CD82900605592 /* Default-Portrait~ipad.png in Resources */,
 				F34BFA96138CD83200605592 /* Default-Landscape~ipad.png in Resources */,
+				F3D8EEAA13EFFA78002C9427 /* AweZone.xib in Resources */,
+				F3D8EEAC13EFFADC002C9427 /* awezone.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1529,6 +1544,7 @@
 				F35EC3A61356CFD70047294D /* VideoMapper.m in Sources */,
 				F31ACFB1138CE0E4007F5CCF /* UITabBarController+Autorotate.m in Sources */,
 				F3F0CD6F13E688F100EC1149 /* ClearDataInitializer.m in Sources */,
+				F3D8EEA613EFF7D3002C9427 /* AweZoneController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

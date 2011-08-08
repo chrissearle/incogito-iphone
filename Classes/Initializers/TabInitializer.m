@@ -21,6 +21,10 @@
 #ifdef HIDE_SETTINGS
 #import "SettingsViewController.h"
 #endif
+#ifdef HIDE_AWEZONE
+#import "AweZoneController.h"
+#endif
+
 
 @implementation TabInitializer
 
@@ -41,6 +45,13 @@
 	
 #ifdef HIDE_CLUBZONE
 	if ([controller class] == [ClubZoneViewController class]) {
+		NSLog(@"Removing %@", controller);
+		
+		remove = YES;
+	}
+#endif
+#ifdef HIDE_AWEZONE
+	if ([controller class] == [AweZoneController class]) {
 		NSLog(@"Removing %@", controller);
 		
 		remove = YES;
