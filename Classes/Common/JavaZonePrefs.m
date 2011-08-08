@@ -9,6 +9,8 @@
 
 @implementation JavaZonePrefs
 
+// JavaZone Prefs
+
 + (NSString *)feedbackUrl {
     return [Preferences getPreferenceAsString:@"FeedbackUrl"];
 }
@@ -31,6 +33,19 @@
 
 + (NSArray *)activeYears {
     return [Preferences getPreferenceAsArray:@"ActiveYears"];
+}
+
+// UserDefault Prefs
+
++ (NSString *)registeredEmail {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"RegisteredEmail"];
+}
+
++ (void)setRegisteredEmail:(NSString *)email {
+    NSLog(@"Setting registered e-mail %@", email);
+    
+    [[NSUserDefaults standardUserDefaults] setObject:email forKey:@"RegisteredEmail"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 + (BOOL)showBioPic {

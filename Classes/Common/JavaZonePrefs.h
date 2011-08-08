@@ -19,6 +19,9 @@
 
 + (NSArray *)activeYears;
 
++ (NSString *)registeredEmail;
++ (void)setRegisteredEmail:(NSString *)email;
+
 + (BOOL)showBioPic;
 + (void)setShowBioPic:(BOOL) flag;
 
