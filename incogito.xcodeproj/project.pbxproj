@@ -150,6 +150,7 @@
 		83D6C07311EF922500FBC0FE /* DetailedSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6C07111EF922500FBC0FE /* DetailedSessionViewController.m */; };
 		83D794B412127B960080F7D1 /* incogito.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83D794B312127B960080F7D1 /* incogito.plist */; };
 		83D80E7213F28444001F18DD /* FeedbackAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D80E7113F28444001F18DD /* FeedbackAvailability.m */; };
+		83DEDC8B13F3211C00BE9908 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DEDC8A13F3211C00BE9908 /* RegexKitLite.m */; };
 		83E44EBA1243EF2700F0C291 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E44EB91243EF2700F0C291 /* libFlurry.a */; };
 		83E94C6512142EAA00596D30 /* all.png in Resources */ = {isa = PBXBuildFile; fileRef = 83E94C3812142C9B00596D30 /* all.png */; };
 		83FA5A5212460435008CA85C /* 60-signpost.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B9111ED981300590A7A /* 60-signpost.png */; };
@@ -544,6 +545,8 @@
 		83D794B312127B960080F7D1 /* incogito.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = incogito.plist; sourceTree = "<group>"; };
 		83D80E7013F28444001F18DD /* FeedbackAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackAvailability.h; path = Feedback/FeedbackAvailability.h; sourceTree = "<group>"; };
 		83D80E7113F28444001F18DD /* FeedbackAvailability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackAvailability.m; path = Feedback/FeedbackAvailability.m; sourceTree = "<group>"; };
+		83DEDC8913F3211C00BE9908 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		83DEDC8A13F3211C00BE9908 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		83E44EB71243EF2700F0C291 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
 		83E44EB81243EF2700F0C291 /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
 		83E44EB91243EF2700F0C291 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
@@ -594,6 +597,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				83DEDC8813F3211C00BE9908 /* RegexKitLite */,
 				8375DC3013F2971600094F9B /* KissXML */,
 				83D80E6F13F283EA001F18DD /* Feedback */,
 				83A7E15E130A670800C8945F /* Common */,
@@ -1389,6 +1393,15 @@
 			name = Feedback;
 			sourceTree = "<group>";
 		};
+		83DEDC8813F3211C00BE9908 /* RegexKitLite */ = {
+			isa = PBXGroup;
+			children = (
+				83DEDC8913F3211C00BE9908 /* RegexKitLite.h */,
+				83DEDC8A13F3211C00BE9908 /* RegexKitLite.m */,
+			);
+			path = RegexKitLite;
+			sourceTree = "<group>";
+		};
 		83E44EB61243EF2700F0C291 /* FlurryLib */ = {
 			isa = PBXGroup;
 			children = (
@@ -1625,6 +1638,7 @@
 				8375DC4313F2975700094F9B /* DDXMLDocument.m in Sources */,
 				8375DC4413F2975700094F9B /* DDXMLElement.m in Sources */,
 				8375DC4513F2975700094F9B /* DDXMLNode.m in Sources */,
+				83DEDC8B13F3211C00BE9908 /* RegexKitLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1700,7 +1714,10 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-lxml2";
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-licucore",
+				);
 				SDKROOT = iphoneos;
 			};
 			name = "Debug no extra code";
@@ -1742,7 +1759,10 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				OTHER_LDFLAGS = "-lxml2";
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-licucore",
+				);
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DB50CA72-E0BF-400D-87D7-A452F50DBEF1";
 				SDKROOT = iphoneos;
 			};
@@ -1794,7 +1814,10 @@
 					"-DLOG_FUNCTION_TIMES=1",
 					"-DNOW_AND_NEXT_USE_TEST_DATE=1",
 				);
-				OTHER_LDFLAGS = "-lxml2";
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-licucore",
+				);
 				SDKROOT = iphoneos;
 			};
 			name = "Debug with trace logging";
@@ -1840,7 +1863,10 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNOW_AND_NEXT_USE_TEST_DATE=1";
-				OTHER_LDFLAGS = "-lxml2";
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-licucore",
+				);
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1857,7 +1883,10 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				OTHER_LDFLAGS = "-lxml2";
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-licucore",
+				);
 				SDKROOT = iphoneos;
 			};
 			name = Release;

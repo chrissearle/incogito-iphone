@@ -8,6 +8,7 @@
 #import "FlurryAPI.h"
 #import "JZSession.h"
 #import "JavaZonePrefs.h"
+#import "RegexKitLite.h"
 
 @implementation FeedbackController
 
@@ -90,18 +91,33 @@
     
     // Can't find a way to check HTTP response code here. Seems to be only available if I send the form programatically rather than letting the webview do it.
     NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+       
+    //NSLog(@"Saw %@", html);
     
     if ([html rangeOfString:@"form"].location != NSNotFound) {
         [self setEmail:[emailField text]];
         [self insertStyle];
+
+        return;
     }
     
-    if ([html rangeOfString:@"unknown respondent"].location != NSNotFound) {
+    
+    NSString *errorRegex = @"<div ?[^>]* ?class=\"error\" ?[^>]* ?>(.*)</div>";
+    
+    NSString *match = [html stringByMatching:errorRegex];
+    
+    NSLog(@"Saw match %@", match);
+    
+    if ([match isEqual:@""] == NO) {
+        NSString *message = [html stringByMatching:errorRegex capture:1L];
+        
+        NSLog(@"Message %@", message);
+
         [webView goBack];
         
         UIAlertView *errorAlert = [[UIAlertView alloc]
 								   initWithTitle: @"Unable to send feedback"
-								   message: @"JavaZone was unable to find your e-mail account. Please make sure you are using the e-mail you used when ordering your JavaZone tickets."
+								   message: message
 								   delegate:nil
 								   cancelButtonTitle:@"OK"
 								   otherButtonTitles:nil];
