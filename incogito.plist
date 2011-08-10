@@ -2,12 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFPDate</key>
-	<date>2011-04-25T22:00:00Z</date>
 	<key>ActiveYears</key>
 	<array>
 		<integer>2011</integer>
 	</array>
+	<key>CFPDate</key>
+	<date>2011-04-25T22:00:00Z</date>
 	<key>CFPUrl</key>
 	<string>http://jz11.java.no/call_for_papers.html</string>
 	<key>ClubZone</key>
@@ -66,7 +66,7 @@
 		</dict>
 	</array>
 	<key>FeedbackUrl</key>
-	<string>http://incogito-feedback.heroku.com/ratings</string>
+	<string>http://test.eventsystems.no/jzfeedback/api/surveys/javazone2011</string>
 	<key>SessionUrl</key>
 	<string>http://javazone.no/incogito10/rest/events/JavaZone%202011/sessions</string>
 </dict>

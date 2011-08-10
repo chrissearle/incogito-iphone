@@ -12,6 +12,8 @@
 @interface ExtrasController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
 	JZSession *session;
     
+    NSURL *feedbackFormUrl;
+    
     NSArray *sections;
     NSDictionary *sectionCells;
 
@@ -21,7 +23,8 @@
 @property (nonatomic, retain) JZSession *session;
 @property (nonatomic, retain) NSArray *sections;
 @property (nonatomic, retain) NSDictionary *sectionCells;
-@property (nonatomic,retain) MPMoviePlayerViewController *movie;
+@property (nonatomic, retain) MPMoviePlayerViewController *movie;
+@property (nonatomic, retain) NSURL *feedbackFormUrl;
 
 - (void)endVideo:(NSNotification*) aNotification;
 

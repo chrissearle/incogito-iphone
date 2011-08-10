@@ -114,6 +114,11 @@
 		83713C07120AD6A0000050A7 /* star-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 83713C04120AD6A0000050A7 /* star-pressed.png */; };
 		83713C08120AD6A0000050A7 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 83713C05120AD6A0000050A7 /* star.png */; };
 		83741769120F3AC700B816A2 /* 74-location.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B9F11ED981300590A7A /* 74-location.png */; };
+		8375DC4113F2975700094F9B /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8375DC3413F2975700094F9B /* DDXMLElementAdditions.m */; };
+		8375DC4213F2975700094F9B /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 8375DC3713F2975700094F9B /* NSString+DDXML.m */; };
+		8375DC4313F2975700094F9B /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 8375DC3A13F2975700094F9B /* DDXMLDocument.m */; };
+		8375DC4413F2975700094F9B /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 8375DC3C13F2975700094F9B /* DDXMLElement.m */; };
+		8375DC4513F2975700094F9B /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8375DC3E13F2975700094F9B /* DDXMLNode.m */; };
 		837C2CF2124DE0D500F09611 /* SessionDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 837C2CF1124DE0D500F09611 /* SessionDownloader.m */; };
 		837C2CF9124DE2A100F09611 /* SessionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 837C2CF8124DE2A100F09611 /* SessionParser.m */; };
 		8381B19912CE220C008760FF /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8381B19812CE220C008760FF /* MBProgressHUD.m */; };
@@ -145,6 +150,7 @@
 		83D6C07211EF922500FBC0FE /* DetailedSessionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D6C06F11EF922500FBC0FE /* DetailedSessionView.xib */; };
 		83D6C07311EF922500FBC0FE /* DetailedSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6C07111EF922500FBC0FE /* DetailedSessionViewController.m */; };
 		83D794B412127B960080F7D1 /* incogito.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83D794B312127B960080F7D1 /* incogito.plist */; };
+		83D80E7213F28444001F18DD /* FeedbackAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D80E7113F28444001F18DD /* FeedbackAvailability.m */; };
 		83E44EBA1243EF2700F0C291 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E44EB91243EF2700F0C291 /* libFlurry.a */; };
 		83E94C6512142EAA00596D30 /* all.png in Resources */ = {isa = PBXBuildFile; fileRef = 83E94C3812142C9B00596D30 /* all.png */; };
 		83FA5A5212460435008CA85C /* 60-signpost.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B9111ED981300590A7A /* 60-signpost.png */; };
@@ -474,6 +480,18 @@
 		83713C03120AD6A0000050A7 /* star-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-checked.png"; sourceTree = "<group>"; };
 		83713C04120AD6A0000050A7 /* star-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-pressed.png"; sourceTree = "<group>"; };
 		83713C05120AD6A0000050A7 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		8375DC3313F2975700094F9B /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
+		8375DC3413F2975700094F9B /* DDXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElementAdditions.m; sourceTree = "<group>"; };
+		8375DC3613F2975700094F9B /* NSString+DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DDXML.h"; sourceTree = "<group>"; };
+		8375DC3713F2975700094F9B /* NSString+DDXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DDXML.m"; sourceTree = "<group>"; };
+		8375DC3813F2975700094F9B /* DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDXML.h; path = KissXML/DDXML.h; sourceTree = "<group>"; };
+		8375DC3913F2975700094F9B /* DDXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDXMLDocument.h; path = KissXML/DDXMLDocument.h; sourceTree = "<group>"; };
+		8375DC3A13F2975700094F9B /* DDXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDXMLDocument.m; path = KissXML/DDXMLDocument.m; sourceTree = "<group>"; };
+		8375DC3B13F2975700094F9B /* DDXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDXMLElement.h; path = KissXML/DDXMLElement.h; sourceTree = "<group>"; };
+		8375DC3C13F2975700094F9B /* DDXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDXMLElement.m; path = KissXML/DDXMLElement.m; sourceTree = "<group>"; };
+		8375DC3D13F2975700094F9B /* DDXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDXMLNode.h; path = KissXML/DDXMLNode.h; sourceTree = "<group>"; };
+		8375DC3E13F2975700094F9B /* DDXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDXMLNode.m; path = KissXML/DDXMLNode.m; sourceTree = "<group>"; };
+		8375DC4013F2975700094F9B /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
 		837C2CF0124DE0D500F09611 /* SessionDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionDownloader.h; sourceTree = "<group>"; };
 		837C2CF1124DE0D500F09611 /* SessionDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionDownloader.m; sourceTree = "<group>"; };
 		837C2CF7124DE2A100F09611 /* SessionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionParser.h; sourceTree = "<group>"; };
@@ -526,6 +544,8 @@
 		83D6C07011EF922500FBC0FE /* DetailedSessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedSessionViewController.h; sourceTree = "<group>"; };
 		83D6C07111EF922500FBC0FE /* DetailedSessionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedSessionViewController.m; sourceTree = "<group>"; };
 		83D794B312127B960080F7D1 /* incogito.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = incogito.plist; sourceTree = "<group>"; };
+		83D80E7013F28444001F18DD /* FeedbackAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackAvailability.h; path = Feedback/FeedbackAvailability.h; sourceTree = "<group>"; };
+		83D80E7113F28444001F18DD /* FeedbackAvailability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackAvailability.m; path = Feedback/FeedbackAvailability.m; sourceTree = "<group>"; };
 		83E44EB71243EF2700F0C291 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
 		83E44EB81243EF2700F0C291 /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
 		83E44EB91243EF2700F0C291 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
@@ -576,6 +596,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8375DC3013F2971600094F9B /* KissXML */,
+				83D80E6F13F283EA001F18DD /* Feedback */,
 				83A7E15E130A670800C8945F /* Common */,
 				8320A3C31307EF5A000B34E4 /* Initializers */,
 				8381B19112CE21DD008760FF /* HUD */,
@@ -1217,6 +1239,52 @@
 			path = icons;
 			sourceTree = "<group>";
 		};
+		8375DC3013F2971600094F9B /* KissXML */ = {
+			isa = PBXGroup;
+			children = (
+				8375DC3213F2975700094F9B /* Additions */,
+				8375DC3513F2975700094F9B /* Categories */,
+				8375DC3813F2975700094F9B /* DDXML.h */,
+				8375DC3913F2975700094F9B /* DDXMLDocument.h */,
+				8375DC3A13F2975700094F9B /* DDXMLDocument.m */,
+				8375DC3B13F2975700094F9B /* DDXMLElement.h */,
+				8375DC3C13F2975700094F9B /* DDXMLElement.m */,
+				8375DC3D13F2975700094F9B /* DDXMLNode.h */,
+				8375DC3E13F2975700094F9B /* DDXMLNode.m */,
+				8375DC3F13F2975700094F9B /* Private */,
+			);
+			name = KissXML;
+			sourceTree = "<group>";
+		};
+		8375DC3213F2975700094F9B /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				8375DC3313F2975700094F9B /* DDXMLElementAdditions.h */,
+				8375DC3413F2975700094F9B /* DDXMLElementAdditions.m */,
+			);
+			name = Additions;
+			path = KissXML/Additions;
+			sourceTree = "<group>";
+		};
+		8375DC3513F2975700094F9B /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				8375DC3613F2975700094F9B /* NSString+DDXML.h */,
+				8375DC3713F2975700094F9B /* NSString+DDXML.m */,
+			);
+			name = Categories;
+			path = KissXML/Categories;
+			sourceTree = "<group>";
+		};
+		8375DC3F13F2975700094F9B /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				8375DC4013F2975700094F9B /* DDXMLPrivate.h */,
+			);
+			name = Private;
+			path = KissXML/Private;
+			sourceTree = "<group>";
+		};
 		8381B19112CE21DD008760FF /* HUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -1313,6 +1381,15 @@
 				F35EC3A51356CFD70047294D /* VideoMapper.m */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		83D80E6F13F283EA001F18DD /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				83D80E7013F28444001F18DD /* FeedbackAvailability.h */,
+				83D80E7113F28444001F18DD /* FeedbackAvailability.m */,
+			);
+			name = Feedback;
 			sourceTree = "<group>";
 		};
 		83E44EB61243EF2700F0C291 /* FlurryLib */ = {
@@ -1546,6 +1623,12 @@
 				F31ACFB1138CE0E4007F5CCF /* UITabBarController+Autorotate.m in Sources */,
 				F3F0CD6F13E688F100EC1149 /* ClearDataInitializer.m in Sources */,
 				F3D8EEA613EFF7D3002C9427 /* AweZoneController.m in Sources */,
+				83D80E7213F28444001F18DD /* FeedbackAvailability.m in Sources */,
+				8375DC4113F2975700094F9B /* DDXMLElementAdditions.m in Sources */,
+				8375DC4213F2975700094F9B /* NSString+DDXML.m in Sources */,
+				8375DC4313F2975700094F9B /* DDXMLDocument.m in Sources */,
+				8375DC4413F2975700094F9B /* DDXMLElement.m in Sources */,
+				8375DC4513F2975700094F9B /* DDXMLNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1566,7 +1649,7 @@
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "incogito-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/FlurryLib\"",
@@ -1595,7 +1678,7 @@
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "incogito-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/FlurryLib\"",
@@ -1618,8 +1701,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = iphoneos;
 			};
 			name = "Debug no extra code";
@@ -1637,7 +1722,7 @@
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "incogito-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/FlurryLib\"",
@@ -1658,8 +1743,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-lxml2";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DB50CA72-E0BF-400D-87D7-A452F50DBEF1";
 				SDKROOT = iphoneos;
 			};
@@ -1677,7 +1764,7 @@
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "incogito-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/FlurryLib\"",
@@ -1705,11 +1792,13 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_CFLAGS = (
 					"-DLOG_FUNCTION_TIMES=1",
 					"-DNOW_AND_NEXT_USE_TEST_DATE=1",
 				);
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = iphoneos;
 			};
 			name = "Debug with trace logging";
@@ -1727,7 +1816,7 @@
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "incogito-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/FlurryLib\"",
@@ -1752,8 +1841,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_CFLAGS = "-DNOW_AND_NEXT_USE_TEST_DATE=1";
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1767,8 +1858,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = iphoneos;
 			};
 			name = Release;

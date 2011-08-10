@@ -10,6 +10,8 @@
 #import "FlurryAPI.h"
 #import "FeedbackController.h"
 #import "VideoMapper.h"
+#import "FeedbackAvailability.h"
+#import "JavaZonePrefs.h"
 
 @implementation ExtrasController
 
@@ -17,6 +19,7 @@
 @synthesize sections;
 @synthesize sectionCells;
 @synthesize movie;
+@synthesize feedbackFormUrl;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,10 +31,14 @@
     
     [titles addObject:@"Sharing"];
     [cells  setObject:[NSArray arrayWithObjects:@"Share", @"Share link", nil] forKey:@"Sharing"];
+
+    FeedbackAvailability *availability = [[[FeedbackAvailability alloc] initWithUrl:[NSURL URLWithString:[JavaZonePrefs feedbackUrl]]] autorelease];
     
-	if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+    if ([availability isFeedbackAvailableForSession:[session jzId]]) {
+        self.feedbackFormUrl = [availability feedbackUrlForSession:[session jzId]];
+        
         [titles addObject:@"Feedback"];
-        [cells  setObject:[NSArray arrayWithObjects:@"Rate or give feedback", nil] forKey:@"Feedback"];
+        [cells  setObject:[NSArray arrayWithObjects:@"Give feedback", nil] forKey:@"Feedback"];
     }
     
     if ([VideoMapper streamingUrlForSession:[session jzId]] != nil) {
@@ -173,6 +180,7 @@
     } else if ([sectionTitle isEqualToString:@"Feedback"]) {
         FeedbackController *controller = [[FeedbackController alloc] initWithNibName:@"Feedback" bundle:[NSBundle mainBundle]];
         controller.session = session;
+        controller.feedbackURL = feedbackFormUrl;
         
         [[self navigationController] pushViewController:controller animated:YES];
         [controller release], controller = nil;
