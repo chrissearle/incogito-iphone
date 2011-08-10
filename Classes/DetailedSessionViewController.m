@@ -23,34 +23,7 @@
 @synthesize levelImage;
 @synthesize handler;
 @synthesize appDelegate;
-@synthesize movie;
-@synthesize feedbackView;
-@synthesize shareView;
-
-- (void)redrawForOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        CGRect frame = details.frame;
-        if (UIDeviceOrientationIsLandscape(interfaceOrientation)) {
-            frame.size.width = 1004;
-            frame.size.height = 300;
-        } else {
-            frame.size.width = 745;
-            frame.size.height = 562;
-        }
-        details.frame = frame;
-
-        CGRect feedbackFrame = feedbackView.frame;
-        feedbackFrame.origin.x = ((self.view.frame.size.width - feedbackFrame.size.width) / 2);
-        feedbackView.frame = feedbackFrame;
-
-        CGRect shareFrame = shareView.frame;
-        shareFrame.origin.x = ((self.view.frame.size.width - shareFrame.size.width) / 2);
-        shareView.frame = shareFrame;
-    }
-    
-    [super redrawForOrientation:interfaceOrientation];
-}
+@synthesize session;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -82,8 +55,6 @@
 															   [session jzId],
 															   @"ID", 
 															   nil]];
-
-    [self redrawForOrientation:[self interfaceOrientation]];
 }
 
 - (void)displaySession {
@@ -132,25 +103,9 @@
 	
 	self.title = [session title];
 	
-	if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
-		UIBarButtonItem *button = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showExtras:)] autorelease];
+	UIBarButtonItem *button = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showExtras:)] autorelease];
 	
-		self.navigationItem.rightBarButtonItem = button;
-	} else {
-		self.navigationItem.rightBarButtonItem = nil;
-	}
-
-	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        NSString *streamingUrl = [VideoMapper streamingUrlForSession:[session jzId]];
-    
-        if (streamingUrl == nil) {
-            [videoButton setEnabled:NO];
-            [videoLabel setText:@"Video not available"];
-        } else {
-            [videoButton setEnabled:YES];
-            [videoLabel setText:@"Video streams can take a while to start"];
-        }
-    }
+	self.navigationItem.rightBarButtonItem = button;
 }
 
 - (void)reloadSession {
@@ -280,76 +235,8 @@
 	[controller release], controller = nil;
 }
 
-- (IBAction)shareText:(id)sender {
-	NSString *text = [NSString stringWithFormat:@"#JavaZone - %@", [session title]];
-	
-	SHKItem *item = [SHKItem text:text];
-	
-	// Get the ShareKit action sheet
-	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
-	
-	// Display the action sheet
-	[actionSheet showInView:[self view]];
-}
-
-- (IBAction)shareLink:(id)sender {
-	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://javazone.no/incogito10/events/JavaZone%202010/sessions/%@", [session title]]];
-	
-	SHKItem *item = [SHKItem URL:url title:[session title]];
-
-	// Get the ShareKit action sheet
-	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
-	
-	// Display the action sheet
-	[actionSheet showInView:[self view]];
-}
-
-- (IBAction)playVideo:(id)sender {
-    NSString *streamingUrl = [VideoMapper streamingUrlForSession:[session jzId]];
-    
-    [FlurryAPI logEvent:[NSString stringWithFormat:@"Streaming movie %@", streamingUrl]];
-    
-    NSURL *movieUrl = [NSURL URLWithString:streamingUrl];
-    
-    movie = [[MPMoviePlayerViewController alloc] initWithContentURL:movieUrl];
-    
-    [self presentModalViewController:movie animated:YES];
-    
-    // Movie playback is asynchronous, so this method returns immediately.
-    [movie.moviePlayer play];
-    
-    // Register for the playback finished notification
-    [[NSNotificationCenter defaultCenter]
-     addObserver: self
-     selector: @selector(endVideo:)
-     name: MPMoviePlayerPlaybackDidFinishNotification
-     object: movie.moviePlayer];
-  
-}
-
-- (void)endVideo:(NSNotification*) aNotification {
-    [FlurryAPI logEvent:@"Stopping stream"];
-    
-	[self dismissModalViewControllerAnimated:YES];
-	[movie.moviePlayer stop];
-	[movie release];
-	movie = NULL;
-	
-	[[NSNotificationCenter defaultCenter]
-	 removeObserver: self
-	 name: MPMoviePlayerPlaybackDidFinishNotification
-	 object: nil];
-
-}
-
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
-}
-
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation 
-                                         duration:(NSTimeInterval)duration {
-    
-    [self redrawForOrientation:toInterfaceOrientation];
 }
 
 @end

@@ -181,13 +181,8 @@
 	
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 
-	DetailedSessionViewController *controller;
-	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-	{
-		controller = [[DetailedSessionViewController alloc] initWithNibName:@"DetailedSessionView-iPad" bundle:[NSBundle mainBundle]];
-	} else {
-		controller = [[DetailedSessionViewController alloc] initWithNibName:@"DetailedSessionView" bundle:[NSBundle mainBundle]];
-	}
+	DetailedSessionViewController *controller = [[DetailedSessionViewController alloc] initWithNibName:@"DetailedSessionView" bundle:[NSBundle mainBundle]];
+
 	controller.session = [[sessions objectForKey:sectionTitle] objectAtIndex:indexPath.row];
 	
 #ifndef SHOW_TAB_BAR_ON_DETAILS_VIEW
