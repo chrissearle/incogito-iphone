@@ -45,7 +45,8 @@
         
         xmlDoc = [[[DDXMLDocument alloc] initWithData:response options:DDXMLDocumentXHTMLKind error:&err] autorelease];
 
-        NSArray *nodes = [xmlDoc nodesForXPath:@"//*[(local-name()='a') and (@id)   ]"
+        // libXml puts everything in the default namespace in a namespace without prefix. We can't register a fake namespace since KissXML doesn't support that - so we have to use local-name()
+        NSArray *nodes = [xmlDoc nodesForXPath:@"//*[(local-name()='a') and (@id)]"
                                          error:&err];
 
         NSLog(@"Found %d feedback URLs", [nodes count]);

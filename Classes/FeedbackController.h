@@ -8,7 +8,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "JZSession.h"
 
-@interface FeedbackController : UIViewController <UITextFieldDelegate> {
+@interface FeedbackController : UIViewController <UITextFieldDelegate, UIWebViewDelegate> {
 	JZSession		*session;
 	IBOutlet UITextField *emailField;
 	IBOutlet UIWebView *formField;

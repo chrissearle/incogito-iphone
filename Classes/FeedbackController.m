@@ -27,6 +27,31 @@
 															nil]];
 }
 
+- (void)insertStyle {
+    NSMutableString *js = [[NSMutableString alloc] init];
+    
+    [js appendString:@"var headElement = document.getElementsByTagName('head')[0];"];
+    [js appendString:@"var styleNode = document.createElement('style');"];
+    [js appendString:@"styleNode.type = 'text/css';"];
+    [js appendString:@"styleNode.innerText = 'label { display: block; } textarea {display: block; }';"];
+    [js appendString:@"headElement.appendChild(styleNode);"];
+
+    [formField stringByEvaluatingJavaScriptFromString:[NSString stringWithString:js]];
+    
+    [js release];
+}
+
+- (void)setEmail:(NSString *)email {
+    NSMutableString *js = [[NSMutableString alloc] init];
+    
+    [js appendString: @"var emailField = document.getElementById('email');"];
+    
+    [js appendString:[NSString stringWithFormat:@"emailField.value = '%@';", email]];
+    
+    [formField stringByEvaluatingJavaScriptFromString:[NSString stringWithString:js]];
+
+    [js release];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,11 +78,36 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    // TODO - set in HTML
+    [self setEmail:[emailField text]];
     
     NSLog(@"Storing registered e-mail %@", [textField text]);
     
     [JavaZonePrefs setRegisteredEmail:[textField text]];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    NSLog(@"Finished Loading");
+    
+    // Can't find a way to check HTTP response code here. Seems to be only available if I send the form programatically rather than letting the webview do it.
+    NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
+    
+    if ([html rangeOfString:@"form"].location != NSNotFound) {
+        [self setEmail:[emailField text]];
+        [self insertStyle];
+    }
+    
+    if ([html rangeOfString:@"unknown respondent"].location != NSNotFound) {
+        [webView goBack];
+        
+        UIAlertView *errorAlert = [[UIAlertView alloc]
+								   initWithTitle: @"Unable to send feedback"
+								   message: @"JavaZone was unable to find your e-mail account. Please make sure you are using the e-mail you used when ordering your JavaZone tickets."
+								   delegate:nil
+								   cancelButtonTitle:@"OK"
+								   otherButtonTitles:nil];
+		[errorAlert show];
+		[errorAlert release];
+    }
 }
 
 @end
