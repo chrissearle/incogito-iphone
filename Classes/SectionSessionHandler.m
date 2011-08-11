@@ -354,13 +354,69 @@
 	
 	return count;
 }
+
+- (NSDate *)sessionStartForNotification:(JZSession *)session {
+#ifdef NOW_AND_NEXT_USE_TEST_DATE
+	// In debug mode we will use the current time of day but always the first day of JZ. Otherwise we couldn't test until JZ started ;)
+	NSDate *current = [NSDate date];
+	
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	NSDateComponents *comp = [calendar components:(NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:current];
+	NSDateComponents *sessionComp = [calendar components:(NSHourCalendarUnit|NSMinuteCalendarUnit) fromDate:[session startDate]];
+	
+	NSDate *sessionDate = [[NSDate alloc] initWithString:[NSString stringWithFormat:@"%04d-%02d-%02d %02d:%02d:00 +0200", [comp year], [comp month], [comp day], [sessionComp hour], [sessionComp minute]]];
+#else
+	NSDate *sessionDate = [session startDate];
+#endif
+    
+    return [NSDate dateWithTimeInterval: -300 sinceDate:sessionDate];
+}
+
+- (void) addNotification:(JZSession *)session {
+    UILocalNotification *notification = [[[UILocalNotification alloc] init] autorelease];
+    
+    NSDate *sessionStart = [self sessionStartForNotification:session];
+    
+    [notification setFireDate:sessionStart];
+
+    [notification setAlertBody:[NSString stringWithFormat:@"Your next session is %@ in room %@ in 5 mins", [session title], [session room]]];
+    [notification setSoundName:UILocalNotificationDefaultSoundName];
+    [notification setHasAction:NO];
+    [notification setTimeZone:[NSTimeZone localTimeZone]];
+    [notification setUserInfo:[NSDictionary dictionaryWithObject:[session jzId] forKey:@"jzId"]];
+    
+    NSLog(@"Adding session %@ at %@ to notifications", [session title], sessionStart);
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+}
+
+- (void) removeNotification:(JZSession *)session {
+    NSLog(@"Looking for session %@ with ID %@", [session title], [session jzId]);
+    
+    for (UILocalNotification *notification in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
+        NSDictionary *userInfo = [notification userInfo];
+        
+        NSLog(@"Saw a notification for %@", userInfo);
+        
+        if (userInfo != nil && [[userInfo allKeys] containsObject:@"jzId"]) {
+            if ([[userInfo objectForKey:@"jzId"] isEqual:[session jzId]]) {
+                NSLog(@"Removing notification at %@ from notifications", [notification fireDate]);
+
+                [[UIApplication sharedApplication] cancelLocalNotification:notification];
+            }
+        }
+    }
+}
+
 - (void) toggleFavouriteForSession:(NSString *)jzId {
 	JZSession *session = [self getSessionForJZId:jzId];
 	
 	if ([session userSession]) {
 		[self setFavouriteForSession:session withBoolean:NO];
+        [self removeNotification:session];
 	} else {
 		[self setFavouriteForSession:session withBoolean:YES];
+        [self addNotification:session];
 	}
 }
 
