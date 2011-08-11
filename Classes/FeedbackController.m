@@ -30,13 +30,19 @@
 
 - (void)insertStyle {
     NSMutableString *js = [[NSMutableString alloc] init];
+
+    NSString *path = [NSString stringWithFormat:@"%@/style-feedback.css", [[NSBundle mainBundle] bundlePath]];
+    NSString *styles = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    
     
     [js appendString:@"var headElement = document.getElementsByTagName('head')[0];"];
     [js appendString:@"var styleNode = document.createElement('style');"];
     [js appendString:@"styleNode.type = 'text/css';"];
-    [js appendString:@"styleNode.innerText = 'label { display: block; } textarea {display: block; width: 96%; height: 100px; }';"];
+    [js appendString:[NSString stringWithFormat:@"styleNode.innerText = '%@';", styles]];
     [js appendString:@"headElement.appendChild(styleNode);"];
 
+    NSLog(@"Running %@", js);
+    
     [formField stringByEvaluatingJavaScriptFromString:[NSString stringWithString:js]];
     
     [js release];
@@ -97,6 +103,9 @@
     if ([html rangeOfString:@"form"].location != NSNotFound) {
         [self setEmail:[emailField text]];
         [self insertStyle];
+        
+        NSLog(@"Generated head %@", [webView stringByEvaluatingJavaScriptFromString:@"document.head.innerHTML"]);
+        NSLog(@"Generated body %@", [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"]);
 
         return;
     }

@@ -136,6 +136,7 @@
 		83A37C1A126CD14E0014A61C /* jz_pin_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A37C19126CD14E0014A61C /* jz_pin_logo.png */; };
 		83A5A81212CDF06E009FE6A7 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A5A81112CDF06E009FE6A7 /* MediaPlayer.framework */; };
 		83A7E161130A672E00C8945F /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A7E160130A672E00C8945F /* Preferences.m */; };
+		83C1E08113F45163007F1CC9 /* style-feedback.css in Resources */ = {isa = PBXBuildFile; fileRef = 83C1E08013F45163007F1CC9 /* style-feedback.css */; };
 		83C3C1D5120FDC6500B23253 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C3C1D4120FDC6500B23253 /* QuartzCore.framework */; };
 		83D1762511F18C3300D89884 /* SessionCommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1762411F18C3300D89884 /* SessionCommonViewController.m */; };
 		83D6BCF911EEF3A100FBC0FE /* SectionInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */; };
@@ -519,6 +520,7 @@
 		83A5A81112CDF06E009FE6A7 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		83A7E15F130A672E00C8945F /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
 		83A7E160130A672E00C8945F /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preferences.m; sourceTree = "<group>"; };
+		83C1E08013F45163007F1CC9 /* style-feedback.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "style-feedback.css"; sourceTree = "<group>"; };
 		83C3C1D4120FDC6500B23253 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		83D1762311F18C3300D89884 /* SessionCommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionCommonViewController.h; sourceTree = "<group>"; };
 		83D1762411F18C3300D89884 /* SessionCommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionCommonViewController.m; sourceTree = "<group>"; };
@@ -683,6 +685,7 @@
 				8D1107310486CEB800E47090 /* incogito-Info.plist */,
 				833A524311F840AD00E070D2 /* style.css */,
 				83D794B312127B960080F7D1 /* incogito.plist */,
+				83C1E08013F45163007F1CC9 /* style-feedback.css */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1517,6 +1520,7 @@
 				F34BFA96138CD83200605592 /* Default-Landscape~ipad.png in Resources */,
 				F3D8EEAA13EFFA78002C9427 /* AweZone.xib in Resources */,
 				F3D8EEAC13EFFADC002C9427 /* awezone.png in Resources */,
+				83C1E08113F45163007F1CC9 /* style-feedback.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
