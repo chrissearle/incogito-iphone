@@ -19,6 +19,8 @@
 	[FlurryAPI logEvent:@"Showing Now and Next"];
 
 	[self loadSessionData];
+    
+    [[self tv] reloadData];
 }
 
 - (void)loadSessionData {

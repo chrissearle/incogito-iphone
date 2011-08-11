@@ -1,8 +1,6 @@
 //
 //  SessionTableViewCell.m
-//  incogito
 //
-//  Created by Chris Searle on 18.10.10.
 //  Copyright 2010 Chris Searle. All rights reserved.
 //
 
