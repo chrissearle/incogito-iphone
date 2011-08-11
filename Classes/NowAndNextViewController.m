@@ -37,7 +37,7 @@
 	unsigned int unitFlags = NSHourCalendarUnit|NSMinuteCalendarUnit;
 	NSDateComponents *comp = [calendar components:unitFlags fromDate:current];
 	
-	NSDate *now = [[NSDate alloc] initWithString:[NSString stringWithFormat:@"2010-09-08 %02d:%02d:00 +0200", [comp hour], [comp minute]]];
+	NSDate *now = [[NSDate alloc] initWithString:[NSString stringWithFormat:@"2011-09-07 %02d:%02d:00 +0200", [comp hour], [comp minute]]];
 
 	[current release];
 #else
