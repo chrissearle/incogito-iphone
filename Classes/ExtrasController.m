@@ -32,13 +32,22 @@
     [titles addObject:@"Sharing"];
     [cells  setObject:[NSArray arrayWithObjects:@"Share", @"Share link", nil] forKey:@"Sharing"];
 
-    FeedbackAvailability *availability = [[[FeedbackAvailability alloc] initWithUrl:[NSURL URLWithString:[JavaZonePrefs feedbackUrl]]] autorelease];
+    NSDate *end = [session endDate];
     
-    if ([availability isFeedbackAvailableForSession:[session jzId]]) {
-        self.feedbackFormUrl = [availability feedbackUrlForSession:[session jzId]];
+#ifdef FORCE_OK_FOR_FEEDBACK_DATE_CHECK
+    end = [NSDate date];
+#endif
+    
+    if ([end timeIntervalSinceNow] < 900) {
+
+        FeedbackAvailability *availability = [[[FeedbackAvailability alloc] initWithUrl:[NSURL URLWithString:[JavaZonePrefs feedbackUrl]]] autorelease];
+    
+        if ([availability isFeedbackAvailableForSession:[session jzId]]) {
+            self.feedbackFormUrl = [availability feedbackUrlForSession:[session jzId]];
         
-        [titles addObject:@"Feedback"];
-        [cells  setObject:[NSArray arrayWithObjects:@"Give feedback", nil] forKey:@"Feedback"];
+            [titles addObject:@"Feedback"];
+            [cells  setObject:[NSArray arrayWithObjects:@"Give feedback", nil] forKey:@"Feedback"];
+        }
     }
     
     if ([VideoMapper streamingUrlForSession:[session jzId]] != nil) {
