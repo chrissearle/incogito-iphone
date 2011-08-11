@@ -393,7 +393,9 @@
 - (void) removeNotification:(JZSession *)session {
     NSLog(@"Looking for session %@ with ID %@", [session title], [session jzId]);
     
-    for (UILocalNotification *notification in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
+    NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    
+    for (UILocalNotification *notification in notifications) {
         NSDictionary *userInfo = [notification userInfo];
         
         NSLog(@"Saw a notification for %@", userInfo);
