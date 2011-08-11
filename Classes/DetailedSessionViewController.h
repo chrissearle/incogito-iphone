@@ -7,7 +7,6 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import "AbstractFeedbackController.h"
 
 @class JZSession;
 @class SectionSessionHandler;

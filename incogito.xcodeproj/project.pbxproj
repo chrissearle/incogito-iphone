@@ -135,7 +135,6 @@
 		8394726B11EB98B10075C4C1 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394726511EB98B10075C4C1 /* SBJsonWriter.m */; };
 		83A37C1A126CD14E0014A61C /* jz_pin_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A37C19126CD14E0014A61C /* jz_pin_logo.png */; };
 		83A5A81212CDF06E009FE6A7 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A5A81112CDF06E009FE6A7 /* MediaPlayer.framework */; };
-		83A5A85712CDF7F2009FE6A7 /* AbstractFeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A5A85612CDF7F2009FE6A7 /* AbstractFeedbackController.m */; };
 		83A7E161130A672E00C8945F /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A7E160130A672E00C8945F /* Preferences.m */; };
 		83C3C1D5120FDC6500B23253 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C3C1D4120FDC6500B23253 /* QuartzCore.framework */; };
 		83D1762511F18C3300D89884 /* SessionCommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1762411F18C3300D89884 /* SessionCommonViewController.m */; };
@@ -518,8 +517,6 @@
 		8394726511EB98B10075C4C1 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		83A37C19126CD14E0014A61C /* jz_pin_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jz_pin_logo.png; sourceTree = "<group>"; };
 		83A5A81112CDF06E009FE6A7 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		83A5A85512CDF7F2009FE6A7 /* AbstractFeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFeedbackController.h; sourceTree = "<group>"; };
-		83A5A85612CDF7F2009FE6A7 /* AbstractFeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFeedbackController.m; sourceTree = "<group>"; };
 		83A7E15F130A672E00C8945F /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
 		83A7E160130A672E00C8945F /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preferences.m; sourceTree = "<group>"; };
 		83C3C1D4120FDC6500B23253 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -606,8 +603,6 @@
 				83E44EB61243EF2700F0C291 /* FlurryLib */,
 				83281E3012437D0000792990 /* ShareKit */,
 				83F2D54411EBB56B0043A75E /* REST */,
-				83A5A85512CDF7F2009FE6A7 /* AbstractFeedbackController.h */,
-				83A5A85612CDF7F2009FE6A7 /* AbstractFeedbackController.m */,
 				830859C8120F2FF300F74041 /* ClubzoneMapAnnotation.h */,
 				830859C9120F2FF300F74041 /* ClubzoneMapAnnotation.m */,
 				83576C7D120BF48A008CC97E /* ClubZoneViewController.h */,
@@ -1623,7 +1618,6 @@
 				837C2CF2124DE0D500F09611 /* SessionDownloader.m in Sources */,
 				837C2CF9124DE2A100F09611 /* SessionParser.m in Sources */,
 				834B3DF6126C913600D66D41 /* SessionTableViewCell.m in Sources */,
-				83A5A85712CDF7F2009FE6A7 /* AbstractFeedbackController.m in Sources */,
 				8381B19912CE220C008760FF /* MBProgressHUD.m in Sources */,
 				8320A3C61307EF90000B34E4 /* TabInitializer.m in Sources */,
 				83A7E161130A672E00C8945F /* Preferences.m in Sources */,
