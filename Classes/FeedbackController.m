@@ -103,12 +103,13 @@
     
     
     NSString *errorRegex = @"<div ?[^>]* ?class=\"error\" ?[^>]* ?>(.*)</div>";
+    NSString *successRegex = @"<div ?[^>]* ?class=\"success\" ?[^>]* ?>(.*)</div>";
     
     NSString *match = [html stringByMatching:errorRegex];
     
     NSLog(@"Saw match %@", match);
     
-    if ([match isEqual:@""] == NO) {
+    if (match != nil && [match isEqual:@""] == NO) {
         NSString *message = [html stringByMatching:errorRegex capture:1L];
         
         NSLog(@"Message %@", message);
@@ -124,10 +125,35 @@
 		[errorAlert show];
 		[errorAlert release];
     }
+
+    match = [html stringByMatching:successRegex];
+    
+    NSLog(@"Saw match %@", match);
+
+    if (match != nil && [match isEqual:@""] == NO) {
+        [webView loadHTMLString:@"" baseURL:nil];
+        
+        NSString *message = [html stringByMatching:successRegex capture:1L];
+        
+        NSLog(@"Message %@", message);
+        
+        UIAlertView *successAlert = [[UIAlertView alloc]
+								   initWithTitle: @"Feedback Sent"
+								   message: message
+								   delegate:self
+								   cancelButtonTitle:@"OK"
+								   otherButtonTitles:nil];
+		[successAlert show];
+		[successAlert release];
+    }
 }
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
