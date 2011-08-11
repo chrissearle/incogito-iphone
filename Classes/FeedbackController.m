@@ -34,7 +34,7 @@
     [js appendString:@"var headElement = document.getElementsByTagName('head')[0];"];
     [js appendString:@"var styleNode = document.createElement('style');"];
     [js appendString:@"styleNode.type = 'text/css';"];
-    [js appendString:@"styleNode.innerText = 'label { display: block; } textarea {display: block; }';"];
+    [js appendString:@"styleNode.innerText = 'label { display: block; } textarea {display: block; width: 96%; height: 100px; }';"];
     [js appendString:@"headElement.appendChild(styleNode);"];
 
     [formField stringByEvaluatingJavaScriptFromString:[NSString stringWithString:js]];
