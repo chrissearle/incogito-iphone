@@ -2,7 +2,7 @@
 
 JavaZone 2010 supported iOS 3.1 and above.
 
-JavaZone 2011 supports iOS 4.0 and above).
+JavaZone 2011 supports iOS 4.0 and above.
 
 ## Credits
 
