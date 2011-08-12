@@ -20,18 +20,16 @@
 @synthesize sectionCells;
 @synthesize movie;
 @synthesize feedbackFormUrl;
+@synthesize tv;
+@synthesize feedbackAvailability;
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-	
-	self.title = @"Extras";
-    
+- (void)loadData {
     NSMutableDictionary *cells = [[[NSMutableDictionary alloc] init] autorelease];
     NSMutableArray *titles = [[[NSMutableArray alloc] init] autorelease];
     
     [titles addObject:@"Sharing"];
     [cells  setObject:[NSArray arrayWithObjects:@"Share", @"Share link", nil] forKey:@"Sharing"];
-
+    
     NSDate *end = [session endDate];
     
 #ifdef FORCE_OK_FOR_FEEDBACK_DATE_CHECK
@@ -39,12 +37,10 @@
 #endif
     
     if ([end timeIntervalSinceNow] < 900) {
-
-        FeedbackAvailability *availability = [[[FeedbackAvailability alloc] initWithUrl:[NSURL URLWithString:[JavaZonePrefs feedbackUrl]]] autorelease];
-    
-        if ([availability isFeedbackAvailableForSession:[session jzId]]) {
-            self.feedbackFormUrl = [availability feedbackUrlForSession:[session jzId]];
         
+        if ([self.feedbackAvailability isFeedbackAvailableForSession:[session jzId]]) {
+            self.feedbackFormUrl = [self.feedbackAvailability feedbackUrlForSession:[session jzId]];
+            
             [titles addObject:@"Feedback"];
             [cells  setObject:[NSArray arrayWithObjects:@"Give feedback", nil] forKey:@"Feedback"];
         }
@@ -57,6 +53,32 @@
     
     self.sections = [[[NSArray alloc] initWithArray:titles] autorelease];
     self.sectionCells = [[[NSDictionary alloc] initWithDictionary:cells] autorelease];
+
+    [tv reloadData];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+	
+	self.title = @"Extras";
+    
+    [self setFeedbackAvailability:[[FeedbackAvailability alloc] initWithUrl:[NSURL URLWithString:[JavaZonePrefs feedbackUrl]]]];
+    
+	HUD = [[MBProgressHUD alloc] initWithView:self.tabBarController.view];
+    
+    [feedbackAvailability setHUD:HUD];
+    
+    // Add HUD to screen
+	[self.tabBarController.view addSubview:HUD];
+    
+	// Register for HUD callbacks so we can remove it from the window at the right time
+	HUD.delegate = self;
+    
+	HUD.labelText = @"Checking for available extras";
+    
+	// Show the HUD while the provided method executes in a new thread
+	[HUD showWhileExecuting:@selector(populateDict:) onTarget:feedbackAvailability withObject:nil animated:YES];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -229,6 +251,14 @@
 	 removeObserver: self
 	 name: MPMoviePlayerPlaybackDidFinishNotification
 	 object: nil];
+}
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD was hidded
+    [HUD removeFromSuperview];
+    [HUD release];
+    
+    [self loadData];
 }
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

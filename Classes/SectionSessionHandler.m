@@ -364,7 +364,7 @@
 	NSDateComponents *comp = [calendar components:(NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:current];
 	NSDateComponents *sessionComp = [calendar components:(NSHourCalendarUnit|NSMinuteCalendarUnit) fromDate:[session startDate]];
 	
-	NSDate *sessionDate = [[NSDate alloc] initWithString:[NSString stringWithFormat:@"%04d-%02d-%02d %02d:%02d:00 +0200", [comp year], [comp month], [comp day], [sessionComp hour], [sessionComp minute]]];
+	NSDate *sessionDate = [[[NSDate alloc] initWithString:[NSString stringWithFormat:@"%04d-%02d-%02d %02d:%02d:00 +0200", [comp year], [comp month], [comp day], [sessionComp hour], [sessionComp minute]]] autorelease];
 #else
 	NSDate *sessionDate = [session startDate];
 #endif

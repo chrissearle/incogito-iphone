@@ -12,6 +12,7 @@
 
 @synthesize url;
 @synthesize dict;
+@synthesize HUD;
 
 - (NSData *)downloadData {
     NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -69,7 +70,7 @@
     return response;
 }
 
-- (void)populateDict {
+- (void)populateDict:(id)sender {
     NSData *contents = [self downloadData];
     
     NSMutableDictionary *mutableDictionary = [[[NSMutableDictionary alloc] init] autorelease];    
@@ -92,13 +93,13 @@
             NSString *sessionId = [[element attributeForName:@"id"] stringValue];
             NSString *href = [[element attributeForName:@"href"] stringValue];
             
-            NSLog(@"Saw %@ with %@", sessionId, href);
+            //NSLog(@"Saw %@ with %@", sessionId, href);
             
             [mutableDictionary setObject:href forKey:sessionId];
         }
     }
 
-    dict = [[[NSDictionary alloc] initWithDictionary:mutableDictionary] autorelease];
+    self.dict = [NSDictionary dictionaryWithDictionary:mutableDictionary];
 }
 
 - (FeedbackAvailability *) initWithUrl:(NSURL *)downloadUrl {
@@ -106,8 +107,6 @@
     
     self.url = downloadUrl;
 	
-    [self populateDict];
-    
 	return self;
 }
 
