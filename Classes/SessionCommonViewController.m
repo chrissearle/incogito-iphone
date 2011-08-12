@@ -243,7 +243,7 @@
 	if (count == 0) {
 		UIAlertView *alert = [[UIAlertView alloc]
 							  initWithTitle: @"Download failed"
-							  message: @"Unable to download sessions - check your connection and try again"
+							  message: @"Unable to download sessions - check your connection and try again. You can start a refresh from the Settings tab."
 							  delegate:nil
 							  cancelButtonTitle:@"OK"
 							  otherButtonTitles:nil];
