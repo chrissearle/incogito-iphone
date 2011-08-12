@@ -14,7 +14,6 @@
 #import "MyProgrammeViewController.h"
 #import "DetailedSessionViewController.h"
 #import "SettingsViewController.h"
-#import "FlurryAPI.h"
 #import "TabInitializer.h"
 #import "ClearDataInitializer.h"
 #import "SHK.h"

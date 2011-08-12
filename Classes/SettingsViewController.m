@@ -7,7 +7,6 @@
 #import "SettingsViewController.h"
 #import "IncogitoAppDelegate.h"
 #import "SectionSessionHandler.h"
-#import "FlurryAPI.h"
 
 #import "JavazoneSessionsRetriever.h"
 #import "JavaZonePrefs.h"

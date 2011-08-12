@@ -5,7 +5,6 @@
 //
 
 #import "FeedbackController.h"
-#import "FlurryAPI.h"
 #import "JZSession.h"
 #import "JavaZonePrefs.h"
 #import "RegexKitLite.h"

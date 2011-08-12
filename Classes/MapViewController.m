@@ -7,7 +7,6 @@
 #import "MapViewController.h"
 
 #import "ClubzoneMapAnnotation.h"
-#import "FlurryAPI.h"
 #import "JavaZonePrefs.h"
 
 @implementation MapViewController

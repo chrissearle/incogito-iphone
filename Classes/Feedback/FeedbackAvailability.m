@@ -5,7 +5,6 @@
 //
 
 #import "FeedbackAvailability.h"
-#import "FlurryAPI.h"
 #import "DDXML.h"
 
 @implementation FeedbackAvailability

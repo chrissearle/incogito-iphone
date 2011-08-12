@@ -12,7 +12,6 @@
 #import "JZSession.h"
 #import "JZSessionBio.h"
 #import "JZLabel.h"
-#import "FlurryAPI.h"
 
 #import <unistd.h>
 

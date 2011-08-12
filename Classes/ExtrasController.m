@@ -7,7 +7,6 @@
 #import "ExtrasController.h"
 #import "SHK.h"
 #import "JZSession.h"
-#import "FlurryAPI.h"
 #import "FeedbackController.h"
 #import "VideoMapper.h"
 #import "FeedbackAvailability.h"

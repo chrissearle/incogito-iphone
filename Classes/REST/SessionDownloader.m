@@ -5,7 +5,6 @@
 //
 
 #import "SessionDownloader.h"
-#import "FlurryAPI.h"
 
 @implementation SessionDownloader
 

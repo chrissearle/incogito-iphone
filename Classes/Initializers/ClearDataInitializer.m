@@ -8,7 +8,6 @@
 #import "JavaZonePrefs.h"
 #import "JZSession.h"
 #import "Section.h"
-#import "FlurryAPI.h"
 
 @implementation ClearDataInitializer
 

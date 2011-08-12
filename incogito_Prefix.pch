@@ -12,6 +12,8 @@
     #import <Foundation/Foundation.h>
     #import <UIKit/UIKit.h>
     #import <CoreData/CoreData.h>
+    #import "FlurryAPI.h"
+    #include "AppLog.h"
 #endif
 
-#import "AppLog.h"
+

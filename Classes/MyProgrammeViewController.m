@@ -7,7 +7,6 @@
 #import "MyProgrammeViewController.h"
 #import "IncogitoAppDelegate.h"
 #import "SectionSessionHandler.h"
-#import "FlurryAPI.h"
 
 @implementation MyProgrammeViewController
 

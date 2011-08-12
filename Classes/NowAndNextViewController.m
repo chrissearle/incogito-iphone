@@ -9,7 +9,6 @@
 
 #import "IncogitoAppDelegate.h"
 #import "Section.h"
-#import "FlurryAPI.h"
 
 @implementation NowAndNextViewController
 
