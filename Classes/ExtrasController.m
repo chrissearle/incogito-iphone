@@ -28,7 +28,7 @@
     NSMutableArray *titles = [[[NSMutableArray alloc] init] autorelease];
     
     [titles addObject:@"Sharing"];
-    [cells  setObject:[NSArray arrayWithObjects:@"Share", @"Share link", nil] forKey:@"Sharing"];
+    [cells  setObject:[NSArray arrayWithObjects:@"Share online", nil] forKey:@"Sharing"];
     
     NSDate *end = [session endDate];
     
@@ -183,27 +183,14 @@
 	
     if ([sectionTitle isEqualToString:@"Sharing"]) {
         SHKItem *item = nil;
+
+        NSString *urlString = [NSString stringWithFormat:@"http://javazone.no/incogito10/events/JavaZone%%202011/sessions#%@", [session jzId]];
+        NSURL *url = [NSURL URLWithString:urlString];
+                
         
-        switch (indexPath.row) {
-            case 0:
-            {
-                NSString *text = [NSString stringWithFormat:@"#JavaZone - %@", [session title]];
-                
-                item = [SHKItem text:text];
-                
-                break;
-            }
-            case 1:
-            {
-                NSString *urlString = [NSString stringWithFormat:@"http://javazone.no/incogito10/events/JavaZone%%202011/sessions#%@", [session jzId]];
-                NSURL *url = [NSURL URLWithString:urlString];
-                
-                item = [SHKItem URL:url title:[session title]];
-                break;
-            }
-            default:
-                break;
-        }
+        NSString *titleString = [NSString stringWithFormat:@"#JavaZone - %@", [session title]];
+        item = [SHKItem URL:url title:titleString];
+        
         // Get the ShareKit action sheet
         SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
         
