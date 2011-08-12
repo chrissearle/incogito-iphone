@@ -42,7 +42,7 @@
 }
 
 + (void)setRegisteredEmail:(NSString *)email {
-    NSLog(@"Setting registered e-mail %@", email);
+    AppLog(@"Setting registered e-mail %@", email);
     
     [[NSUserDefaults standardUserDefaults] setObject:email forKey:@"RegisteredEmail"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -52,9 +52,9 @@
     BOOL flag = [[NSUserDefaults standardUserDefaults] boolForKey:@"showBioPic"];
             
     if (flag == YES) {
-        NSLog(@"Retrieved bio pic %@", @"On");
+        AppLog(@"Retrieved bio pic %@", @"On");
     } else {
-        NSLog(@"Retrieved bio pic %@", @"Off");
+        AppLog(@"Retrieved bio pic %@", @"Off");
     }
     
     return flag;
@@ -62,9 +62,9 @@
 
 + (void)setShowBioPic:(BOOL) flag {
     if (flag == YES) {
-        NSLog(@"Setting bio pic %@", @"On");
+        AppLog(@"Setting bio pic %@", @"On");
     } else {
-        NSLog(@"Setting bio pic %@", @"Off");
+        AppLog(@"Setting bio pic %@", @"Off");
     }
     
 	[[NSUserDefaults standardUserDefaults] setBool:flag forKey:@"showBioPic"];

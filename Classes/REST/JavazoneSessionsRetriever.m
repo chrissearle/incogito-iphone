@@ -192,7 +192,7 @@
 	if (![managedObjectContext save:&error]) {
 		if (nil != error) {
 			[FlurryAPI logError:@"Error fetching sessions" message:@"Unable to persist sessions after invalidation" error:error];
-			NSLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
+			AppLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
 			return;
 		}
 	}	
@@ -215,7 +215,7 @@
 	NSArray *sessions = [managedObjectContext executeFetchRequest:request error:&error];
 	
 	if (nil != error) {
-		NSLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		AppLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
 		return;
 	}
 	
@@ -236,7 +236,7 @@
 	}
 	
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Adding session with title %@", [[[NSDate alloc] init] autorelease], [item objectForKey:@"title"]);
+	AppLog(@"%@ Adding session with title %@", [[[NSDate alloc] init] autorelease], [item objectForKey:@"title"]);
 #endif
 	
 	[session setJzId:[item objectForKey:@"id"]];
@@ -339,7 +339,7 @@
 	
 	if (![managedObjectContext save:&error]) {
 		if (nil != error) {
-			NSLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
+			AppLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
 			return;
 		}
 	}
@@ -360,7 +360,7 @@
 
 - (void) removeAllEntitiesByName:(NSString *)entityName {
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Removing all %@", [[[NSDate alloc] init] autorelease], entityName);
+	AppLog(@"%@ Removing all %@", [[[NSDate alloc] init] autorelease], entityName);
 #endif
 	
 	NSEntityDescription *entityDescription = [NSEntityDescription
@@ -379,13 +379,13 @@
 	
 	if (![managedObjectContext save:&error]) {
 		if (nil != error) {
-			NSLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
+			AppLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
 			return;
 		}
 	}	
 	
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Removed all %@", [[[NSDate alloc] init] autorelease], entityName);
+	AppLog(@"%@ Removed all %@", [[[NSDate alloc] init] autorelease], entityName);
 #endif
 }
 
@@ -396,9 +396,9 @@
 		NSString *id = [dict objectForKey:@"id"];
 		
 		if ([id isKindOfClass:[NSNull class]]) {
-			NSLog(@"No %@ found for unknown object", key);
+			AppLog(@"No %@ found for unknown object", key);
 		} else {
-			NSLog(@"No %@ found for %@", key, id);
+			AppLog(@"No %@ found for %@", key, id);
 		}
 		
 		return @"";
@@ -410,7 +410,7 @@
 - (void)downloadIconFromUrl:(NSString *)url withName:(NSString *)name toFolder:(NSString *)folder {
 	UIApplication* app = [UIApplication sharedApplication];
 
-	NSLog(@"Download %@ from %@ to %@", name, url, folder);
+	AppLog(@"Download %@ from %@ to %@", name, url, folder);
 
 	app.networkActivityIndicatorVisible = YES;
 	UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
@@ -424,7 +424,7 @@
 }
 
 - (void)getJsonImage:(NSString *)imageUrl toFile:(NSString *)file inPath:(NSString *)path {
-	NSLog(@"Fetching pic %@ to %@ in %@", imageUrl, file, path);
+	AppLog(@"Fetching pic %@ to %@ in %@", imageUrl, file, path);
 
 	UIApplication* app = [UIApplication sharedApplication];
 	
@@ -442,7 +442,7 @@
 	app.networkActivityIndicatorVisible = NO;
 
 	if (nil != error) {
-		NSLog(@"%@:%@ Error retrieving image: %@", [self class], _cmd, [error localizedDescription]);
+		AppLog(@"%@:%@ Error retrieving image: %@", [self class], _cmd, [error localizedDescription]);
 		return;
 	}	
 	
@@ -450,7 +450,7 @@
 		UIImage *image = [UIImage imageWithData:response];
 	
 		NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",path,file];
-		NSLog(@"Got data for %@  %.0f x %.0f", pngFilePath, image.size.height, image.size.width);
+		AppLog(@"Got data for %@  %.0f x %.0f", pngFilePath, image.size.height, image.size.width);
 	
 		[[NSData dataWithData:UIImagePNGRepresentation(image)] writeToFile:pngFilePath atomically:YES];
 	}

@@ -47,7 +47,7 @@
             NSString *message = [NSString stringWithFormat:@"Unable to retrieve sessions from URL - status code %d", [httpResp statusCode]];
             [FlurryAPI logEvent:message];
             
-            NSLog(@"%@", message);
+            AppLog(@"%@", message);
             
             return nil;
         }

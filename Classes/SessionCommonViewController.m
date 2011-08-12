@@ -203,7 +203,7 @@
 		if ([view isKindOfClass:[SessionTableViewCell class]]) {
 			SessionTableViewCell *cell = (SessionTableViewCell *)view;
 			
-			NSLog(@"JZ %@", [cell jzId]);
+			AppLog(@"JZ %@", [cell jzId]);
 
 			SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
 			

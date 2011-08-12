@@ -41,7 +41,7 @@
     [js appendString:[NSString stringWithFormat:@"styleNode.innerText = '%@';", styles]];
     [js appendString:@"headElement.appendChild(styleNode);"];
 
-    NSLog(@"Running %@", js);
+    AppLog(@"Running %@", js);
     
     [formField stringByEvaluatingJavaScriptFromString:[NSString stringWithString:js]];
     
@@ -77,7 +77,7 @@
 	
 	CGColorRelease(colour);
     
-    NSLog(@"Initializing registered e-mail %@", [JavaZonePrefs registeredEmail]);
+    AppLog(@"Initializing registered e-mail %@", [JavaZonePrefs registeredEmail]);
     
     [emailField setText:[JavaZonePrefs registeredEmail]];
     
@@ -87,25 +87,25 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     [self setEmail:[emailField text]];
     
-    NSLog(@"Storing registered e-mail %@", [textField text]);
+    AppLog(@"Storing registered e-mail %@", [textField text]);
     
     [JavaZonePrefs setRegisteredEmail:[textField text]];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    NSLog(@"Finished Loading");
+    AppLog(@"Finished Loading");
     
     // Can't find a way to check HTTP response code here. Seems to be only available if I send the form programatically rather than letting the webview do it.
     NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
        
-    //NSLog(@"Saw %@", html);
+    AppLog(@"Saw %@", html);
     
     if ([html rangeOfString:@"form"].location != NSNotFound) {
         [self setEmail:[emailField text]];
         [self insertStyle];
         
-        NSLog(@"Generated head %@", [webView stringByEvaluatingJavaScriptFromString:@"document.head.innerHTML"]);
-        NSLog(@"Generated body %@", [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"]);
+        AppLog(@"Generated head %@", [webView stringByEvaluatingJavaScriptFromString:@"document.head.innerHTML"]);
+        AppLog(@"Generated body %@", [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"]);
 
         return;
     }
@@ -116,12 +116,12 @@
     
     NSString *match = [html stringByMatching:errorRegex];
     
-    NSLog(@"Saw match %@", match);
+    AppLog(@"Saw match %@", match);
     
     if (match != nil && [match isEqual:@""] == NO) {
         NSString *message = [html stringByMatching:errorRegex capture:1L];
         
-        NSLog(@"Message %@", message);
+        AppLog(@"Message %@", message);
 
         [webView goBack];
         
@@ -137,14 +137,14 @@
 
     match = [html stringByMatching:successRegex];
     
-    NSLog(@"Saw match %@", match);
+    AppLog(@"Saw match %@", match);
 
     if (match != nil && [match isEqual:@""] == NO) {
         [webView loadHTMLString:@"" baseURL:nil];
         
         NSString *message = [html stringByMatching:successRegex capture:1L];
         
-        NSLog(@"Message %@", message);
+        AppLog(@"Message %@", message);
         
         UIAlertView *successAlert = [[UIAlertView alloc]
 								   initWithTitle: @"Feedback Sent"

@@ -27,13 +27,13 @@
     NSDictionary *fileAttributes = [fileManager attributesOfItemAtPath:dataFilePath error:&fileError];
 
     if (fileError != nil) {
-        NSLog(@"Got file error reading file attributes for file %@", dataFilePath);
+        AppLog(@"Got file error reading file attributes for file %@", dataFilePath);
     }
     
 	if (fileAttributes != nil && fileError == nil) {
         NSTimeInterval interval = [[fileAttributes fileModificationDate] timeIntervalSinceNow];
         
-        NSLog(@"Time interval %f", interval);
+        AppLog(@"Time interval %f", interval);
         
         if (interval > -3600) {
             return [NSData dataWithContentsOfFile:dataFilePath];
@@ -87,13 +87,13 @@
         NSArray *nodes = [xmlDoc nodesForXPath:@"//*[(local-name()='a') and (@id)]"
                                          error:&err];
 
-        NSLog(@"Found %d feedback URLs", [nodes count]);
+        AppLog(@"Found %d feedback URLs", [nodes count]);
         
         for (DDXMLElement *element in nodes) {
             NSString *sessionId = [[element attributeForName:@"id"] stringValue];
             NSString *href = [[element attributeForName:@"href"] stringValue];
             
-            //NSLog(@"Saw %@ with %@", sessionId, href);
+            AppLog(@"Saw %@ with %@", sessionId, href);
             
             [mutableDictionary setObject:href forKey:sessionId];
         }
@@ -111,7 +111,7 @@
 }
 
 - (BOOL)isFeedbackAvailableForSession:(NSString *)sessionId {
-    NSLog(@"Checking for feedback availability for %@", sessionId);
+    AppLog(@"Checking for feedback availability for %@", sessionId);
     
     return [[dict allKeys] containsObject:sessionId];
 }

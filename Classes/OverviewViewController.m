@@ -19,7 +19,7 @@
     [super viewDidLoad];
 
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Overview - about to check for data", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"%@ Overview - about to check for data", [[[NSDate alloc] init] autorelease]);
 #endif
 
 	currentSearch = @"";
@@ -27,13 +27,13 @@
 	[self checkForData];
 	
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Overview - about to load data", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"%@ Overview - about to load data", [[[NSDate alloc] init] autorelease]);
 #endif
 	
 	[self loadSessionData];
 
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Overview - loaded data", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"%@ Overview - loaded data", [[[NSDate alloc] init] autorelease]);
 #endif
 	
 }

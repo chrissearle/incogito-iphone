@@ -152,7 +152,7 @@
 				UIImage *imageFile;
 				
 				if (nil == data1) {
-					NSLog(@"File not found %@", pngFilePath);
+					AppLog(@"File not found %@", pngFilePath);
 					
 					imageFile = [UIImage imageNamed:@"all.png"];
 				} else {

@@ -36,7 +36,7 @@
 
 	if (nil != error) {
 		[mutableFetchResults release];
-		NSLog(@"%@:%@ Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
+		AppLog(@"%@:%@ Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
 		return nil;
 	}
 	
@@ -72,7 +72,7 @@
 	
 	if (nil != error) {
 		[mutableFetchResults release];
-		NSLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		AppLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
 		return nil;
 	}
 	
@@ -108,7 +108,7 @@
 	
 	if (nil != error) {
 		[mutableFetchResults release];
-		NSLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		AppLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
 		return nil;
 	}
 	
@@ -144,7 +144,7 @@
 	
 	if (nil != error) {
 		[mutableFetchResults release];
-		NSLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		AppLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
 		return nil;
 	}
 
@@ -218,7 +218,7 @@
 	
 	if (nil != error) {
 		[mutableFetchResults release];
-		NSLog(@"%@:%@ Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
+		AppLog(@"%@:%@ Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
 		return nil;
 	}
 
@@ -258,7 +258,7 @@
 	
 	if (nil != error) {
 		[mutableFetchResults release];
-		NSLog(@"%@:%@ Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
+		AppLog(@"%@:%@ Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
 		return nil;
 	}
 	
@@ -293,7 +293,7 @@
 
 	if (nil != error) {
 		[mutableFetchResults release];
-		NSLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		AppLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
 		return nil;
 	}
 	
@@ -348,7 +348,7 @@
 	NSUInteger count = [managedObjectContext countForFetchRequest:request error:&error];
 
 	if (nil != error) {
-		NSLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		AppLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
 		return 0;
 	}
 	
@@ -385,24 +385,24 @@
     [notification setTimeZone:[NSTimeZone localTimeZone]];
     [notification setUserInfo:[NSDictionary dictionaryWithObject:[session jzId] forKey:@"jzId"]];
     
-    NSLog(@"Adding session %@ at %@ to notifications", [session title], sessionStart);
+    AppLog(@"Adding session %@ at %@ to notifications", [session title], sessionStart);
     
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
 
 - (void) removeNotification:(JZSession *)session {
-    NSLog(@"Looking for session %@ with ID %@", [session title], [session jzId]);
+    AppLog(@"Looking for session %@ with ID %@", [session title], [session jzId]);
     
     NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
     
     for (UILocalNotification *notification in notifications) {
         NSDictionary *userInfo = [notification userInfo];
         
-        NSLog(@"Saw a notification for %@", userInfo);
+        AppLog(@"Saw a notification for %@", userInfo);
         
         if (userInfo != nil && [[userInfo allKeys] containsObject:@"jzId"]) {
             if ([[userInfo objectForKey:@"jzId"] isEqual:[session jzId]]) {
-                NSLog(@"Removing notification at %@ from notifications", [notification fireDate]);
+                AppLog(@"Removing notification at %@ from notifications", [notification fireDate]);
 
                 [[UIApplication sharedApplication] cancelLocalNotification:notification];
             }
@@ -444,7 +444,7 @@
 	
 	if (![managedObjectContext save:&error]) {
 		if (nil != error) {
-			NSLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
+			AppLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
 			return;
 		}
 	}	
@@ -466,7 +466,7 @@
 	
 	if (nil != error) {
 		[mutableFetchResults release];
-		NSLog(@"%@:%@ Error fetching uniqueLabels: %@", [self class], _cmd, [error localizedDescription]);
+		AppLog(@"%@:%@ Error fetching uniqueLabels: %@", [self class], _cmd, [error localizedDescription]);
 		return nil;
 	}
 	
@@ -537,7 +537,7 @@
     
 	if (nil != error) {
 		[mutableFetchResults release];
-		NSLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		AppLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
 		return nil;
 	}
 	
