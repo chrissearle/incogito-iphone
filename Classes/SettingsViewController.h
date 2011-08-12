@@ -22,6 +22,7 @@
 	IncogitoAppDelegate *appDelegate;
 	
 	MBProgressHUD *HUD;
+    NSDate *lastSuccessfulUpdate;
 }
 
 @property (nonatomic, retain) NSDictionary						*labels;
@@ -32,6 +33,7 @@
 @property (nonatomic, retain) UIButton *refreshButton;
 @property (nonatomic, retain) UILabel *labelsLabel;
 @property (nonatomic, retain) UILabel *downloadLabel;
+@property (nonatomic, retain) NSDate *lastSuccessfulUpdate;
 
 - (IBAction)filter:(id)sender;
 - (IBAction)sync:(id)sender;

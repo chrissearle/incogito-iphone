@@ -71,4 +71,21 @@
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
++ (NSDate *)lastSuccessfulUpdate {
+    NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSuccessfulUpdate"];
+
+    if (date == nil) {
+        [JavaZonePrefs setLastSuccessfulUpdate:[NSDate date]];
+    
+        date = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSuccessfulUpdate"];
+    }
+    
+    return date;
+}
+
++ (void)setLastSuccessfulUpdate:(NSDate *)date {
+    [[NSUserDefaults standardUserDefaults] setObject:date forKey:@"lastSuccessfulUpdate"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 @end

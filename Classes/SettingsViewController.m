@@ -22,6 +22,7 @@
 @synthesize refreshButton;
 @synthesize labelsLabel;
 @synthesize downloadLabel;
+@synthesize lastSuccessfulUpdate;
 
 - (void)redrawForOrientation:(UIInterfaceOrientation)interfaceOrientation {
     
@@ -108,9 +109,6 @@
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
-    
-    
-    
 	if (nil == view) {
 		view = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 230, 32)] autorelease];
 		
@@ -211,6 +209,8 @@
 
 
 - (IBAction)sync:(id)sender {
+    [self setLastSuccessfulUpdate:[JavaZonePrefs lastSuccessfulUpdate]];
+    
     HUD = [[MBProgressHUD alloc] initWithView:self.tabBarController.view];
 
 	JavazoneSessionsRetriever *retriever = [[[JavazoneSessionsRetriever alloc] init] autorelease];
@@ -261,6 +261,20 @@
     [HUD removeFromSuperview];
     [HUD release];
 
+    
+    if (abs([[self lastSuccessfulUpdate] timeIntervalSinceDate:[JavaZonePrefs lastSuccessfulUpdate]]) < 2) {
+        UIAlertView *alert = [[UIAlertView alloc]
+							  initWithTitle: @"Download failed"
+							  message: @"Sessions unavailable - please try again later"
+							  delegate:nil
+							  cancelButtonTitle:@"OK"
+							  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+        
+        return;
+    }
+    
 	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
 	
 	NSUInteger count = [handler getActiveSessionCount];
