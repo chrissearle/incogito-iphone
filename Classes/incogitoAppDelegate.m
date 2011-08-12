@@ -39,7 +39,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 	
 	NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 	[FlurryAPI startSession:@"747T2PGB7H2SD3XAN92D"];
-	[FlurryAPI countPageViews:rootController];
+	[FlurryAPI logAllPageViews:rootController];
 	
 #ifdef LOG_FUNCTION_TIMES
 	NSLog(@"%@ Calling sectionInitializer", [[[NSDate alloc] init] autorelease]);

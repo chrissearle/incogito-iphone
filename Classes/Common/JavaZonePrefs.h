@@ -25,4 +25,7 @@
 + (BOOL)showBioPic;
 + (void)setShowBioPic:(BOOL) flag;
 
++ (NSDate *)lastSuccessfulUpdate;
++ (void)setLastSuccessfulUpdate:(NSDate *)date;
+
 @end

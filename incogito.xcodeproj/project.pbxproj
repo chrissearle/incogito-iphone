@@ -546,7 +546,6 @@
 		83D80E7113F28444001F18DD /* FeedbackAvailability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackAvailability.m; path = Feedback/FeedbackAvailability.m; sourceTree = "<group>"; };
 		83DEDC8913F3211C00BE9908 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		83DEDC8A13F3211C00BE9908 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
-		83E44EB71243EF2700F0C291 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
 		83E44EB81243EF2700F0C291 /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
 		83E44EB91243EF2700F0C291 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		83E94C3812142C9B00596D30 /* all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = all.png; sourceTree = "<group>"; };
@@ -554,6 +553,9 @@
 		8D1107310486CEB800E47090 /* incogito-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "incogito-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		F31ACFAF138CE0E4007F5CCF /* UITabBarController+Autorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+Autorotate.h"; sourceTree = "<group>"; };
 		F31ACFB0138CE0E4007F5CCF /* UITabBarController+Autorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+Autorotate.m"; sourceTree = "<group>"; };
+		F33EDA8313F513630019F109 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
+		F33EDA8413F513630019F109 /* FlurryAPI+AppCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FlurryAPI+AppCircle.h"; sourceTree = "<group>"; };
+		F33EDA8513F513630019F109 /* FlurryOffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryOffer.h; sourceTree = "<group>"; };
 		F34BFA8E138CD81500605592 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F34BFA91138CD81D00605592 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		F34BFA93138CD82900605592 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
@@ -1403,7 +1405,7 @@
 		83E44EB61243EF2700F0C291 /* FlurryLib */ = {
 			isa = PBXGroup;
 			children = (
-				83E44EB71243EF2700F0C291 /* FlurryAdDelegate.h */,
+				F33EDA8213F513630019F109 /* AppCircle */,
 				83E44EB81243EF2700F0C291 /* FlurryAPI.h */,
 				83E44EB91243EF2700F0C291 /* libFlurry.a */,
 			);
@@ -1422,6 +1424,16 @@
 				837C2CF8124DE2A100F09611 /* SessionParser.m */,
 			);
 			path = REST;
+			sourceTree = "<group>";
+		};
+		F33EDA8213F513630019F109 /* AppCircle */ = {
+			isa = PBXGroup;
+			children = (
+				F33EDA8313F513630019F109 /* FlurryAdDelegate.h */,
+				F33EDA8413F513630019F109 /* FlurryAPI+AppCircle.h */,
+				F33EDA8513F513630019F109 /* FlurryOffer.h */,
+			);
+			path = AppCircle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

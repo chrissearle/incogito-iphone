@@ -21,6 +21,7 @@
 @synthesize sessions;
 @synthesize tv;
 @synthesize appDelegate;
+@synthesize lastSuccessfulUpdate;
 
 - (void) loadSessionData {
 	// Stub
@@ -31,7 +32,7 @@
 	
 	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
 	
-	[FlurryAPI countPageViews:[self navigationController]];
+	[FlurryAPI logAllPageViews:[self navigationController]];
 	
 	tv.rowHeight = 85;
 }
@@ -222,6 +223,19 @@
     [HUD removeFromSuperview];
     [HUD release];
 
+    if (abs([[self lastSuccessfulUpdate] timeIntervalSinceDate:[JavaZonePrefs lastSuccessfulUpdate]]) < 2) {
+        UIAlertView *alert = [[UIAlertView alloc]
+							  initWithTitle: @"Download failed"
+							  message: @"Sessions unavailable - please try again later. You can start a refresh from the Settings tab."
+							  delegate:nil
+							  cancelButtonTitle:@"OK"
+							  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+        
+        return;
+    }
+
 	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
 	
 	NSUInteger count = [handler getActiveSessionCount];
@@ -229,7 +243,7 @@
 	if (count == 0) {
 		UIAlertView *alert = [[UIAlertView alloc]
 							  initWithTitle: @"Download failed"
-							  message: @"Unable to download sessions - check your connection and try again"
+							  message: @"Unable to download sessions - check your connection and try again. You can start a refresh from the Settings tab."
 							  delegate:nil
 							  cancelButtonTitle:@"OK"
 							  otherButtonTitles:nil];
@@ -242,6 +256,8 @@
 }
 
 - (void)sync {
+    [self setLastSuccessfulUpdate:[JavaZonePrefs lastSuccessfulUpdate]];
+
 	HUD = [[MBProgressHUD alloc] initWithView:self.tabBarController.view];
 
 	JavazoneSessionsRetriever *retriever = [[[JavazoneSessionsRetriever alloc] init] autorelease];

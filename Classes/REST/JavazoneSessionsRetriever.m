@@ -109,6 +109,8 @@
 		return 0;
 	}
 	
+    [JavaZonePrefs setLastSuccessfulUpdate:[NSDate date]];
+    
 	// Cleanup
 	[self clearData];
 

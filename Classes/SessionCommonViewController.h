@@ -18,6 +18,7 @@
 	IncogitoAppDelegate	*appDelegate;
 	
 	MBProgressHUD *HUD;
+    NSDate *lastSuccessfulUpdate;
 }
 
 @property (nonatomic, retain) NSArray		*sectionTitles;
@@ -26,6 +27,8 @@
 @property (nonatomic, retain) UITableView	*tv;
 
 @property (nonatomic, retain) IncogitoAppDelegate *appDelegate;
+
+@property (nonatomic, retain) NSDate *lastSuccessfulUpdate;
 
 - (void)loadSessionData;
 - (NSString *)getSelectedSessionTitle:(NSInteger)section;
