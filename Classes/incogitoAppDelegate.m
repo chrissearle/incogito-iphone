@@ -17,6 +17,7 @@
 #import "FlurryAPI.h"
 #import "TabInitializer.h"
 #import "ClearDataInitializer.h"
+#import "SHK.h"
 
 @implementation IncogitoAppDelegate
 
@@ -59,6 +60,8 @@ void uncaughtExceptionHandler(NSException *exception) {
 	AppLog(@"%@ Called sectionInitializer", [[[NSDate alloc] init] autorelease]);
 #endif
 	
+    [SHK flushOfflineQueue];
+    
 	TabInitializer *tabInitializer = [[[TabInitializer alloc] initWithControllers:rootController.viewControllers] autorelease];
 	[rootController setViewControllers:[tabInitializer validControllers] animated:NO];
 	
