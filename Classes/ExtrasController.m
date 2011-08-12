@@ -173,7 +173,8 @@
             }
             case 1:
             {
-                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://javazone.no/incogito10/events/JavaZone%202010/sessions/%@", [session title]]];
+                NSString *urlString = [NSString stringWithFormat:@"http://javazone.no/incogito10/events/JavaZone%%202011/sessions#%@", [session jzId]];
+                NSURL *url = [NSURL URLWithString:urlString];
                 
                 item = [SHKItem URL:url title:[session title]];
                 break;
