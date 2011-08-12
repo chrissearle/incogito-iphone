@@ -153,6 +153,7 @@
 		83DEDC8B13F3211C00BE9908 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DEDC8A13F3211C00BE9908 /* RegexKitLite.m */; };
 		83E44EBA1243EF2700F0C291 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E44EB91243EF2700F0C291 /* libFlurry.a */; };
 		83E94C6512142EAA00596D30 /* all.png in Resources */ = {isa = PBXBuildFile; fileRef = 83E94C3812142C9B00596D30 /* all.png */; };
+		83F3561113F5AD6D00FDD3A2 /* AppLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F3561013F5AD6D00FDD3A2 /* AppLog.m */; };
 		83FA5A5212460435008CA85C /* 60-signpost.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B9111ED981300590A7A /* 60-signpost.png */; };
 		83FA5AC012460531008CA85C /* JavaZone2011.png in Resources */ = {isa = PBXBuildFile; fileRef = 83FA5ABF12460531008CA85C /* JavaZone2011.png */; };
 		F31ACFB1138CE0E4007F5CCF /* UITabBarController+Autorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = F31ACFB0138CE0E4007F5CCF /* UITabBarController+Autorotate.m */; };
@@ -549,6 +550,8 @@
 		83E44EB81243EF2700F0C291 /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
 		83E44EB91243EF2700F0C291 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		83E94C3812142C9B00596D30 /* all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = all.png; sourceTree = "<group>"; };
+		83F3560F13F5AD6D00FDD3A2 /* AppLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppLog.h; sourceTree = "<group>"; };
+		83F3561013F5AD6D00FDD3A2 /* AppLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppLog.m; sourceTree = "<group>"; };
 		83FA5ABF12460531008CA85C /* JavaZone2011.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JavaZone2011.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* incogito-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "incogito-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		F31ACFAF138CE0E4007F5CCF /* UITabBarController+Autorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+Autorotate.h"; sourceTree = "<group>"; };
@@ -1380,6 +1383,8 @@
 				83A7E160130A672E00C8945F /* Preferences.m */,
 				F35EC3A41356CFD70047294D /* VideoMapper.h */,
 				F35EC3A51356CFD70047294D /* VideoMapper.m */,
+				83F3560F13F5AD6D00FDD3A2 /* AppLog.h */,
+				83F3561013F5AD6D00FDD3A2 /* AppLog.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1649,6 +1654,7 @@
 				8375DC4413F2975700094F9B /* DDXMLElement.m in Sources */,
 				8375DC4513F2975700094F9B /* DDXMLNode.m in Sources */,
 				83DEDC8B13F3211C00BE9908 /* RegexKitLite.m in Sources */,
+				83F3561113F5AD6D00FDD3A2 /* AppLog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
