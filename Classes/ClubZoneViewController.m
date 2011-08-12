@@ -6,8 +6,13 @@
 
 #import "ClubZoneViewController.h"
 #import "MapViewController.h"
+#import "FlurryAPI.h"
 
 @implementation ClubZoneViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+	[FlurryAPI logEvent:@"Showing Clubzone"];
+}
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -28,7 +33,6 @@
 }
 
 - (IBAction)openMap:(id)sender {
-	//	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://maps.google.com/?q=http://dl.dropbox.com/u/102984/ClubZone2010.kml"]];
 	MapViewController *controller = [[MapViewController alloc] initWithNibName:@"Map" bundle:[NSBundle mainBundle]];
 	
 	[self presentModalViewController:controller animated:YES];

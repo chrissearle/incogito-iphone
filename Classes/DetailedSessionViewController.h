@@ -6,19 +6,21 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @class JZSession;
 @class SectionSessionHandler;
 @class IncogitoAppDelegate;
 
 @interface DetailedSessionViewController : UIViewController {
-	JZSession		*session;
 	UIWebView		*details;
 	UILabel			*sessionLocation;
 	UILabel			*level;
 	UIImageView		*levelImage;
 	BOOL			checkboxSelected;
 	IBOutlet		UIButton *checkboxButton;
+    JZSession       *session;
+
 	SectionSessionHandler *handler;
 	IncogitoAppDelegate *appDelegate;
 }
@@ -31,6 +33,7 @@
 @property (nonatomic, retain) SectionSessionHandler *handler;
 @property (nonatomic, retain) IncogitoAppDelegate	*appDelegate;
 
+
 - (NSString *)buildPage:(NSString *)content withTitle:(NSString *)title withSpeakerInfo:(NSString *)speakerInfo andLabelsInfo:(NSString *)labels;
 - (NSString *)buildSpeakersSection:(NSSet *)speakers;
 - (NSString *)buildLabelsSection:(NSSet *)labels;
@@ -39,5 +42,7 @@
 
 - (void)reloadSession;
 - (void)displaySession;
+
+- (void)showExtras:(id)sender;
 
 @end

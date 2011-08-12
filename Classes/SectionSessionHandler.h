@@ -26,13 +26,19 @@
 - (NSArray *)getSessionsForSection:(Section *)section matching:(NSString *)search;
 - (NSDictionary *)getFavouriteSessions;
 - (NSArray *)getFavouriteSessionsForSection:(Section *)section;
+- (NSArray *)getAllSessions;
 
 - (NSUInteger)getActiveSessionCount;
 
 - (void) setFavouriteForSession:(JZSession *)session withBoolean:(BOOL)favouriteFlag;
+- (void) toggleFavouriteForSession:(NSString *)jzId;
 
 - (NSDictionary *)getUniqueLabels;
 - (NSString *)getStoredFilter;
 - (NSArray *)filterSessionList:(NSArray *)sessions;
+
+- (void)deleteSession:(JZSession *)session;
+- (void)deleteSection:(Section *)section;
+
 
 @end

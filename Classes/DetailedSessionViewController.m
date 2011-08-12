@@ -9,23 +9,28 @@
 #import "JZSessionBio.h"
 #import "SectionSessionHandler.h"
 #import "IncogitoAppDelegate.h"
+#import "ExtrasController.h"
+#import "FlurryAPI.h"
+#import "SHK.h"
+#import "JavaZonePrefs.h"
+#import "VideoMapper.h"
 
 @implementation DetailedSessionViewController
 
-@synthesize session;
 @synthesize sessionLocation;
 @synthesize details;
 @synthesize level;
 @synthesize levelImage;
 @synthesize handler;
 @synthesize appDelegate;
+@synthesize session;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+	
 	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
 	handler = [appDelegate sectionSessionHandler];
-
+	
 	CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
 	const CGFloat myColor[] = {0.67, 0.67, 0.67, 1.0};
 	CGColorRef colour = CGColorCreate(rgb, myColor);
@@ -39,6 +44,17 @@
 	CGColorRelease(colour);
 	
 	[self displaySession];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	
+	[FlurryAPI logEvent:@"Showing detail view" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+															   [session title],
+															   @"Title",
+															   [session jzId],
+															   @"ID", 
+															   nil]];
 }
 
 - (void)displaySession {
@@ -65,7 +81,15 @@
 	
 	[level setText:[session level]];
 	
-	[levelImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [session level]]]];
+	NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+	
+	NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",[docDir stringByAppendingPathComponent:@"levelIcons"],[session level]];
+	
+	NSData *data1 = [NSData dataWithContentsOfFile:pngFilePath];
+	
+	UIImage *imageFile = [UIImage imageWithData:data1];
+	
+	[levelImage setImage:imageFile];
 	
 	[startFormatter release];
 	[endFormatter release];
@@ -79,11 +103,14 @@
 	
 	self.title = [session title];
 	
+	UIBarButtonItem *button = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showExtras:)] autorelease];
+	
+	self.navigationItem.rightBarButtonItem = button;
 }
 
 - (void)reloadSession {
 	session = [handler getSessionForJZId:[session jzId]];
-
+	
 	[self displaySession];
 }
 
@@ -98,7 +125,7 @@
 		[handler setFavouriteForSession:session withBoolean:NO];
 	}
 	
-	[appDelegate refreshFavouriteViewData];
+	[appDelegate refreshViewData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -122,11 +149,23 @@
 	NSMutableString *result = [[NSMutableString alloc] init];
 	
 	for (JZSessionBio *speaker in speakers) {
-		NSString *speakerLine = [NSString stringWithFormat:@"<h3>%@</h3>%@", [speaker name], [speaker bio]];
+		[result appendString:[NSString stringWithFormat:@"<h3>%@</h3>", [speaker name]]];
 		
-		[result appendString:speakerLine];
+        if ([JavaZonePrefs showBioPic]) {
+            NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+		
+            NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",[docDir stringByAppendingPathComponent:@"bioIcons"],[speaker name]];
+		
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+
+            if ([fileManager fileExistsAtPath:pngFilePath]) {
+                [result appendString:[NSString stringWithFormat:@"<img src='file://%@' width='50px' style='float: left; margin-right: 3px; margin-bottom: 3px'/>", pngFilePath]];
+            }
+        }
+        
+		[result appendString:[speaker bio]];
 	}
-	
+
 	NSString *speakerSection = [NSString stringWithString:result];
 	
 	[result release];
@@ -138,22 +177,29 @@
 	if (nil == labels || [labels count] == 0) {
 		return @"";
 	} else {
-		
 		NSMutableString *result = [[NSMutableString alloc] init];
 		
 		[result appendString:@"<h2>Labels</h2>"];
-
+		
 		[result appendString:@"<ul class=\"labels\">"];
 		
-		for (JZLabel *label in labels) {
-			[result appendFormat:@"<li class=\"label-%@\">%@</li>", [label jzId], [label title]];
+		NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+
+		NSSortDescriptor * titleDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES] autorelease];
+		
+		NSArray * descriptors = [NSArray arrayWithObjects:titleDescriptor, nil];
+		
+		for (JZLabel *label in [[labels allObjects] sortedArrayUsingDescriptors:descriptors]) {
+			NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",[docDir stringByAppendingPathComponent:@"labelIcons"],[label jzId]];
+			
+			[result appendFormat:@"<li style=\"list-style-image: url('file://%@')\">%@</li>", pngFilePath, [label title]];
 		}
 		
 		[result appendString:@"</ul>"];
 		
 		NSString *labelsSection = [NSString stringWithString:result];
 		[result release];
-
+		
 		return labelsSection;
 	}
 }
@@ -163,6 +209,7 @@
 					  "<html>"
 					  "<head>"
 					  "<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\"/>"
+                      "<meta name='viewport' content='width=device-width; initial-scale=1.0; maximum-scale=1.0;'>"
 					  "</head>"
 					  "<body>"
 					  "<h1>%@</h1>"
@@ -178,6 +225,18 @@
 					  speakerInfo];
 	
 	return page;
+}
+
+- (void) showExtras:(id)sender {
+	ExtrasController *controller = [[ExtrasController alloc] initWithNibName:@"DetailedViewExtras" bundle:[NSBundle mainBundle]];
+	controller.session = session;
+	
+	[[self navigationController] pushViewController:controller animated:YES];
+	[controller release], controller = nil;
+}
+
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return YES;
 }
 
 @end
