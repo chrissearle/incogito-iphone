@@ -45,7 +45,9 @@
         }
     }
     
-    if ([VideoMapper streamingUrlForSession:[session jzId]] != nil) {
+    VideoMapper *mapper = [[[VideoMapper alloc] init] autorelease];
+    
+    if ([mapper streamingUrlForSession:[session jzId]] != nil) {
         [titles addObject:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"Video", @"Video streams can take a while to start", nil] forKeys:[NSArray arrayWithObjects:@"Title", @"Footer", nil]]];
         [cells  setObject:[NSArray arrayWithObjects:@"Stream video", nil] forKey:@"Video"];
     }
@@ -203,7 +205,9 @@
         [[self navigationController] pushViewController:controller animated:YES];
         [controller release], controller = nil;
     } else if ([sectionTitle isEqualToString:@"Video"]) {
-        NSString *streamingUrl = [VideoMapper streamingUrlForSession:[session jzId]];
+        VideoMapper *mapper = [[[VideoMapper alloc] init] autorelease];
+        
+        NSString *streamingUrl = [mapper streamingUrlForSession:[session jzId]];
         
         [FlurryAPI logEvent:@"Streaming Movie" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                [session jzId],

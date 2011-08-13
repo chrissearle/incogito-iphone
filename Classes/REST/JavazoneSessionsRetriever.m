@@ -13,6 +13,8 @@
 #import "JZSessionBio.h"
 #import "JZLabel.h"
 
+#import "VideoMapper.h"
+
 #import <unistd.h>
 
 @implementation JavazoneSessionsRetriever
@@ -156,6 +158,11 @@
 	
 	[FlurryAPI endTimedEvent:@"Storing" withParameters:nil];
 
+	HUD.labelText = @"Checking for videos";
+
+    VideoMapper *mapper = [[[VideoMapper alloc] init] autorelease];
+    [mapper download];
+    
 	HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"117-Todo.png"]] autorelease];
 	HUD.mode = MBProgressHUDModeCustomView;
 	HUD.labelText = @"Complete";

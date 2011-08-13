@@ -19,6 +19,10 @@
     return [Preferences getPreferenceAsString:@"SessionUrl"];
 }
 
++ (NSString *)videoUrl {
+    return [Preferences getPreferenceAsString:@"VideoUrl"];
+}
+
 + (NSString *)callForPapersUrl {
     return [Preferences getPreferenceAsString:@"CFPUrl"];
 }

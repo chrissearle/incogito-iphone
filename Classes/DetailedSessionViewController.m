@@ -12,7 +12,6 @@
 #import "ExtrasController.h"
 #import "SHK.h"
 #import "JavaZonePrefs.h"
-#import "VideoMapper.h"
 
 @implementation DetailedSessionViewController
 
