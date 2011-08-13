@@ -1,3 +1,5 @@
+#include "AppLog.h"
+
 void AppDebugLog(const char *fileName, int lineNumber, NSString *fmt, ...) {
     va_list args;
     va_start(args, fmt);

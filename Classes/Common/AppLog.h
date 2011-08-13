@@ -3,3 +3,5 @@
 #else
 #define AppLog(format...)
 #endif
+
+void AppDebugLog(const char *fileName, int lineNumber, NSString *format, ...);
