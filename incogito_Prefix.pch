@@ -13,7 +13,7 @@
     #import <UIKit/UIKit.h>
     #import <CoreData/CoreData.h>
     #import "FlurryAPI.h"
-    #include "AppLog.h"
+    #import "AppLog.h"
 #endif
 
 

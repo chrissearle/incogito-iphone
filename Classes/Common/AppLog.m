@@ -1,4 +1,6 @@
-#include "AppLog.h"
+#import "AppLog.h"
+
+// Based on example #36 in iOS recipes.
 
 void AppDebugLog(const char *fileName, int lineNumber, NSString *fmt, ...) {
     va_list args;
