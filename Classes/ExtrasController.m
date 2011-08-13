@@ -205,8 +205,15 @@
     } else if ([sectionTitle isEqualToString:@"Video"]) {
         NSString *streamingUrl = [VideoMapper streamingUrlForSession:[session jzId]];
         
-        [FlurryAPI logEvent:[NSString stringWithFormat:@"Streaming movie %@", streamingUrl]];
-        
+        [FlurryAPI logEvent:@"Streaming Movie" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                               [session jzId],
+                                                               @"ID",
+                                                               [session title],
+                                                               @"Title",
+                                                               streamingUrl,
+                                                               @"URL",
+                                                               nil]];
+
         NSURL *movieUrl = [NSURL URLWithString:streamingUrl];
         
         movie = [[MPMoviePlayerViewController alloc] initWithContentURL:movieUrl];
@@ -226,7 +233,12 @@
 }
 
 - (void)endVideo:(NSNotification*) aNotification {
-	[FlurryAPI logEvent:@"Stopping stream"];
+	[FlurryAPI logEvent:@"Stopping stream" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [session jzId],
+                                                           @"ID",
+                                                           [session title],
+                                                           @"Title",
+                                                           nil]];
     
 	[self dismissModalViewControllerAnimated:YES];
 	[movie.moviePlayer stop];

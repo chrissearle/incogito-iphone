@@ -47,17 +47,35 @@
 	[urlRequest setValue:@"incogito-iPhone" forHTTPHeaderField:@"User-Agent"];
 	
 	NSError *error = nil;
-	
+	NSURLResponse *resp = nil;
+    
 	UIApplication* app = [UIApplication sharedApplication];
 	app.networkActivityIndicatorVisible = YES;
 	
 	// Perform request and get JSON back as a NSData object
-	NSData *response = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:&error];
+	NSData *response = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&resp error:&error];
     
 	app.networkActivityIndicatorVisible = NO;
 	
 	[FlurryAPI endTimedEvent:@"Feedback Overview Retrieval" withParameters:nil];
 
+    if (nil != resp && [resp isKindOfClass:[NSHTTPURLResponse class]]) {
+        NSHTTPURLResponse *httpResp = (NSHTTPURLResponse *)resp;
+        
+        if ([httpResp statusCode] >= 400) {
+            [FlurryAPI logEvent:@"Unable to retrieve feedback overview" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                               self.url,
+                                                                               @"URL",
+                                                                               [httpResp statusCode],
+                                                                               @"Status Code",
+                                                                               nil]];
+            AppLog(@"Download failed with code %d", [httpResp statusCode]);
+
+            return nil;
+        }
+    }
+
+    
     if (nil != error) {
 		[FlurryAPI logError:@"Error retrieving feedback overview" message:[NSString stringWithFormat:@"Unable to retrieve feedback overview from URL %@", self.url] error:error];
         
