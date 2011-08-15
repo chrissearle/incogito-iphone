@@ -1,1 +1,2 @@
-*.pbxproj -crlf -diff -merge
+*.pbxproj -crlf -merge
+*.png diff=exif
