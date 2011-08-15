@@ -157,7 +157,19 @@
             NSFileManager *fileManager = [NSFileManager defaultManager];
 
             if ([fileManager fileExistsAtPath:pngFilePath]) {
-                [result appendString:[NSString stringWithFormat:@"<img src='file://%@' width='50px' style='float: left; margin-right: 3px; margin-bottom: 3px'/>", pngFilePath]];
+                NSError *fileError = nil;
+                
+                NSDictionary *fileAttributes = [fileManager attributesOfItemAtPath:pngFilePath error:&fileError];
+                
+                if (fileError != nil) {
+                    AppLog(@"Got file error reading file attributes for file %@", pngFilePath);
+                } else {
+                    if ([fileAttributes fileSize] > 0) {
+                        [result appendString:[NSString stringWithFormat:@"<img src='file://%@' width='50px' style='float: left; margin-right: 3px; margin-bottom: 3px'/>", pngFilePath]];
+                    } else {
+                        AppLog(@"Empty bioPic %@", pngFilePath);
+                    }
+                }
             }
         }
         
