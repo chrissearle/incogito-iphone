@@ -2,12 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ActiveYears</key>
+	<array>
+		<integer>2011</integer>
+	</array>
 	<key>CFPDate</key>
 	<date>2011-04-25T22:00:00Z</date>
 	<key>CFPUrl</key>
 	<string>http://jz11.java.no/call_for_papers.html</string>
-	<key>FeedbackUrl</key>
-	<string>http://incogito-feedback.heroku.com/ratings</string>
 	<key>ClubZone</key>
 	<array>
 		<dict>
@@ -15,12 +17,12 @@
 			<real>59.912958</real>
 			<key>Longitude</key>
 			<real>10.754421</real>
+			<key>Pin</key>
+			<string>jz_pin_logo.png</string>
 			<key>Subtitle</key>
 			<string>Oslo Spektrum</string>
 			<key>Title</key>
 			<string>JavaZone</string>
-			<key>Pin</key>
-			<string>jz_pin_logo.png</string>
 		</dict>
 		<dict>
 			<key>Latitude</key>
@@ -63,7 +65,11 @@
 			<string>Cafe Con Bar</string>
 		</dict>
 	</array>
+	<key>FeedbackUrl</key>
+	<string>http://www.eventsystems.no/jzfeedback/api/surveys/javazone2011</string>
 	<key>SessionUrl</key>
-	<string>http://javazone.no/incogito10/rest/events/JavaZone%202010/sessions</string>
+	<string>http://javazone.no/incogito10/rest/events/JavaZone%202011/sessions</string>
+	<key>VideoUrl</key>
+	<string>https://raw.github.com/chrissearle/incogito-iphone/develop/video.plist</string>
 </dict>
 </plist>

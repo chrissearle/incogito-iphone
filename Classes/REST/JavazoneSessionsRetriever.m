@@ -12,7 +12,8 @@
 #import "JZSession.h"
 #import "JZSessionBio.h"
 #import "JZLabel.h"
-#import "FlurryAPI.h"
+
+#import "VideoMapper.h"
 
 #import <unistd.h>
 
@@ -109,6 +110,8 @@
 		return 0;
 	}
 	
+    [JavaZonePrefs setLastSuccessfulUpdate:[NSDate date]];
+    
 	// Cleanup
 	[self clearData];
 
@@ -131,29 +134,54 @@
 		[self addSession:session];
 	}
     
+	[FlurryAPI endTimedEvent:@"Storing" withParameters:nil];
+
     if ([JavaZonePrefs showBioPic]) {
-        HUD.mode = MBProgressHUDModeIndeterminate;
+        [FlurryAPI logEvent:@"Storing biopics" timed:YES];
+
+        HUD.mode = MBProgressHUDModeDeterminate;
         HUD.labelText = @"Retrieving photos";
 
+        int picCounter = 0;
+        
         for (NSString *name in self.bioPics) {
+            picCounter++;
+            
+            float progress = (1.0 / [self.bioPics count]) * picCounter;
+            
+            HUD.progress = progress;
+
             [self getJsonImage:[self.bioPics objectForKey:name] toFile:name inPath:self.bioPath];
         }
+
+    	[FlurryAPI endTimedEvent:@"Storing biopics" withParameters:nil];
     }
     
 	HUD.mode = MBProgressHUDModeIndeterminate;
 	HUD.labelText = @"Retrieving icons";
-	
+
+    [FlurryAPI logEvent:@"Storing icons" timed:YES];
+
 	for (NSString *name in self.levelUrls) {
 		[self downloadIconFromUrl:[self.levelUrls objectForKey:name] withName:name toFolder:self.levelsPath];
 	}
 	for (NSString *name in self.labelUrls) {
 		[self downloadIconFromUrl:[self.labelUrls objectForKey:name] withName:name toFolder:self.labelsPath];
 	}
+
+    [FlurryAPI endTimedEvent:@"Storing icons" withParameters:nil];
 	
 	[self.labelUrls release];
 	[self.levelUrls release];
 	
-	[FlurryAPI endTimedEvent:@"Storing" withParameters:nil];
+
+	HUD.labelText = @"Checking for videos";
+
+    [FlurryAPI logEvent:@"Storing video" timed:YES];
+
+    VideoMapper *mapper = [[[VideoMapper alloc] init] autorelease];
+    [mapper download];
+    [FlurryAPI endTimedEvent:@"Storing video" withParameters:nil];
 
 	HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"117-Todo.png"]] autorelease];
 	HUD.mode = MBProgressHUDModeCustomView;
@@ -190,7 +218,7 @@
 	if (![managedObjectContext save:&error]) {
 		if (nil != error) {
 			[FlurryAPI logError:@"Error fetching sessions" message:@"Unable to persist sessions after invalidation" error:error];
-			NSLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
+			AppLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
 			return;
 		}
 	}	
@@ -213,7 +241,7 @@
 	NSArray *sessions = [managedObjectContext executeFetchRequest:request error:&error];
 	
 	if (nil != error) {
-		NSLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		AppLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
 		return;
 	}
 	
@@ -234,7 +262,7 @@
 	}
 	
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Adding session with title %@", [[[NSDate alloc] init] autorelease], [item objectForKey:@"title"]);
+	AppLog(@"%@ Adding session with title %@", [[[NSDate alloc] init] autorelease], [item objectForKey:@"title"]);
 #endif
 	
 	[session setJzId:[item objectForKey:@"id"]];
@@ -337,7 +365,7 @@
 	
 	if (![managedObjectContext save:&error]) {
 		if (nil != error) {
-			NSLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
+			AppLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
 			return;
 		}
 	}
@@ -358,7 +386,7 @@
 
 - (void) removeAllEntitiesByName:(NSString *)entityName {
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Removing all %@", [[[NSDate alloc] init] autorelease], entityName);
+	AppLog(@"%@ Removing all %@", [[[NSDate alloc] init] autorelease], entityName);
 #endif
 	
 	NSEntityDescription *entityDescription = [NSEntityDescription
@@ -377,13 +405,13 @@
 	
 	if (![managedObjectContext save:&error]) {
 		if (nil != error) {
-			NSLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
+			AppLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
 			return;
 		}
 	}	
 	
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Removed all %@", [[[NSDate alloc] init] autorelease], entityName);
+	AppLog(@"%@ Removed all %@", [[[NSDate alloc] init] autorelease], entityName);
 #endif
 }
 
@@ -394,9 +422,9 @@
 		NSString *id = [dict objectForKey:@"id"];
 		
 		if ([id isKindOfClass:[NSNull class]]) {
-			NSLog(@"No %@ found for unknown object", key);
+			AppLog(@"No %@ found for unknown object", key);
 		} else {
-			NSLog(@"No %@ found for %@", key, id);
+			AppLog(@"No %@ found for %@", key, id);
 		}
 		
 		return @"";
@@ -408,7 +436,7 @@
 - (void)downloadIconFromUrl:(NSString *)url withName:(NSString *)name toFolder:(NSString *)folder {
 	UIApplication* app = [UIApplication sharedApplication];
 
-	NSLog(@"Download %@ from %@ to %@", name, url, folder);
+	AppLog(@"Download %@ from %@ to %@", name, url, folder);
 
 	app.networkActivityIndicatorVisible = YES;
 	UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
@@ -422,7 +450,7 @@
 }
 
 - (void)getJsonImage:(NSString *)imageUrl toFile:(NSString *)file inPath:(NSString *)path {
-	NSLog(@"Fetching pic %@ to %@ in %@", imageUrl, file, path);
+	AppLog(@"Fetching pic %@ to %@ in %@", imageUrl, file, path);
 
 	UIApplication* app = [UIApplication sharedApplication];
 	
@@ -440,7 +468,7 @@
 	app.networkActivityIndicatorVisible = NO;
 
 	if (nil != error) {
-		NSLog(@"%@:%@ Error retrieving image: %@", [self class], _cmd, [error localizedDescription]);
+		AppLog(@"%@:%@ Error retrieving image: %@", [self class], _cmd, [error localizedDescription]);
 		return;
 	}	
 	
@@ -448,7 +476,7 @@
 		UIImage *image = [UIImage imageWithData:response];
 	
 		NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",path,file];
-		NSLog(@"Got data for %@  %.0f x %.0f", pngFilePath, image.size.height, image.size.width);
+		AppLog(@"Got data for %@  %.0f x %.0f", pngFilePath, image.size.height, image.size.width);
 	
 		[[NSData dataWithData:UIImagePNGRepresentation(image)] writeToFile:pngFilePath atomically:YES];
 	}

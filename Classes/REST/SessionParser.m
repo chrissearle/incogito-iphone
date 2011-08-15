@@ -1,14 +1,11 @@
 //
 //  SessionParser.m
-//  incogito
 //
-//  Created by Chris Searle on 25.09.10.
 //  Copyright 2010 Chris Searle. All rights reserved.
 //
 
 #import "SessionParser.h"
 #import "JSON.h"
-#import "FlurryAPI.h"
 
 @implementation SessionParser
 

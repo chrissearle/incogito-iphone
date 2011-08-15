@@ -15,15 +15,16 @@
 #ifdef HIDE_NOWANDNEXT
 #import "NowAndNextViewController.h"
 #endif
-#ifdef HIDE_JZ11
-#import "JavaZone2011Controller.h"
-#endif
 #ifdef HIDE_CLUBZONE
 #import "ClubZoneViewController.h"
 #endif
 #ifdef HIDE_SETTINGS
 #import "SettingsViewController.h"
 #endif
+#ifdef HIDE_AWEZONE
+#import "AweZoneController.h"
+#endif
+
 
 @implementation TabInitializer
 
@@ -42,44 +43,44 @@
 - (BOOL)checkObject:(UIViewController *)controller {
 	BOOL remove = NO;
 	
-#ifdef HIDE_JZ11
-	if ([controller class] == [JavaZone2011Controller class]) {
-		NSLog(@"Removing %@", controller);
-			  
+#ifdef HIDE_CLUBZONE
+	if ([controller class] == [ClubZoneViewController class]) {
+		AppLog(@"Removing %@", controller);
+		
 		remove = YES;
 	}
 #endif
-#ifdef HIDE_CLUBZONE
-	if ([controller class] == [ClubZoneViewController class]) {
-		NSLog(@"Removing %@", controller);
+#ifdef HIDE_AWEZONE
+	if ([controller class] == [AweZoneController class]) {
+		AppLog(@"Removing %@", controller);
 		
 		remove = YES;
 	}
 #endif
 #ifdef HIDE_SETTINGS
 	if ([controller class] == [SettingsViewController class]) {
-		NSLog(@"Removing %@", controller);
+		AppLog(@"Removing %@", controller);
 		
 		remove = YES;
 	}
 #endif
 #ifdef HIDE_OVERVIEW
 	if ([controller class] == [OverviewViewController class]) {
-		NSLog(@"Removing %@", controller);
+		AppLog(@"Removing %@", controller);
 		
 		remove = YES;
 	}
 #endif
 #ifdef HIDE_FAVOURITES
 	if ([controller class] == [MyProgrammeViewController class]) {
-		NSLog(@"Removing %@", controller);
+		AppLog(@"Removing %@", controller);
 		
 		remove = YES;
 	}
 #endif
 #ifdef HIDE_NOWANDNEXT
 	if ([controller class] == [NowAndNextViewController class]) {
-		NSLog(@"Removing %@", controller);
+		AppLog(@"Removing %@", controller);
 		
 		remove = YES;
 	}

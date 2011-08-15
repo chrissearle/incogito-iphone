@@ -1,8 +1,6 @@
 //
 //  Preferences.m
-//  incogito
 //
-//  Created by Chris Searle on 15.02.11.
 //  Copyright 2011 Chris Searle. All rights reserved.
 //
 

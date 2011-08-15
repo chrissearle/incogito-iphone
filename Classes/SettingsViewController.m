@@ -7,7 +7,6 @@
 #import "SettingsViewController.h"
 #import "IncogitoAppDelegate.h"
 #import "SectionSessionHandler.h"
-#import "FlurryAPI.h"
 
 #import "JavazoneSessionsRetriever.h"
 #import "JavaZonePrefs.h"
@@ -18,6 +17,49 @@
 @synthesize picker;
 @synthesize appDelegate;
 @synthesize bioPicSwitch;
+@synthesize applyButton;
+@synthesize refreshButton;
+@synthesize labelsLabel;
+@synthesize downloadLabel;
+@synthesize lastSuccessfulUpdate;
+
+- (void)redrawForOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+        if (UIDeviceOrientationIsLandscape(interfaceOrientation)) {
+            picker.frame = CGRectMake(0, 55, 250, 216);
+            labelsLabel.frame = CGRectMake(7, 20, 280, 34);
+            applyButton.frame = CGRectMake(258, 55, 202, 37);
+            refreshButton.frame = CGRectMake(258, 150, 202, 37);
+            downloadLabel.frame = CGRectMake(258, 195, 267, 21);
+            bioPicSwitch.frame = CGRectMake(366, 224, 94, 27);
+        } else {
+            picker.frame = CGRectMake(0, 62, 320, 216);
+            labelsLabel.frame = CGRectMake(20, 20, 280, 34);
+            applyButton.frame = CGRectMake(20, 286, 280, 37);
+            refreshButton.frame = CGRectMake(20, 331, 280, 37);
+            downloadLabel.frame = CGRectMake(20, 379, 178, 24);
+            bioPicSwitch.frame = CGRectMake(206, 376, 94, 27);
+        }
+    } else {
+        CGSize frameSize = self.view.frame.size;
+        
+        int mainWidth = 320;
+        int mainLeft = (frameSize.width - mainWidth) / 2;
+        
+        
+        int mainTop = (frameSize.height - 409) / 2;
+        int refreshTop = mainTop + 325;
+        
+        picker.frame = CGRectMake(mainLeft, mainTop, mainWidth, 216);
+        applyButton.frame = CGRectMake(mainLeft, mainTop + 224, mainWidth, 37);
+        refreshButton.frame = CGRectMake(mainLeft, refreshTop, mainWidth, 37);
+        downloadLabel.frame = CGRectMake(mainLeft, refreshTop + 60, mainWidth - 100, 24);
+        bioPicSwitch.frame = CGRectMake(mainLeft + mainWidth - 94, refreshTop + 57, 94, 27);
+    }
+    
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,6 +71,8 @@
 
 - (void) viewWillAppear:(BOOL)animated {
 	[FlurryAPI logEvent:@"Showing Settings"];
+    
+    [self redrawForOrientation:[self interfaceOrientation]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,10 +109,10 @@
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
 	if (nil == view) {
-		view = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 260, 32)] autorelease];
+		view = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 230, 32)] autorelease];
 		
 		UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(11.0, 11.0, 10, 10)];
-		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(32, 0.0, 228, 32)];
+		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(32, 0.0, 198, 32)];
 		
 		[label setBackgroundColor:[UIColor clearColor]];
 		[label setFont:[UIFont fontWithName:@"Helvetica" size:12.0]];
@@ -107,7 +151,7 @@
 				UIImage *imageFile;
 				
 				if (nil == data1) {
-					NSLog(@"File not found %@", pngFilePath);
+					AppLog(@"File not found %@", pngFilePath);
 					
 					imageFile = [UIImage imageNamed:@"all.png"];
 				} else {
@@ -164,6 +208,8 @@
 
 
 - (IBAction)sync:(id)sender {
+    [self setLastSuccessfulUpdate:[JavaZonePrefs lastSuccessfulUpdate]];
+    
     HUD = [[MBProgressHUD alloc] initWithView:self.tabBarController.view];
 
 	JavazoneSessionsRetriever *retriever = [[[JavazoneSessionsRetriever alloc] init] autorelease];
@@ -214,6 +260,20 @@
     [HUD removeFromSuperview];
     [HUD release];
 
+    
+    if (abs([[self lastSuccessfulUpdate] timeIntervalSinceDate:[JavaZonePrefs lastSuccessfulUpdate]]) < 2) {
+        UIAlertView *alert = [[UIAlertView alloc]
+							  initWithTitle: @"Download failed"
+							  message: @"Sessions unavailable - please try again later"
+							  delegate:nil
+							  cancelButtonTitle:@"OK"
+							  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+        
+        return;
+    }
+    
 	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
 	
 	NSUInteger count = [handler getActiveSessionCount];
@@ -237,4 +297,18 @@
 - (IBAction)picSwitch:(id)sender {
     [JavaZonePrefs setShowBioPic:bioPicSwitch.on];
 }
+
+
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation 
+                                         duration:(NSTimeInterval)duration {
+
+    [self redrawForOrientation:toInterfaceOrientation];
+}
+
+
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return YES;
+}
+
 @end

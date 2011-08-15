@@ -10,7 +10,6 @@
 #import "SectionSessionHandler.h"
 #import "IncogitoAppDelegate.h"
 #import "ExtrasController.h"
-#import "FlurryAPI.h"
 #import "SHK.h"
 #import "JavaZonePrefs.h"
 
@@ -22,6 +21,7 @@
 @synthesize levelImage;
 @synthesize handler;
 @synthesize appDelegate;
+@synthesize session;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -101,14 +101,9 @@
 	
 	self.title = [session title];
 	
-	if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
-		UIBarButtonItem *button = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showExtras:)] autorelease];
+	UIBarButtonItem *button = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showExtras:)] autorelease];
 	
-		self.navigationItem.rightBarButtonItem = button;
-	} else {
-		self.navigationItem.rightBarButtonItem = nil;
-	}
-
+	self.navigationItem.rightBarButtonItem = button;
 }
 
 - (void)reloadSession {
@@ -162,7 +157,19 @@
             NSFileManager *fileManager = [NSFileManager defaultManager];
 
             if ([fileManager fileExistsAtPath:pngFilePath]) {
-                [result appendString:[NSString stringWithFormat:@"<img src='file://%@' width='50px' style='float: left; margin-right: 3px; margin-bottom: 3px'/>", pngFilePath]];
+                NSError *fileError = nil;
+                
+                NSDictionary *fileAttributes = [fileManager attributesOfItemAtPath:pngFilePath error:&fileError];
+                
+                if (fileError != nil) {
+                    AppLog(@"Got file error reading file attributes for file %@", pngFilePath);
+                } else {
+                    if ([fileAttributes fileSize] > 0) {
+                        [result appendString:[NSString stringWithFormat:@"<img src='file://%@' width='50px' style='float: left; margin-right: 3px; margin-bottom: 3px'/>", pngFilePath]];
+                    } else {
+                        AppLog(@"Empty bioPic %@", pngFilePath);
+                    }
+                }
             }
         }
         
@@ -212,6 +219,7 @@
 					  "<html>"
 					  "<head>"
 					  "<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\"/>"
+                      "<meta name='viewport' content='width=device-width; initial-scale=1.0; maximum-scale=1.0;'>"
 					  "</head>"
 					  "<body>"
 					  "<h1>%@</h1>"
@@ -237,29 +245,8 @@
 	[controller release], controller = nil;
 }
 
-- (void)shareText:(id)sender {
-	NSString *text = [NSString stringWithFormat:@"#JavaZone - %@", [session title]];
-	
-	SHKItem *item = [SHKItem text:text];
-	
-	// Get the ShareKit action sheet
-	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
-	
-	// Display the action sheet
-	[actionSheet showInView:[self view]];
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return YES;
 }
-
-- (void)shareLink:(id)sender {
-	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://javazone.no/incogito10/events/JavaZone%202010/sessions/%@", [session title]]];
-	
-	SHKItem *item = [SHKItem URL:url title:[session title]];
-
-	// Get the ShareKit action sheet
-	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
-	
-	// Display the action sheet
-	[actionSheet showInView:[self view]];
-}
-
 
 @end

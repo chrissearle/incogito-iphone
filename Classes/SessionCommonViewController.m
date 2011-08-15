@@ -9,7 +9,6 @@
 #import "JZSessionBio.h"
 #import "DetailedSessionViewController.h"
 #import "IncogitoAppDelegate.h"
-#import "FlurryAPI.h"
 #import "SessionTableViewCell.h"
 #import "SectionSessionHandler.h"
 #import "JavaZonePrefs.h"
@@ -21,6 +20,7 @@
 @synthesize sessions;
 @synthesize tv;
 @synthesize appDelegate;
+@synthesize lastSuccessfulUpdate;
 
 - (void) loadSessionData {
 	// Stub
@@ -31,7 +31,7 @@
 	
 	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
 	
-	[FlurryAPI countPageViews:[self navigationController]];
+	[FlurryAPI logAllPageViews:[self navigationController]];
 	
 	tv.rowHeight = 85;
 }
@@ -181,13 +181,8 @@
 	
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 
-	DetailedSessionViewController *controller;
-	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-	{
-		controller = [[DetailedSessionViewController alloc] initWithNibName:@"DetailedSessionView-iPad" bundle:[NSBundle mainBundle]];
-	} else {
-		controller = [[DetailedSessionViewController alloc] initWithNibName:@"DetailedSessionView" bundle:[NSBundle mainBundle]];
-	}
+	DetailedSessionViewController *controller = [[DetailedSessionViewController alloc] initWithNibName:@"DetailedSessionView" bundle:[NSBundle mainBundle]];
+
 	controller.session = [[sessions objectForKey:sectionTitle] objectAtIndex:indexPath.row];
 	
 #ifndef SHOW_TAB_BAR_ON_DETAILS_VIEW
@@ -207,7 +202,7 @@
 		if ([view isKindOfClass:[SessionTableViewCell class]]) {
 			SessionTableViewCell *cell = (SessionTableViewCell *)view;
 			
-			NSLog(@"JZ %@", [cell jzId]);
+			AppLog(@"JZ %@", [cell jzId]);
 
 			SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
 			
@@ -227,6 +222,19 @@
     [HUD removeFromSuperview];
     [HUD release];
 
+    if (abs([[self lastSuccessfulUpdate] timeIntervalSinceDate:[JavaZonePrefs lastSuccessfulUpdate]]) < 2) {
+        UIAlertView *alert = [[UIAlertView alloc]
+							  initWithTitle: @"Download failed"
+							  message: @"Sessions unavailable - please try again later. You can start a refresh from the Settings tab."
+							  delegate:nil
+							  cancelButtonTitle:@"OK"
+							  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+        
+        return;
+    }
+
 	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
 	
 	NSUInteger count = [handler getActiveSessionCount];
@@ -234,7 +242,7 @@
 	if (count == 0) {
 		UIAlertView *alert = [[UIAlertView alloc]
 							  initWithTitle: @"Download failed"
-							  message: @"Unable to download sessions - check your connection and try again"
+							  message: @"Unable to download sessions - check your connection and try again. You can start a refresh from the Settings tab."
 							  delegate:nil
 							  cancelButtonTitle:@"OK"
 							  otherButtonTitles:nil];
@@ -247,6 +255,8 @@
 }
 
 - (void)sync {
+    [self setLastSuccessfulUpdate:[JavaZonePrefs lastSuccessfulUpdate]];
+
 	HUD = [[MBProgressHUD alloc] initWithView:self.tabBarController.view];
 
 	JavazoneSessionsRetriever *retriever = [[[JavazoneSessionsRetriever alloc] init] autorelease];
@@ -268,5 +278,8 @@
 	[HUD showWhileExecuting:@selector(retrieveSessions:) onTarget:retriever withObject:nil animated:YES];
 }
 
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return YES;
+}
 
 @end

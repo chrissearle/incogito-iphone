@@ -17,7 +17,7 @@
 
 - (void) initializeSectionsWithRefresh:(BOOL)refreshFlag {
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Start of initializeSections", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"%@ Start of initializeSections", [[[NSDate alloc] init] autorelease]);
 #endif
 	
 	if (refreshFlag) {
@@ -26,29 +26,29 @@
 	
 	if ([self getSectionCount] == 0) {
 #ifdef LOG_FUNCTION_TIMES
-		NSLog(@"%@ Adding sections", [[[NSDate alloc] init] autorelease]);
+		AppLog(@"%@ Adding sections", [[[NSDate alloc] init] autorelease]);
 #endif
-		[self addSectionForDay:1 startingAt:@"2010-09-08 09:00:00 +0200" endingAt:@"2010-09-08 10:00:00 +0200"];
-		[self addSectionForDay:1 startingAt:@"2010-09-08 10:15:00 +0200" endingAt:@"2010-09-08 11:15:00 +0200"];
-		[self addSectionForDay:1 startingAt:@"2010-09-08 11:45:00 +0200" endingAt:@"2010-09-08 12:45:00 +0200"];
-		[self addSectionForDay:1 startingAt:@"2010-09-08 13:00:00 +0200" endingAt:@"2010-09-08 14:00:00 +0200"];
-		[self addSectionForDay:1 startingAt:@"2010-09-08 14:15:00 +0200" endingAt:@"2010-09-08 15:15:00 +0200"];
-		[self addSectionForDay:1 startingAt:@"2010-09-08 15:45:00 +0200" endingAt:@"2010-09-08 16:45:00 +0200"];
-		[self addSectionForDay:1 startingAt:@"2010-09-08 17:00:00 +0200" endingAt:@"2010-09-08 18:00:00 +0200"];
-		[self addSectionForDay:1 startingAt:@"2010-09-08 18:15:00 +0200" endingAt:@"2010-09-08 19:15:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2010-09-09 09:00:00 +0200" endingAt:@"2010-09-09 10:00:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2010-09-09 10:15:00 +0200" endingAt:@"2010-09-09 11:15:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2010-09-09 11:45:00 +0200" endingAt:@"2010-09-09 12:45:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2010-09-09 13:00:00 +0200" endingAt:@"2010-09-09 14:00:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2010-09-09 14:15:00 +0200" endingAt:@"2010-09-09 15:15:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2010-09-09 15:45:00 +0200" endingAt:@"2010-09-09 16:45:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2010-09-09 17:00:00 +0200" endingAt:@"2010-09-09 18:00:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2011-09-07 09:00:00 +0200" endingAt:@"2011-09-07 10:00:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2011-09-07 10:20:00 +0200" endingAt:@"2011-09-07 11:20:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2011-09-07 11:40:00 +0200" endingAt:@"2011-09-07 12:40:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2011-09-07 13:00:00 +0200" endingAt:@"2011-09-07 14:00:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2011-09-07 14:20:00 +0200" endingAt:@"2011-09-07 15:20:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2011-09-07 15:40:00 +0200" endingAt:@"2011-09-07 16:40:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2011-09-07 17:00:00 +0200" endingAt:@"2011-09-07 18:00:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2011-09-07 18:20:00 +0200" endingAt:@"2011-09-07 19:20:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2011-09-08 09:00:00 +0200" endingAt:@"2011-09-08 10:00:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2011-09-08 10:20:00 +0200" endingAt:@"2011-09-08 11:20:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2011-09-08 11:40:00 +0200" endingAt:@"2011-09-08 12:40:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2011-09-08 13:00:00 +0200" endingAt:@"2011-09-08 14:00:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2011-09-08 14:20:00 +0200" endingAt:@"2011-09-08 15:20:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2011-09-08 15:40:00 +0200" endingAt:@"2011-09-08 16:40:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2011-09-08 17:00:00 +0200" endingAt:@"2011-09-08 18:00:00 +0200"];
 	}
 }
 
 - (void)addSectionForDay:(int)day startingAt:(NSString *)startDate endingAt:(NSString *)endDate {
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Start of addSectionForDay:startingAt", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"%@ Start of addSectionForDay:startingAt", [[[NSDate alloc] init] autorelease]);
 #endif
 	
 	Section *section = (Section *)[NSEntityDescription insertNewObjectForEntityForName:@"Section" inManagedObjectContext:managedObjectContext];
@@ -73,17 +73,23 @@
 	[start release];
 	[end release];
 	
-	NSError *error = nil;
-	
-	if (![managedObjectContext save:&error]) {
-		if (nil != error) {
-			NSLog(@"%@:%@ Error saving sections: %@", [self class], _cmd, [error localizedDescription]);
-			return;
-		}
-	}
-	
+    
+    NSError* error;
+    if(![managedObjectContext save:&error]) {
+        AppLog(@"Failed to save to data store: %@", [error localizedDescription]);
+        NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+        if(detailedErrors != nil && [detailedErrors count] > 0) {
+            for(NSError* detailedError in detailedErrors) {
+                AppLog(@"  DetailedError: %@", [detailedError userInfo]);
+            }
+        }
+        else {
+            AppLog(@"  %@", [error userInfo]);
+        }
+    }
+    
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ End of addSectionForDay:startingAt", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"%@ End of addSectionForDay:startingAt", [[[NSDate alloc] init] autorelease]);
 #endif
 	
 }
@@ -103,7 +109,7 @@
 	
 	if (nil != error) {
 		[mutableFetchResults release];
-		NSLog(@"%@:%@ Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
+		AppLog(@"%@:%@ Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
 		return 0;
 	}
 
@@ -117,7 +123,7 @@
 
 - (void)removeSections {
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Removing sections", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"%@ Removing sections", [[[NSDate alloc] init] autorelease]);
 #endif
 	
 	NSEntityDescription *entityDescription = [NSEntityDescription
@@ -131,12 +137,12 @@
 	NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];
 	
 	if (nil != error) {
-		NSLog(@"%@:%@ Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
+		AppLog(@"%@:%@ Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
 		return;
 	}
 
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Removing sections start loop", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"%@ Removing sections start loop", [[[NSDate alloc] init] autorelease]);
 #endif
 	
 	for (NSManagedObject *section in array) {
@@ -144,20 +150,20 @@
 	}
 	
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Removing sections end loop", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"%@ Removing sections end loop", [[[NSDate alloc] init] autorelease]);
 #endif
 	
 	error = nil;
 	
 	if (![managedObjectContext save:&error]) {
 		if (nil != error) {
-			NSLog(@"%@:%@ Error saving sections: %@", [self class], _cmd, [error localizedDescription]);
+			AppLog(@"%@:%@ Error saving sections: %@", [self class], _cmd, [error localizedDescription]);
 			return;
 		}
 	}
 	
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ End of removing sections", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"%@ End of removing sections", [[[NSDate alloc] init] autorelease]);
 #endif
 }
 

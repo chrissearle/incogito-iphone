@@ -11,13 +11,22 @@
 
 + (NSString *)feedbackUrl;
 + (NSString *)sessionUrl;
++ (NSString *)videoUrl;
 
 + (NSString *)callForPapersUrl;
 + (NSDate *)callForPapersDate;
 
 + (NSArray *)clubZonePins;
 
++ (NSArray *)activeYears;
+
++ (NSString *)registeredEmail;
++ (void)setRegisteredEmail:(NSString *)email;
+
 + (BOOL)showBioPic;
 + (void)setShowBioPic:(BOOL) flag;
+
++ (NSDate *)lastSuccessfulUpdate;
++ (void)setLastSuccessfulUpdate:(NSDate *)date;
 
 @end

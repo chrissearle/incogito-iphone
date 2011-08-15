@@ -16,19 +16,34 @@
  called after data is received
  */
 - (void)dataAvailable;
+
 /*
  called after data is determined to be unavailable
  */
 - (void)dataUnavailable;
+
 /*
  called before canvas displays
  code to pause app states can be set here
  */
 - (void)canvasWillDisplay:(NSString *)hook;
+
 /*
  called before canvas closes
  code to resume app states can be set here
  */
 - (void)canvasWillClose;
+
+/*
+ called before takeover displays
+ code to pause app states can be set here
+ */
+- (void)takeoverWillDisplay:(NSString *)hook;
+
+/*
+ called before takeover closes
+ code to resume app states can be set here
+ */
+- (void)takeoverWillClose;
 
 @end

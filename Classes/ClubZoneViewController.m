@@ -6,7 +6,6 @@
 
 #import "ClubZoneViewController.h"
 #import "MapViewController.h"
-#import "FlurryAPI.h"
 
 @implementation ClubZoneViewController
 
