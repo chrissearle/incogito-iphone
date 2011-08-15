@@ -134,35 +134,55 @@
 		[self addSession:session];
 	}
     
+	[FlurryAPI endTimedEvent:@"Storing" withParameters:nil];
+
     if ([JavaZonePrefs showBioPic]) {
-        HUD.mode = MBProgressHUDModeIndeterminate;
+        [FlurryAPI logEvent:@"Storing biopics" timed:YES];
+
+        HUD.mode = MBProgressHUDModeDeterminate;
         HUD.labelText = @"Retrieving photos";
 
+        int picCounter = 0;
+        
         for (NSString *name in self.bioPics) {
+            picCounter++;
+            
+            float progress = (1.0 / [self.bioPics count]) * picCounter;
+            
+            HUD.progress = progress;
+
             [self getJsonImage:[self.bioPics objectForKey:name] toFile:name inPath:self.bioPath];
         }
+
+    	[FlurryAPI endTimedEvent:@"Storing biopics" withParameters:nil];
     }
     
 	HUD.mode = MBProgressHUDModeIndeterminate;
 	HUD.labelText = @"Retrieving icons";
-	
+
+    [FlurryAPI logEvent:@"Storing icons" timed:YES];
+
 	for (NSString *name in self.levelUrls) {
 		[self downloadIconFromUrl:[self.levelUrls objectForKey:name] withName:name toFolder:self.levelsPath];
 	}
 	for (NSString *name in self.labelUrls) {
 		[self downloadIconFromUrl:[self.labelUrls objectForKey:name] withName:name toFolder:self.labelsPath];
 	}
+
+    [FlurryAPI endTimedEvent:@"Storing icons" withParameters:nil];
 	
 	[self.labelUrls release];
 	[self.levelUrls release];
 	
-	[FlurryAPI endTimedEvent:@"Storing" withParameters:nil];
 
 	HUD.labelText = @"Checking for videos";
 
+    [FlurryAPI logEvent:@"Storing video" timed:YES];
+
     VideoMapper *mapper = [[[VideoMapper alloc] init] autorelease];
     [mapper download];
-    
+    [FlurryAPI endTimedEvent:@"Storing video" withParameters:nil];
+
 	HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"117-Todo.png"]] autorelease];
 	HUD.mode = MBProgressHUDModeCustomView;
 	HUD.labelText = @"Complete";
