@@ -7,7 +7,6 @@
 #import "OverviewViewController.h"
 #import "IncogitoAppDelegate.h"
 #import "SectionSessionHandler.h"
-#import "FlurryAPI.h"
 
 @implementation OverviewViewController
 
@@ -19,7 +18,7 @@
     [super viewDidLoad];
 
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Overview - about to check for data", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"%@ Overview - about to check for data", [[[NSDate alloc] init] autorelease]);
 #endif
 
 	currentSearch = @"";
@@ -27,13 +26,13 @@
 	[self checkForData];
 	
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Overview - about to load data", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"%@ Overview - about to load data", [[[NSDate alloc] init] autorelease]);
 #endif
 	
 	[self loadSessionData];
 
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Overview - loaded data", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"%@ Overview - loaded data", [[[NSDate alloc] init] autorelease]);
 #endif
 	
 }
@@ -112,8 +111,6 @@
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     [searchBar setShowsCancelButton:YES animated:YES];
-	
-    tv.scrollEnabled = NO;
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
@@ -121,8 +118,6 @@
     
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
-	
-    tv.scrollEnabled = YES;
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -130,15 +125,11 @@
 	
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
-	
-    tv.scrollEnabled = YES;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [sb setShowsCancelButton:NO animated:YES];
     [sb resignFirstResponder];
-	
-    tv.scrollEnabled = YES;
 	
 	[super tableView:tableView didSelectRowAtIndexPath:indexPath];
 }

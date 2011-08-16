@@ -14,9 +14,9 @@
 #import "MyProgrammeViewController.h"
 #import "DetailedSessionViewController.h"
 #import "SettingsViewController.h"
-#import "FlurryAPI.h"
 #import "TabInitializer.h"
 #import "ClearDataInitializer.h"
+#import "SHK.h"
 
 @implementation IncogitoAppDelegate
 
@@ -34,7 +34,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
 	
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Start of application:didFinishLaunchingWithOptions", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"%@ Start of application:didFinishLaunchingWithOptions", [[[NSDate alloc] init] autorelease]);
 #endif
 	
 	NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
@@ -42,7 +42,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 	[FlurryAPI logAllPageViews:rootController];
 	
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Calling sectionInitializer", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"%@ Calling sectionInitializer", [[[NSDate alloc] init] autorelease]);
 #endif
 	
     ClearDataInitializer *clearDataInitializer = [[ClearDataInitializer alloc] initWithSectionSessionHandler:[self sectionSessionHandler]];
@@ -56,9 +56,11 @@ void uncaughtExceptionHandler(NSException *exception) {
 	[sectionInitializer release];
 
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Called sectionInitializer", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"%@ Called sectionInitializer", [[[NSDate alloc] init] autorelease]);
 #endif
 	
+    [SHK flushOfflineQueue];
+    
 	TabInitializer *tabInitializer = [[[TabInitializer alloc] initWithControllers:rootController.viewControllers] autorelease];
 	[rootController setViewControllers:[tabInitializer validControllers] animated:NO];
 	
@@ -117,7 +119,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 			[errorAlert show];
 			[errorAlert release];
 
-			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+			AppLog(@"Unresolved error %@, %@", error, [error userInfo]);
         } 
     }
 }
@@ -137,7 +139,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     }
     
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ No moc - initializing", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"%@ No moc - initializing", [[[NSDate alloc] init] autorelease]);
 #endif
 	
 	NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
@@ -147,7 +149,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 	}
 
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ No moc - initialized", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"%@ No moc - initialized", [[[NSDate alloc] init] autorelease]);
 #endif
 	
 	return managedObjectContext_;
@@ -165,7 +167,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     }
 
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ No mom - initializing", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"%@ No mom - initializing", [[[NSDate alloc] init] autorelease]);
 #endif
 	
 	NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"incogito" ofType:@"momd"];
@@ -173,7 +175,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     managedObjectModel_ = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
 
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ No mom - initialized", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"%@ No mom - initialized", [[[NSDate alloc] init] autorelease]);
 #endif
 	
 	return managedObjectModel_;
@@ -191,7 +193,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     }
     
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ No persistent store - initializing", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"%@ No persistent store - initializing", [[[NSDate alloc] init] autorelease]);
 #endif
 	
     NSURL *storeURL = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory] stringByAppendingPathComponent: @"incogito.sqlite"]];
@@ -209,11 +211,11 @@ void uncaughtExceptionHandler(NSException *exception) {
 		[errorAlert show];
 		[errorAlert release];
 		
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        AppLog(@"Unresolved error %@, %@", error, [error userInfo]);
     }    
     
 #ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ No persistent store - initialized", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"%@ No persistent store - initialized", [[[NSDate alloc] init] autorelease]);
 #endif
 
     return persistentStoreCoordinator_;
@@ -272,7 +274,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 			
 			for (UIViewController *subController in [navController viewControllers]) {
 				if ([subController isKindOfClass:[SessionCommonViewController class]]) {
-					NSLog(@"Sending reload to %@", [subController class]);
+					AppLog(@"Sending reload to %@", [subController class]);
 			
 					SessionCommonViewController *c = (SessionCommonViewController *)subController;
 			
@@ -283,7 +285,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 			}
 		}
 		if ([controller isKindOfClass:[SettingsViewController class]]) {
-			NSLog(@"Sending reload to %@", [controller class]);
+			AppLog(@"Sending reload to %@", [controller class]);
 			
 			SettingsViewController *c = (SettingsViewController *)controller;
 			
@@ -293,7 +295,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 - (void)setLabelFilter:(NSString *)labelFilter {
-	NSLog(@"Setting label filter %@", labelFilter);
+	AppLog(@"Setting label filter %@", labelFilter);
 
 	[[NSUserDefaults standardUserDefaults] setObject:labelFilter forKey:@"labelFilter"];
 	[[NSUserDefaults standardUserDefaults] synchronize];
@@ -305,7 +307,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 	if (nil != [[NSUserDefaults standardUserDefaults] stringForKey:@"labelFilter"]) {
 		label = [[NSUserDefaults standardUserDefaults] stringForKey:@"labelFilter"];
 		
-		NSLog(@"Retrieved label filter %@", label);
+		AppLog(@"Retrieved label filter %@", label);
 	}
 
 	return label;

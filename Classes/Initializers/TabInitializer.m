@@ -45,42 +45,42 @@
 	
 #ifdef HIDE_CLUBZONE
 	if ([controller class] == [ClubZoneViewController class]) {
-		NSLog(@"Removing %@", controller);
+		AppLog(@"Removing %@", controller);
 		
 		remove = YES;
 	}
 #endif
 #ifdef HIDE_AWEZONE
 	if ([controller class] == [AweZoneController class]) {
-		NSLog(@"Removing %@", controller);
+		AppLog(@"Removing %@", controller);
 		
 		remove = YES;
 	}
 #endif
 #ifdef HIDE_SETTINGS
 	if ([controller class] == [SettingsViewController class]) {
-		NSLog(@"Removing %@", controller);
+		AppLog(@"Removing %@", controller);
 		
 		remove = YES;
 	}
 #endif
 #ifdef HIDE_OVERVIEW
 	if ([controller class] == [OverviewViewController class]) {
-		NSLog(@"Removing %@", controller);
+		AppLog(@"Removing %@", controller);
 		
 		remove = YES;
 	}
 #endif
 #ifdef HIDE_FAVOURITES
 	if ([controller class] == [MyProgrammeViewController class]) {
-		NSLog(@"Removing %@", controller);
+		AppLog(@"Removing %@", controller);
 		
 		remove = YES;
 	}
 #endif
 #ifdef HIDE_NOWANDNEXT
 	if ([controller class] == [NowAndNextViewController class]) {
-		NSLog(@"Removing %@", controller);
+		AppLog(@"Removing %@", controller);
 		
 		remove = YES;
 	}

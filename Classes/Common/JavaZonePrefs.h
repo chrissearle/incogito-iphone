@@ -11,6 +11,7 @@
 
 + (NSString *)feedbackUrl;
 + (NSString *)sessionUrl;
++ (NSString *)videoUrl;
 
 + (NSString *)callForPapersUrl;
 + (NSDate *)callForPapersDate;

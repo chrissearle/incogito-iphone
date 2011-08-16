@@ -8,7 +8,6 @@
 #import "JavaZonePrefs.h"
 #import "JZSession.h"
 #import "Section.h"
-#import "FlurryAPI.h"
 
 @implementation ClearDataInitializer
 
@@ -50,7 +49,7 @@
         }
         
         if (keep == NO) {
-            NSLog(@"Remove section %@ with date %@", [section title], [section startDate]);
+            AppLog(@"Remove section %@ with date %@", [section title], [section startDate]);
             [handler deleteSection:section];
         }
 
@@ -72,7 +71,7 @@
         }
         
         if (keep == NO) {
-            NSLog(@"Remove session %@ with date %@", [session title], [session startDate]);
+            AppLog(@"Remove session %@ with date %@", [session title], [session startDate]);
             [handler deleteSession:session];
         }
 	}

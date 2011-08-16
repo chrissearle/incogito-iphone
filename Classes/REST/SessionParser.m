@@ -6,7 +6,6 @@
 
 #import "SessionParser.h"
 #import "JSON.h"
-#import "FlurryAPI.h"
 
 @implementation SessionParser
 

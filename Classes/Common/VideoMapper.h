@@ -11,6 +11,7 @@
     
 }
 
-+ (NSString *)streamingUrlForSession:(NSString *) sessionId;
+- (NSString *)streamingUrlForSession:(NSString *) sessionId;
+- (void)download;
 
 @end

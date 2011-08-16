@@ -69,5 +69,7 @@
 	<string>http://www.eventsystems.no/jzfeedback/api/surveys/javazone2011</string>
 	<key>SessionUrl</key>
 	<string>http://javazone.no/incogito10/rest/events/JavaZone%202011/sessions</string>
+	<key>VideoUrl</key>
+	<string>http://dav.java.no/resources/video.plist</string>
 </dict>
 </plist>

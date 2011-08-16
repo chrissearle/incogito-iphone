@@ -46,6 +46,11 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [FlurryAPI logEvent:@"Showing AweZone"];
+
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations

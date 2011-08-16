@@ -5,7 +5,6 @@
 //
 
 #import "FeedbackAvailability.h"
-#import "FlurryAPI.h"
 #import "DDXML.h"
 
 @implementation FeedbackAvailability
@@ -27,13 +26,13 @@
     NSDictionary *fileAttributes = [fileManager attributesOfItemAtPath:dataFilePath error:&fileError];
 
     if (fileError != nil) {
-        NSLog(@"Got file error reading file attributes for file %@", dataFilePath);
+        AppLog(@"Got file error reading file attributes for file %@", dataFilePath);
     }
     
 	if (fileAttributes != nil && fileError == nil) {
         NSTimeInterval interval = [[fileAttributes fileModificationDate] timeIntervalSinceNow];
         
-        NSLog(@"Time interval %f", interval);
+        AppLog(@"Time interval %f", interval);
         
         if (interval > -3600) {
             return [NSData dataWithContentsOfFile:dataFilePath];
@@ -48,17 +47,35 @@
 	[urlRequest setValue:@"incogito-iPhone" forHTTPHeaderField:@"User-Agent"];
 	
 	NSError *error = nil;
-	
+	NSURLResponse *resp = nil;
+    
 	UIApplication* app = [UIApplication sharedApplication];
 	app.networkActivityIndicatorVisible = YES;
 	
 	// Perform request and get JSON back as a NSData object
-	NSData *response = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:&error];
+	NSData *response = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&resp error:&error];
     
 	app.networkActivityIndicatorVisible = NO;
 	
 	[FlurryAPI endTimedEvent:@"Feedback Overview Retrieval" withParameters:nil];
 
+    if (nil != resp && [resp isKindOfClass:[NSHTTPURLResponse class]]) {
+        NSHTTPURLResponse *httpResp = (NSHTTPURLResponse *)resp;
+        
+        if ([httpResp statusCode] >= 400) {
+            [FlurryAPI logEvent:@"Unable to retrieve feedback overview" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                               self.url,
+                                                                               @"URL",
+                                                                               [httpResp statusCode],
+                                                                               @"Status Code",
+                                                                               nil]];
+            AppLog(@"Download failed with code %d", [httpResp statusCode]);
+
+            return nil;
+        }
+    }
+
+    
     if (nil != error) {
 		[FlurryAPI logError:@"Error retrieving feedback overview" message:[NSString stringWithFormat:@"Unable to retrieve feedback overview from URL %@", self.url] error:error];
         
@@ -87,13 +104,13 @@
         NSArray *nodes = [xmlDoc nodesForXPath:@"//*[(local-name()='a') and (@id)]"
                                          error:&err];
 
-        NSLog(@"Found %d feedback URLs", [nodes count]);
+        AppLog(@"Found %d feedback URLs", [nodes count]);
         
         for (DDXMLElement *element in nodes) {
             NSString *sessionId = [[element attributeForName:@"id"] stringValue];
             NSString *href = [[element attributeForName:@"href"] stringValue];
             
-            //NSLog(@"Saw %@ with %@", sessionId, href);
+            AppLog(@"Saw %@ with %@", sessionId, href);
             
             [mutableDictionary setObject:href forKey:sessionId];
         }
@@ -111,7 +128,7 @@
 }
 
 - (BOOL)isFeedbackAvailableForSession:(NSString *)sessionId {
-    NSLog(@"Checking for feedback availability for %@", sessionId);
+    AppLog(@"Checking for feedback availability for %@", sessionId);
     
     return [[dict allKeys] containsObject:sessionId];
 }

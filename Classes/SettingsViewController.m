@@ -7,7 +7,6 @@
 #import "SettingsViewController.h"
 #import "IncogitoAppDelegate.h"
 #import "SectionSessionHandler.h"
-#import "FlurryAPI.h"
 
 #import "JavazoneSessionsRetriever.h"
 #import "JavaZonePrefs.h"
@@ -152,7 +151,7 @@
 				UIImage *imageFile;
 				
 				if (nil == data1) {
-					NSLog(@"File not found %@", pngFilePath);
+					AppLog(@"File not found %@", pngFilePath);
 					
 					imageFile = [UIImage imageNamed:@"all.png"];
 				} else {

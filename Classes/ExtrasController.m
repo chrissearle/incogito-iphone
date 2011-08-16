@@ -7,7 +7,6 @@
 #import "ExtrasController.h"
 #import "SHK.h"
 #import "JZSession.h"
-#import "FlurryAPI.h"
 #import "FeedbackController.h"
 #import "VideoMapper.h"
 #import "FeedbackAvailability.h"
@@ -28,7 +27,7 @@
     NSMutableArray *titles = [[[NSMutableArray alloc] init] autorelease];
     
     [titles addObject:@"Sharing"];
-    [cells  setObject:[NSArray arrayWithObjects:@"Share", @"Share link", nil] forKey:@"Sharing"];
+    [cells  setObject:[NSArray arrayWithObjects:@"Share online", nil] forKey:@"Sharing"];
     
     NSDate *end = [session endDate];
     
@@ -46,7 +45,9 @@
         }
     }
     
-    if ([VideoMapper streamingUrlForSession:[session jzId]] != nil) {
+    VideoMapper *mapper = [[[VideoMapper alloc] init] autorelease];
+    
+    if ([mapper streamingUrlForSession:[session jzId]] != nil) {
         [titles addObject:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"Video", @"Video streams can take a while to start", nil] forKeys:[NSArray arrayWithObjects:@"Title", @"Footer", nil]]];
         [cells  setObject:[NSArray arrayWithObjects:@"Stream video", nil] forKey:@"Video"];
     }
@@ -183,27 +184,14 @@
 	
     if ([sectionTitle isEqualToString:@"Sharing"]) {
         SHKItem *item = nil;
+
+        NSString *urlString = [NSString stringWithFormat:@"http://javazone.no/incogito10/events/JavaZone%%202011/sessions#%@", [session jzId]];
+        NSURL *url = [NSURL URLWithString:urlString];
+                
         
-        switch (indexPath.row) {
-            case 0:
-            {
-                NSString *text = [NSString stringWithFormat:@"#JavaZone - %@", [session title]];
-                
-                item = [SHKItem text:text];
-                
-                break;
-            }
-            case 1:
-            {
-                NSString *urlString = [NSString stringWithFormat:@"http://javazone.no/incogito10/events/JavaZone%%202011/sessions#%@", [session jzId]];
-                NSURL *url = [NSURL URLWithString:urlString];
-                
-                item = [SHKItem URL:url title:[session title]];
-                break;
-            }
-            default:
-                break;
-        }
+        NSString *titleString = [NSString stringWithFormat:@"#JavaZone - %@", [session title]];
+        item = [SHKItem URL:url title:titleString];
+        
         // Get the ShareKit action sheet
         SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
         
@@ -217,10 +205,19 @@
         [[self navigationController] pushViewController:controller animated:YES];
         [controller release], controller = nil;
     } else if ([sectionTitle isEqualToString:@"Video"]) {
-        NSString *streamingUrl = [VideoMapper streamingUrlForSession:[session jzId]];
+        VideoMapper *mapper = [[[VideoMapper alloc] init] autorelease];
         
-        [FlurryAPI logEvent:[NSString stringWithFormat:@"Streaming movie %@", streamingUrl]];
+        NSString *streamingUrl = [mapper streamingUrlForSession:[session jzId]];
         
+        [FlurryAPI logEvent:@"Streaming Movie" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                               [session jzId],
+                                                               @"ID",
+                                                               [session title],
+                                                               @"Title",
+                                                               streamingUrl,
+                                                               @"URL",
+                                                               nil]];
+
         NSURL *movieUrl = [NSURL URLWithString:streamingUrl];
         
         movie = [[MPMoviePlayerViewController alloc] initWithContentURL:movieUrl];
@@ -240,7 +237,12 @@
 }
 
 - (void)endVideo:(NSNotification*) aNotification {
-	[FlurryAPI logEvent:@"Stopping stream"];
+	[FlurryAPI logEvent:@"Stopping stream" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [session jzId],
+                                                           @"ID",
+                                                           [session title],
+                                                           @"Title",
+                                                           nil]];
     
 	[self dismissModalViewControllerAnimated:YES];
 	[movie.moviePlayer stop];

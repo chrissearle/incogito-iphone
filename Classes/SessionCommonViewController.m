@@ -9,7 +9,6 @@
 #import "JZSessionBio.h"
 #import "DetailedSessionViewController.h"
 #import "IncogitoAppDelegate.h"
-#import "FlurryAPI.h"
 #import "SessionTableViewCell.h"
 #import "SectionSessionHandler.h"
 #import "JavaZonePrefs.h"
@@ -203,7 +202,7 @@
 		if ([view isKindOfClass:[SessionTableViewCell class]]) {
 			SessionTableViewCell *cell = (SessionTableViewCell *)view;
 			
-			NSLog(@"JZ %@", [cell jzId]);
+			AppLog(@"JZ %@", [cell jzId]);
 
 			SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
 			

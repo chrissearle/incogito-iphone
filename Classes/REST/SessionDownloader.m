@@ -5,7 +5,6 @@
 //
 
 #import "SessionDownloader.h"
-#import "FlurryAPI.h"
 
 @implementation SessionDownloader
 
@@ -20,7 +19,7 @@
 }
 
 - (NSData *)sessionData {
-	[FlurryAPI logEvent:@"Session Retrieval" timed:YES];
+	[FlurryAPI logEvent:@"Retrieving Sessions" timed:YES];
 	
 	NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:self.url];
 	
@@ -38,16 +37,19 @@
 	
 	app.networkActivityIndicatorVisible = NO;
 	
-	[FlurryAPI endTimedEvent:@"Session Retrieval" withParameters:nil];
+	[FlurryAPI endTimedEvent:@"Retrieving Sessions" withParameters:nil];
 	
     if (nil != resp && [resp isKindOfClass:[NSHTTPURLResponse class]]) {
         NSHTTPURLResponse *httpResp = (NSHTTPURLResponse *)resp;
         
         if ([httpResp statusCode] >= 400) {
-            NSString *message = [NSString stringWithFormat:@"Unable to retrieve sessions from URL - status code %d", [httpResp statusCode]];
-            [FlurryAPI logEvent:message];
-            
-            NSLog(@"%@", message);
+            [FlurryAPI logEvent:@"Unable to retrieve sessions" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                               self.url,
+                                                                               @"URL",
+                                                                               [httpResp statusCode],
+                                                                               @"Status Code",
+                                                                               nil]];
+            AppLog(@"Download failed with code %d", [httpResp statusCode]);
             
             return nil;
         }
