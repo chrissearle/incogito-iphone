@@ -186,7 +186,7 @@
 #pragma mark -
 #pragma mark Constants
 
-#define PADDING 4.0f
+#define PADDING 4.0f    
 
 #define LABELFONTSIZE 16.0f
 #define LABELDETAILSFONTSIZE 12.0f

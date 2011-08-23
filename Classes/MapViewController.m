@@ -87,7 +87,7 @@
 		ClubzoneMapAnnotation *czAnnotation = (ClubzoneMapAnnotation *)annotation;
 		
 		if (czAnnotation.pin != nil) {
-			UIImageView *leftIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[czAnnotation pin]]];
+			UIImageView *leftIconView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:[czAnnotation pin]]] autorelease];
 			pinView.leftCalloutAccessoryView = leftIconView;
 		}
 	}

@@ -6,6 +6,7 @@
 
 #import "SectionInitializer.h"
 #import "Section.h"
+#import "SessionDateConverter.h"
 
 @implementation SectionInitializer
 
@@ -53,8 +54,9 @@
 	
 	Section *section = (Section *)[NSEntityDescription insertNewObjectForEntityForName:@"Section" inManagedObjectContext:managedObjectContext];
 	
-	NSDate *start = [[NSDate alloc] initWithString:startDate];
-	NSDate *end = [[NSDate alloc] initWithString:endDate];
+    
+	NSDate *start = [SessionDateConverter dateFromString:startDate];
+	NSDate *end = [SessionDateConverter dateFromString:endDate];
 	
 	NSCalendar *calendar = [NSCalendar currentCalendar];
 	
@@ -69,10 +71,6 @@
 					   [endComp hour], [endComp minute]]];
 	[section setStartDate:start];
 	[section setEndDate:end];
-	
-	[start release];
-	[end release];
-	
     
     NSError* error;
     if(![managedObjectContext save:&error]) {

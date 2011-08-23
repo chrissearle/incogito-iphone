@@ -8,6 +8,7 @@
 #import "SessionDownloader.h"
 #import "SessionParser.h"
 #import "JavaZonePrefs.h"
+#import "SessionDateConverter.h"
 
 #import "JZSession.h"
 #import "JZSessionBio.h"
@@ -41,9 +42,9 @@
     self.bioPath    = [docDir stringByAppendingPathComponent:@"bioIcons"];
 
 
-	self.labelUrls = [[NSMutableDictionary alloc] init];
-	self.levelUrls = [[NSMutableDictionary alloc] init];
-	self.bioPics   = [[NSMutableDictionary alloc] init];
+	self.labelUrls = [[[NSMutableDictionary alloc] init] autorelease];
+	self.levelUrls = [[[NSMutableDictionary alloc] init] autorelease];
+	self.bioPics   = [[[NSMutableDictionary alloc] init] autorelease];
 	
 	return self;
 }
@@ -171,10 +172,6 @@
 
     [FlurryAPI endTimedEvent:@"Storing icons" withParameters:nil];
 	
-	[self.labelUrls release];
-	[self.levelUrls release];
-	
-
 	HUD.labelText = @"Checking for videos";
 
     [FlurryAPI logEvent:@"Storing video" timed:YES];
@@ -186,7 +183,7 @@
 	HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"117-Todo.png"]] autorelease];
 	HUD.mode = MBProgressHUDModeCustomView;
 	HUD.labelText = @"Complete";
-	HUD.detailsLabelText = [[NSString alloc] initWithFormat:@"%d sessions available.", [sessions count]];
+	HUD.detailsLabelText = [NSString stringWithFormat:@"%d sessions available.", [sessions count]];
 	sleep(2);
 	
 	return [sessions count];
@@ -379,9 +376,7 @@
 							[jsonDate objectForKey:@"hour"],
 							[jsonDate objectForKey:@"minute"]];
 	
-	NSDate *date = [[[NSDate alloc] initWithString:dateString] autorelease];
-	
-	return date;
+    return [SessionDateConverter dateFromString:dateString];
 }
 
 - (void) removeAllEntitiesByName:(NSString *)entityName {

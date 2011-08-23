@@ -6,6 +6,7 @@
 
 #import "NowAndNextViewController.h"
 #import "SectionSessionHandler.h"
+#import "SessionDateConverter.h"
 
 #import "IncogitoAppDelegate.h"
 #import "Section.h"
@@ -32,23 +33,19 @@
 
 #ifdef NOW_AND_NEXT_USE_TEST_DATE
 	// In debug mode we will use the current time of day but always the first day of JZ. Otherwise we couldn't test until JZ started ;)
-	NSDate *current = [[NSDate alloc] init];
+	NSDate *current = [[[NSDate alloc] init] autorelease];
 	
 	NSCalendar *calendar = [NSCalendar currentCalendar];
 	unsigned int unitFlags = NSHourCalendarUnit|NSMinuteCalendarUnit;
 	NSDateComponents *comp = [calendar components:unitFlags fromDate:current];
 	
-	NSDate *now = [[NSDate alloc] initWithString:[NSString stringWithFormat:@"2011-09-07 %02d:%02d:00 +0200", [comp hour], [comp minute]]];
-
-	[current release];
+	NSDate *now = [SessionDateConverter dateFromString:[NSString stringWithFormat:@"2011-09-07 %02d:%02d:00 +0200", [comp hour], [comp minute]]];
 #else
-	NSDate *now = [[NSDate alloc] init];
+	NSDate *now = [[[NSDate alloc] init] autorelease];
 #endif
 	NSString *nowTitle = [handler getSectionTitleForDate:now];
 	NSString *nextTitle = [handler getNextSectionTitleForDate:now];
 
-	[now release];
-	
 	if (nil != nowTitle) {
 		[footerTexts addObject:nowTitle];
 		[titles addObject:@"Now"];

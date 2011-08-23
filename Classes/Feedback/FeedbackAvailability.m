@@ -64,13 +64,13 @@
         
         if ([httpResp statusCode] >= 400) {
             [FlurryAPI logEvent:@"Unable to retrieve feedback overview" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                               self.url,
-                                                                               @"URL",
-                                                                               [httpResp statusCode],
-                                                                               @"Status Code",
-                                                                               nil]];
+                                                                                        self.url,
+                                                                                        @"URL",
+                                                                                        [NSNumber numberWithInteger:[httpResp statusCode]],
+                                                                                        @"Status Code",
+                                                                                        nil]];
             AppLog(@"Download failed with code %d", [httpResp statusCode]);
-
+            
             return nil;
         }
     }

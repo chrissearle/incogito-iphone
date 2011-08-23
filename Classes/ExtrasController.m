@@ -63,7 +63,7 @@
 	
 	self.title = @"Extras";
     
-    [self setFeedbackAvailability:[[FeedbackAvailability alloc] initWithUrl:[NSURL URLWithString:[JavaZonePrefs feedbackUrl]]]];
+    [self setFeedbackAvailability:[[[FeedbackAvailability alloc] initWithUrl:[NSURL URLWithString:[JavaZonePrefs feedbackUrl]]] autorelease]];
     
 	HUD = [[MBProgressHUD alloc] initWithView:self.tabBarController.view];
     
