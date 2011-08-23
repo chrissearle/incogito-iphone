@@ -18,7 +18,7 @@
 
 - (NSArray *)getSections {
 	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"Section" inManagedObjectContext:managedObjectContext];
+											  entityForName:@"Section" inManagedObjectContext:self.managedObjectContext];
 	
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	
@@ -32,7 +32,7 @@
 	
 	NSError *error = nil;
 
-	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
 	[request release];
 
 	if (nil != error) {
@@ -49,7 +49,7 @@
 
 - (NSArray *)getSessionsForSection:(Section *)section {
 	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
+											  entityForName:@"JZSession" inManagedObjectContext:self.managedObjectContext];
 	
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	
@@ -68,7 +68,7 @@
 	
 	NSError *error = nil;
 	
-	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
 	[request release];
 	
 	if (nil != error) {
@@ -85,7 +85,7 @@
 
 - (NSArray *)getSessionsForSection:(Section *)section matching:(NSString *)search {
 	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
+											  entityForName:@"JZSession" inManagedObjectContext:self.managedObjectContext];
 	
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	
@@ -104,7 +104,7 @@
 	
 	NSError *error = nil;
 	
-	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
 	[request release];
 	
 	if (nil != error) {
@@ -121,7 +121,7 @@
 
 - (NSArray *)getFavouriteSessionsForSection:(Section *)section {
 	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
+											  entityForName:@"JZSession" inManagedObjectContext:self.managedObjectContext];
 	
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	
@@ -140,7 +140,7 @@
 	
 	NSError *error = nil;
 	
-	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
 	[request release];
 	
 	if (nil != error) {
@@ -201,7 +201,7 @@
 
 - (NSString *)getSectionTitleForDate:(NSDate *)date {
 	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"Section" inManagedObjectContext:managedObjectContext];
+											  entityForName:@"Section" inManagedObjectContext:self.managedObjectContext];
 	
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	
@@ -214,7 +214,7 @@
 	
 	NSError *error = nil;
 	
-	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
 	[request release];
 	
 	if (nil != error) {
@@ -235,7 +235,7 @@
 
 - (NSString *)getNextSectionTitleForDate:(NSDate *)date {
 	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"Section" inManagedObjectContext:managedObjectContext];
+											  entityForName:@"Section" inManagedObjectContext:self.managedObjectContext];
 	
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	
@@ -254,7 +254,7 @@
 	
 	NSError *error = nil;
 	
-	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
 	[request release];
 	
 	if (nil != error) {
@@ -276,7 +276,7 @@
 
 - (JZSession *)getSessionForJZId:(NSString *)jzId {
 	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
+											  entityForName:@"JZSession" inManagedObjectContext:self.managedObjectContext];
 	
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	
@@ -289,7 +289,7 @@
 	
 	NSError *error = nil;
 	
-	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
 	[request release];
 
 	if (nil != error) {
@@ -333,7 +333,7 @@
 
 - (NSUInteger)getActiveSessionCount {
 	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
+											  entityForName:@"JZSession" inManagedObjectContext:self.managedObjectContext];
 	
 	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	
@@ -346,7 +346,7 @@
 		
 	NSError *error = nil;
 	
-	NSUInteger count = [managedObjectContext countForFetchRequest:request error:&error];
+	NSUInteger count = [self.managedObjectContext countForFetchRequest:request error:&error];
 
 	if (nil != error) {
 		AppLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
@@ -442,14 +442,14 @@
 	
 	if (favouriteFlag == NO) {
 		if ([sessionInContext userSession]) {
-			[managedObjectContext deleteObject:[sessionInContext userSession]];
+			[self.managedObjectContext deleteObject:[sessionInContext userSession]];
 			[sessionInContext setUserSession:nil];
 		}
 	}
 	
 	if (favouriteFlag == YES) {
 		if ([sessionInContext userSession] == nil) {
-			UserSession *userSession = (UserSession *)[NSEntityDescription insertNewObjectForEntityForName:@"UserSession" inManagedObjectContext:managedObjectContext];
+			UserSession *userSession = (UserSession *)[NSEntityDescription insertNewObjectForEntityForName:@"UserSession" inManagedObjectContext:self.managedObjectContext];
 			
 			[sessionInContext setUserSession:userSession];
 		}
@@ -457,7 +457,7 @@
 
 	NSError *error = nil;
 	
-	if (![managedObjectContext save:&error]) {
+	if (![self.managedObjectContext save:&error]) {
 		if (nil != error) {
 			AppLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
 			return;
@@ -467,7 +467,7 @@
 
 - (NSDictionary *)getUniqueLabels {
 	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"JZLabel" inManagedObjectContext:managedObjectContext];
+											  entityForName:@"JZLabel" inManagedObjectContext:self.managedObjectContext];
 	
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	
@@ -476,7 +476,7 @@
 	
 	NSError *error = nil;
 	
-	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
 	[request release];
 	
 	if (nil != error) {
@@ -539,7 +539,7 @@
 
 - (NSArray *)getAllSessions {
     NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
+											  entityForName:@"JZSession" inManagedObjectContext:self.managedObjectContext];
 	
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	
@@ -547,7 +547,7 @@
 	
 	NSError *error = nil;
     
-	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
 	[request release];
     
 	if (nil != error) {
@@ -564,14 +564,19 @@
 
 - (void)deleteSession:(JZSession *)session {
     if ([session userSession] != nil) {
-        [managedObjectContext deleteObject:[session userSession]];
+        [self.managedObjectContext deleteObject:[session userSession]];
     }
-    [managedObjectContext deleteObject:session];
+    [self.managedObjectContext deleteObject:session];
 }
 
 - (void)deleteSection:(Section *)section {
-    [managedObjectContext deleteObject:section];
+    [self.managedObjectContext deleteObject:section];
 }
 
+- (void)dealloc {
+    [managedObjectContext release];
+    
+    [super dealloc];
+}
 
 @end

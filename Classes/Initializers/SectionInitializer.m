@@ -17,18 +17,15 @@
 }
 
 - (void) initializeSectionsWithRefresh:(BOOL)refreshFlag {
-#ifdef LOG_FUNCTION_TIMES
 	AppLog(@"%@ Start of initializeSections", [[[NSDate alloc] init] autorelease]);
-#endif
 	
 	if (refreshFlag) {
 		[self removeSections];
 	}
 	
 	if ([self getSectionCount] == 0) {
-#ifdef LOG_FUNCTION_TIMES
 		AppLog(@"%@ Adding sections", [[[NSDate alloc] init] autorelease]);
-#endif
+
 		[self addSectionForDay:1 startingAt:@"2011-09-07 09:00:00 +0200" endingAt:@"2011-09-07 10:00:00 +0200"];
 		[self addSectionForDay:1 startingAt:@"2011-09-07 10:20:00 +0200" endingAt:@"2011-09-07 11:20:00 +0200"];
 		[self addSectionForDay:1 startingAt:@"2011-09-07 11:40:00 +0200" endingAt:@"2011-09-07 12:40:00 +0200"];
@@ -48,11 +45,9 @@
 }
 
 - (void)addSectionForDay:(int)day startingAt:(NSString *)startDate endingAt:(NSString *)endDate {
-#ifdef LOG_FUNCTION_TIMES
 	AppLog(@"%@ Start of addSectionForDay:startingAt", [[[NSDate alloc] init] autorelease]);
-#endif
 	
-	Section *section = (Section *)[NSEntityDescription insertNewObjectForEntityForName:@"Section" inManagedObjectContext:managedObjectContext];
+	Section *section = (Section *)[NSEntityDescription insertNewObjectForEntityForName:@"Section" inManagedObjectContext:self.managedObjectContext];
 	
     
 	NSDate *start = [SessionDateConverter dateFromString:startDate];
@@ -86,15 +81,12 @@
         }
     }
     
-#ifdef LOG_FUNCTION_TIMES
 	AppLog(@"%@ End of addSectionForDay:startingAt", [[[NSDate alloc] init] autorelease]);
-#endif
-	
 }
 
 - (NSUInteger)getSectionCount {
 	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"Section" inManagedObjectContext:managedObjectContext];
+											  entityForName:@"Section" inManagedObjectContext:self.managedObjectContext];
 	
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	
@@ -102,7 +94,7 @@
 	
 	NSError *error = nil;
 	
-	NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
 	[request release];
 	
 	if (nil != error) {
@@ -120,49 +112,47 @@
 
 
 - (void)removeSections {
-#ifdef LOG_FUNCTION_TIMES
 	AppLog(@"%@ Removing sections", [[[NSDate alloc] init] autorelease]);
-#endif
 	
 	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"Section" inManagedObjectContext:managedObjectContext];
+											  entityForName:@"Section" inManagedObjectContext:self.managedObjectContext];
 	
 	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	[request setEntity:entityDescription];
 	
 	NSError *error = nil;
 	
-	NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];
+	NSArray *array = [self.managedObjectContext executeFetchRequest:request error:&error];
 	
 	if (nil != error) {
 		AppLog(@"%@:%@ Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
 		return;
 	}
 
-#ifdef LOG_FUNCTION_TIMES
 	AppLog(@"%@ Removing sections start loop", [[[NSDate alloc] init] autorelease]);
-#endif
 	
 	for (NSManagedObject *section in array) {
-		[managedObjectContext deleteObject:section];
+		[self.managedObjectContext deleteObject:section];
 	}
 	
-#ifdef LOG_FUNCTION_TIMES
 	AppLog(@"%@ Removing sections end loop", [[[NSDate alloc] init] autorelease]);
-#endif
 	
 	error = nil;
 	
-	if (![managedObjectContext save:&error]) {
+	if (![self.managedObjectContext save:&error]) {
 		if (nil != error) {
 			AppLog(@"%@:%@ Error saving sections: %@", [self class], _cmd, [error localizedDescription]);
 			return;
 		}
 	}
 	
-#ifdef LOG_FUNCTION_TIMES
 	AppLog(@"%@ End of removing sections", [[[NSDate alloc] init] autorelease]);
-#endif
+}
+
+- (void) dealloc {
+    [managedObjectContext release];
+    
+    [super dealloc];
 }
 
 @end

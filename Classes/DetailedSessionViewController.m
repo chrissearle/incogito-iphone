@@ -22,22 +22,24 @@
 @synthesize handler;
 @synthesize appDelegate;
 @synthesize session;
+@synthesize checkboxButton;
+@synthesize checkboxSelected;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
-	handler = [appDelegate sectionSessionHandler];
+	self.appDelegate = [[UIApplication sharedApplication] delegate];
+	self.handler = [appDelegate sectionSessionHandler];
 	
 	CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
 	const CGFloat myColor[] = {0.67, 0.67, 0.67, 1.0};
 	CGColorRef colour = CGColorCreate(rgb, myColor);
 	CGColorSpaceRelease(rgb);
 	
-	[[details layer] setCornerRadius:8.0f];
-	[[details layer] setMasksToBounds:YES];
-	[[details layer] setBorderWidth:1.0];
-	[[details layer] setBorderColor:colour];
+	[[self.details layer] setCornerRadius:8.0f];
+	[[self.details layer] setMasksToBounds:YES];
+	[[self.details layer] setBorderWidth:1.0];
+	[[self.details layer] setBorderColor:colour];
 	
 	CGColorRelease(colour);
 	
@@ -48,58 +50,58 @@
 	[super viewWillAppear:animated];
 	
 	[FlurryAPI logEvent:@"Showing detail view" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
-															   [session title],
+															   [self.session title],
 															   @"Title",
-															   [session jzId],
+															   [self.session jzId],
 															   @"ID", 
 															   nil]];
 }
 
 - (void)displaySession {
-	checkboxSelected = 0;
+    self.checkboxSelected = NO;
 	
 	NSDateFormatter *startFormatter = [[NSDateFormatter alloc] init];
 	[startFormatter setDateFormat:@"hh:mm"];
 	NSDateFormatter *endFormatter = [[NSDateFormatter alloc] init];
 	[endFormatter setDateFormat:@"hh:mm"];
 	
-	[sessionLocation setText:[NSString stringWithFormat:@"%@ - %@ in room %@",
-							  [startFormatter stringFromDate:[session startDate]],
-							  [endFormatter stringFromDate:[session endDate]],
-							  [session room]]];
+	[self.sessionLocation setText:[NSString stringWithFormat:@"%@ - %@ in room %@",
+							  [startFormatter stringFromDate:[self.session startDate]],
+							  [endFormatter stringFromDate:[self.session endDate]],
+							  [self.session room]]];
 	
 	NSString *path = [[NSBundle mainBundle] bundlePath];
 	NSURL *baseURL = [NSURL fileURLWithPath:path];
 	
-	[details loadHTMLString:[self buildPage:[session detail]
-								  withTitle:[session title]
-							withSpeakerInfo:[self buildSpeakersSection:[session speakers]]
-							  andLabelsInfo:[self buildLabelsSection:[session labels]]]
+	[self.details loadHTMLString:[self buildPage:[self.session detail]
+								  withTitle:[self.session title]
+							withSpeakerInfo:[self buildSpeakersSection:[self.session speakers]]
+							  andLabelsInfo:[self buildLabelsSection:[self.session labels]]]
 					baseURL:baseURL];
 	
-	[level setText:[session level]];
+	[self.level setText:[self.session level]];
 	
 	NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 	
-	NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",[docDir stringByAppendingPathComponent:@"levelIcons"],[session level]];
+	NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",[docDir stringByAppendingPathComponent:@"levelIcons"],[self.session level]];
 	
 	NSData *data1 = [NSData dataWithContentsOfFile:pngFilePath];
 	
 	UIImage *imageFile = [UIImage imageWithData:data1];
 	
-	[levelImage setImage:imageFile];
+	[self.levelImage setImage:imageFile];
 	
 	[startFormatter release];
 	[endFormatter release];
 	
-	if ([session userSession]) {
-		checkboxSelected = 1;
-		[checkboxButton setSelected:YES];
+	if ([self.session userSession]) {
+		self.checkboxSelected = YES;
+		[self.checkboxButton setSelected:YES];
 	} else {
-		[checkboxButton setSelected:NO];
+		[self.checkboxButton setSelected:NO];
 	}
 	
-	self.title = [session title];
+	self.title = [self.session title];
 	
 	UIBarButtonItem *button = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showExtras:)] autorelease];
 	
@@ -107,23 +109,23 @@
 }
 
 - (void)reloadSession {
-	session = [handler getSessionForJZId:[session jzId]];
+	self.session = [self.handler getSessionForJZId:[self.session jzId]];
 	
 	[self displaySession];
 }
 
 - (IBAction)checkboxButton:(id)sender{
-	if (checkboxSelected == 0){
-		[checkboxButton setSelected:YES];
-		checkboxSelected = 1;
-		[handler setFavouriteForSession:session withBoolean:YES];
+	if (self.checkboxSelected == NO){
+		[self.checkboxButton setSelected:YES];
+		self.checkboxSelected = YES;
+		[self.handler setFavouriteForSession:session withBoolean:YES];
 	} else {
-		[checkboxButton setSelected:NO];
-		checkboxSelected = 0;
-		[handler setFavouriteForSession:session withBoolean:NO];
+		[self.checkboxButton setSelected:NO];
+		self.checkboxSelected = 0;
+		[self.handler setFavouriteForSession:session withBoolean:NO];
 	}
 	
-	[appDelegate refreshViewData];
+	[self.appDelegate refreshViewData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -140,6 +142,15 @@
 }
 
 - (void)dealloc {
+    [session release];
+    [details release];
+    [sessionLocation release];
+    [level release];
+    [levelImage release];
+    [handler release];
+    [appDelegate release];
+    [checkboxButton release];
+
     [super dealloc];
 }
 
@@ -239,7 +250,7 @@
 
 - (void) showExtras:(id)sender {
 	ExtrasController *controller = [[ExtrasController alloc] initWithNibName:@"DetailedViewExtras" bundle:[NSBundle mainBundle]];
-	controller.session = session;
+	controller.session = self.session;
 	
 	[[self navigationController] pushViewController:controller animated:YES];
 	[controller release], controller = nil;

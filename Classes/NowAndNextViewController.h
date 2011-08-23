@@ -7,9 +7,7 @@
 #import <UIKit/UIKit.h>
 #import "SessionCommonViewController.h"
 
-@interface NowAndNextViewController : SessionCommonViewController {
-	NSArray *footers;
-}
+@interface NowAndNextViewController : SessionCommonViewController
 
 @property (nonatomic, retain) NSArray *footers;
 

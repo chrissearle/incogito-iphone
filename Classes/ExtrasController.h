@@ -11,30 +11,16 @@
 
 @class JZSession;
 
-@interface ExtrasController : UIViewController <UITableViewDelegate, UITableViewDataSource, MBProgressHUDDelegate> {
-	JZSession *session;
-    
-    NSURL *feedbackFormUrl;
-    
-    NSArray *sections;
-    NSDictionary *sectionCells;
-
-    MPMoviePlayerViewController *movie;
-    
-    MBProgressHUD *HUD;
-    
-    IBOutlet UITableView *tv;
-    
-    FeedbackAvailability *feedbackAvailability;
-}
+@interface ExtrasController : UIViewController <UITableViewDelegate, UITableViewDataSource, MBProgressHUDDelegate>
 
 @property (nonatomic, retain) JZSession *session;
 @property (nonatomic, retain) NSArray *sections;
 @property (nonatomic, retain) NSDictionary *sectionCells;
 @property (nonatomic, retain) MPMoviePlayerViewController *movie;
 @property (nonatomic, retain) NSURL *feedbackFormUrl;
-@property (nonatomic, retain) UITableView *tv;
+@property (nonatomic, retain) IBOutlet UITableView *tv;
 @property (nonatomic, retain) FeedbackAvailability *feedbackAvailability;
+@property (nonatomic, retain) MBProgressHUD *HUD;
 
 - (void)endVideo:(NSNotification*) aNotification;
 

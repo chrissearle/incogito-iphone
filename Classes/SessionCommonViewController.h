@@ -9,26 +9,14 @@
 
 @class IncogitoAppDelegate;
 
-@interface SessionCommonViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MBProgressHUDDelegate> {
-	IBOutlet UITableView			*tv;
-
-	NSArray			*sectionTitles;
-	NSDictionary	*sessions;
-
-	IncogitoAppDelegate	*appDelegate;
-	
-	MBProgressHUD *HUD;
-    NSDate *lastSuccessfulUpdate;
-}
+@interface SessionCommonViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MBProgressHUDDelegate>
 
 @property (nonatomic, retain) NSArray		*sectionTitles;
 @property (nonatomic, retain) NSDictionary	*sessions;
-
-@property (nonatomic, retain) UITableView	*tv;
-
+@property (nonatomic, retain) IBOutlet UITableView	*tv;
 @property (nonatomic, retain) IncogitoAppDelegate *appDelegate;
-
 @property (nonatomic, retain) NSDate *lastSuccessfulUpdate;
+@property (nonatomic, retain) MBProgressHUD *HUD;
 
 - (void)loadSessionData;
 - (NSString *)getSelectedSessionTitle:(NSInteger)section;

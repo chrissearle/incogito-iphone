@@ -8,17 +8,11 @@
 #import <QuartzCore/QuartzCore.h>
 #import "JZSession.h"
 
-@interface FeedbackController : UIViewController <UITextFieldDelegate, UIWebViewDelegate, UIAlertViewDelegate> {
-	JZSession		*session;
-	IBOutlet UITextField *emailField;
-	IBOutlet UIWebView *formField;
-    
-    NSURL *feedbackURL;
-}
+@interface FeedbackController : UIViewController <UITextFieldDelegate, UIWebViewDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, retain) JZSession	  *session;
-@property (nonatomic, retain) UITextField *emailField;
-@property (nonatomic, retain) UIWebView   *formField;
+@property (nonatomic, retain) IBOutlet UITextField *emailField;
+@property (nonatomic, retain) IBOutlet UIWebView   *formField;
 @property (nonatomic, retain) NSURL *feedbackURL;
 
 @end

@@ -130,7 +130,7 @@
 - (BOOL)isFeedbackAvailableForSession:(NSString *)sessionId {
     AppLog(@"Checking for feedback availability for %@", sessionId);
     
-    return [[dict allKeys] containsObject:sessionId];
+    return [[self.dict allKeys] containsObject:sessionId];
 }
 
 - (NSURL *)feedbackUrlForSession:(NSString *)sessionId {
@@ -138,7 +138,15 @@
         return nil;
     }
     
-    return [NSURL URLWithString:[dict objectForKey:sessionId]];
+    return [NSURL URLWithString:[self.dict objectForKey:sessionId]];
+}
+
+- (void)dealloc {
+    [url release];
+    [dict release];
+    [HUD release];
+    
+    [super dealloc];
 }
 
 @end

@@ -42,7 +42,7 @@
 }
 
 - (void) checkForData {
-	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
+	SectionSessionHandler *handler = [self.appDelegate sectionSessionHandler];
 	
 	NSUInteger count = [handler getActiveSessionCount];
 	
@@ -52,19 +52,19 @@
 }
 
 - (void) loadSessionData {
-	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
+	SectionSessionHandler *handler = [self.appDelegate sectionSessionHandler];
 	
 	if ([currentSearch isEqual:@""]) {
-		[self setSessions:[handler getSessions]];
+        self.sessions = [handler getSessions];
 	} else {
-		[self setSessions:[handler getSessionsMatching:currentSearch]];
+        self.sessions = [handler getSessionsMatching:currentSearch];
 	}
 	
-	NSMutableArray *titles = [NSMutableArray arrayWithArray:[sessions allKeys]];
+	NSMutableArray *titles = [NSMutableArray arrayWithArray:[self.sessions allKeys]];
 	
 	[titles sortUsingSelector:@selector(compare:)];
 
-	[self setSectionTitles:[[[NSArray alloc] initWithArray:titles] autorelease]];
+	self.sectionTitles = [[[NSArray alloc] initWithArray:titles] autorelease];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,6 +82,9 @@
 
 
 - (void)dealloc {
+    [currentSearch release];
+    [sb release];
+    
     [super dealloc];
 }
 
@@ -93,7 +96,7 @@
 	
 	self.currentSearch = searchText;
 	[self loadSessionData];
-	[tv reloadData];
+	[self.tv reloadData];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
@@ -128,8 +131,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [sb setShowsCancelButton:NO animated:YES];
-    [sb resignFirstResponder];
+    [self.sb setShowsCancelButton:NO animated:YES];
+    [self.sb resignFirstResponder];
 	
 	[super tableView:tableView didSelectRowAtIndexPath:indexPath];
 }

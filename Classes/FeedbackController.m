@@ -20,9 +20,9 @@
 	[super viewWillAppear:animated];
 
 	[FlurryAPI logEvent:@"Showing Feedback" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
-															[session title],
+															[self.session title],
 															@"Title",
-															[session jzId],
+															[self.session jzId],
 															@"ID", 
 															nil]];
 }
@@ -42,7 +42,7 @@
 
     AppLog(@"Running %@", js);
     
-    [formField stringByEvaluatingJavaScriptFromString:[NSString stringWithString:js]];
+    [self.formField stringByEvaluatingJavaScriptFromString:[NSString stringWithString:js]];
     
     [js release];
 }
@@ -54,7 +54,7 @@
     
     [js appendString:[NSString stringWithFormat:@"emailField.value = '%@';", email]];
     
-    [formField stringByEvaluatingJavaScriptFromString:[NSString stringWithString:js]];
+    [self.formField stringByEvaluatingJavaScriptFromString:[NSString stringWithString:js]];
 
     [js release];
 }
@@ -69,22 +69,22 @@
 	CGColorRef colour = CGColorCreate(rgb, myColor);
 	CGColorSpaceRelease(rgb);
 	
-	[[formField layer] setCornerRadius:8.0f];
-	[[formField layer] setMasksToBounds:YES];
-	[[formField layer] setBorderWidth:1.0];
-	[[formField layer] setBorderColor:colour];
+	[[self.formField layer] setCornerRadius:8.0f];
+	[[self.formField layer] setMasksToBounds:YES];
+	[[self.formField layer] setBorderWidth:1.0];
+	[[self.formField layer] setBorderColor:colour];
 	
 	CGColorRelease(colour);
     
     AppLog(@"Initializing registered e-mail %@", [JavaZonePrefs registeredEmail]);
     
-    [emailField setText:[JavaZonePrefs registeredEmail]];
+    [self.emailField setText:[JavaZonePrefs registeredEmail]];
     
-    [formField loadRequest:[NSURLRequest requestWithURL:feedbackURL]];
+    [self.formField loadRequest:[NSURLRequest requestWithURL:self.feedbackURL]];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    [self setEmail:[emailField text]];
+    [self setEmail:[self.emailField text]];
     
     AppLog(@"Storing registered e-mail %@", [textField text]);
     
@@ -100,7 +100,7 @@
     AppLog(@"Saw %@", html);
     
     if ([html rangeOfString:@"form"].location != NSNotFound) {
-        [self setEmail:[emailField text]];
+        [self setEmail:[self.emailField text]];
         [self insertStyle];
         
         AppLog(@"Generated head %@", [webView stringByEvaluatingJavaScriptFromString:@"document.head.innerHTML"]);
@@ -162,6 +162,15 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	[self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)dealloc {
+    [session release];
+    [emailField release];
+    [formField release];
+    [feedbackURL release];
+    
+    [super dealloc];
 }
 
 @end

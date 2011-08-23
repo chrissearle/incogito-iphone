@@ -91,10 +91,10 @@
 }
 
 - (NSUInteger)retrieveSessions:(id)sender {
-	HUD.labelText = @"Downloading";
+	self.HUD.labelText = @"Downloading";
 
 	// Download
-	SessionDownloader *downloader = [[[SessionDownloader alloc] initWithUrl:[NSURL URLWithString:urlString]] autorelease];
+	SessionDownloader *downloader = [[[SessionDownloader alloc] initWithUrl:[NSURL URLWithString:self.urlString]] autorelease];
 	
 	NSData *responseData = [downloader sessionData];
 	
@@ -119,8 +119,8 @@
 	// Store
 	[FlurryAPI logEvent:@"Storing" timed:YES];
 
-	HUD.mode = MBProgressHUDModeDeterminate;
-	HUD.labelText = @"Storing";
+	self.HUD.mode = MBProgressHUDModeDeterminate;
+	self.HUD.labelText = @"Storing";
 	
 	int counter = 0;
 	
@@ -130,7 +130,7 @@
 		
 		float progress = (1.0 / [sessions count]) * counter;
 		
-		HUD.progress = progress;
+		self.HUD.progress = progress;
 
 		[self addSession:session];
 	}
@@ -140,8 +140,8 @@
     if ([JavaZonePrefs showBioPic]) {
         [FlurryAPI logEvent:@"Storing biopics" timed:YES];
 
-        HUD.mode = MBProgressHUDModeDeterminate;
-        HUD.labelText = @"Retrieving photos";
+        self.HUD.mode = MBProgressHUDModeDeterminate;
+        self.HUD.labelText = @"Retrieving photos";
 
         int picCounter = 0;
         
@@ -150,7 +150,7 @@
             
             float progress = (1.0 / [self.bioPics count]) * picCounter;
             
-            HUD.progress = progress;
+            self.HUD.progress = progress;
 
             [self getJsonImage:[self.bioPics objectForKey:name] toFile:name inPath:self.bioPath];
         }
@@ -158,8 +158,8 @@
     	[FlurryAPI endTimedEvent:@"Storing biopics" withParameters:nil];
     }
     
-	HUD.mode = MBProgressHUDModeIndeterminate;
-	HUD.labelText = @"Retrieving icons";
+	self.HUD.mode = MBProgressHUDModeIndeterminate;
+	self.HUD.labelText = @"Retrieving icons";
 
     [FlurryAPI logEvent:@"Storing icons" timed:YES];
 
@@ -172,7 +172,7 @@
 
     [FlurryAPI endTimedEvent:@"Storing icons" withParameters:nil];
 	
-	HUD.labelText = @"Checking for videos";
+	self.HUD.labelText = @"Checking for videos";
 
     [FlurryAPI logEvent:@"Storing video" timed:YES];
 
@@ -180,10 +180,10 @@
     [mapper download];
     [FlurryAPI endTimedEvent:@"Storing video" withParameters:nil];
 
-	HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"117-Todo.png"]] autorelease];
-	HUD.mode = MBProgressHUDModeCustomView;
-	HUD.labelText = @"Complete";
-	HUD.detailsLabelText = [NSString stringWithFormat:@"%d sessions available.", [sessions count]];
+	self.HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"117-Todo.png"]] autorelease];
+	self.HUD.mode = MBProgressHUDModeCustomView;
+	self.HUD.labelText = @"Complete";
+	self.HUD.detailsLabelText = [NSString stringWithFormat:@"%d sessions available.", [sessions count]];
 	sleep(2);
 	
 	return [sessions count];
@@ -191,14 +191,14 @@
 
 - (void) invalidateSessions {
 	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
+											  entityForName:@"JZSession" inManagedObjectContext:self.managedObjectContext];
 	
 	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	[request setEntity:entityDescription];
 	
 	NSError *error = nil;
 	
-	NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];
+	NSArray *array = [self.managedObjectContext executeFetchRequest:request error:&error];
 	
 	if (nil != error) {
 		[FlurryAPI logError:@"Error fetching sessions" message:@"Unable to fetch sessions for invalidation" error:error];
@@ -212,7 +212,7 @@
 	
 	error = nil;
 	
-	if (![managedObjectContext save:&error]) {
+	if (![self.managedObjectContext save:&error]) {
 		if (nil != error) {
 			[FlurryAPI logError:@"Error fetching sessions" message:@"Unable to persist sessions after invalidation" error:error];
 			AppLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
@@ -223,7 +223,7 @@
 
 - (void) addSession:(NSDictionary *)item {
 	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
+											  entityForName:@"JZSession" inManagedObjectContext:self.managedObjectContext];
 	
 	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	[request setEntity:entityDescription];
@@ -235,7 +235,7 @@
 	
 	NSError *error = nil;
 	
-	NSArray *sessions = [managedObjectContext executeFetchRequest:request error:&error];
+	NSArray *sessions = [self.managedObjectContext executeFetchRequest:request error:&error];
 	
 	if (nil != error) {
 		AppLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
@@ -247,20 +247,18 @@
 	if (sessions == nil)
 	{
 		// Create and configure a new instance of the Event entity
-		session = (JZSession *)[NSEntityDescription insertNewObjectForEntityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
+		session = (JZSession *)[NSEntityDescription insertNewObjectForEntityForName:@"JZSession" inManagedObjectContext:self.managedObjectContext];
 	} else {
 		int count = [sessions count];
 		
 		if (count == 0) {
-			session = (JZSession *)[NSEntityDescription insertNewObjectForEntityForName:@"JZSession" inManagedObjectContext:managedObjectContext];
+			session = (JZSession *)[NSEntityDescription insertNewObjectForEntityForName:@"JZSession" inManagedObjectContext:self.managedObjectContext];
 		} else {
 			session = (JZSession *)[sessions objectAtIndex:0];
 		}
 	}
 	
-#ifdef LOG_FUNCTION_TIMES
 	AppLog(@"%@ Adding session with title %@", [[[NSDate alloc] init] autorelease], [item objectForKey:@"title"]);
-#endif
 	
 	[session setJzId:[item objectForKey:@"id"]];
 	[session setActive:[NSNumber numberWithBool:TRUE]];
@@ -299,7 +297,7 @@
 	NSArray *speakers = [item objectForKey:@"speakers"];
 	
 	for (NSDictionary *speaker in speakers) {
-		JZSessionBio *sessionBio = (JZSessionBio *)[NSEntityDescription insertNewObjectForEntityForName:@"JZSessionBio" inManagedObjectContext:managedObjectContext];
+		JZSessionBio *sessionBio = (JZSessionBio *)[NSEntityDescription insertNewObjectForEntityForName:@"JZSessionBio" inManagedObjectContext:self.managedObjectContext];
 		
 		[sessionBio setBio:[self getPossibleNilString:@"bioHtml" fromDict:speaker]];
 		[sessionBio setName:[self getPossibleNilString:@"name" fromDict:speaker]];
@@ -318,7 +316,7 @@
 	NSArray *labels = [item objectForKey:@"labels"];
 	
 	for (NSDictionary *label in labels) {
-		JZLabel *lbl = (JZLabel *)[NSEntityDescription insertNewObjectForEntityForName:@"JZLabel" inManagedObjectContext:managedObjectContext];
+		JZLabel *lbl = (JZLabel *)[NSEntityDescription insertNewObjectForEntityForName:@"JZLabel" inManagedObjectContext:self.managedObjectContext];
 		
 		[lbl setJzId:[label objectForKey:@"id"]];
 		
@@ -332,14 +330,14 @@
 #ifdef USE_DUMMY_LABELS
 	
 	if ([speakers count] % 2 == 0) {
-		JZLabel *lbl = (JZLabel *)[NSEntityDescription insertNewObjectForEntityForName:@"JZLabel" inManagedObjectContext:managedObjectContext];
+		JZLabel *lbl = (JZLabel *)[NSEntityDescription insertNewObjectForEntityForName:@"JZLabel" inManagedObjectContext:self.managedObjectContext];
 		
 		[lbl setJzId:@"enterprise"];
 		[lbl setTitle:@"Enterprise"];
 		
 		[session addLabelsObject:lbl];
 	} else {
-		JZLabel *lbl = (JZLabel *)[NSEntityDescription insertNewObjectForEntityForName:@"JZLabel" inManagedObjectContext:managedObjectContext];
+		JZLabel *lbl = (JZLabel *)[NSEntityDescription insertNewObjectForEntityForName:@"JZLabel" inManagedObjectContext:self.managedObjectContext];
 		
 		[lbl setJzId:@"core-jvm"];
 		[lbl setTitle:@"Core/JVM"];
@@ -348,7 +346,7 @@
 	}
 	
 	if ([[item objectForKey:@"title"] hasPrefix:@"H"]) {
-		JZLabel *lbl = (JZLabel *)[NSEntityDescription insertNewObjectForEntityForName:@"JZLabel" inManagedObjectContext:managedObjectContext];
+		JZLabel *lbl = (JZLabel *)[NSEntityDescription insertNewObjectForEntityForName:@"JZLabel" inManagedObjectContext:self.managedObjectContext];
 		
 		[lbl setJzId:@"tooling"];
 		[lbl setTitle:@"Tooling"];
@@ -360,7 +358,7 @@
 	
 	error = nil;
 	
-	if (![managedObjectContext save:&error]) {
+	if (![self.managedObjectContext save:&error]) {
 		if (nil != error) {
 			AppLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
 			return;
@@ -380,12 +378,10 @@
 }
 
 - (void) removeAllEntitiesByName:(NSString *)entityName {
-#ifdef LOG_FUNCTION_TIMES
 	AppLog(@"%@ Removing all %@", [[[NSDate alloc] init] autorelease], entityName);
-#endif
 	
 	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:entityName inManagedObjectContext:managedObjectContext];
+											  entityForName:entityName inManagedObjectContext:self.managedObjectContext];
 	
 	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
 	[request setEntity:entityDescription];
@@ -395,19 +391,17 @@
 	NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];
 	
 	for (NSManagedObject *item in array) {
-		[managedObjectContext deleteObject:item];
+		[self.managedObjectContext deleteObject:item];
 	}
 	
-	if (![managedObjectContext save:&error]) {
+	if (![self.managedObjectContext save:&error]) {
 		if (nil != error) {
 			AppLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
 			return;
 		}
 	}	
 	
-#ifdef LOG_FUNCTION_TIMES
 	AppLog(@"%@ Removed all %@", [[[NSDate alloc] init] autorelease], entityName);
-#endif
 }
 
 - (NSString *)getPossibleNilString:(NSString *)key fromDict:(NSDictionary *)dict {
@@ -475,5 +469,19 @@
 	
 		[[NSData dataWithData:UIImagePNGRepresentation(image)] writeToFile:pngFilePath atomically:YES];
 	}
+}
+
+- (void)dealloc {
+    [managedObjectContext release];
+    [urlString release];
+    [HUD release];
+    [labelUrls release];
+    [levelUrls release];
+    [bioPics release];
+    [levelsPath release];
+    [labelsPath release];
+    [bioPath release];
+
+    [super dealloc];
 }
 @end

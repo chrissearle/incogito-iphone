@@ -22,7 +22,7 @@
 
 @synthesize window;
 @synthesize rootController;
-@synthesize sectionSessionHandler;
+@synthesize sectionSessionHandler_;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -248,6 +248,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     [managedObjectContext_ release];
     [managedObjectModel_ release];
     [persistentStoreCoordinator_ release];
+    
 	[sectionSessionHandler_ release];
     
     [window release];

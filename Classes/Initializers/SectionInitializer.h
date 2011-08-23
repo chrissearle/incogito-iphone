@@ -4,9 +4,7 @@
 //  Copyright 2010 Chris Searle. All rights reserved.
 //
 
-@interface SectionInitializer : NSObject {
-	NSManagedObjectContext *managedObjectContext;
-}
+@interface SectionInitializer : NSObject
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 

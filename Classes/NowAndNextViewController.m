@@ -20,13 +20,13 @@
 
 	[self loadSessionData];
     
-    [[self tv] reloadData];
+    [self.tv reloadData];
 }
 
 - (void)loadSessionData {
-	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
+	SectionSessionHandler *handler = [self.appDelegate sectionSessionHandler];
 	
-	[self setSessions:[handler getSessions]];
+	self.sessions = [handler getSessions];
 	
 	NSMutableArray *titles = [[NSMutableArray alloc] init];
 	NSMutableArray *footerTexts = [[NSMutableArray alloc] init];
@@ -55,8 +55,8 @@
 		[titles addObject:@"Next"];
 	}
 	
-	[self setSectionTitles:[[[NSArray alloc] initWithArray:titles] autorelease]];
-	[self setFooters:[[[NSArray alloc] initWithArray:footerTexts] autorelease]];
+	self.sectionTitles = [[[NSArray alloc] initWithArray:titles] autorelease];
+	self.footers = [[[NSArray alloc] initWithArray:footerTexts] autorelease];
 	
 	[titles release];
 	[footerTexts release];
@@ -78,15 +78,16 @@
 
 - (void)dealloc {
 	[footers release];
+    
     [super dealloc];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-	return [footers objectAtIndex:section];
+	return [self.footers objectAtIndex:section];
 }
 
 - (NSString *)getSelectedSessionTitle:(NSInteger)section {
-	return [footers objectAtIndex:section];
+	return [self.footers objectAtIndex:section];
 }
 
 @end

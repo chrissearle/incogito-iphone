@@ -6,14 +6,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TabInitializer : NSObject {
-	NSArray *controllers;
-}
+@interface TabInitializer : NSObject
 
 @property (nonatomic, retain) NSArray *controllers;
 
 - (TabInitializer *)initWithControllers:(NSArray *)array;
-
 - (NSArray *)validControllers;
 
 @end

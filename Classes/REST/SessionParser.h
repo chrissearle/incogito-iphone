@@ -7,9 +7,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface SessionParser : NSObject {
-	NSData *data;
-}
+@interface SessionParser : NSObject
 
 @property (nonatomic, retain) NSData *data;
 

@@ -9,16 +9,11 @@
 #import <MapKit/MapKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface MapViewController : UIViewController <MKMapViewDelegate> {
-	IBOutlet MKMapView *mapView;
-	IBOutlet UIToolbar *toolbar;
-	BOOL followingLocation;
-}
+@interface MapViewController : UIViewController <MKMapViewDelegate>
 
-@property (nonatomic, retain) MKMapView *mapView;
-@property (nonatomic, retain) UIToolbar *toolbar;
-
-
+@property (nonatomic, retain) IBOutlet MKMapView *mapView;
+@property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
+@property (nonatomic, assign) BOOL followingLocation;
 
 - (void) closeModalViewController:(id)sender;
 

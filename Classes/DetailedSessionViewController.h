@@ -12,26 +12,17 @@
 @class SectionSessionHandler;
 @class IncogitoAppDelegate;
 
-@interface DetailedSessionViewController : UIViewController {
-	UIWebView		*details;
-	UILabel			*sessionLocation;
-	UILabel			*level;
-	UIImageView		*levelImage;
-	BOOL			checkboxSelected;
-	IBOutlet		UIButton *checkboxButton;
-    JZSession       *session;
+@interface DetailedSessionViewController : UIViewController
 
-	SectionSessionHandler *handler;
-	IncogitoAppDelegate *appDelegate;
-}
-
-@property (nonatomic, retain) JZSession		*session;
+@property (nonatomic, retain) JZSession		        *session;
 @property (nonatomic, retain) IBOutlet UIWebView	*details;
 @property (nonatomic, retain) IBOutlet UILabel		*sessionLocation;
 @property (nonatomic, retain) IBOutlet UILabel		*level;
 @property (nonatomic, retain) IBOutlet UIImageView	*levelImage;
 @property (nonatomic, retain) SectionSessionHandler *handler;
 @property (nonatomic, retain) IncogitoAppDelegate	*appDelegate;
+@property (nonatomic, assign) BOOL                  checkboxSelected;
+@property (nonatomic, retain) IBOutlet UIButton     *checkboxButton;
 
 
 - (NSString *)buildPage:(NSString *)content withTitle:(NSString *)title withSpeakerInfo:(NSString *)speakerInfo andLabelsInfo:(NSString *)labels;
