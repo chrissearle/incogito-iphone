@@ -17,8 +17,10 @@
 - (id)initWithSectionSessionHandler:(SectionSessionHandler *) ssHandler {
     self = [super init];
 
-    [self setActiveYears:[JavaZonePrefs activeYears]];
-    [self setHandler:ssHandler];
+    if (self) {
+        activeYears = [[JavaZonePrefs activeYears] retain];
+        handler = [ssHandler retain];
+    }
     
     return self;
 }
@@ -32,17 +34,16 @@
 }
 
 - (void)clearOldSections {
-    // Need to clear old sessions first
-    [self clearOldSessions];
-    
-    NSArray *sections = [handler getSections];
+    AppLog(@"Clearing sections");
+
+    NSArray *sections = [self.handler getSections];
     
     for (Section *section in sections) {
         BOOL keep = NO;
         
         int year = [self getYear:[section startDate]];
         
-        for (NSNumber *num in activeYears) {
+        for (NSNumber *num in self.activeYears) {
             if ([num intValue] == year) {
                 keep = YES;
             }
@@ -57,14 +58,16 @@
 }
 
 - (void)clearOldSessions {
-    NSArray *sessions = [handler getAllSessions];
+    AppLog(@"Clearing sessions");
+
+    NSArray *sessions = [self.handler getAllSessions];
     
 	for (JZSession *session in sessions) {
         BOOL keep = NO;
         
         int year = [self getYear:[session startDate]];
         
-        for (NSNumber *num in activeYears) {
+        for (NSNumber *num in self.activeYears) {
             if ([num intValue] == year) {
                 keep = YES;
             }
@@ -75,6 +78,19 @@
             [handler deleteSession:session];
         }
 	}
+}
+
+- (void)clear {
+    [self clearOldSessions];
+    [self clearOldSections];
+}
+
+
+- (void)dealloc {
+    [activeYears release];
+    [handler release];
+    
+    [super dealloc];
 }
 
 @end

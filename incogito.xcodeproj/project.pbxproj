@@ -156,6 +156,7 @@
 		83F3561113F5AD6D00FDD3A2 /* AppLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F3561013F5AD6D00FDD3A2 /* AppLog.m */; };
 		83FA5A5212460435008CA85C /* 60-signpost.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B9111ED981300590A7A /* 60-signpost.png */; };
 		83FA5AC012460531008CA85C /* JavaZone2011.png in Resources */ = {isa = PBXBuildFile; fileRef = 83FA5ABF12460531008CA85C /* JavaZone2011.png */; };
+		83FD529E14042D0E001CDF9C /* SessionDateConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FD529D14042D0E001CDF9C /* SessionDateConverter.m */; };
 		F31ACFB1138CE0E4007F5CCF /* UITabBarController+Autorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = F31ACFB0138CE0E4007F5CCF /* UITabBarController+Autorotate.m */; };
 		F34BFA8F138CD81500605592 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F34BFA8E138CD81500605592 /* Default.png */; };
 		F34BFA92138CD81D00605592 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F34BFA91138CD81D00605592 /* Default@2x.png */; };
@@ -553,6 +554,8 @@
 		83F3560F13F5AD6D00FDD3A2 /* AppLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppLog.h; sourceTree = "<group>"; };
 		83F3561013F5AD6D00FDD3A2 /* AppLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppLog.m; sourceTree = "<group>"; };
 		83FA5ABF12460531008CA85C /* JavaZone2011.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JavaZone2011.png; sourceTree = "<group>"; };
+		83FD529C14042D0E001CDF9C /* SessionDateConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionDateConverter.h; sourceTree = "<group>"; };
+		83FD529D14042D0E001CDF9C /* SessionDateConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionDateConverter.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* incogito-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "incogito-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		F31ACFAF138CE0E4007F5CCF /* UITabBarController+Autorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+Autorotate.h"; sourceTree = "<group>"; };
 		F31ACFB0138CE0E4007F5CCF /* UITabBarController+Autorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+Autorotate.m"; sourceTree = "<group>"; };
@@ -1385,6 +1388,8 @@
 				F35EC3A51356CFD70047294D /* VideoMapper.m */,
 				83F3560F13F5AD6D00FDD3A2 /* AppLog.h */,
 				83F3561013F5AD6D00FDD3A2 /* AppLog.m */,
+				83FD529C14042D0E001CDF9C /* SessionDateConverter.h */,
+				83FD529D14042D0E001CDF9C /* SessionDateConverter.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1467,7 +1472,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0410;
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Chris Searle";
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "incogito" */;
@@ -1655,6 +1660,7 @@
 				8375DC4513F2975700094F9B /* DDXMLNode.m in Sources */,
 				83DEDC8B13F3211C00BE9908 /* RegexKitLite.m in Sources */,
 				83F3561113F5AD6D00FDD3A2 /* AppLog.m in Sources */,
+				83FD529E14042D0E001CDF9C /* SessionDateConverter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1797,8 +1803,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chris Searle (3QT967G4GA)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Chris Searle";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chris Searle";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
@@ -1811,13 +1817,11 @@
 				);
 				OTHER_CFLAGS = (
 					"-DNS_BLOCK_ASSERTIONS=1",
-					"-DNOW_AND_NEXT_USE_TEST_DATE=1",
-					"-DFORCE_OK_FOR_FEEDBACK_DATE_CHECK=1",
 					"-DHIDE_CLUBZONE=1",
 				);
 				PRODUCT_NAME = JavaZone;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "36810C82-B7E6-4B40-B2C2-FF664B85F568";
+				PROVISIONING_PROFILE = "02E07B3C-3084-4655-87DA-F3167C8A8EC3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "02E07B3C-3084-4655-87DA-F3167C8A8EC3";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

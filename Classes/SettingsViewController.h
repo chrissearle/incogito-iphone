@@ -9,31 +9,18 @@
 
 @class IncogitoAppDelegate;
 
-@interface SettingsViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, MBProgressHUDDelegate> {
-	IBOutlet UIPickerView *picker;
-    IBOutlet UISwitch *bioPicSwitch;
-	IBOutlet UIButton *applyButton;
-    IBOutlet UIButton *refreshButton;
-    IBOutlet UILabel *labelsLabel;
-    IBOutlet UILabel *downloadLabel;
-    
-	NSDictionary				*labels;
-	
-	IncogitoAppDelegate *appDelegate;
-	
-	MBProgressHUD *HUD;
-    NSDate *lastSuccessfulUpdate;
-}
+@interface SettingsViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, MBProgressHUDDelegate>
 
-@property (nonatomic, retain) NSDictionary						*labels;
-@property (nonatomic, retain) UIPickerView *picker;
-@property (nonatomic, retain) UISwitch *bioPicSwitch;
+@property (nonatomic, retain) NSDictionary *labels;
+@property (nonatomic, retain) IBOutlet UIPickerView *picker;
+@property (nonatomic, retain) IBOutlet UISwitch *bioPicSwitch;
 @property (nonatomic, retain) IncogitoAppDelegate *appDelegate;
-@property (nonatomic, retain) UIButton *applyButton;
-@property (nonatomic, retain) UIButton *refreshButton;
-@property (nonatomic, retain) UILabel *labelsLabel;
-@property (nonatomic, retain) UILabel *downloadLabel;
+@property (nonatomic, retain) IBOutlet UIButton *applyButton;
+@property (nonatomic, retain) IBOutlet UIButton *refreshButton;
+@property (nonatomic, retain) IBOutlet UILabel *labelsLabel;
+@property (nonatomic, retain) IBOutlet UILabel *downloadLabel;
 @property (nonatomic, retain) NSDate *lastSuccessfulUpdate;
+@property (nonatomic, retain) MBProgressHUD *HUD;
 
 - (IBAction)filter:(id)sender;
 - (IBAction)sync:(id)sender;

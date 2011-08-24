@@ -13,10 +13,11 @@
 
 @synthesize mapView;
 @synthesize toolbar;
+@synthesize followingLocation;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-	followingLocation = NO;
+	self.followingLocation = NO;
 	
     [super viewDidLoad];
 
@@ -39,10 +40,10 @@
 			pinIcon = nil;
 		}
 		
-		[mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:coordinate andTitle:title andSubtitle:subtitle andPinIcon:pinIcon] autorelease]];
+		[self.mapView addAnnotation:[[[ClubzoneMapAnnotation alloc] initWithCoordinate:coordinate andTitle:title andSubtitle:subtitle andPinIcon:pinIcon] autorelease]];
 	}
 	
-	mapView.showsUserLocation = YES;
+	self.mapView.showsUserLocation = YES;
 	
 	[self.mapView.userLocation addObserver:self  
 								forKeyPath:@"location"  
@@ -61,8 +62,8 @@
                        change:(NSDictionary *)change  
                       context:(void *)context {  
 	
-    if (followingLocation) {
-		[mapView setCenterCoordinate:[[[self.mapView userLocation] location] coordinate] animated:YES];
+    if (self.followingLocation) {
+		[self.mapView setCenterCoordinate:[[[self.mapView userLocation] location] coordinate] animated:YES];
 	}
 }
 
@@ -87,7 +88,7 @@
 		ClubzoneMapAnnotation *czAnnotation = (ClubzoneMapAnnotation *)annotation;
 		
 		if (czAnnotation.pin != nil) {
-			UIImageView *leftIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[czAnnotation pin]]];
+			UIImageView *leftIconView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:[czAnnotation pin]]] autorelease];
 			pinView.leftCalloutAccessoryView = leftIconView;
 		}
 	}
@@ -104,14 +105,18 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    self.mapView = nil;
+    self.toolbar = nil;
 }
 
-
 - (void)dealloc {
-	mapView.showsUserLocation = NO;
-	[mapView.userLocation removeObserver:self forKeyPath:@"location"];
+	self.mapView.showsUserLocation = NO;
+	[self.mapView.userLocation removeObserver:self forKeyPath:@"location"];
+    
+    [mapView release];
+    [toolbar release];
+    
     [super dealloc];
 }
 
@@ -120,13 +125,13 @@
 }
 
 - (IBAction)locationButton:(id)sender {
-	followingLocation = !followingLocation;
+	self.followingLocation = !self.followingLocation;
 	
-	if (followingLocation == NO) {
-		[toolbar setTintColor:[UIColor blackColor]];
+	if (self.followingLocation == NO) {
+		[self.toolbar setTintColor:[UIColor blackColor]];
 	} else {
-		[toolbar setTintColor:[UIColor blueColor]];
-		mapView.region = MKCoordinateRegionMakeWithDistance([[[self.mapView userLocation] location] coordinate], 750, 750);
+		[self.toolbar setTintColor:[UIColor blueColor]];
+		self.mapView.region = MKCoordinateRegionMakeWithDistance([[[self.mapView userLocation] location] coordinate], 750, 750);
 	}
 }
 
@@ -136,11 +141,11 @@
 	coordinate.latitude = 59.913192;
 	coordinate.longitude = 10.75813;
 	
-	[mapView setRegion:MKCoordinateRegionMakeWithDistance(coordinate, 400, 400) animated:YES];
+	[self.mapView setRegion:MKCoordinateRegionMakeWithDistance(coordinate, 400, 400) animated:YES];
 }
 
 - (IBAction)clubZoomButton:(id)sender {
-	if (followingLocation) {
+	if (self.followingLocation) {
 		[self locationButton:sender];
 	}
 	
@@ -151,11 +156,11 @@
 	UISegmentedControl* segCtl = sender;
 	
 	if ([segCtl selectedSegmentIndex] == 0) {
-		[mapView setMapType:MKMapTypeStandard];
+		[self.mapView setMapType:MKMapTypeStandard];
 	} else if ([segCtl selectedSegmentIndex] == 1) {
-		[mapView setMapType:MKMapTypeSatellite];
+		[self.mapView setMapType:MKMapTypeSatellite];
 	} else if ([segCtl selectedSegmentIndex] == 2) {
-		[mapView setMapType:MKMapTypeHybrid];
+		[self.mapView setMapType:MKMapTypeHybrid];
 	}
 	
 }

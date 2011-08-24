@@ -7,9 +7,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface Preferences : NSObject {
-
-}
+@interface Preferences : NSObject
 
 + (NSString *)getPreferenceAsString:(NSString *) key;
 + (NSArray *)getPreferenceAsArray:(NSString *) key;

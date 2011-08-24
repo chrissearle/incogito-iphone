@@ -7,9 +7,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ClubZoneViewController : UIViewController {
-
-}
+@interface ClubZoneViewController : UIViewController
 
 - (IBAction)openMap:(id)sender;
 

@@ -18,4 +18,15 @@
 
 @synthesize jzId;
 
+- (void)dealloc {
+    [favouriteImage release];
+    [levelImage release];
+    [sessionLabel release];
+    [speakerLabel release];
+    [iconBarView release];
+    [jzId release];
+    
+    [super dealloc];
+}
+
 @end

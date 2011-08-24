@@ -8,17 +8,13 @@
 
 #import "SectionSessionHandler.h"
 
-@interface ClearDataInitializer : NSObject {
-    NSArray *activeYears;
-    SectionSessionHandler *handler;
-}
+@interface ClearDataInitializer : NSObject
 
 @property (nonatomic, retain) NSArray *activeYears;
 @property (nonatomic, retain) SectionSessionHandler *handler;
 
 - (id)initWithSectionSessionHandler:(SectionSessionHandler *) handler;
 
-- (void)clearOldSections;
-- (void)clearOldSessions;
+- (void)clear;
 
 @end

@@ -21,6 +21,7 @@
 @synthesize tv;
 @synthesize appDelegate;
 @synthesize lastSuccessfulUpdate;
+@synthesize HUD;
 
 - (void) loadSessionData {
 	// Stub
@@ -29,7 +30,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	[self setAppDelegate:[[UIApplication sharedApplication] delegate]];
+	self.appDelegate = [[UIApplication sharedApplication] delegate];
 	
 	[FlurryAPI logAllPageViews:[self navigationController]];
 	
@@ -45,26 +46,32 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    self.tv = nil;
+    
+    self.appDelegate = nil;
 }
 
 - (void)dealloc {
 	[sessions release];
 	[sectionTitles release];
+    [tv release];
+    [appDelegate release];
+    [lastSuccessfulUpdate release];
+    [HUD release];
 
     [super dealloc];
 }
 
 - (NSString *)getSelectedSessionTitle:(NSInteger)section {
-	return [sectionTitles objectAtIndex:section];
+	return [self.sectionTitles objectAtIndex:section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	NSString *sectionName = [self getSelectedSessionTitle:section];
 	
-	if ([[sessions allKeys] containsObject:sectionName]) {
-		NSArray *sectionSessions = [sessions objectForKey:sectionName];
+	if ([[self.sessions allKeys] containsObject:sectionName]) {
+		NSArray *sectionSessions = [self.sessions objectForKey:sectionName];
 		
 		return [sectionSessions count];
 	} else {
@@ -110,7 +117,7 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	JZSession *session = [[sessions objectForKey:[self getSelectedSessionTitle:indexPath.section]] objectAtIndex:indexPath.row];
+	JZSession *session = [[self.sessions objectForKey:[self getSelectedSessionTitle:indexPath.section]] objectAtIndex:indexPath.row];
 
 	static NSString *cellId = @"SessionCell";
 	
@@ -168,11 +175,11 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return [sectionTitles count];
+	return [self.sectionTitles count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	return [sectionTitles objectAtIndex:section];
+	return [self.sectionTitles objectAtIndex:section];
 }
 
 
@@ -183,7 +190,7 @@
 
 	DetailedSessionViewController *controller = [[DetailedSessionViewController alloc] initWithNibName:@"DetailedSessionView" bundle:[NSBundle mainBundle]];
 
-	controller.session = [[sessions objectForKey:sectionTitle] objectAtIndex:indexPath.row];
+	controller.session = [[self.sessions objectForKey:sectionTitle] objectAtIndex:indexPath.row];
 	
 #ifndef SHOW_TAB_BAR_ON_DETAILS_VIEW
 	[controller setHidesBottomBarWhenPushed:YES];
@@ -204,11 +211,11 @@
 			
 			AppLog(@"JZ %@", [cell jzId]);
 
-			SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
+			SectionSessionHandler *handler = [self.appDelegate sectionSessionHandler];
 			
 			[handler toggleFavouriteForSession:[cell jzId]];
 			
-			[appDelegate refreshViewData];
+			[self.appDelegate refreshViewData];
 			
 			break;
 		}
@@ -219,8 +226,7 @@
 
 - (void)hudWasHidden:(MBProgressHUD *)hud {
     // Remove HUD from screen when the HUD was hidded
-    [HUD removeFromSuperview];
-    [HUD release];
+    [self.HUD removeFromSuperview];
 
     if (abs([[self lastSuccessfulUpdate] timeIntervalSinceDate:[JavaZonePrefs lastSuccessfulUpdate]]) < 2) {
         UIAlertView *alert = [[UIAlertView alloc]
@@ -235,7 +241,7 @@
         return;
     }
 
-	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
+	SectionSessionHandler *handler = [self.appDelegate sectionSessionHandler];
 	
 	NSUInteger count = [handler getActiveSessionCount];
 
@@ -250,32 +256,32 @@
 		[alert release];
 		
 	} else {
-		[appDelegate refreshViewData];
+		[self.appDelegate refreshViewData];
 	}
 }
 
 - (void)sync {
     [self setLastSuccessfulUpdate:[JavaZonePrefs lastSuccessfulUpdate]];
 
-	HUD = [[MBProgressHUD alloc] initWithView:self.tabBarController.view];
+	self.HUD = [[[MBProgressHUD alloc] initWithView:self.tabBarController.view] autorelease];
 
 	JavazoneSessionsRetriever *retriever = [[[JavazoneSessionsRetriever alloc] init] autorelease];
 
-	retriever.managedObjectContext = [appDelegate managedObjectContext];
-	retriever.HUD = HUD;
+	retriever.managedObjectContext = [self.appDelegate managedObjectContext];
+	retriever.HUD = self.HUD;
 
 	retriever.urlString = [JavaZonePrefs sessionUrl];
 
 	// Add HUD to screen
-	[self.tabBarController.view addSubview:HUD];
+	[self.tabBarController.view addSubview:self.HUD];
 
 	// Register for HUD callbacks so we can remove it from the window at the right time
-	HUD.delegate = self;
+	self.HUD.delegate = self;
 
-	HUD.labelText = @"Preparing";
+	self.HUD.labelText = @"Preparing";
 
 	// Show the HUD while the provided method executes in a new thread
-	[HUD showWhileExecuting:@selector(retrieveSessions:) onTarget:retriever withObject:nil animated:YES];
+	[self.HUD showWhileExecuting:@selector(retrieveSessions:) onTarget:retriever withObject:nil animated:YES];
 }
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

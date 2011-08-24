@@ -46,7 +46,7 @@
             [FlurryAPI logEvent:@"Unable to retrieve sessions" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                                self.url,
                                                                                @"URL",
-                                                                               [httpResp statusCode],
+                                                                               [NSNumber numberWithInteger:[httpResp statusCode]],
                                                                                @"Status Code",
                                                                                nil]];
             AppLog(@"Download failed with code %d", [httpResp statusCode]);
@@ -65,6 +65,7 @@
 
 - (void)dealloc {
 	[url release];
+    
 	[super dealloc];
 }
 

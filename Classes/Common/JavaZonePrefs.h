@@ -6,8 +6,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface JavaZonePrefs : NSObject {
-}
+@interface JavaZonePrefs : NSObject
 
 + (NSString *)feedbackUrl;
 + (NSString *)sessionUrl;
