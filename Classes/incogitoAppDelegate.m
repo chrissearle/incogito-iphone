@@ -157,13 +157,13 @@ void uncaughtExceptionHandler(NSException *exception) {
         return managedObjectModel_;
     }
 
-	AppLog(@"%@ No mom - initializing");
+	AppLog(@"No mom - initializing");
 	
 	NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"incogito" ofType:@"momd"];
     NSURL *modelURL = [NSURL fileURLWithPath:modelPath];
     managedObjectModel_ = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
 
-	AppLog(@"%@ No mom - initialized");
+	AppLog(@"No mom - initialized");
 	
 	return managedObjectModel_;
 }
