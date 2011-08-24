@@ -83,6 +83,13 @@
     [self.formField loadRequest:[NSURLRequest requestWithURL:self.feedbackURL]];
 }
 
+- (void)viewDidUnload {
+    [super viewDidUnload];
+    
+    self.formField = nil;
+    self.emailField = nil;
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     [self setEmail:[self.emailField text]];
     
