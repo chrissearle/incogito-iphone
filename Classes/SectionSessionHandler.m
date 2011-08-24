@@ -418,7 +418,7 @@
 		[self setFavouriteForSession:session withBoolean:NO];
         [self removeNotification:session];
         
-        [FlurryAPI logEvent:@"Clearing Favourite" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+        [FlurryAnalytics logEvent:@"Clearing Favourite" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                   [session title],
                                                                   @"Title",
                                                                   [session jzId],
@@ -428,7 +428,7 @@
 		[self setFavouriteForSession:session withBoolean:YES];
         [self addNotification:session];
         
-        [FlurryAPI logEvent:@"Adding Favourite" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+        [FlurryAnalytics logEvent:@"Adding Favourite" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                 [session title],
                                                                 @"Title",
                                                                 [session jzId],

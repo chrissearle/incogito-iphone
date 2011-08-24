@@ -54,7 +54,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	[FlurryAPI logEvent:@"Showing Map"];
+	[FlurryAnalytics logEvent:@"Showing Map"];
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath  

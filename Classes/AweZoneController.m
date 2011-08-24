@@ -46,7 +46,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [FlurryAPI logEvent:@"Showing AweZone"];
+    [FlurryAnalytics logEvent:@"Showing AweZone"];
 
 }
 

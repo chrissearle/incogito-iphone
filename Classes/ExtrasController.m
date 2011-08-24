@@ -84,7 +84,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	[FlurryAPI logEvent:@"Showing Extras" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+	[FlurryAnalytics logEvent:@"Showing Extras" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
 														  [self.session title],
 														  @"Title",
 														  [self.session jzId],
@@ -221,7 +221,7 @@
         
         NSString *streamingUrl = [mapper streamingUrlForSession:[self.session jzId]];
         
-        [FlurryAPI logEvent:@"Streaming Movie" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+        [FlurryAnalytics logEvent:@"Streaming Movie" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                [self.session jzId],
                                                                @"ID",
                                                                [self.session title],
@@ -249,7 +249,7 @@
 }
 
 - (void)endVideo:(NSNotification*) aNotification {
-	[FlurryAPI logEvent:@"Stopping stream" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+	[FlurryAnalytics logEvent:@"Stopping stream" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
                                                            [self.session jzId],
                                                            @"ID",
                                                            [self.session title],

@@ -18,7 +18,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	[FlurryAPI logEvent:@"Showing Favourites"];
+	[FlurryAnalytics logEvent:@"Showing Favourites"];
 }
 
 - (void)loadSessionData {

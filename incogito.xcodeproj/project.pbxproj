@@ -1670,7 +1670,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Classes/FlurryLib\"",
 					"\"$(SRCROOT)/Classes/FlurryAnalytics\"",
 				);
 				OTHER_CFLAGS = (
@@ -1702,7 +1701,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Classes/FlurryLib\"",
 					"\"$(SRCROOT)/Classes/FlurryAnalytics\"",
 				);
 				OTHER_CFLAGS = "";
@@ -1751,7 +1749,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Classes/FlurryLib\"",
 					"\"$(SRCROOT)/Classes/FlurryAnalytics\"",
 				);
 				OTHER_CFLAGS = "";
@@ -1802,7 +1799,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Classes/FlurryLib\"",
 					"\"$(SRCROOT)/Classes/FlurryAnalytics\"",
 				);
 				OTHER_CFLAGS = (
@@ -1854,7 +1850,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Classes/FlurryLib\"",
 					"\"$(SRCROOT)/Classes/FlurryAnalytics\"",
 				);
 				OTHER_CFLAGS = "";
@@ -1906,7 +1901,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Classes/FlurryLib\"",
 					"\"$(SRCROOT)/Classes/FlurryAnalytics\"",
 				);
 				OTHER_CFLAGS = "";

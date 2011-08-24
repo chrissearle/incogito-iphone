@@ -49,7 +49,7 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	
-	[FlurryAPI logEvent:@"Showing detail view" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+	[FlurryAnalytics logEvent:@"Showing detail view" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
 															   [self.session title],
 															   @"Title",
 															   [self.session jzId],

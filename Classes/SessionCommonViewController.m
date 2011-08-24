@@ -32,7 +32,7 @@
 	
 	self.appDelegate = [[UIApplication sharedApplication] delegate];
 	
-	[FlurryAPI logAllPageViews:[self navigationController]];
+	[FlurryAnalytics logAllPageViews:[self navigationController]];
 	
 	tv.rowHeight = 85;
 }

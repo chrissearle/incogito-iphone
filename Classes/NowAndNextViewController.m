@@ -16,7 +16,7 @@
 @synthesize footers;
 
 - (void) viewWillAppear:(BOOL)animated {
-	[FlurryAPI logEvent:@"Showing Now and Next"];
+	[FlurryAnalytics logEvent:@"Showing Now and Next"];
 
 	[self loadSessionData];
     

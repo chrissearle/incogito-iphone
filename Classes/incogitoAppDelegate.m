@@ -28,7 +28,7 @@
 #pragma mark Application lifecycle
 
 void uncaughtExceptionHandler(NSException *exception) {
-    [FlurryAPI logError:@"Uncaught" message:@"Crash!" exception:exception];
+    [FlurryAnalytics logError:@"Uncaught" message:@"Crash!" exception:exception];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
@@ -38,8 +38,8 @@ void uncaughtExceptionHandler(NSException *exception) {
 #endif
 	
 	NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-	[FlurryAPI startSession:@"747T2PGB7H2SD3XAN92D"];
-	[FlurryAPI logAllPageViews:rootController];
+	[FlurryAnalytics startSession:@"747T2PGB7H2SD3XAN92D"];
+	[FlurryAnalytics logAllPageViews:rootController];
 	
 #ifdef LOG_FUNCTION_TIMES
 	AppLog(@"%@ Calling sectionInitializer", [[[NSDate alloc] init] autorelease]);

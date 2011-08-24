@@ -57,20 +57,20 @@
 	if ([fileManager fileExistsAtPath:path]) {
 		[fileManager removeItemAtPath:path error:&error];
 		if (nil != error) {
-			[FlurryAPI logError:@"Error removing path" message:[NSString stringWithFormat:@"Unable to remove items at path %@", path] error:error];
+			[FlurryAnalytics logError:@"Error removing path" message:[NSString stringWithFormat:@"Unable to remove items at path %@", path] error:error];
 			return;
 		}
 	}
 	
 	[fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
 	if (nil != error) {
-		[FlurryAPI logError:@"Error creating path" message:[NSString stringWithFormat:@"Unable to create path %@", path] error:error];
+		[FlurryAnalytics logError:@"Error creating path" message:[NSString stringWithFormat:@"Unable to create path %@", path] error:error];
 		return;
 	}
 }
 
 - (void)clearData {
-	[FlurryAPI logEvent:@"Clearing" timed:YES];
+	[FlurryAnalytics logEvent:@"Clearing" timed:YES];
 	
 	// Set all sessions inactive. Active flag will be set for existing and new sessions retrieved.
 	[self invalidateSessions];
@@ -87,7 +87,7 @@
 	[self removeAllEntitiesByName:@"JZLabel"];
 	
 	
-	[FlurryAPI endTimedEvent:@"Clearing" withParameters:nil];
+	[FlurryAnalytics endTimedEvent:@"Clearing" withParameters:nil];
 }
 
 - (NSUInteger)retrieveSessions:(id)sender {
@@ -117,7 +117,7 @@
 	[self clearData];
 
 	// Store
-	[FlurryAPI logEvent:@"Storing" timed:YES];
+	[FlurryAnalytics logEvent:@"Storing" timed:YES];
 
 	self.HUD.mode = MBProgressHUDModeDeterminate;
 	self.HUD.labelText = @"Storing";
@@ -135,10 +135,10 @@
 		[self addSession:session];
 	}
     
-	[FlurryAPI endTimedEvent:@"Storing" withParameters:nil];
+	[FlurryAnalytics endTimedEvent:@"Storing" withParameters:nil];
 
     if ([JavaZonePrefs showBioPic]) {
-        [FlurryAPI logEvent:@"Storing biopics" timed:YES];
+        [FlurryAnalytics logEvent:@"Storing biopics" timed:YES];
 
         self.HUD.mode = MBProgressHUDModeDeterminate;
         self.HUD.labelText = @"Retrieving photos";
@@ -155,13 +155,13 @@
             [self getJsonImage:[self.bioPics objectForKey:name] toFile:name inPath:self.bioPath];
         }
 
-    	[FlurryAPI endTimedEvent:@"Storing biopics" withParameters:nil];
+    	[FlurryAnalytics endTimedEvent:@"Storing biopics" withParameters:nil];
     }
     
 	self.HUD.mode = MBProgressHUDModeIndeterminate;
 	self.HUD.labelText = @"Retrieving icons";
 
-    [FlurryAPI logEvent:@"Storing icons" timed:YES];
+    [FlurryAnalytics logEvent:@"Storing icons" timed:YES];
 
 	for (NSString *name in self.levelUrls) {
 		[self downloadIconFromUrl:[self.levelUrls objectForKey:name] withName:name toFolder:self.levelsPath];
@@ -170,15 +170,15 @@
 		[self downloadIconFromUrl:[self.labelUrls objectForKey:name] withName:name toFolder:self.labelsPath];
 	}
 
-    [FlurryAPI endTimedEvent:@"Storing icons" withParameters:nil];
+    [FlurryAnalytics endTimedEvent:@"Storing icons" withParameters:nil];
 	
 	self.HUD.labelText = @"Checking for videos";
 
-    [FlurryAPI logEvent:@"Storing video" timed:YES];
+    [FlurryAnalytics logEvent:@"Storing video" timed:YES];
 
     VideoMapper *mapper = [[[VideoMapper alloc] init] autorelease];
     [mapper download];
-    [FlurryAPI endTimedEvent:@"Storing video" withParameters:nil];
+    [FlurryAnalytics endTimedEvent:@"Storing video" withParameters:nil];
 
 	self.HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"117-Todo.png"]] autorelease];
 	self.HUD.mode = MBProgressHUDModeCustomView;
@@ -201,7 +201,7 @@
 	NSArray *array = [self.managedObjectContext executeFetchRequest:request error:&error];
 	
 	if (nil != error) {
-		[FlurryAPI logError:@"Error fetching sessions" message:@"Unable to fetch sessions for invalidation" error:error];
+		[FlurryAnalytics logError:@"Error fetching sessions" message:@"Unable to fetch sessions for invalidation" error:error];
 		return;
 	}
 	
@@ -214,7 +214,7 @@
 	
 	if (![self.managedObjectContext save:&error]) {
 		if (nil != error) {
-			[FlurryAPI logError:@"Error fetching sessions" message:@"Unable to persist sessions after invalidation" error:error];
+			[FlurryAnalytics logError:@"Error fetching sessions" message:@"Unable to persist sessions after invalidation" error:error];
 			AppLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
 			return;
 		}

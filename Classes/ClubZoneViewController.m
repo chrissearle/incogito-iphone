@@ -10,7 +10,7 @@
 @implementation ClubZoneViewController
 
 - (void)viewWillAppear:(BOOL)animated {
-	[FlurryAPI logEvent:@"Showing Clubzone"];
+	[FlurryAnalytics logEvent:@"Showing Clubzone"];
 }
 
 - (void)didReceiveMemoryWarning {

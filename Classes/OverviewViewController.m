@@ -31,7 +31,7 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-	[FlurryAPI logEvent:@"Showing Overview"];
+	[FlurryAnalytics logEvent:@"Showing Overview"];
 }
 
 - (void) checkForData {
@@ -81,7 +81,7 @@
 }
 
 - (void) search:(NSString *)searchText {
-	[FlurryAPI logEvent:@"Searched" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+	[FlurryAnalytics logEvent:@"Searched" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
 													searchText,
 													@"Search Text",
 													nil]];

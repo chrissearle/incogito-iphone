@@ -71,7 +71,7 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-	[FlurryAPI logEvent:@"Showing Settings"];
+	[FlurryAnalytics logEvent:@"Showing Settings"];
     
     [self redrawForOrientation:[self interfaceOrientation]];
 }
@@ -206,7 +206,7 @@
 	// Refresh views
 	[self.appDelegate refreshViewData];
 
-	[FlurryAPI logEvent:@"Filtered" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+	[FlurryAnalytics logEvent:@"Filtered" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
 															   message,
 															   @"Message",
 															   nil]];
