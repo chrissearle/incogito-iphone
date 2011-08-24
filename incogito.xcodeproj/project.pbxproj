@@ -151,7 +151,6 @@
 		83D794B412127B960080F7D1 /* incogito.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83D794B312127B960080F7D1 /* incogito.plist */; };
 		83D80E7213F28444001F18DD /* FeedbackAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D80E7113F28444001F18DD /* FeedbackAvailability.m */; };
 		83DEDC8B13F3211C00BE9908 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DEDC8A13F3211C00BE9908 /* RegexKitLite.m */; };
-		83E44EBA1243EF2700F0C291 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E44EB91243EF2700F0C291 /* libFlurry.a */; };
 		83E94C6512142EAA00596D30 /* all.png in Resources */ = {isa = PBXBuildFile; fileRef = 83E94C3812142C9B00596D30 /* all.png */; };
 		83F3561113F5AD6D00FDD3A2 /* AppLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F3561013F5AD6D00FDD3A2 /* AppLog.m */; };
 		83FA5A5212460435008CA85C /* 60-signpost.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B9111ED981300590A7A /* 60-signpost.png */; };
@@ -170,6 +169,7 @@
 		F3D8EEAA13EFFA78002C9427 /* AweZone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D8EEA913EFFA78002C9427 /* AweZone.xib */; };
 		F3D8EEAC13EFFADC002C9427 /* awezone.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D8EEAB13EFFADC002C9427 /* awezone.png */; };
 		F3F0CD6F13E688F100EC1149 /* ClearDataInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F0CD6E13E688F100EC1149 /* ClearDataInitializer.m */; };
+		F3FD25C614053E2100C9BC3B /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3FD25C514053E2100C9BC3B /* libFlurryAnalytics.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -548,8 +548,6 @@
 		83D80E7113F28444001F18DD /* FeedbackAvailability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackAvailability.m; path = Feedback/FeedbackAvailability.m; sourceTree = "<group>"; };
 		83DEDC8913F3211C00BE9908 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		83DEDC8A13F3211C00BE9908 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
-		83E44EB81243EF2700F0C291 /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
-		83E44EB91243EF2700F0C291 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		83E94C3812142C9B00596D30 /* all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = all.png; sourceTree = "<group>"; };
 		83F3560F13F5AD6D00FDD3A2 /* AppLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppLog.h; sourceTree = "<group>"; };
 		83F3561013F5AD6D00FDD3A2 /* AppLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppLog.m; sourceTree = "<group>"; };
@@ -559,9 +557,6 @@
 		8D1107310486CEB800E47090 /* incogito-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "incogito-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		F31ACFAF138CE0E4007F5CCF /* UITabBarController+Autorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+Autorotate.h"; sourceTree = "<group>"; };
 		F31ACFB0138CE0E4007F5CCF /* UITabBarController+Autorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+Autorotate.m"; sourceTree = "<group>"; };
-		F33EDA8313F513630019F109 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
-		F33EDA8413F513630019F109 /* FlurryAPI+AppCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FlurryAPI+AppCircle.h"; sourceTree = "<group>"; };
-		F33EDA8513F513630019F109 /* FlurryOffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryOffer.h; sourceTree = "<group>"; };
 		F34BFA8E138CD81500605592 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F34BFA91138CD81D00605592 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		F34BFA93138CD82900605592 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
@@ -577,6 +572,8 @@
 		F3D8EEAB13EFFADC002C9427 /* awezone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = awezone.png; sourceTree = "<group>"; };
 		F3F0CD6D13E688F100EC1149 /* ClearDataInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearDataInitializer.h; sourceTree = "<group>"; };
 		F3F0CD6E13E688F100EC1149 /* ClearDataInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearDataInitializer.m; sourceTree = "<group>"; };
+		F3FD25C414053E2100C9BC3B /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
+		F3FD25C514053E2100C9BC3B /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -593,8 +590,8 @@
 				83281F1112437D2900792990 /* MessageUI.framework in Frameworks */,
 				83281F1312437D2900792990 /* Security.framework in Frameworks */,
 				83281F1512437D2900792990 /* SystemConfiguration.framework in Frameworks */,
-				83E44EBA1243EF2700F0C291 /* libFlurry.a in Frameworks */,
 				83A5A81212CDF06E009FE6A7 /* MediaPlayer.framework in Frameworks */,
+				F3FD25C614053E2100C9BC3B /* libFlurryAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,13 +601,13 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F3FD25C314053E2100C9BC3B /* FlurryAnalytics */,
 				83DEDC8813F3211C00BE9908 /* RegexKitLite */,
 				8375DC3013F2971600094F9B /* KissXML */,
 				83D80E6F13F283EA001F18DD /* Feedback */,
 				83A7E15E130A670800C8945F /* Common */,
 				8320A3C31307EF5A000B34E4 /* Initializers */,
 				8381B19112CE21DD008760FF /* HUD */,
-				83E44EB61243EF2700F0C291 /* FlurryLib */,
 				83281E3012437D0000792990 /* ShareKit */,
 				83F2D54411EBB56B0043A75E /* REST */,
 				830859C8120F2FF300F74041 /* ClubzoneMapAnnotation.h */,
@@ -1412,16 +1409,6 @@
 			path = RegexKitLite;
 			sourceTree = "<group>";
 		};
-		83E44EB61243EF2700F0C291 /* FlurryLib */ = {
-			isa = PBXGroup;
-			children = (
-				F33EDA8213F513630019F109 /* AppCircle */,
-				83E44EB81243EF2700F0C291 /* FlurryAPI.h */,
-				83E44EB91243EF2700F0C291 /* libFlurry.a */,
-			);
-			path = FlurryLib;
-			sourceTree = "<group>";
-		};
 		83F2D54411EBB56B0043A75E /* REST */ = {
 			isa = PBXGroup;
 			children = (
@@ -1436,14 +1423,13 @@
 			path = REST;
 			sourceTree = "<group>";
 		};
-		F33EDA8213F513630019F109 /* AppCircle */ = {
+		F3FD25C314053E2100C9BC3B /* FlurryAnalytics */ = {
 			isa = PBXGroup;
 			children = (
-				F33EDA8313F513630019F109 /* FlurryAdDelegate.h */,
-				F33EDA8413F513630019F109 /* FlurryAPI+AppCircle.h */,
-				F33EDA8513F513630019F109 /* FlurryOffer.h */,
+				F3FD25C414053E2100C9BC3B /* FlurryAnalytics.h */,
+				F3FD25C514053E2100C9BC3B /* libFlurryAnalytics.a */,
 			);
-			path = AppCircle;
+			path = FlurryAnalytics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1685,6 +1671,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/FlurryLib\"",
+					"\"$(SRCROOT)/Classes/FlurryAnalytics\"",
 				);
 				OTHER_CFLAGS = (
 					"-DNOW_AND_NEXT_USE_TEST_DATE=1",
@@ -1716,6 +1703,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/FlurryLib\"",
+					"\"$(SRCROOT)/Classes/FlurryAnalytics\"",
 				);
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = JavaZone;
@@ -1764,6 +1752,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/FlurryLib\"",
+					"\"$(SRCROOT)/Classes/FlurryAnalytics\"",
 				);
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = JavaZone;
@@ -1814,6 +1803,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/FlurryLib\"",
+					"\"$(SRCROOT)/Classes/FlurryAnalytics\"",
 				);
 				OTHER_CFLAGS = (
 					"-DNS_BLOCK_ASSERTIONS=1",
@@ -1865,6 +1855,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/FlurryLib\"",
+					"\"$(SRCROOT)/Classes/FlurryAnalytics\"",
 				);
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = JavaZone;
@@ -1916,6 +1907,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/FlurryLib\"",
+					"\"$(SRCROOT)/Classes/FlurryAnalytics\"",
 				);
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = JavaZone;
