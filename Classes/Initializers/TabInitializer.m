@@ -34,7 +34,7 @@
 	self = [super init];
 	
 	if (self) {
-		self.controllers = [NSMutableArray arrayWithArray:array];
+		controllers = [array retain];
 	}
 	
 	return self;
