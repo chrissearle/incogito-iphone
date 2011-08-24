@@ -122,7 +122,9 @@
 - (FeedbackAvailability *) initWithUrl:(NSURL *)downloadUrl {
     self = [super init];
     
-    self.url = downloadUrl;
+    if (self) {
+        url = [downloadUrl copy];
+    }
 	
 	return self;
 }
