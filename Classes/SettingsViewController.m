@@ -85,10 +85,16 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    self.picker = nil;
+    self.bioPicSwitch = nil;
+    self.applyButton = nil;
+    self.refreshButton = nil;
+    self.labelsLabel = nil;
+    self.downloadLabel = nil;
+    
+    self.appDelegate = nil;
 }
-
 
 - (void)dealloc {
 	[labels release];
