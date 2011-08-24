@@ -1713,52 +1713,6 @@
 			};
 			name = Release;
 		};
-		8304D57112149F2B006DF31F /* Debug no extra code */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-lxml2",
-					"-licucore",
-				);
-				SDKROOT = iphoneos;
-			};
-			name = "Debug no extra code";
-		};
-		8304D57212149F2B006DF31F /* Debug no extra code */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = incogito_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "incogito-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Classes/FlurryAnalytics\"",
-				);
-				OTHER_CFLAGS = "";
-				PRODUCT_NAME = JavaZone;
-				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = "Debug no extra code";
-		};
 		833495D513F5A99F00CA9566 /* Ad Hoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1862,55 +1816,6 @@
 			};
 			name = Distribution;
 		};
-		838660C711F2EA0D0017058B /* Debug with trace logging */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				OTHER_CFLAGS = (
-					"-DLOG_FUNCTION_TIMES=1",
-					"-DNOW_AND_NEXT_USE_TEST_DATE=1",
-				);
-				OTHER_LDFLAGS = (
-					"-lxml2",
-					"-licucore",
-				);
-				SDKROOT = iphoneos;
-			};
-			name = "Debug with trace logging";
-		};
-		838660C811F2EA0D0017058B /* Debug with trace logging */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = incogito_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "incogito-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Classes/FlurryAnalytics\"",
-				);
-				OTHER_CFLAGS = "";
-				PRODUCT_NAME = JavaZone;
-				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = "Debug with trace logging";
-		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1962,8 +1867,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
-				8304D57212149F2B006DF31F /* Debug no extra code */,
-				838660C811F2EA0D0017058B /* Debug with trace logging */,
 				1D6058950D05DD3E006BFB54 /* Release */,
 				833495D613F5A99F00CA9566 /* Ad Hoc */,
 				83632E3B1200208C00F0E82B /* Distribution */,
@@ -1975,8 +1878,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
-				8304D57112149F2B006DF31F /* Debug no extra code */,
-				838660C711F2EA0D0017058B /* Debug with trace logging */,
 				C01FCF5008A954540054247B /* Release */,
 				833495D513F5A99F00CA9566 /* Ad Hoc */,
 				83632E3A1200208C00F0E82B /* Distribution */,

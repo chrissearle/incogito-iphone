@@ -258,7 +258,7 @@
 		}
 	}
 	
-	AppLog(@"%@ Adding session with title %@", [[[NSDate alloc] init] autorelease], [item objectForKey:@"title"]);
+	AppLog(@"Adding session with title %@", [item objectForKey:@"title"]);
 	
 	[session setJzId:[item objectForKey:@"id"]];
 	[session setActive:[NSNumber numberWithBool:TRUE]];
@@ -378,7 +378,7 @@
 }
 
 - (void) removeAllEntitiesByName:(NSString *)entityName {
-	AppLog(@"%@ Removing all %@", [[[NSDate alloc] init] autorelease], entityName);
+	AppLog(@"Removing all %@", entityName);
 	
 	NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:entityName inManagedObjectContext:self.managedObjectContext];
@@ -401,7 +401,7 @@
 		}
 	}	
 	
-	AppLog(@"%@ Removed all %@", [[[NSDate alloc] init] autorelease], entityName);
+	AppLog(@"Removed all %@", entityName);
 }
 
 - (NSString *)getPossibleNilString:(NSString *)key fromDict:(NSDictionary *)dict {

@@ -10,9 +10,7 @@ int main(int argc, char *argv[]) {
     
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
-#ifdef LOG_FUNCTION_TIMES
-	NSLog(@"%@ Calling UIApplicationMain", [[[NSDate alloc] init] autorelease]);
-#endif
+	AppLog(@"Calling UIApplicationMain");
 	
     int retVal = UIApplicationMain(argc, argv, nil, nil);
     [pool release];

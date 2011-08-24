@@ -17,14 +17,14 @@
 }
 
 - (void) initializeSectionsWithRefresh:(BOOL)refreshFlag {
-	AppLog(@"%@ Start of initializeSections", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"Start of initializeSections");
 	
 	if (refreshFlag) {
 		[self removeSections];
 	}
 	
 	if ([self getSectionCount] == 0) {
-		AppLog(@"%@ Adding sections", [[[NSDate alloc] init] autorelease]);
+		AppLog(@"Adding sections");
 
 		[self addSectionForDay:1 startingAt:@"2011-09-07 09:00:00 +0200" endingAt:@"2011-09-07 10:00:00 +0200"];
 		[self addSectionForDay:1 startingAt:@"2011-09-07 10:20:00 +0200" endingAt:@"2011-09-07 11:20:00 +0200"];
@@ -45,7 +45,7 @@
 }
 
 - (void)addSectionForDay:(int)day startingAt:(NSString *)startDate endingAt:(NSString *)endDate {
-	AppLog(@"%@ Start of addSectionForDay:startingAt", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"Start of addSectionForDay:startingAt");
 	
 	Section *section = (Section *)[NSEntityDescription insertNewObjectForEntityForName:@"Section" inManagedObjectContext:self.managedObjectContext];
 	
@@ -81,7 +81,7 @@
         }
     }
     
-	AppLog(@"%@ End of addSectionForDay:startingAt", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"End of addSectionForDay:startingAt");
 }
 
 - (NSUInteger)getSectionCount {
@@ -112,7 +112,7 @@
 
 
 - (void)removeSections {
-	AppLog(@"%@ Removing sections", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"Removing sections");
 	
 	NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:@"Section" inManagedObjectContext:self.managedObjectContext];
@@ -129,13 +129,13 @@
 		return;
 	}
 
-	AppLog(@"%@ Removing sections start loop", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"Removing sections start loop");
 	
 	for (NSManagedObject *section in array) {
 		[self.managedObjectContext deleteObject:section];
 	}
 	
-	AppLog(@"%@ Removing sections end loop", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"Removing sections end loop");
 	
 	error = nil;
 	
@@ -146,7 +146,7 @@
 		}
 	}
 	
-	AppLog(@"%@ End of removing sections", [[[NSDate alloc] init] autorelease]);
+	AppLog(@"End of removing sections");
 }
 
 - (void) dealloc {
