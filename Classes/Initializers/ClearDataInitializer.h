@@ -15,7 +15,6 @@
 
 - (id)initWithSectionSessionHandler:(SectionSessionHandler *) handler;
 
-- (void)clearOldSections;
-- (void)clearOldSessions;
+- (void)clear;
 
 @end

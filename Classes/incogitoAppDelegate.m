@@ -46,8 +46,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 #endif
 	
     ClearDataInitializer *clearDataInitializer = [[ClearDataInitializer alloc] initWithSectionSessionHandler:[self sectionSessionHandler]];
-    [clearDataInitializer clearOldSessions];
-    [clearDataInitializer clearOldSections];
+    [clearDataInitializer clear];
     [clearDataInitializer release];
     
 	SectionInitializer *sectionInitializer = [[SectionInitializer alloc] init];

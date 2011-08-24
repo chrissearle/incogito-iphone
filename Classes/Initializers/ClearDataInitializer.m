@@ -17,8 +17,10 @@
 - (id)initWithSectionSessionHandler:(SectionSessionHandler *) ssHandler {
     self = [super init];
 
-    self.activeYears = [JavaZonePrefs activeYears];
-    self.handler = ssHandler;
+    if (self) {
+        activeYears = [[JavaZonePrefs activeYears] retain];
+        handler = [ssHandler retain];
+    }
     
     return self;
 }
@@ -32,9 +34,8 @@
 }
 
 - (void)clearOldSections {
-    // Need to clear old sessions first
-    [self clearOldSessions];
-    
+    AppLog(@"Clearing sections");
+
     NSArray *sections = [self.handler getSections];
     
     for (Section *section in sections) {
@@ -57,6 +58,8 @@
 }
 
 - (void)clearOldSessions {
+    AppLog(@"Clearing sessions");
+
     NSArray *sessions = [self.handler getAllSessions];
     
 	for (JZSession *session in sessions) {
@@ -76,6 +79,12 @@
         }
 	}
 }
+
+- (void)clear {
+    [self clearOldSessions];
+    [self clearOldSections];
+}
+
 
 - (void)dealloc {
     [activeYears release];
