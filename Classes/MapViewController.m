@@ -105,10 +105,10 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    self.mapView = nil;
+    self.toolbar = nil;
 }
-
 
 - (void)dealloc {
 	self.mapView.showsUserLocation = NO;

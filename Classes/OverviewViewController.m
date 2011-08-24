@@ -17,24 +17,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-#ifdef LOG_FUNCTION_TIMES
-	AppLog(@"%@ Overview - about to check for data", [[[NSDate alloc] init] autorelease]);
-#endif
+	AppLog(@"Overview - about to check for data");
 
 	currentSearch = @"";
 	
 	[self checkForData];
 	
-#ifdef LOG_FUNCTION_TIMES
-	AppLog(@"%@ Overview - about to load data", [[[NSDate alloc] init] autorelease]);
-#endif
+	AppLog(@"Overview - about to load data");
 	
 	[self loadSessionData];
 
-#ifdef LOG_FUNCTION_TIMES
-	AppLog(@"%@ Overview - loaded data", [[[NSDate alloc] init] autorelease]);
-#endif
-	
+	AppLog(@"Overview - loaded data");
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -76,10 +69,9 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    self.sb = nil;
 }
-
 
 - (void)dealloc {
     [currentSearch release];
