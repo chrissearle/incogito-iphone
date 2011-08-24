@@ -137,8 +137,15 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    self.details = nil;
+    self.sessionLocation = nil;
+    self.level = nil;
+    self.levelImage = nil;
+    self.checkboxButton = nil;
+    
+    self.appDelegate = nil;
+    self.handler = nil;
 }
 
 - (void)dealloc {
