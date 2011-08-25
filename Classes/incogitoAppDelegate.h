@@ -18,8 +18,6 @@
     NSManagedObjectContext *managedObjectContext_;
     NSManagedObjectModel *managedObjectModel_;
     NSPersistentStoreCoordinator *persistentStoreCoordinator_;
-	
-	SectionSessionHandler *sectionSessionHandler_;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -29,9 +27,12 @@
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
-@property (nonatomic, retain, readonly) SectionSessionHandler *sectionSessionHandler;
+
+
+@property (nonatomic, retain, readonly) SectionSessionHandler *sectionSessionHandler_;
 
 - (NSString *)applicationDocumentsDirectory;
+- (SectionSessionHandler *)sectionSessionHandler;
 
 - (void)refreshViewData;
 

@@ -38,7 +38,7 @@
 }
 
 - (void)download {
-    [FlurryAPI logEvent:@"Video list retrieval" timed:YES];
+    [FlurryAnalytics logEvent:@"Video list retrieval" timed:YES];
 	
 	NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[JavaZonePrefs videoUrl]]];
 	
@@ -53,10 +53,10 @@
     
 	app.networkActivityIndicatorVisible = NO;
 	
-	[FlurryAPI endTimedEvent:@"Video list retrieval" withParameters:nil];
+	[FlurryAnalytics endTimedEvent:@"Video list retrieval" withParameters:nil];
     
     if (nil != error) {
-		[FlurryAPI logError:@"Error retrieving video list" message:[NSString stringWithFormat:@"Unable to retrieve video list from URL %@", [JavaZonePrefs videoUrl]] error:error];
+		[FlurryAnalytics logError:@"Error retrieving video list" message:[NSString stringWithFormat:@"Unable to retrieve video list from URL %@", [JavaZonePrefs videoUrl]] error:error];
         
         return;
     }

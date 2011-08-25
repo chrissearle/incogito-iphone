@@ -7,9 +7,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface VideoMapper : NSObject {
-    
-}
+@interface VideoMapper : NSObject
 
 - (NSString *)streamingUrlForSession:(NSString *) sessionId;
 - (void)download;

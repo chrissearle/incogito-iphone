@@ -20,7 +20,7 @@
 }
 
 - (NSArray *)sessions {
-	[FlurryAPI logEvent:@"JSON Parsing" timed:YES];
+	[FlurryAnalytics logEvent:@"JSON Parsing" timed:YES];
 	
 	// Create new SBJSON parser object
 	SBJSON *parser = [[SBJSON alloc] init];
@@ -34,13 +34,13 @@
 	// Here we're using NSArray since we're parsing an array of JSON status objects
 	NSDictionary *sessionData = [parser objectWithString:json_string error:&error];
 	
-	[FlurryAPI endTimedEvent:@"JSON Parsing" withParameters:nil];
+	[FlurryAnalytics endTimedEvent:@"JSON Parsing" withParameters:nil];
 	
 	[json_string release];
 	[parser release];
 	
 	if (nil != error) {
-		[FlurryAPI logError:@"Error parsing sessions" message:@"Unable to parse sessions" error:error];
+		[FlurryAnalytics logError:@"Error parsing sessions" message:@"Unable to parse sessions" error:error];
 		return nil;
 	}
 	
@@ -49,6 +49,7 @@
 
 - (void)dealloc {
 	[data release];
+    
 	[super dealloc];
 }
 

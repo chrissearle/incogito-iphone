@@ -17,32 +17,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-#ifdef LOG_FUNCTION_TIMES
-	AppLog(@"%@ Overview - about to check for data", [[[NSDate alloc] init] autorelease]);
-#endif
+	AppLog(@"Overview - about to check for data");
 
 	currentSearch = @"";
 	
 	[self checkForData];
 	
-#ifdef LOG_FUNCTION_TIMES
-	AppLog(@"%@ Overview - about to load data", [[[NSDate alloc] init] autorelease]);
-#endif
+	AppLog(@"Overview - about to load data");
 	
 	[self loadSessionData];
 
-#ifdef LOG_FUNCTION_TIMES
-	AppLog(@"%@ Overview - loaded data", [[[NSDate alloc] init] autorelease]);
-#endif
-	
+	AppLog(@"Overview - loaded data");
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-	[FlurryAPI logEvent:@"Showing Overview"];
+	[FlurryAnalytics logEvent:@"Showing Overview"];
 }
 
 - (void) checkForData {
-	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
+	SectionSessionHandler *handler = [self.appDelegate sectionSessionHandler];
 	
 	NSUInteger count = [handler getActiveSessionCount];
 	
@@ -52,19 +45,19 @@
 }
 
 - (void) loadSessionData {
-	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
+	SectionSessionHandler *handler = [self.appDelegate sectionSessionHandler];
 	
 	if ([currentSearch isEqual:@""]) {
-		[self setSessions:[handler getSessions]];
+        self.sessions = [handler getSessions];
 	} else {
-		[self setSessions:[handler getSessionsMatching:currentSearch]];
+        self.sessions = [handler getSessionsMatching:currentSearch];
 	}
 	
-	NSMutableArray *titles = [NSMutableArray arrayWithArray:[sessions allKeys]];
+	NSMutableArray *titles = [NSMutableArray arrayWithArray:[self.sessions allKeys]];
 	
 	[titles sortUsingSelector:@selector(compare:)];
 
-	[self setSectionTitles:[[[NSArray alloc] initWithArray:titles] autorelease]];
+	self.sectionTitles = [[[NSArray alloc] initWithArray:titles] autorelease];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,24 +69,26 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    self.sb = nil;
 }
 
-
 - (void)dealloc {
+    [currentSearch release];
+    [sb release];
+    
     [super dealloc];
 }
 
 - (void) search:(NSString *)searchText {
-	[FlurryAPI logEvent:@"Searched" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+	[FlurryAnalytics logEvent:@"Searched" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
 													searchText,
 													@"Search Text",
 													nil]];
 	
 	self.currentSearch = searchText;
 	[self loadSessionData];
-	[tv reloadData];
+	[self.tv reloadData];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
@@ -128,8 +123,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [sb setShowsCancelButton:NO animated:YES];
-    [sb resignFirstResponder];
+    [self.sb setShowsCancelButton:NO animated:YES];
+    [self.sb resignFirstResponder];
 	
 	[super tableView:tableView didSelectRowAtIndexPath:indexPath];
 }

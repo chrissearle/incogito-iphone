@@ -21,6 +21,7 @@
 @synthesize feedbackFormUrl;
 @synthesize tv;
 @synthesize feedbackAvailability;
+@synthesize HUD;
 
 - (void)loadData {
     NSMutableDictionary *cells = [[[NSMutableDictionary alloc] init] autorelease];
@@ -29,7 +30,7 @@
     [titles addObject:@"Sharing"];
     [cells  setObject:[NSArray arrayWithObjects:@"Share online", nil] forKey:@"Sharing"];
     
-    NSDate *end = [session endDate];
+    NSDate *end = [self.session endDate];
     
 #ifdef FORCE_OK_FOR_FEEDBACK_DATE_CHECK
     end = [NSDate date];
@@ -38,7 +39,7 @@
     if ([end timeIntervalSinceNow] < 900) {
         
         if ([self.feedbackAvailability isFeedbackAvailableForSession:[session jzId]]) {
-            self.feedbackFormUrl = [self.feedbackAvailability feedbackUrlForSession:[session jzId]];
+            self.feedbackFormUrl = [self.feedbackAvailability feedbackUrlForSession:[self.session jzId]];
             
             [titles addObject:@"Feedback"];
             [cells  setObject:[NSArray arrayWithObjects:@"Give feedback", nil] forKey:@"Feedback"];
@@ -47,7 +48,7 @@
     
     VideoMapper *mapper = [[[VideoMapper alloc] init] autorelease];
     
-    if ([mapper streamingUrlForSession:[session jzId]] != nil) {
+    if ([mapper streamingUrlForSession:[self.session jzId]] != nil) {
         [titles addObject:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"Video", @"Video streams can take a while to start", nil] forKeys:[NSArray arrayWithObjects:@"Title", @"Footer", nil]]];
         [cells  setObject:[NSArray arrayWithObjects:@"Stream video", nil] forKey:@"Video"];
     }
@@ -55,7 +56,7 @@
     self.sections = [[[NSArray alloc] initWithArray:titles] autorelease];
     self.sectionCells = [[[NSDictionary alloc] initWithDictionary:cells] autorelease];
 
-    [tv reloadData];
+    [self.tv reloadData];
 }
 
 - (void)viewDidLoad {
@@ -63,30 +64,30 @@
 	
 	self.title = @"Extras";
     
-    [self setFeedbackAvailability:[[FeedbackAvailability alloc] initWithUrl:[NSURL URLWithString:[JavaZonePrefs feedbackUrl]]]];
+    [self setFeedbackAvailability:[[[FeedbackAvailability alloc] initWithUrl:[NSURL URLWithString:[JavaZonePrefs feedbackUrl]]] autorelease]];
     
-	HUD = [[MBProgressHUD alloc] initWithView:self.tabBarController.view];
+	self.HUD = [[[MBProgressHUD alloc] initWithView:self.tabBarController.view] autorelease];
     
-    [feedbackAvailability setHUD:HUD];
+    self.feedbackAvailability.HUD = self.HUD;
     
     // Add HUD to screen
-	[self.tabBarController.view addSubview:HUD];
+	[self.tabBarController.view addSubview:self.HUD];
     
 	// Register for HUD callbacks so we can remove it from the window at the right time
-	HUD.delegate = self;
+	self.HUD.delegate = self;
     
-	HUD.labelText = @"Checking for available extras";
+	self.HUD.labelText = @"Checking for available extras";
     
 	// Show the HUD while the provided method executes in a new thread
-	[HUD showWhileExecuting:@selector(populateDict:) onTarget:feedbackAvailability withObject:nil animated:YES];
+	[self.HUD showWhileExecuting:@selector(populateDict:) onTarget:self.feedbackAvailability withObject:nil animated:YES];
 
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	[FlurryAPI logEvent:@"Showing Extras" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
-														  [session title],
+	[FlurryAnalytics logEvent:@"Showing Extras" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+														  [self.session title],
 														  @"Title",
-														  [session jzId],
+														  [self.session jzId],
 														  @"ID", 
 														  nil]];
 }
@@ -100,21 +101,32 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    self.tv  = nil;
+    
+    self.feedbackAvailability = nil;
+    self.HUD = nil;
 }
 
-
 - (void)dealloc {
+    [session release];
+    [sections release];
+    [sectionCells release];
+    [movie release];
+    [feedbackFormUrl release];
+    [tv release];
+    [feedbackAvailability release];
+    [HUD release];
+
     [super dealloc];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return sections.count;
+    return self.sections.count;
 }
 
 - (NSString *)getTitle:(NSInteger)section {
-    NSObject *sectionData = [sections objectAtIndex:section];
+    NSObject *sectionData = [self.sections objectAtIndex:section];
     
     if ([sectionData isKindOfClass:[NSDictionary class]]) {
         NSDictionary *titleDict = (NSDictionary *)sectionData;
@@ -130,7 +142,7 @@
 }
 
 - (NSString *)getFooter:(NSInteger)section {
-    NSObject *sectionData = [sections objectAtIndex:section];
+    NSObject *sectionData = [self.sections objectAtIndex:section];
     
     if ([sectionData isKindOfClass:[NSDictionary class]]) {
         NSDictionary *footerDict = (NSDictionary *)sectionData;
@@ -142,7 +154,7 @@
 }
 
 - (NSArray *)getCellsForTitle:(NSString *)title {
-    return [sectionCells objectForKey:title];
+    return [self.sectionCells objectForKey:title];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -185,11 +197,11 @@
     if ([sectionTitle isEqualToString:@"Sharing"]) {
         SHKItem *item = nil;
 
-        NSString *urlString = [NSString stringWithFormat:@"http://javazone.no/incogito10/events/JavaZone%%202011/sessions#%@", [session jzId]];
+        NSString *urlString = [NSString stringWithFormat:@"http://javazone.no/incogito10/events/JavaZone%%202011/sessions#%@", [self.session jzId]];
         NSURL *url = [NSURL URLWithString:urlString];
                 
         
-        NSString *titleString = [NSString stringWithFormat:@"#JavaZone - %@", [session title]];
+        NSString *titleString = [NSString stringWithFormat:@"#JavaZone - %@", [self.session title]];
         item = [SHKItem URL:url title:titleString];
         
         // Get the ShareKit action sheet
@@ -199,20 +211,20 @@
         [actionSheet showInView:[self view]];
     } else if ([sectionTitle isEqualToString:@"Feedback"]) {
         FeedbackController *controller = [[FeedbackController alloc] initWithNibName:@"Feedback" bundle:[NSBundle mainBundle]];
-        controller.session = session;
-        controller.feedbackURL = feedbackFormUrl;
+        controller.session = self.session;
+        controller.feedbackURL = self.feedbackFormUrl;
         
         [[self navigationController] pushViewController:controller animated:YES];
         [controller release], controller = nil;
     } else if ([sectionTitle isEqualToString:@"Video"]) {
         VideoMapper *mapper = [[[VideoMapper alloc] init] autorelease];
         
-        NSString *streamingUrl = [mapper streamingUrlForSession:[session jzId]];
+        NSString *streamingUrl = [mapper streamingUrlForSession:[self.session jzId]];
         
-        [FlurryAPI logEvent:@"Streaming Movie" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                               [session jzId],
+        [FlurryAnalytics logEvent:@"Streaming Movie" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                               [self.session jzId],
                                                                @"ID",
-                                                               [session title],
+                                                               [self.session title],
                                                                @"Title",
                                                                streamingUrl,
                                                                @"URL",
@@ -220,7 +232,7 @@
 
         NSURL *movieUrl = [NSURL URLWithString:streamingUrl];
         
-        movie = [[MPMoviePlayerViewController alloc] initWithContentURL:movieUrl];
+        self.movie = [[[MPMoviePlayerViewController alloc] initWithContentURL:movieUrl] autorelease];
         
         [self presentModalViewController:movie animated:YES];
         
@@ -237,17 +249,15 @@
 }
 
 - (void)endVideo:(NSNotification*) aNotification {
-	[FlurryAPI logEvent:@"Stopping stream" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                           [session jzId],
+	[FlurryAnalytics logEvent:@"Stopping stream" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [self.session jzId],
                                                            @"ID",
-                                                           [session title],
+                                                           [self.session title],
                                                            @"Title",
                                                            nil]];
     
 	[self dismissModalViewControllerAnimated:YES];
-	[movie.moviePlayer stop];
-	[movie release];
-	movie = NULL;
+	[self.movie.moviePlayer stop];
 	
 	[[NSNotificationCenter defaultCenter]
 	 removeObserver: self
@@ -257,8 +267,7 @@
 
 - (void)hudWasHidden:(MBProgressHUD *)hud {
     // Remove HUD from screen when the HUD was hidded
-    [HUD removeFromSuperview];
-    [HUD release];
+    [self.HUD removeFromSuperview];
     
     [self loadData];
 }

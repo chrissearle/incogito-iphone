@@ -18,15 +18,15 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	[FlurryAPI logEvent:@"Showing Favourites"];
+	[FlurryAnalytics logEvent:@"Showing Favourites"];
 }
 
 - (void)loadSessionData {
-	SectionSessionHandler *handler = [appDelegate sectionSessionHandler];
+	SectionSessionHandler *handler = [self.appDelegate sectionSessionHandler];
 	
 	[self setSessions:[handler getFavouriteSessions]];
 	
-	NSMutableArray *titles = [NSMutableArray arrayWithArray:[sessions allKeys]];
+	NSMutableArray *titles = [NSMutableArray arrayWithArray:[self.sessions allKeys]];
 	
 	[titles sortUsingSelector:@selector(compare:)];
 	

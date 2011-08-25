@@ -40,7 +40,7 @@
     }
                                     
                                     
-    [FlurryAPI logEvent:@"Feedback Overview Retrieval" timed:YES];
+    [FlurryAnalytics logEvent:@"Feedback Overview Retrieval" timed:YES];
 	
 	NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:self.url];
 	
@@ -57,27 +57,27 @@
     
 	app.networkActivityIndicatorVisible = NO;
 	
-	[FlurryAPI endTimedEvent:@"Feedback Overview Retrieval" withParameters:nil];
+	[FlurryAnalytics endTimedEvent:@"Feedback Overview Retrieval" withParameters:nil];
 
     if (nil != resp && [resp isKindOfClass:[NSHTTPURLResponse class]]) {
         NSHTTPURLResponse *httpResp = (NSHTTPURLResponse *)resp;
         
         if ([httpResp statusCode] >= 400) {
-            [FlurryAPI logEvent:@"Unable to retrieve feedback overview" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                               self.url,
-                                                                               @"URL",
-                                                                               [httpResp statusCode],
-                                                                               @"Status Code",
-                                                                               nil]];
+            [FlurryAnalytics logEvent:@"Unable to retrieve feedback overview" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                                        self.url,
+                                                                                        @"URL",
+                                                                                        [NSNumber numberWithInteger:[httpResp statusCode]],
+                                                                                        @"Status Code",
+                                                                                        nil]];
             AppLog(@"Download failed with code %d", [httpResp statusCode]);
-
+            
             return nil;
         }
     }
 
     
     if (nil != error) {
-		[FlurryAPI logError:@"Error retrieving feedback overview" message:[NSString stringWithFormat:@"Unable to retrieve feedback overview from URL %@", self.url] error:error];
+		[FlurryAnalytics logError:@"Error retrieving feedback overview" message:[NSString stringWithFormat:@"Unable to retrieve feedback overview from URL %@", self.url] error:error];
         
         return nil;
     }
@@ -122,7 +122,9 @@
 - (FeedbackAvailability *) initWithUrl:(NSURL *)downloadUrl {
     self = [super init];
     
-    self.url = downloadUrl;
+    if (self) {
+        url = [downloadUrl copy];
+    }
 	
 	return self;
 }
@@ -130,7 +132,7 @@
 - (BOOL)isFeedbackAvailableForSession:(NSString *)sessionId {
     AppLog(@"Checking for feedback availability for %@", sessionId);
     
-    return [[dict allKeys] containsObject:sessionId];
+    return [[self.dict allKeys] containsObject:sessionId];
 }
 
 - (NSURL *)feedbackUrlForSession:(NSString *)sessionId {
@@ -138,7 +140,15 @@
         return nil;
     }
     
-    return [NSURL URLWithString:[dict objectForKey:sessionId]];
+    return [NSURL URLWithString:[self.dict objectForKey:sessionId]];
+}
+
+- (void)dealloc {
+    [url release];
+    [dict release];
+    [HUD release];
+    
+    [super dealloc];
 }
 
 @end

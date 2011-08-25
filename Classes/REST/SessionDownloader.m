@@ -19,7 +19,7 @@
 }
 
 - (NSData *)sessionData {
-	[FlurryAPI logEvent:@"Retrieving Sessions" timed:YES];
+	[FlurryAnalytics logEvent:@"Retrieving Sessions" timed:YES];
 	
 	NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:self.url];
 	
@@ -37,16 +37,16 @@
 	
 	app.networkActivityIndicatorVisible = NO;
 	
-	[FlurryAPI endTimedEvent:@"Retrieving Sessions" withParameters:nil];
+	[FlurryAnalytics endTimedEvent:@"Retrieving Sessions" withParameters:nil];
 	
     if (nil != resp && [resp isKindOfClass:[NSHTTPURLResponse class]]) {
         NSHTTPURLResponse *httpResp = (NSHTTPURLResponse *)resp;
         
         if ([httpResp statusCode] >= 400) {
-            [FlurryAPI logEvent:@"Unable to retrieve sessions" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+            [FlurryAnalytics logEvent:@"Unable to retrieve sessions" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                                self.url,
                                                                                @"URL",
-                                                                               [httpResp statusCode],
+                                                                               [NSNumber numberWithInteger:[httpResp statusCode]],
                                                                                @"Status Code",
                                                                                nil]];
             AppLog(@"Download failed with code %d", [httpResp statusCode]);
@@ -56,7 +56,7 @@
     }
     
 	if (nil != error) {
-		[FlurryAPI logError:@"Error retrieving sessions" message:[NSString stringWithFormat:@"Unable to retrieve sessions from URL %@", self.url] error:error];
+		[FlurryAnalytics logError:@"Error retrieving sessions" message:[NSString stringWithFormat:@"Unable to retrieve sessions from URL %@", self.url] error:error];
 		return nil;
 	}
 	
@@ -65,6 +65,7 @@
 
 - (void)dealloc {
 	[url release];
+    
 	[super dealloc];
 }
 

@@ -22,32 +22,29 @@
 
 @synthesize window;
 @synthesize rootController;
-@synthesize sectionSessionHandler;
+@synthesize sectionSessionHandler_;
 
 #pragma mark -
 #pragma mark Application lifecycle
 
 void uncaughtExceptionHandler(NSException *exception) {
-    [FlurryAPI logError:@"Uncaught" message:@"Crash!" exception:exception];
+    [FlurryAnalytics logError:@"Uncaught" message:@"Crash!" exception:exception];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
 	
-#ifdef LOG_FUNCTION_TIMES
-	AppLog(@"%@ Start of application:didFinishLaunchingWithOptions", [[[NSDate alloc] init] autorelease]);
-#endif
+	AppLog(@"Start of application:didFinishLaunchingWithOptions");
 	
 	NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-	[FlurryAPI startSession:@"747T2PGB7H2SD3XAN92D"];
-	[FlurryAPI logAllPageViews:rootController];
+	[FlurryAnalytics startSession:@"747T2PGB7H2SD3XAN92D"];
+	[FlurryAnalytics logAllPageViews:rootController];
 	
-#ifdef LOG_FUNCTION_TIMES
-	AppLog(@"%@ Calling sectionInitializer", [[[NSDate alloc] init] autorelease]);
-#endif
+    [FlurryAnalytics logEvent:@"Started app" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:@"3.0.0", @"Flurry Version", nil]];
+    
+	AppLog(@"Calling sectionInitializer");
 	
     ClearDataInitializer *clearDataInitializer = [[ClearDataInitializer alloc] initWithSectionSessionHandler:[self sectionSessionHandler]];
-    [clearDataInitializer clearOldSessions];
-    [clearDataInitializer clearOldSections];
+    [clearDataInitializer clear];
     [clearDataInitializer release];
     
 	SectionInitializer *sectionInitializer = [[SectionInitializer alloc] init];
@@ -55,9 +52,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 	[sectionInitializer initializeSections];
 	[sectionInitializer release];
 
-#ifdef LOG_FUNCTION_TIMES
-	AppLog(@"%@ Called sectionInitializer", [[[NSDate alloc] init] autorelease]);
-#endif
+	AppLog(@"Called sectionInitializer");
 	
     [SHK flushOfflineQueue];
     
@@ -138,9 +133,7 @@ void uncaughtExceptionHandler(NSException *exception) {
         return managedObjectContext_;
     }
     
-#ifdef LOG_FUNCTION_TIMES
-	AppLog(@"%@ No moc - initializing", [[[NSDate alloc] init] autorelease]);
-#endif
+	AppLog(@"No moc - initializing");
 	
 	NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
@@ -148,9 +141,7 @@ void uncaughtExceptionHandler(NSException *exception) {
         [managedObjectContext_ setPersistentStoreCoordinator:coordinator];
 	}
 
-#ifdef LOG_FUNCTION_TIMES
-	AppLog(@"%@ No moc - initialized", [[[NSDate alloc] init] autorelease]);
-#endif
+	AppLog(@"No moc - initialized");
 	
 	return managedObjectContext_;
 }
@@ -166,17 +157,13 @@ void uncaughtExceptionHandler(NSException *exception) {
         return managedObjectModel_;
     }
 
-#ifdef LOG_FUNCTION_TIMES
-	AppLog(@"%@ No mom - initializing", [[[NSDate alloc] init] autorelease]);
-#endif
+	AppLog(@"No mom - initializing");
 	
 	NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"incogito" ofType:@"momd"];
     NSURL *modelURL = [NSURL fileURLWithPath:modelPath];
     managedObjectModel_ = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
 
-#ifdef LOG_FUNCTION_TIMES
-	AppLog(@"%@ No mom - initialized", [[[NSDate alloc] init] autorelease]);
-#endif
+	AppLog(@"No mom - initialized");
 	
 	return managedObjectModel_;
 }
@@ -192,9 +179,7 @@ void uncaughtExceptionHandler(NSException *exception) {
         return persistentStoreCoordinator_;
     }
     
-#ifdef LOG_FUNCTION_TIMES
-	AppLog(@"%@ No persistent store - initializing", [[[NSDate alloc] init] autorelease]);
-#endif
+	AppLog(@"No persistent store - initializing");
 	
     NSURL *storeURL = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory] stringByAppendingPathComponent: @"incogito.sqlite"]];
     
@@ -214,9 +199,7 @@ void uncaughtExceptionHandler(NSException *exception) {
         AppLog(@"Unresolved error %@, %@", error, [error userInfo]);
     }    
     
-#ifdef LOG_FUNCTION_TIMES
-	AppLog(@"%@ No persistent store - initialized", [[[NSDate alloc] init] autorelease]);
-#endif
+	AppLog(@"No persistent store - initialized");
 
     return persistentStoreCoordinator_;
 }
@@ -248,6 +231,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     [managedObjectContext_ release];
     [managedObjectModel_ release];
     [persistentStoreCoordinator_ release];
+    
 	[sectionSessionHandler_ release];
     
     [window release];

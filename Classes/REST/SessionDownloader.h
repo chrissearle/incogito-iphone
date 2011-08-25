@@ -6,14 +6,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SessionDownloader : NSObject {
-	NSURL *url;
-}
+@interface SessionDownloader : NSObject
 
 @property (nonatomic, retain) NSURL *url;
 
 - (SessionDownloader *) initWithUrl:(NSURL *)downloadUrl;
-
 - (NSData *)sessionData;
 
 @end

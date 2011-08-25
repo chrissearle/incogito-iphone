@@ -9,9 +9,7 @@
 @class Section;
 @class JZSession;
 
-@interface SectionSessionHandler : NSObject {
-	NSManagedObjectContext *managedObjectContext;
-}
+@interface SectionSessionHandler : NSObject 
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 

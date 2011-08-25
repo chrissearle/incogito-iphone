@@ -7,7 +7,6 @@
 #import <UIKit/UIKit.h>
 #import "SessionCommonViewController.h"
 
-@interface MyProgrammeViewController : SessionCommonViewController {
-}
+@interface MyProgrammeViewController : SessionCommonViewController
 
 @end

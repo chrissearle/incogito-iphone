@@ -34,7 +34,7 @@
 	self = [super init];
 	
 	if (self) {
-		controllers = [NSMutableArray arrayWithArray:array];
+		controllers = [array retain];
 	}
 	
 	return self;
@@ -90,9 +90,9 @@
 }
 					 
 - (NSArray *)validControllers {
-	NSMutableArray *testControllers = [NSMutableArray arrayWithArray:controllers];
+	NSMutableArray *testControllers = [NSMutableArray arrayWithArray:self.controllers];
 	
-	NSEnumerator *enumerator = [controllers objectEnumerator];
+	NSEnumerator *enumerator = [self.controllers objectEnumerator];
 	
 	id element;
 	
@@ -111,6 +111,12 @@
 	}
 	
 	return testControllers;
+}
+
+- (void) dealloc {
+    [controllers release];
+    
+    [super dealloc];
 }
 
 @end
