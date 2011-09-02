@@ -1828,6 +1828,7 @@
 					"-DNOW_AND_NEXT_USE_TEST_DATE=1",
 					"-DFORCE_OK_FOR_FEEDBACK_DATE_CHECK=1",
 					"-DAPPDEBUG=1",
+					"-DHIDE_CLUBZONE=1",
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
