@@ -5,8 +5,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
-#import <MediaPlayer/MediaPlayer.h>
 
 @class JZSession;
 @class SectionSessionHandler;
@@ -23,7 +21,9 @@
 @property (nonatomic, retain) IncogitoAppDelegate	*appDelegate;
 @property (nonatomic, assign) BOOL                  checkboxSelected;
 @property (nonatomic, retain) IBOutlet UIButton     *checkboxButton;
-
+@property (nonatomic, retain) IBOutlet UIButton     *feedbackButton;
+@property (nonatomic, retain) IBOutlet UIButton     *videoButton;
+@property (nonatomic, retain) IBOutlet UIButton     *shareButton;
 
 - (NSString *)buildPage:(NSString *)content withTitle:(NSString *)title withSpeakerInfo:(NSString *)speakerInfo andLabelsInfo:(NSString *)labels;
 - (NSString *)buildSpeakersSection:(NSSet *)speakers;
@@ -31,9 +31,12 @@
 
 - (IBAction)checkboxButton:(id)sender;
 
+- (IBAction)share:(id)sender;
+- (IBAction)feedback:(id)sender;
+- (IBAction)video:(id)sender;
+
+
 - (void)reloadSession;
 - (void)displaySession;
-
-- (void)showExtras:(id)sender;
 
 @end
