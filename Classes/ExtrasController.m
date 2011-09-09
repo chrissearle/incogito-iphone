@@ -17,7 +17,6 @@
 @synthesize session;
 @synthesize sections;
 @synthesize sectionCells;
-@synthesize movie;
 @synthesize feedbackFormUrl;
 @synthesize tv;
 @synthesize feedbackAvailability;
@@ -112,7 +111,6 @@
     [session release];
     [sections release];
     [sectionCells release];
-    [movie release];
     [feedbackFormUrl release];
     [tv release];
     [feedbackAvailability release];
@@ -231,38 +229,9 @@
                                                                nil]];
 
         NSURL *movieUrl = [NSURL URLWithString:streamingUrl];
-        
-        self.movie = [[[MPMoviePlayerViewController alloc] initWithContentURL:movieUrl] autorelease];
-        
-        [self presentModalViewController:movie animated:YES];
-        
-        // Movie playback is asynchronous, so this method returns immediately.
-        [movie.moviePlayer play];
-        
-        // Register for the playback finished notification
-        [[NSNotificationCenter defaultCenter]
-         addObserver: self
-         selector: @selector(endVideo:)
-         name: MPMoviePlayerPlaybackDidFinishNotification
-         object: movie.moviePlayer];
-    }
-}
 
-- (void)endVideo:(NSNotification*) aNotification {
-	[FlurryAnalytics logEvent:@"Stopping stream" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                           [self.session jzId],
-                                                           @"ID",
-                                                           [self.session title],
-                                                           @"Title",
-                                                           nil]];
-    
-	[self dismissModalViewControllerAnimated:YES];
-	[self.movie.moviePlayer stop];
-	
-	[[NSNotificationCenter defaultCenter]
-	 removeObserver: self
-	 name: MPMoviePlayerPlaybackDidFinishNotification
-	 object: nil];
+        [[UIApplication sharedApplication] openURL:movieUrl];
+    }
 }
 
 - (void)hudWasHidden:(MBProgressHUD *)hud {

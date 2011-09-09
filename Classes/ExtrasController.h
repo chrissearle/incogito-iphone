@@ -16,7 +16,6 @@
 @property (nonatomic, retain) JZSession *session;
 @property (nonatomic, retain) NSArray *sections;
 @property (nonatomic, retain) NSDictionary *sectionCells;
-@property (nonatomic, retain) MPMoviePlayerViewController *movie;
 @property (nonatomic, retain) NSURL *feedbackFormUrl;
 @property (nonatomic, retain) IBOutlet UITableView *tv;
 @property (nonatomic, retain) FeedbackAvailability *feedbackAvailability;
