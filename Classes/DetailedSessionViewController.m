@@ -49,6 +49,12 @@
 															   nil]];
 }
 
+- (void) prepareButton:(CALayer *)layer {
+    [layer setCornerRadius:8.0f];
+    [layer setMasksToBounds:YES];
+    [layer setBackgroundColor:[[UIColor blackColor] CGColor]];
+}
+
 - (void)displaySession {
     self.checkboxSelected = NO;
 	
@@ -95,10 +101,15 @@
 	
 	self.title = [self.session title];
 
+    [self prepareButton:[shareButton layer]];
+    [self prepareButton:[videoButton layer]];
+    [self prepareButton:[feedbackButton layer]];
+
     self.feedbackButton.enabled = NO;
     
     VideoMapper *mapper = [[[VideoMapper alloc] init] autorelease];
     self.videoButton.enabled = ([mapper streamingUrlForSession:[self.session jzId]] != nil);
+    
 }
 
 - (void)reloadSession {
