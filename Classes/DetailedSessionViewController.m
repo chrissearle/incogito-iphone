@@ -30,14 +30,16 @@
 @synthesize videoButton;
 @synthesize shareButton;
 @synthesize feedbackAvailability;
+@synthesize queue;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
 	self.appDelegate = [[UIApplication sharedApplication] delegate];
 	self.handler = [appDelegate sectionSessionHandler];
-    self.feedbackAvailability = [[FeedbackAvailability alloc] initWithUrl:[NSURL URLWithString:[JavaZonePrefs feedbackUrl]]];
-	
+    self.feedbackAvailability = [[[FeedbackAvailability alloc] initWithUrl:[NSURL URLWithString:[JavaZonePrefs feedbackUrl]]] autorelease];
+    self.queue = [[[NSOperationQueue alloc] init] autorelease];
+    
 	[self displaySession];
 }
 
@@ -132,8 +134,6 @@
     self.feedbackButton.enabled = NO;
     self.videoButton.enabled = NO;
     
-    NSOperationQueue *queue = [NSOperationQueue new];
-    
     NSInvocationOperation *videoOp = [[NSInvocationOperation alloc] 
                                       initWithTarget:self
                                       selector:@selector(videoCheck) 
@@ -189,6 +189,10 @@
     self.feedbackButton = nil;
     self.feedbackAvailability = nil;
     
+    [self.queue cancelAllOperations];
+    [self.queue waitUntilAllOperationsAreFinished];
+    self.queue = nil;
+    
     self.appDelegate = nil;
     self.handler = nil;
 }
@@ -206,6 +210,10 @@
     [videoButton release];
     [feedbackButton release];
     [feedbackAvailability release];
+    
+    [self.queue cancelAllOperations];
+    [self.queue waitUntilAllOperationsAreFinished];
+    [queue release];
     
     [super dealloc];
 }
