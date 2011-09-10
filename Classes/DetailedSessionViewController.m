@@ -9,9 +9,11 @@
 #import "JZSessionBio.h"
 #import "SectionSessionHandler.h"
 #import "IncogitoAppDelegate.h"
-#import "ExtrasController.h"
+#import "FeedbackController.h"
 #import "SHK.h"
 #import "JavaZonePrefs.h"
+#import "VideoMapper.h"
+#import "FeedbackAvailability.h"
 
 @implementation DetailedSessionViewController
 
@@ -24,25 +26,20 @@
 @synthesize session;
 @synthesize checkboxButton;
 @synthesize checkboxSelected;
+@synthesize feedbackButton;
+@synthesize videoButton;
+@synthesize shareButton;
+@synthesize feedbackAvailability;
+@synthesize queue;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
 	self.appDelegate = [[UIApplication sharedApplication] delegate];
 	self.handler = [appDelegate sectionSessionHandler];
-	
-	CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
-	const CGFloat myColor[] = {0.67, 0.67, 0.67, 1.0};
-	CGColorRef colour = CGColorCreate(rgb, myColor);
-	CGColorSpaceRelease(rgb);
-	
-	[[self.details layer] setCornerRadius:8.0f];
-	[[self.details layer] setMasksToBounds:YES];
-	[[self.details layer] setBorderWidth:1.0];
-	[[self.details layer] setBorderColor:colour];
-	
-	CGColorRelease(colour);
-	
+    self.feedbackAvailability = [[[FeedbackAvailability alloc] initWithUrl:[NSURL URLWithString:[JavaZonePrefs feedbackUrl]]] autorelease];
+    self.queue = [[[NSOperationQueue alloc] init] autorelease];
+    
 	[self displaySession];
 }
 
@@ -55,6 +52,33 @@
 															   [self.session jzId],
 															   @"ID", 
 															   nil]];
+}
+
+- (void) prepareButton:(CALayer *)layer {
+    [layer setCornerRadius:8.0f];
+    [layer setMasksToBounds:YES];
+    [layer setBackgroundColor:[[UIColor blackColor] CGColor]];
+}
+
+- (void)videoCheckComplete {
+    VideoMapper *mapper = [[[VideoMapper alloc] init] autorelease];
+    self.videoButton.enabled = ([mapper streamingUrlForSession:[self.session jzId]] != nil);
+}
+
+- (void)videoCheck {
+    VideoMapper *mapper = [[[VideoMapper alloc] init] autorelease];
+    [mapper download];
+    [self performSelectorOnMainThread:@selector(videoCheckComplete) withObject:nil waitUntilDone:NO];
+}
+
+- (void)feedbackCheckComplete {
+    [self.feedbackAvailability populateDict];
+    self.feedbackButton.enabled = [self.feedbackAvailability isFeedbackAvailableForSession:[self.session jzId]];
+}
+
+- (void)feedbackCheck {
+    [self.feedbackAvailability downloadData];
+    [self performSelectorOnMainThread:@selector(feedbackCheckComplete) withObject:nil waitUntilDone:NO];
 }
 
 - (void)displaySession {
@@ -102,10 +126,27 @@
 	}
 	
 	self.title = [self.session title];
-	
-	UIBarButtonItem *button = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showExtras:)] autorelease];
-	
-	self.navigationItem.rightBarButtonItem = button;
+
+    [self prepareButton:[shareButton layer]];
+    [self prepareButton:[videoButton layer]];
+    [self prepareButton:[feedbackButton layer]];
+
+    self.feedbackButton.enabled = NO;
+    self.videoButton.enabled = NO;
+    
+    NSInvocationOperation *videoOp = [[NSInvocationOperation alloc] 
+                                      initWithTarget:self
+                                      selector:@selector(videoCheck) 
+                                      object:nil];
+    [queue addOperation:videoOp]; 
+    [videoOp release];
+
+    NSInvocationOperation *feedbackOp = [[NSInvocationOperation alloc] 
+                                         initWithTarget:self
+                                         selector:@selector(feedbackCheck) 
+                                         object:nil];
+    [queue addOperation:feedbackOp]; 
+    [feedbackOp release];
 }
 
 - (void)reloadSession {
@@ -143,6 +184,14 @@
     self.level = nil;
     self.levelImage = nil;
     self.checkboxButton = nil;
+    self.videoButton = nil;
+    self.shareButton = nil;
+    self.feedbackButton = nil;
+    self.feedbackAvailability = nil;
+    
+    [self.queue cancelAllOperations];
+    [self.queue waitUntilAllOperationsAreFinished];
+    self.queue = nil;
     
     self.appDelegate = nil;
     self.handler = nil;
@@ -157,7 +206,15 @@
     [handler release];
     [appDelegate release];
     [checkboxButton release];
-
+    [shareButton release];
+    [videoButton release];
+    [feedbackButton release];
+    [feedbackAvailability release];
+    
+    [self.queue cancelAllOperations];
+    [self.queue waitUntilAllOperationsAreFinished];
+    [queue release];
+    
     [super dealloc];
 }
 
@@ -255,16 +312,53 @@
 	return page;
 }
 
-- (void) showExtras:(id)sender {
-	ExtrasController *controller = [[ExtrasController alloc] initWithNibName:@"DetailedViewExtras" bundle:[NSBundle mainBundle]];
-	controller.session = self.session;
-	
-	[[self navigationController] pushViewController:controller animated:YES];
-	[controller release], controller = nil;
-}
-
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
+}
+
+- (IBAction)share:(id)sender {
+    SHKItem *item = nil;
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://javazone.no/incogito10/events/JavaZone%%202011/sessions#%@", [self.session jzId]];
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    
+    NSString *titleString = [NSString stringWithFormat:@"#JavaZone - %@", [self.session title]];
+    item = [SHKItem URL:url title:titleString];
+    
+    // Get the ShareKit action sheet
+    SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+    
+    // Display the action sheet
+    [actionSheet showInView:[self view]];
+}
+
+- (IBAction)feedback:(id)sender {
+    FeedbackController *controller = [[FeedbackController alloc] initWithNibName:@"Feedback" bundle:[NSBundle mainBundle]];
+    controller.session = self.session;
+    controller.feedbackURL = [self.feedbackAvailability feedbackUrlForSession:[self.session jzId]];
+    
+    [[self navigationController] pushViewController:controller animated:YES];
+    [controller release], controller = nil;
+}
+
+- (IBAction)video:(id)sender {
+    VideoMapper *mapper = [[[VideoMapper alloc] init] autorelease];
+    
+    NSString *streamingUrl = [mapper streamingUrlForSession:[self.session jzId]];
+    
+    [FlurryAnalytics logEvent:@"Streaming Movie" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                 [self.session jzId],
+                                                                 @"ID",
+                                                                 [self.session title],
+                                                                 @"Title",
+                                                                 streamingUrl,
+                                                                 @"URL",
+                                                                 nil]];
+    
+    NSURL *movieUrl = [NSURL URLWithString:streamingUrl];
+    
+    [[UIApplication sharedApplication] openURL:movieUrl];
 }
 
 @end

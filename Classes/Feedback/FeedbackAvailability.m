@@ -6,6 +6,7 @@
 
 #import "FeedbackAvailability.h"
 #import "DDXML.h"
+#import "CachedPropertyFile.h"
 
 @implementation FeedbackAvailability
 
@@ -13,82 +14,12 @@
 @synthesize dict;
 @synthesize HUD;
 
-- (NSData *)downloadData {
-    NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    
-    NSString *dataFilePath = [NSString stringWithFormat:@"%@/feedback.xhtml",docDir];
-
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    NSError *fileError = nil;
-    
-    NSDictionary *fileAttributes = [fileManager attributesOfItemAtPath:dataFilePath error:&fileError];
-
-    if (fileError != nil) {
-        AppLog(@"Got file error reading file attributes for file %@", dataFilePath);
-    }
-    
-	if (fileAttributes != nil && fileError == nil) {
-        NSTimeInterval interval = [[fileAttributes fileModificationDate] timeIntervalSinceNow];
-        
-        AppLog(@"Time interval %f", interval);
-        
-        if (interval > -3600) {
-            return [NSData dataWithContentsOfFile:dataFilePath];
-        }
-    }
-                                    
-                                    
-    [FlurryAnalytics logEvent:@"Feedback Overview Retrieval" timed:YES];
-	
-	NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:self.url];
-	
-	[urlRequest setValue:@"incogito-iPhone" forHTTPHeaderField:@"User-Agent"];
-	
-	NSError *error = nil;
-	NSURLResponse *resp = nil;
-    
-	UIApplication* app = [UIApplication sharedApplication];
-	app.networkActivityIndicatorVisible = YES;
-	
-	// Perform request and get JSON back as a NSData object
-	NSData *response = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&resp error:&error];
-    
-	app.networkActivityIndicatorVisible = NO;
-	
-	[FlurryAnalytics endTimedEvent:@"Feedback Overview Retrieval" withParameters:nil];
-
-    if (nil != resp && [resp isKindOfClass:[NSHTTPURLResponse class]]) {
-        NSHTTPURLResponse *httpResp = (NSHTTPURLResponse *)resp;
-        
-        if ([httpResp statusCode] >= 400) {
-            [FlurryAnalytics logEvent:@"Unable to retrieve feedback overview" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                                        self.url,
-                                                                                        @"URL",
-                                                                                        [NSNumber numberWithInteger:[httpResp statusCode]],
-                                                                                        @"Status Code",
-                                                                                        nil]];
-            AppLog(@"Download failed with code %d", [httpResp statusCode]);
-            
-            return nil;
-        }
-    }
-
-    
-    if (nil != error) {
-		[FlurryAnalytics logError:@"Error retrieving feedback overview" message:[NSString stringWithFormat:@"Unable to retrieve feedback overview from URL %@", self.url] error:error];
-        
-        return nil;
-    }
-
-    [response writeToFile:dataFilePath atomically:YES];
-
-    return response;
+- (void)downloadData {
+    [CachedPropertyFile retrieveFile:@"feedback.xhtml" fromUrl:self.url];
 }
 
-- (void)populateDict:(id)sender {
-    NSData *contents = [self downloadData];
+- (void)populateDict {
+    NSData *contents = [CachedPropertyFile readFile:@"feedback.xhtml"];
     
     NSMutableDictionary *mutableDictionary = [[[NSMutableDictionary alloc] init] autorelease];    
 

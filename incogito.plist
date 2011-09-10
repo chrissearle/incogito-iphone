@@ -70,6 +70,6 @@
 	<key>SessionUrl</key>
 	<string>http://javazone.no/incogito10/rest/events/JavaZone%202011/sessions</string>
 	<key>VideoUrl</key>
-	<string>http://dav.java.no/resources/video.plist</string>
+	<string>http://dav.java.no/resources/iOS/video-224.plist</string>
 </dict>
 </plist>
