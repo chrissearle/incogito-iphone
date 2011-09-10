@@ -178,6 +178,7 @@
 
     VideoMapper *mapper = [[[VideoMapper alloc] init] autorelease];
     [mapper download];
+
     [FlurryAnalytics endTimedEvent:@"Storing video" withParameters:nil];
 
 	self.HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"117-Todo.png"]] autorelease];

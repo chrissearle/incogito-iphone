@@ -13,6 +13,7 @@
 #import "SHK.h"
 #import "JavaZonePrefs.h"
 #import "VideoMapper.h"
+#import "FeedbackAvailability.h"
 
 @implementation DetailedSessionViewController
 
@@ -28,12 +29,14 @@
 @synthesize feedbackButton;
 @synthesize videoButton;
 @synthesize shareButton;
+@synthesize feedbackAvailability;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
 	self.appDelegate = [[UIApplication sharedApplication] delegate];
 	self.handler = [appDelegate sectionSessionHandler];
+    self.feedbackAvailability = [[FeedbackAvailability alloc] initWithUrl:[NSURL URLWithString:[JavaZonePrefs feedbackUrl]]];
 	
 	[self displaySession];
 }
@@ -53,6 +56,27 @@
     [layer setCornerRadius:8.0f];
     [layer setMasksToBounds:YES];
     [layer setBackgroundColor:[[UIColor blackColor] CGColor]];
+}
+
+- (void)videoCheckComplete {
+    VideoMapper *mapper = [[[VideoMapper alloc] init] autorelease];
+    self.videoButton.enabled = ([mapper streamingUrlForSession:[self.session jzId]] != nil);
+}
+
+- (void)videoCheck {
+    VideoMapper *mapper = [[[VideoMapper alloc] init] autorelease];
+    [mapper download];
+    [self performSelectorOnMainThread:@selector(videoCheckComplete) withObject:nil waitUntilDone:NO];
+}
+
+- (void)feedbackCheckComplete {
+    [self.feedbackAvailability populateDict];
+    self.feedbackButton.enabled = [self.feedbackAvailability isFeedbackAvailableForSession:[self.session jzId]];
+}
+
+- (void)feedbackCheck {
+    [self.feedbackAvailability downloadData];
+    [self performSelectorOnMainThread:@selector(feedbackCheckComplete) withObject:nil waitUntilDone:NO];
 }
 
 - (void)displaySession {
@@ -106,10 +130,23 @@
     [self prepareButton:[feedbackButton layer]];
 
     self.feedbackButton.enabled = NO;
+    self.videoButton.enabled = NO;
     
-    VideoMapper *mapper = [[[VideoMapper alloc] init] autorelease];
-    self.videoButton.enabled = ([mapper streamingUrlForSession:[self.session jzId]] != nil);
+    NSOperationQueue *queue = [NSOperationQueue new];
     
+    NSInvocationOperation *videoOp = [[NSInvocationOperation alloc] 
+                                      initWithTarget:self
+                                      selector:@selector(videoCheck) 
+                                      object:nil];
+    [queue addOperation:videoOp]; 
+    [videoOp release];
+
+    NSInvocationOperation *feedbackOp = [[NSInvocationOperation alloc] 
+                                         initWithTarget:self
+                                         selector:@selector(feedbackCheck) 
+                                         object:nil];
+    [queue addOperation:feedbackOp]; 
+    [feedbackOp release];
 }
 
 - (void)reloadSession {
@@ -150,6 +187,7 @@
     self.videoButton = nil;
     self.shareButton = nil;
     self.feedbackButton = nil;
+    self.feedbackAvailability = nil;
     
     self.appDelegate = nil;
     self.handler = nil;
@@ -167,6 +205,7 @@
     [shareButton release];
     [videoButton release];
     [feedbackButton release];
+    [feedbackAvailability release];
     
     [super dealloc];
 }
@@ -287,14 +326,12 @@
 }
 
 - (IBAction)feedback:(id)sender {
-/*
     FeedbackController *controller = [[FeedbackController alloc] initWithNibName:@"Feedback" bundle:[NSBundle mainBundle]];
     controller.session = self.session;
-    controller.feedbackURL = self.feedbackFormUrl;
+    controller.feedbackURL = [self.feedbackAvailability feedbackUrlForSession:[self.session jzId]];
     
     [[self navigationController] pushViewController:controller animated:YES];
     [controller release], controller = nil;
- */
 }
 
 - (IBAction)video:(id)sender {

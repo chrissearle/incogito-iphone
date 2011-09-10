@@ -16,8 +16,9 @@
 
 - (FeedbackAvailability *) initWithUrl:(NSURL *)downloadUrl;
 
+- (void)downloadData;
 - (BOOL)isFeedbackAvailableForSession:(NSString *)sessionId;
 - (NSURL *)feedbackUrlForSession:(NSString *)sessionId;
-- (void)populateDict:(id)sender;
+- (void)populateDict;
 
 @end

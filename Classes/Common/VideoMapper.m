@@ -6,6 +6,7 @@
 
 #import "VideoMapper.h"
 #import "JavaZonePrefs.h"
+#import "CachedPropertyFile.h"
 
 @implementation VideoMapper
 
@@ -38,32 +39,7 @@
 }
 
 - (void)download {
-    [FlurryAnalytics logEvent:@"Video list retrieval" timed:YES];
-	
-	NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[JavaZonePrefs videoUrl]]];
-	
-	[urlRequest setValue:@"incogito-iPhone" forHTTPHeaderField:@"User-Agent"];
-	
-	NSError *error = nil;
-    
-	UIApplication* app = [UIApplication sharedApplication];
-	app.networkActivityIndicatorVisible = YES;
-	
-	NSData *response = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:&error];
-    
-	app.networkActivityIndicatorVisible = NO;
-	
-	[FlurryAnalytics endTimedEvent:@"Video list retrieval" withParameters:nil];
-    
-    if (nil != error) {
-		[FlurryAnalytics logError:@"Error retrieving video list" message:[NSString stringWithFormat:@"Unable to retrieve video list from URL %@", [JavaZonePrefs videoUrl]] error:error];
-        
-        return;
-    }
-
-    if (response != nil) {
-        [response writeToFile:[self filePath] atomically:YES];
-    }
+    [CachedPropertyFile retrieveFile:@"video.plist" fromUrl:[NSURL URLWithString:[JavaZonePrefs videoUrl]]];
 }
 
 @end
