@@ -1803,6 +1803,8 @@
 				OTHER_CFLAGS = (
 					"-DNS_BLOCK_ASSERTIONS=1",
 					"-DHIDE_CLUBZONE=1",
+					"-DHIDE_AWEZONE=1",
+					"-DHIDE_NOWANDNEXT",
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
