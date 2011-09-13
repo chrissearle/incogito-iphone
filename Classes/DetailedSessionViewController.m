@@ -30,7 +30,6 @@
 @synthesize videoButton;
 @synthesize shareButton;
 @synthesize feedbackAvailability;
-@synthesize queue;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,7 +37,6 @@
 	self.appDelegate = [[UIApplication sharedApplication] delegate];
 	self.handler = [appDelegate sectionSessionHandler];
     self.feedbackAvailability = [[[FeedbackAvailability alloc] initWithUrl:[NSURL URLWithString:[JavaZonePrefs feedbackUrl]]] autorelease];
-    self.queue = [[[NSOperationQueue alloc] init] autorelease];
     
 	[self displaySession];
 }
@@ -58,27 +56,6 @@
     [layer setCornerRadius:8.0f];
     [layer setMasksToBounds:YES];
     [layer setBackgroundColor:[[UIColor blackColor] CGColor]];
-}
-
-- (void)videoCheckComplete {
-    VideoMapper *mapper = [[[VideoMapper alloc] init] autorelease];
-    self.videoButton.enabled = ([mapper streamingUrlForSession:[self.session jzId]] != nil);
-}
-
-- (void)videoCheck {
-    VideoMapper *mapper = [[[VideoMapper alloc] init] autorelease];
-    [mapper download];
-    [self performSelectorOnMainThread:@selector(videoCheckComplete) withObject:nil waitUntilDone:NO];
-}
-
-- (void)feedbackCheckComplete {
-    [self.feedbackAvailability populateDict];
-    self.feedbackButton.enabled = [self.feedbackAvailability isFeedbackAvailableForSession:[self.session jzId]];
-}
-
-- (void)feedbackCheck {
-    [self.feedbackAvailability downloadData];
-    [self performSelectorOnMainThread:@selector(feedbackCheckComplete) withObject:nil waitUntilDone:NO];
 }
 
 - (void)displaySession {
@@ -133,20 +110,26 @@
 
     self.feedbackButton.enabled = NO;
     self.videoButton.enabled = NO;
-    
-    NSInvocationOperation *videoOp = [[NSInvocationOperation alloc] 
-                                      initWithTarget:self
-                                      selector:@selector(videoCheck) 
-                                      object:nil];
-    [queue addOperation:videoOp]; 
-    [videoOp release];
 
-    NSInvocationOperation *feedbackOp = [[NSInvocationOperation alloc] 
-                                         initWithTarget:self
-                                         selector:@selector(feedbackCheck) 
-                                         object:nil];
-    [queue addOperation:feedbackOp]; 
-    [feedbackOp release];
+    dispatch_queue_t dqueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    dispatch_async(dqueue, ^{
+        VideoMapper *mapper = [[[VideoMapper alloc] init] autorelease];
+        [mapper download];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.videoButton.enabled = ([mapper streamingUrlForSession:[self.session jzId]] != nil);
+        });
+    });
+
+    dispatch_async(dqueue, ^{
+        [self.feedbackAvailability downloadData];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.feedbackAvailability populateDict];
+            self.feedbackButton.enabled = [self.feedbackAvailability isFeedbackAvailableForSession:[self.session jzId]];
+        });
+    });
 }
 
 - (void)reloadSession {
@@ -189,10 +172,6 @@
     self.feedbackButton = nil;
     self.feedbackAvailability = nil;
     
-    [self.queue cancelAllOperations];
-    [self.queue waitUntilAllOperationsAreFinished];
-    self.queue = nil;
-    
     self.appDelegate = nil;
     self.handler = nil;
 }
@@ -210,10 +189,6 @@
     [videoButton release];
     [feedbackButton release];
     [feedbackAvailability release];
-    
-    [self.queue cancelAllOperations];
-    [self.queue waitUntilAllOperationsAreFinished];
-    [queue release];
     
     [super dealloc];
 }

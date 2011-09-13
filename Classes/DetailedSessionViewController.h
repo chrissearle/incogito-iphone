@@ -26,7 +26,6 @@
 @property (nonatomic, retain) IBOutlet UIButton     *videoButton;
 @property (nonatomic, retain) IBOutlet UIButton     *shareButton;
 @property (nonatomic, retain) FeedbackAvailability  *feedbackAvailability;
-@property (nonatomic, retain) NSOperationQueue      *queue;
 
 - (NSString *)buildPage:(NSString *)content withTitle:(NSString *)title withSpeakerInfo:(NSString *)speakerInfo andLabelsInfo:(NSString *)labels;
 - (NSString *)buildSpeakersSection:(NSSet *)speakers;
@@ -41,8 +40,5 @@
 
 - (void)reloadSession;
 - (void)displaySession;
-
-- (void)videoCheckComplete;
-- (void)feedbackCheckComplete;
 
 @end
