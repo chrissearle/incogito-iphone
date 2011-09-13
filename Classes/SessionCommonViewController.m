@@ -256,14 +256,16 @@
 		[alert release];
 		
 	} else {
-		[self.appDelegate refreshViewData];
+//		[self.appDelegate refreshViewData];
+        [self loadSessionData];
+        [[self tv] reloadData];
 	}
 }
 
 - (void)sync {
     [self setLastSuccessfulUpdate:[JavaZonePrefs lastSuccessfulUpdate]];
 
-	self.HUD = [[[MBProgressHUD alloc] initWithView:self.tabBarController.view] autorelease];
+	self.HUD = [[[MBProgressHUD alloc] initWithView:self.view] autorelease];
 
 	JavazoneSessionsRetriever *retriever = [[[JavazoneSessionsRetriever alloc] init] autorelease];
 
@@ -273,7 +275,7 @@
 	retriever.urlString = [JavaZonePrefs sessionUrl];
 
 	// Add HUD to screen
-	[self.tabBarController.view addSubview:self.HUD];
+	[self.view addSubview:self.HUD];
 
 	// Register for HUD callbacks so we can remove it from the window at the right time
 	self.HUD.delegate = self;

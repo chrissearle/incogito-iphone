@@ -16,4 +16,8 @@
 - (void) search:(NSString *)searchText;
 - (void)hideKeyboardWithSearchBar:(UISearchBar *)searchBar;
 
+- (IBAction) curlPage:(id)sender;
+- (IBAction) refresh:(id)sender;
+- (IBAction) party:(id)sender;
+
 @end

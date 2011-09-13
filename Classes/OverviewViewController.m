@@ -7,6 +7,8 @@
 #import "OverviewViewController.h"
 #import "IncogitoAppDelegate.h"
 #import "SectionSessionHandler.h"
+#import "FilterViewController.h"
+#import "AweZoneController.h"
 
 @implementation OverviewViewController
 
@@ -42,6 +44,10 @@
 	if (count == 0) {
 		[self sync];
 	}
+}
+
+- (IBAction)refresh:(id)sender {
+    [self sync];
 }
 
 - (void) loadSessionData {
@@ -131,6 +137,22 @@
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
+}
+
+- (void)curlPage:(id)sender {
+    FilterViewController *controller = [[FilterViewController alloc] initWithNibName:@"Filter" bundle:[NSBundle mainBundle]];
+ 
+    [controller setModalTransitionStyle:UIModalTransitionStylePartialCurl];
+    [self presentModalViewController:controller animated:YES]; 
+    [controller release];
+}
+
+- (void)party:(id)sender {
+    AweZoneController *controller = [[AweZoneController alloc] initWithNibName:@"AweZone" bundle:[NSBundle mainBundle]];
+
+    [controller setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    [self presentModalViewController:controller animated:YES];
+    [controller release];
 }
 
 @end

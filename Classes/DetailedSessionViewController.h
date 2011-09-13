@@ -37,7 +37,6 @@
 - (IBAction)feedback:(id)sender;
 - (IBAction)video:(id)sender;
 
-
 - (void)reloadSession;
 - (void)displaySession;
 

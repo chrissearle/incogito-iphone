@@ -37,7 +37,7 @@
 	self.appDelegate = [[UIApplication sharedApplication] delegate];
 	self.handler = [appDelegate sectionSessionHandler];
     self.feedbackAvailability = [[[FeedbackAvailability alloc] initWithUrl:[NSURL URLWithString:[JavaZonePrefs feedbackUrl]]] autorelease];
-    
+ 
 	[self displaySession];
 }
 

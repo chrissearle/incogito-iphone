@@ -6,4 +6,6 @@
 
 @interface AweZoneController : UIViewController
 
+- (IBAction) done:(id)sender;
+
 @end
