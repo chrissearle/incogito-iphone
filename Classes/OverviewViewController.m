@@ -32,7 +32,19 @@
 	AppLog(@"Overview - loaded data");
 }
 
+- (void) setTitleFromPrefs {
+    NSString *savedKey = [self.appDelegate getLabelFilter];
+    
+    if ([savedKey isEqual:@"All"]) {
+        self.navigationItem.title = @"Sessions";
+    } else {
+        self.navigationItem.title = savedKey;
+    }
+}
+
 - (void) viewWillAppear:(BOOL)animated {
+    [self setTitleFromPrefs];
+
 	[FlurryAnalytics logEvent:@"Showing Overview"];
 }
 
@@ -141,7 +153,9 @@
 
 - (void)curlPage:(id)sender {
     FilterViewController *controller = [[FilterViewController alloc] initWithNibName:@"Filter" bundle:[NSBundle mainBundle]];
- 
+
+    [controller setParentDelegate:self];
+    
     [controller setModalTransitionStyle:UIModalTransitionStylePartialCurl];
     [self presentModalViewController:controller animated:YES]; 
     [controller release];
@@ -153,6 +167,16 @@
     [controller setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [self presentModalViewController:controller animated:YES];
     [controller release];
+}
+
+- (void)refreshOnModalClose:(BOOL) reload {
+    if (reload == YES) {
+        [self sync];
+    } else {
+        [self loadSessionData];
+        [[self tv] reloadData];
+    }
+    [self setTitleFromPrefs];
 }
 
 @end

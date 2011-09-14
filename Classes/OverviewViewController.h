@@ -7,7 +7,11 @@
 #import <UIKit/UIKit.h>
 #import "SessionCommonViewController.h"
 
-@interface OverviewViewController : SessionCommonViewController <UISearchBarDelegate, UITextFieldDelegate>
+@protocol RefreshableFromModalView
+- (void)refreshOnModalClose:(BOOL) reload;
+@end
+
+@interface OverviewViewController : SessionCommonViewController <UISearchBarDelegate, UITextFieldDelegate, RefreshableFromModalView>
 
 @property (nonatomic, retain) NSString *currentSearch;
 @property (nonatomic, retain) IBOutlet UISearchBar *sb;

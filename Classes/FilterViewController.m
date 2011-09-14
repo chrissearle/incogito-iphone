@@ -15,6 +15,7 @@
 @synthesize picker;
 @synthesize labels;
 @synthesize appDelegate;
+@synthesize parentDelegate;
 
 - (void)dealloc
 {
@@ -36,13 +37,6 @@
 }
 
 #pragma mark - View lifecycle
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
 
 - (UIImage *)getImageForLevel:(NSString *) level {
     NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -71,6 +65,18 @@
     [self.levelSelector setSelectedSegmentIndex:0];
     
     [self setLabels:[[self.appDelegate sectionSessionHandler] getUniqueLabels]];
+    
+	// Set picker index
+	NSString *savedKey = [self.appDelegate getLabelFilter];
+	
+	NSArray *values = [[self.labels allValues] sortedArrayUsingSelector:@selector(compare:)];
+	
+	int index = 0;
+	if ([values containsObject:savedKey]) {
+		NSArray *sortedValues = [values sortedArrayUsingSelector:@selector(compare:)];
+		index = [sortedValues indexOfObject:savedKey] + 1;
+	}
+	[self.picker selectRow:index inComponent:0 animated:YES];
 }
 
 - (void)viewDidUnload
@@ -89,8 +95,18 @@
     return YES;
 }
 
-- (IBAction) done:(id)selector {
+- (IBAction) done:(id)sender {
+    [self.parentDelegate refreshOnModalClose:NO];
+    
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction) listSelected:(id)selector {
+    AppLog(@"List selected: %d", [self.listSelector selectedSegmentIndex]);
+}
+
+- (IBAction) levelSelected:(id)selector {
+    AppLog(@"Level selected: %d", [self.levelSelector selectedSegmentIndex]);
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -98,7 +114,7 @@
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-	return [[[self labels] allKeys] count] + 1;
+	return [[self.labels allKeys] count] + 1;
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
@@ -124,7 +140,7 @@
 			if (row == 0) {
 				[label setText:@"All"];
 			} else {
-				NSArray *keys = [[self.labels allKeys] sortedArrayUsingSelector:@selector(compare:)];
+				NSArray *keys = [self.labels keysSortedByValueUsingSelector:@selector(compare:)];
 				[label setText:[self.labels objectForKey:[keys objectAtIndex:(row - 1)]]];
 			}
 		}
@@ -134,7 +150,7 @@
 			if (row == 0) {
 				[image setImage:[UIImage imageNamed:@"all.png"]];
 			} else {
-				NSArray *keys = [[self.labels allKeys] sortedArrayUsingSelector:@selector(compare:)];
+				NSArray *keys = [self.labels keysSortedByValueUsingSelector:@selector(compare:)];
 				
 				NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 				
@@ -158,6 +174,25 @@
 	}
 	
 	return view;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+	// Read current picker setting
+	NSArray *values = [[self.labels allValues] sortedArrayUsingSelector:@selector(compare:)];
+	
+	NSString *label = @"All";
+	
+	if (row > 0) {
+		label = [values objectAtIndex:(row - 1)];
+	}
+    
+	// Store pref
+	[self.appDelegate setLabelFilter:label];
+	
+	[FlurryAnalytics logEvent:@"Filtered" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                          label,
+                                                          @"Label",
+                                                          nil]];
 }
 
 

@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OverviewViewController.h"
 
 @class IncogitoAppDelegate;
 
 @interface FilterViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+
+@property (nonatomic, assign) id<RefreshableFromModalView> parentDelegate;
 
 @property (nonatomic, retain) NSDictionary *labels;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *listSelector;
@@ -18,6 +21,8 @@
 @property (nonatomic, retain) IBOutlet UIPickerView *picker;
 @property (nonatomic, retain) IncogitoAppDelegate *appDelegate;
 
-- (IBAction) done:(id)selector;
+- (IBAction) done:(id)sender;
+- (IBAction) listSelected:(id)selector;
+- (IBAction) levelSelected:(id)selector;
 
 @end
