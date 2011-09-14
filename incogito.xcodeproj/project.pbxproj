@@ -144,6 +144,7 @@
 		83FA5AC012460531008CA85C /* JavaZone2011.png in Resources */ = {isa = PBXBuildFile; fileRef = 83FA5ABF12460531008CA85C /* JavaZone2011.png */; };
 		83FAAA2C141BAA0E003AF68B /* CachedPropertyFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FAAA2B141BAA0E003AF68B /* CachedPropertyFile.m */; };
 		83FD529E14042D0E001CDF9C /* SessionDateConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FD529D14042D0E001CDF9C /* SessionDateConverter.m */; };
+		F30E2EFB1420DA1A00664E82 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F30E2EFA1420DA1A00664E82 /* Settings.bundle */; };
 		F34BFA8F138CD81500605592 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F34BFA8E138CD81500605592 /* Default.png */; };
 		F34BFA92138CD81D00605592 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F34BFA91138CD81D00605592 /* Default@2x.png */; };
 		F34BFA94138CD82900605592 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F34BFA93138CD82900605592 /* Default-Portrait~ipad.png */; };
@@ -534,6 +535,7 @@
 		83FD529C14042D0E001CDF9C /* SessionDateConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionDateConverter.h; sourceTree = "<group>"; };
 		83FD529D14042D0E001CDF9C /* SessionDateConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionDateConverter.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* incogito-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "incogito-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		F30E2EFA1420DA1A00664E82 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		F34BFA8E138CD81500605592 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F34BFA91138CD81D00605592 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		F34BFA93138CD82900605592 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
@@ -628,6 +630,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				F30E2EFA1420DA1A00664E82 /* Settings.bundle */,
 				F34BFA95138CD83200605592 /* Default-Landscape~ipad.png */,
 				F34BFA93138CD82900605592 /* Default-Portrait~ipad.png */,
 				F34BFA91138CD81D00605592 /* Default@2x.png */,
@@ -1511,6 +1514,7 @@
 				F38304BA141A30A5001E48B6 /* black-grad.png in Resources */,
 				F380B76D141F65E5009E8242 /* search_background.png in Resources */,
 				F380B770141F6927009E8242 /* Filter.xib in Resources */,
+				F30E2EFB1420DA1A00664E82 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

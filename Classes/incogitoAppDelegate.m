@@ -38,6 +38,12 @@ void uncaughtExceptionHandler(NSException *exception) {
 	
     [FlurryAnalytics logEvent:@"Started app" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:@"3.0.0", @"Flurry Version", nil]];
     
+    // Set the application defaults
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"NO" forKey:@"showBioPic"];
+    [defaults registerDefaults:appDefaults];
+    [defaults synchronize];
+    
 	AppLog(@"Calling sectionInitializer");
 	
     ClearDataInitializer *clearDataInitializer = [[ClearDataInitializer alloc] initWithSectionSessionHandler:[self sectionSessionHandler]];
