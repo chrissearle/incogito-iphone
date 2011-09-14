@@ -16,9 +16,15 @@
 @property (nonatomic, assign) id<ViewShouldRefreshDelegate> viewShouldRefreshDelegate;
 
 @property (nonatomic, retain) NSDictionary *labels;
+
 @property (nonatomic, retain) IBOutlet UISegmentedControl *listSelector;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *levelSelector;
 @property (nonatomic, retain) IBOutlet UIPickerView *picker;
+@property (nonatomic, retain) IBOutlet UILabel *listLabel;
+@property (nonatomic, retain) IBOutlet UILabel *levelLabel;
+@property (nonatomic, retain) IBOutlet UILabel *labelLabel;
+@property (nonatomic, retain) IBOutlet UIButton *doneButton;
+
 @property (nonatomic, retain) IncogitoAppDelegate *appDelegate;
 @property (nonatomic, assign) BOOL initialized;
 

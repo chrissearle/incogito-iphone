@@ -18,6 +18,10 @@
 @synthesize appDelegate;
 @synthesize viewShouldRefreshDelegate;
 @synthesize initialized;
+@synthesize listLabel;
+@synthesize labelLabel;
+@synthesize levelLabel;
+@synthesize doneButton;
 
 - (void)dealloc
 {
@@ -26,9 +30,82 @@
     [listSelector release];
     [levelSelector release];
     [appDelegate release];
+    [listLabel release];
+    [levelLabel release];
+    [labelLabel release];
+    [doneButton release];
     
     [super dealloc];
 }
+
+- (void)redrawForOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    
+    CGSize frameSize = self.view.frame.size;
+
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+        if (UIDeviceOrientationIsLandscape(interfaceOrientation)) {
+            /*
+            self.picker.frame = CGRectMake(0, 55, 250, 216);
+            self.labelsLabel.frame = CGRectMake(7, 20, 280, 34);
+            self.applyButton.frame = CGRectMake(258, 55, 202, 37);
+            self.refreshButton.frame = CGRectMake(258, 150, 202, 37);
+            self.downloadLabel.frame = CGRectMake(258, 195, 267, 21);
+            self.bioPicSwitch.frame = CGRectMake(366, 224, 94, 27);
+             */
+        } else {
+            
+            int smallwidth = 80;
+            int labelheight = 21;
+            int buttonheight = 35;
+            int segmentheight = 30;
+            int pad = 20;
+            int smallpad = 10;
+            int pickerheight = 216;
+            
+            int segmentwidth = frameSize.width - (2 * pad);
+            int rightx = frameSize.width - (pad + smallwidth);
+            int pickertop = frameSize.height - pickerheight;
+            
+            int top = pad;
+            
+            self.doneButton.frame = CGRectMake(rightx, top, smallwidth, buttonheight);
+            top = top + buttonheight + smallpad;
+            
+            self.listLabel.frame = CGRectMake(rightx, top, smallwidth, labelheight);
+            top = top + labelheight + smallpad;
+            
+            self.listSelector.frame = CGRectMake(pad, top, segmentwidth, segmentheight);
+            top = top + segmentheight + smallpad;
+
+            self.levelLabel.frame = CGRectMake(rightx, top, smallwidth, labelheight);
+            top = top + labelheight + smallpad;
+            
+            self.levelSelector.frame = CGRectMake(pad, top, segmentwidth, segmentheight);
+
+            self.picker.frame = CGRectMake(0, pickertop, frameSize.width, pickerheight);
+            self.labelLabel.frame = CGRectMake(pad, pickertop - (labelheight + smallpad), smallwidth, labelheight);
+        }
+    } else {
+        /*
+        CGSize frameSize = self.view.frame.size;
+        
+        int mainWidth = 320;
+        int mainLeft = (frameSize.width - mainWidth) / 2;
+        
+        
+        int mainTop = (frameSize.height - 409) / 2;
+        int refreshTop = mainTop + 325;
+        
+        self.picker.frame = CGRectMake(mainLeft, mainTop, mainWidth, 216);
+        self.applyButton.frame = CGRectMake(mainLeft, mainTop + 224, mainWidth, 37);
+        self.refreshButton.frame = CGRectMake(mainLeft, refreshTop, mainWidth, 37);
+        self.downloadLabel.frame = CGRectMake(mainLeft, refreshTop + 60, mainWidth - 100, 24);
+        self.bioPicSwitch.frame = CGRectMake(mainLeft + mainWidth - 94, refreshTop + 57, 94, 27);
+         */
+    }
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -39,6 +116,10 @@
 }
 
 #pragma mark - View lifecycle
+
+- (void) viewWillAppear:(BOOL)animated {
+    [self redrawForOrientation:[self interfaceOrientation]];
+}
 
 - (UIImage *)getImageForLevel:(NSString *) level {
     NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -125,6 +206,10 @@
     self.picker = nil;
     self.labels = nil;
     self.appDelegate = nil;
+    self.listLabel = nil;
+    self.levelLabel = nil;
+    self.labelLabel = nil;
+    self.doneButton = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -253,6 +338,10 @@
                                                           nil]];
 }
 
-
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation 
+                                         duration:(NSTimeInterval)duration {
+    
+    [self redrawForOrientation:toInterfaceOrientation];
+}
 
 @end
