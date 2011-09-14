@@ -13,7 +13,7 @@
 
 @interface FilterViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
-@property (nonatomic, assign) id<RefreshableFromModalView> parentDelegate;
+@property (nonatomic, assign) id<ViewShouldRefreshDelegate> viewShouldRefreshDelegate;
 
 @property (nonatomic, retain) NSDictionary *labels;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *listSelector;

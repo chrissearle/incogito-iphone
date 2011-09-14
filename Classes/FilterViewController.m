@@ -15,7 +15,7 @@
 @synthesize picker;
 @synthesize labels;
 @synthesize appDelegate;
-@synthesize parentDelegate;
+@synthesize viewShouldRefreshDelegate;
 
 - (void)dealloc
 {
@@ -96,7 +96,7 @@
 }
 
 - (IBAction) done:(id)sender {
-    [self.parentDelegate refreshOnModalClose:NO];
+    [self.viewShouldRefreshDelegate refeshView:YES withFull:NO];
     
     [self dismissModalViewControllerAnimated:YES];
 }

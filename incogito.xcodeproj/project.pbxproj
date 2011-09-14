@@ -129,7 +129,6 @@
 		83A7E161130A672E00C8945F /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A7E160130A672E00C8945F /* Preferences.m */; };
 		83C1E08113F45163007F1CC9 /* style-feedback.css in Resources */ = {isa = PBXBuildFile; fileRef = 83C1E08013F45163007F1CC9 /* style-feedback.css */; };
 		83C3C1D5120FDC6500B23253 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C3C1D4120FDC6500B23253 /* QuartzCore.framework */; };
-		83D1762511F18C3300D89884 /* SessionCommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1762411F18C3300D89884 /* SessionCommonViewController.m */; };
 		83D6BCF911EEF3A100FBC0FE /* SectionInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */; };
 		83D6BDC211EF051700FBC0FE /* SectionSessionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6BDC111EF051700FBC0FE /* SectionSessionHandler.m */; };
 		83D6BFEF11EF3A7B00FBC0FE /* JZLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D6BFE611EF3A7B00FBC0FE /* JZLabel.m */; };
@@ -148,7 +147,6 @@
 		83FA5AC012460531008CA85C /* JavaZone2011.png in Resources */ = {isa = PBXBuildFile; fileRef = 83FA5ABF12460531008CA85C /* JavaZone2011.png */; };
 		83FAAA2C141BAA0E003AF68B /* CachedPropertyFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FAAA2B141BAA0E003AF68B /* CachedPropertyFile.m */; };
 		83FD529E14042D0E001CDF9C /* SessionDateConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FD529D14042D0E001CDF9C /* SessionDateConverter.m */; };
-		F31ACFB1138CE0E4007F5CCF /* UITabBarController+Autorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = F31ACFB0138CE0E4007F5CCF /* UITabBarController+Autorotate.m */; };
 		F34BFA8F138CD81500605592 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F34BFA8E138CD81500605592 /* Default.png */; };
 		F34BFA92138CD81D00605592 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F34BFA91138CD81D00605592 /* Default@2x.png */; };
 		F34BFA94138CD82900605592 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F34BFA93138CD82900605592 /* Default-Portrait~ipad.png */; };
@@ -514,8 +512,6 @@
 		83A7E160130A672E00C8945F /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preferences.m; sourceTree = "<group>"; };
 		83C1E08013F45163007F1CC9 /* style-feedback.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "style-feedback.css"; sourceTree = "<group>"; };
 		83C3C1D4120FDC6500B23253 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		83D1762311F18C3300D89884 /* SessionCommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionCommonViewController.h; sourceTree = "<group>"; };
-		83D1762411F18C3300D89884 /* SessionCommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionCommonViewController.m; sourceTree = "<group>"; };
 		83D6BCF711EEF3A100FBC0FE /* SectionInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionInitializer.h; sourceTree = "<group>"; };
 		83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionInitializer.m; sourceTree = "<group>"; };
 		83D6BDC011EF051700FBC0FE /* SectionSessionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionSessionHandler.h; sourceTree = "<group>"; };
@@ -547,8 +543,6 @@
 		83FD529C14042D0E001CDF9C /* SessionDateConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionDateConverter.h; sourceTree = "<group>"; };
 		83FD529D14042D0E001CDF9C /* SessionDateConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionDateConverter.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* incogito-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "incogito-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		F31ACFAF138CE0E4007F5CCF /* UITabBarController+Autorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+Autorotate.h"; sourceTree = "<group>"; };
-		F31ACFB0138CE0E4007F5CCF /* UITabBarController+Autorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+Autorotate.m"; sourceTree = "<group>"; };
 		F34BFA8E138CD81500605592 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F34BFA91138CD81D00605592 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		F34BFA93138CD82900605592 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
@@ -626,14 +620,10 @@
 				83424B2D11ED88E700590A7A /* OverviewViewController.m */,
 				83D6BDC011EF051700FBC0FE /* SectionSessionHandler.h */,
 				83D6BDC111EF051700FBC0FE /* SectionSessionHandler.m */,
-				83D1762311F18C3300D89884 /* SessionCommonViewController.h */,
-				83D1762411F18C3300D89884 /* SessionCommonViewController.m */,
 				834B3DF4126C913600D66D41 /* SessionTableViewCell.h */,
 				834B3DF5126C913600D66D41 /* SessionTableViewCell.m */,
 				831F5333120BFFD20027A8A4 /* SettingsViewController.h */,
 				831F5334120BFFD20027A8A4 /* SettingsViewController.m */,
-				F31ACFAF138CE0E4007F5CCF /* UITabBarController+Autorotate.h */,
-				F31ACFB0138CE0E4007F5CCF /* UITabBarController+Autorotate.m */,
 				F3D8EEA313EFF7D3002C9427 /* AweZoneController.h */,
 				F3D8EEA413EFF7D3002C9427 /* AweZoneController.m */,
 				F380B771141F69EC009E8242 /* FilterViewController.h */,
@@ -1567,7 +1557,6 @@
 				83D6BFF211EF3A7B00FBC0FE /* JZSessionBio.m in Sources */,
 				83D6BFF311EF3A7B00FBC0FE /* UserSession.m in Sources */,
 				83D6C07311EF922500FBC0FE /* DetailedSessionViewController.m in Sources */,
-				83D1762511F18C3300D89884 /* SessionCommonViewController.m in Sources */,
 				831F5335120BFFD20027A8A4 /* SettingsViewController.m in Sources */,
 				83281ECD12437D0000792990 /* SHKCustomFormController.m in Sources */,
 				83281ECE12437D0000792990 /* SHKCustomFormFieldCell.m in Sources */,
@@ -1637,7 +1626,6 @@
 				83A7E161130A672E00C8945F /* Preferences.m in Sources */,
 				F3A65026134473EB005B1372 /* JavaZonePrefs.m in Sources */,
 				F35EC3A61356CFD70047294D /* VideoMapper.m in Sources */,
-				F31ACFB1138CE0E4007F5CCF /* UITabBarController+Autorotate.m in Sources */,
 				F3F0CD6F13E688F100EC1149 /* ClearDataInitializer.m in Sources */,
 				F3D8EEA613EFF7D3002C9427 /* AweZoneController.m in Sources */,
 				83D80E7213F28444001F18DD /* FeedbackAvailability.m in Sources */,
