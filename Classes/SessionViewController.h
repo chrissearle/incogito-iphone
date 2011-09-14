@@ -1,5 +1,5 @@
 //
-//  OverviewViewController.h
+//  SessionViewController.h
 //
 //  Copyright 2010 Chris Searle. All rights reserved.
 //
@@ -12,7 +12,7 @@
 - (void)refeshView:(BOOL)reload withFull:(BOOL)full;
 @end
 
-@interface OverviewViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UITextFieldDelegate, ViewShouldRefreshDelegate, MBProgressHUDDelegate>
+@interface SessionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UITextFieldDelegate, ViewShouldRefreshDelegate, MBProgressHUDDelegate>
 
 @property (nonatomic, retain) NSString *currentSearch;
 @property (nonatomic, retain) IBOutlet UISearchBar *sb;

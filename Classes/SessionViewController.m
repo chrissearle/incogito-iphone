@@ -1,10 +1,10 @@
 //
-//  OverviewViewController.m
+//  SessionViewController.m
 //
 //  Copyright 2010 Chris Searle. All rights reserved.
 //
 
-#import "OverviewViewController.h"
+#import "SessionViewController.h"
 #import "IncogitoAppDelegate.h"
 #import "SectionSessionHandler.h"
 #import "FilterViewController.h"
@@ -17,7 +17,7 @@
 #import "JavaZonePrefs.h"
 #import "JavazoneSessionsRetriever.h"
 
-@implementation OverviewViewController
+@implementation SessionViewController
 
 @synthesize currentSearch;
 @synthesize sb;

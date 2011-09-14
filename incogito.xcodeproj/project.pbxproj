@@ -94,7 +94,7 @@
 		833A524411F840AD00E070D2 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 833A524311F840AD00E070D2 /* style.css */; };
 		834243EB11E74CAD00B438A8 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 834243EA11E74CAD00B438A8 /* Icon.png */; };
 		83424B2211ED882F00590A7A /* Overview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424B2111ED882F00590A7A /* Overview.xib */; };
-		83424B2E11ED88E700590A7A /* OverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83424B2D11ED88E700590A7A /* OverviewViewController.m */; };
+		83424B2E11ED88E700590A7A /* SessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83424B2D11ED88E700590A7A /* SessionViewController.m */; };
 		83424E9011EDB68000590A7A /* NowAndNextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83424E8F11EDB68000590A7A /* NowAndNextViewController.m */; };
 		83424E9211EDB68D00590A7A /* NowAndNext.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424E9111EDB68D00590A7A /* NowAndNext.xib */; };
 		83424EBC11EDB79400590A7A /* MyProgrammeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83424EBB11EDB79400590A7A /* MyProgrammeViewController.m */; };
@@ -326,8 +326,8 @@
 		833A524311F840AD00E070D2 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		834243EA11E74CAD00B438A8 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		83424B2111ED882F00590A7A /* Overview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Overview.xib; sourceTree = "<group>"; };
-		83424B2C11ED88E700590A7A /* OverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverviewViewController.h; sourceTree = "<group>"; };
-		83424B2D11ED88E700590A7A /* OverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverviewViewController.m; sourceTree = "<group>"; };
+		83424B2C11ED88E700590A7A /* SessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionViewController.h; sourceTree = "<group>"; };
+		83424B2D11ED88E700590A7A /* SessionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionViewController.m; sourceTree = "<group>"; };
 		83424B3711ED981200590A7A /* 01-refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-refresh.png"; sourceTree = "<group>"; };
 		83424B3811ED981200590A7A /* 02-redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-redo.png"; sourceTree = "<group>"; };
 		83424B3911ED981200590A7A /* 03-loopback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-loopback.png"; sourceTree = "<group>"; };
@@ -616,8 +616,8 @@
 				83424EBB11EDB79400590A7A /* MyProgrammeViewController.m */,
 				83424E8E11EDB68000590A7A /* NowAndNextViewController.h */,
 				83424E8F11EDB68000590A7A /* NowAndNextViewController.m */,
-				83424B2C11ED88E700590A7A /* OverviewViewController.h */,
-				83424B2D11ED88E700590A7A /* OverviewViewController.m */,
+				83424B2C11ED88E700590A7A /* SessionViewController.h */,
+				83424B2D11ED88E700590A7A /* SessionViewController.m */,
 				83D6BDC011EF051700FBC0FE /* SectionSessionHandler.h */,
 				83D6BDC111EF051700FBC0FE /* SectionSessionHandler.m */,
 				834B3DF4126C913600D66D41 /* SessionTableViewCell.h */,
@@ -1546,7 +1546,7 @@
 				8394726911EB98B10075C4C1 /* SBJsonBase.m in Sources */,
 				8394726A11EB98B10075C4C1 /* SBJsonParser.m in Sources */,
 				8394726B11EB98B10075C4C1 /* SBJsonWriter.m in Sources */,
-				83424B2E11ED88E700590A7A /* OverviewViewController.m in Sources */,
+				83424B2E11ED88E700590A7A /* SessionViewController.m in Sources */,
 				83424E9011EDB68000590A7A /* NowAndNextViewController.m in Sources */,
 				83424EBC11EDB79400590A7A /* MyProgrammeViewController.m in Sources */,
 				83D6BCF911EEF3A100FBC0FE /* SectionInitializer.m in Sources */,

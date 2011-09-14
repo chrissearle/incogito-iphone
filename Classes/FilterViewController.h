@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OverviewViewController.h"
+#import "SessionViewController.h"
 
 @class IncogitoAppDelegate;
 
