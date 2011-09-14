@@ -15,8 +15,6 @@
 + (NSString *)callForPapersUrl;
 + (NSDate *)callForPapersDate;
 
-+ (NSArray *)clubZonePins;
-
 + (NSArray *)activeYears;
 
 + (NSString *)registeredEmail;

@@ -31,10 +31,6 @@
     return [Preferences getPreferenceAsDate:@"CFPDate"];
 }
 
-+ (NSArray *)clubZonePins {
-    return [Preferences getPreferenceAsArray:@"ClubZone"];
-}
-
 + (NSArray *)activeYears {
     return [Preferences getPreferenceAsArray:@"ActiveYears"];
 }

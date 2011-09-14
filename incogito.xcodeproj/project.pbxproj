@@ -15,9 +15,6 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
-		830859CC120F2FF300F74041 /* ClubzoneMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 830859C9120F2FF300F74041 /* ClubzoneMapAnnotation.m */; };
-		830859CD120F2FF300F74041 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 830859CB120F2FF300F74041 /* MapViewController.m */; };
-		830859D0120F300A00F74041 /* Map.xib in Resources */ = {isa = PBXBuildFile; fileRef = 830859CF120F300A00F74041 /* Map.xib */; };
 		830859E2120F30DE00F74041 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830859E1120F30DE00F74041 /* MapKit.framework */; };
 		830B12AA11EDC9EC004A9B25 /* 11-clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B4B11ED981200590A7A /* 11-clock.png */; };
 		830B12AC11EDCA05004A9B25 /* 83-calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424BA811ED981300590A7A /* 83-calendar.png */; };
@@ -25,7 +22,6 @@
 		831F532B120BFFB60027A8A4 /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B6811ED981300590A7A /* 19-gear.png */; };
 		831F5332120BFFC40027A8A4 /* Settings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 831F5331120BFFC40027A8A4 /* Settings.xib */; };
 		831F5335120BFFD20027A8A4 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831F5334120BFFD20027A8A4 /* SettingsViewController.m */; };
-		8320A3C61307EF90000B34E4 /* TabInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8320A3C51307EF90000B34E4 /* TabInitializer.m */; };
 		83265D0A1248B1C2002A8333 /* Feedback.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83265D091248B1C2002A8333 /* Feedback.xib */; };
 		83265D101248B363002A8333 /* FeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83265D0F1248B363002A8333 /* FeedbackController.m */; };
 		83281ECD12437D0000792990 /* SHKCustomFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83281E3512437D0000792990 /* SHKCustomFormController.m */; };
@@ -96,7 +92,6 @@
 		83281F1B12437F2B00792990 /* DetailedViewExtras.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83281F1A12437F2B00792990 /* DetailedViewExtras.xib */; };
 		83294ABD12112CCE009FD6C8 /* 72-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B9D11ED981300590A7A /* 72-pin.png */; };
 		833A524411F840AD00E070D2 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 833A524311F840AD00E070D2 /* style.css */; };
-		8341FA141212CFB4004A45F4 /* ClubZone.png in Resources */ = {isa = PBXBuildFile; fileRef = 8341FA131212CFB4004A45F4 /* ClubZone.png */; };
 		834243EB11E74CAD00B438A8 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 834243EA11E74CAD00B438A8 /* Icon.png */; };
 		83424B2211ED882F00590A7A /* Overview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424B2111ED882F00590A7A /* Overview.xib */; };
 		83424B2E11ED88E700590A7A /* OverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83424B2D11ED88E700590A7A /* OverviewViewController.m */; };
@@ -106,8 +101,6 @@
 		83424EC111EDB7E300590A7A /* MyProgramme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424EC011EDB7E300590A7A /* MyProgramme.xib */; };
 		834B3DEE126C8F0700D66D41 /* SessionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834B3DED126C8F0700D66D41 /* SessionCell.xib */; };
 		834B3DF6126C913600D66D41 /* SessionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 834B3DF5126C913600D66D41 /* SessionTableViewCell.m */; };
-		83576C7C120BF478008CC97E /* ClubZone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83576C7B120BF478008CC97E /* ClubZone.xib */; };
-		83576C7F120BF48A008CC97E /* ClubZoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83576C7E120BF48A008CC97E /* ClubZoneViewController.m */; };
 		83576C82120BF54C008CC97E /* 112-group.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B4E11ED981200590A7A /* 112-group.png */; };
 		83713C06120AD6A0000050A7 /* star-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 83713C03120AD6A0000050A7 /* star-checked.png */; };
 		83713C07120AD6A0000050A7 /* star-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 83713C04120AD6A0000050A7 /* star-pressed.png */; };
@@ -132,7 +125,6 @@
 		8394726911EB98B10075C4C1 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394726111EB98B10075C4C1 /* SBJsonBase.m */; };
 		8394726A11EB98B10075C4C1 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394726311EB98B10075C4C1 /* SBJsonParser.m */; };
 		8394726B11EB98B10075C4C1 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8394726511EB98B10075C4C1 /* SBJsonWriter.m */; };
-		83A37C1A126CD14E0014A61C /* jz_pin_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A37C19126CD14E0014A61C /* jz_pin_logo.png */; };
 		83A5A81212CDF06E009FE6A7 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A5A81112CDF06E009FE6A7 /* MediaPlayer.framework */; };
 		83A7E161130A672E00C8945F /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A7E160130A672E00C8945F /* Preferences.m */; };
 		83C1E08113F45163007F1CC9 /* style-feedback.css in Resources */ = {isa = PBXBuildFile; fileRef = 83C1E08013F45163007F1CC9 /* style-feedback.css */; };
@@ -196,17 +188,10 @@
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* incogito_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = incogito_Prefix.pch; sourceTree = "<group>"; };
-		830859C8120F2FF300F74041 /* ClubzoneMapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClubzoneMapAnnotation.h; sourceTree = "<group>"; };
-		830859C9120F2FF300F74041 /* ClubzoneMapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClubzoneMapAnnotation.m; sourceTree = "<group>"; };
-		830859CA120F2FF300F74041 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
-		830859CB120F2FF300F74041 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		830859CF120F300A00F74041 /* Map.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Map.xib; sourceTree = "<group>"; };
 		830859E1120F30DE00F74041 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		831F5331120BFFC40027A8A4 /* Settings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Settings.xib; sourceTree = "<group>"; };
 		831F5333120BFFD20027A8A4 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		831F5334120BFFD20027A8A4 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		8320A3C41307EF90000B34E4 /* TabInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabInitializer.h; sourceTree = "<group>"; };
-		8320A3C51307EF90000B34E4 /* TabInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabInitializer.m; sourceTree = "<group>"; };
 		83265D091248B1C2002A8333 /* Feedback.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Feedback.xib; sourceTree = "<group>"; };
 		83265D0E1248B363002A8333 /* FeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackController.h; sourceTree = "<group>"; };
 		83265D0F1248B363002A8333 /* FeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackController.m; sourceTree = "<group>"; };
@@ -341,7 +326,6 @@
 		83281F1412437D2900792990 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		83281F1A12437F2B00792990 /* DetailedViewExtras.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailedViewExtras.xib; sourceTree = "<group>"; };
 		833A524311F840AD00E070D2 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
-		8341FA131212CFB4004A45F4 /* ClubZone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ClubZone.png; sourceTree = "<group>"; };
 		834243EA11E74CAD00B438A8 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		83424B2111ED882F00590A7A /* Overview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Overview.xib; sourceTree = "<group>"; };
 		83424B2C11ED88E700590A7A /* OverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverviewViewController.h; sourceTree = "<group>"; };
@@ -485,9 +469,6 @@
 		834B3DED126C8F0700D66D41 /* SessionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SessionCell.xib; sourceTree = "<group>"; };
 		834B3DF4126C913600D66D41 /* SessionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionTableViewCell.h; sourceTree = "<group>"; };
 		834B3DF5126C913600D66D41 /* SessionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionTableViewCell.m; sourceTree = "<group>"; };
-		83576C7B120BF478008CC97E /* ClubZone.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClubZone.xib; sourceTree = "<group>"; };
-		83576C7D120BF48A008CC97E /* ClubZoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClubZoneViewController.h; sourceTree = "<group>"; };
-		83576C7E120BF48A008CC97E /* ClubZoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClubZoneViewController.m; sourceTree = "<group>"; };
 		835F24D51243E016007C72EC /* SHKKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKKeys.h; sourceTree = "<group>"; };
 		83713C03120AD6A0000050A7 /* star-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-checked.png"; sourceTree = "<group>"; };
 		83713C04120AD6A0000050A7 /* star-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-pressed.png"; sourceTree = "<group>"; };
@@ -528,7 +509,6 @@
 		8394726311EB98B10075C4C1 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		8394726411EB98B10075C4C1 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		8394726511EB98B10075C4C1 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		83A37C19126CD14E0014A61C /* jz_pin_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jz_pin_logo.png; sourceTree = "<group>"; };
 		83A5A81112CDF06E009FE6A7 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		83A7E15F130A672E00C8945F /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
 		83A7E160130A672E00C8945F /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preferences.m; sourceTree = "<group>"; };
@@ -632,18 +612,12 @@
 				8381B19112CE21DD008760FF /* HUD */,
 				83281E3012437D0000792990 /* ShareKit */,
 				83F2D54411EBB56B0043A75E /* REST */,
-				830859C8120F2FF300F74041 /* ClubzoneMapAnnotation.h */,
-				830859C9120F2FF300F74041 /* ClubzoneMapAnnotation.m */,
-				83576C7D120BF48A008CC97E /* ClubZoneViewController.h */,
-				83576C7E120BF48A008CC97E /* ClubZoneViewController.m */,
 				83D6C07011EF922500FBC0FE /* DetailedSessionViewController.h */,
 				83D6C07111EF922500FBC0FE /* DetailedSessionViewController.m */,
 				83265D0E1248B363002A8333 /* FeedbackController.h */,
 				83265D0F1248B363002A8333 /* FeedbackController.m */,
 				1D3623240D0F684500981E51 /* IncogitoAppDelegate.h */,
 				1D3623250D0F684500981E51 /* IncogitoAppDelegate.m */,
-				830859CA120F2FF300F74041 /* MapViewController.h */,
-				830859CB120F2FF300F74041 /* MapViewController.m */,
 				83424EBA11EDB79400590A7A /* MyProgrammeViewController.h */,
 				83424EBB11EDB79400590A7A /* MyProgrammeViewController.m */,
 				83424E8E11EDB68000590A7A /* NowAndNextViewController.h */,
@@ -747,8 +721,6 @@
 			children = (
 				83D6BCF711EEF3A100FBC0FE /* SectionInitializer.h */,
 				83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */,
-				8320A3C41307EF90000B34E4 /* TabInitializer.h */,
-				8320A3C51307EF90000B34E4 /* TabInitializer.m */,
 				F3F0CD6D13E688F100EC1149 /* ClearDataInitializer.h */,
 				F3F0CD6E13E688F100EC1149 /* ClearDataInitializer.m */,
 			);
@@ -1325,13 +1297,11 @@
 			isa = PBXGroup;
 			children = (
 				F3D8EEA913EFFA78002C9427 /* AweZone.xib */,
-				830859CF120F300A00F74041 /* Map.xib */,
 				83D6C06F11EF922500FBC0FE /* DetailedSessionView.xib */,
 				83424B2111ED882F00590A7A /* Overview.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				83424E9111EDB68D00590A7A /* NowAndNext.xib */,
 				83424EC011EDB7E300590A7A /* MyProgramme.xib */,
-				83576C7B120BF478008CC97E /* ClubZone.xib */,
 				831F5331120BFFC40027A8A4 /* Settings.xib */,
 				83281F1A12437F2B00792990 /* DetailedViewExtras.xib */,
 				83265D091248B1C2002A8333 /* Feedback.xib */,
@@ -1352,7 +1322,6 @@
 				F35AC794141A29F50042BEA6 /* star2-checked.png */,
 				F35AC795141A29F50042BEA6 /* star2.png */,
 				F3D8EEAB13EFFADC002C9427 /* awezone.png */,
-				83A37C19126CD14E0014A61C /* jz_pin_logo.png */,
 				831F5339120C03170027A8A4 /* labels */,
 				83713C03120AD6A0000050A7 /* star-checked.png */,
 				83713C04120AD6A0000050A7 /* star-pressed.png */,
@@ -1362,7 +1331,6 @@
 				834243EA11E74CAD00B438A8 /* Icon.png */,
 				838D658312732B8A009D50AF /* Icon@2x.png */,
 				838D658212732B8A009D50AF /* Icon-72.png */,
-				8341FA131212CFB4004A45F4 /* ClubZone.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -1534,15 +1502,12 @@
 				83713C06120AD6A0000050A7 /* star-checked.png in Resources */,
 				83713C07120AD6A0000050A7 /* star-pressed.png in Resources */,
 				83713C08120AD6A0000050A7 /* star.png in Resources */,
-				83576C7C120BF478008CC97E /* ClubZone.xib in Resources */,
 				83576C82120BF54C008CC97E /* 112-group.png in Resources */,
 				831F532B120BFFB60027A8A4 /* 19-gear.png in Resources */,
 				831F5332120BFFC40027A8A4 /* Settings.xib in Resources */,
-				830859D0120F300A00F74041 /* Map.xib in Resources */,
 				83741769120F3AC700B816A2 /* 74-location.png in Resources */,
 				83294ABD12112CCE009FD6C8 /* 72-pin.png in Resources */,
 				83D794B412127B960080F7D1 /* incogito.plist in Resources */,
-				8341FA141212CFB4004A45F4 /* ClubZone.png in Resources */,
 				83E94C6512142EAA00596D30 /* all.png in Resources */,
 				83281ED112437D0000792990 /* SHKSharers.plist in Resources */,
 				83281EEE12437D0000792990 /* FBConnect.bundle in Resources */,
@@ -1551,7 +1516,6 @@
 				83FA5AC012460531008CA85C /* JavaZone2011.png in Resources */,
 				83265D0A1248B1C2002A8333 /* Feedback.xib in Resources */,
 				834B3DEE126C8F0700D66D41 /* SessionCell.xib in Resources */,
-				83A37C1A126CD14E0014A61C /* jz_pin_logo.png in Resources */,
 				838D658412732B8A009D50AF /* Icon-72.png in Resources */,
 				838D658512732B8A009D50AF /* Icon@2x.png in Resources */,
 				838D65AF12733322009D50AF /* MainWindow-iPad.xib in Resources */,
@@ -1604,10 +1568,7 @@
 				83D6BFF311EF3A7B00FBC0FE /* UserSession.m in Sources */,
 				83D6C07311EF922500FBC0FE /* DetailedSessionViewController.m in Sources */,
 				83D1762511F18C3300D89884 /* SessionCommonViewController.m in Sources */,
-				83576C7F120BF48A008CC97E /* ClubZoneViewController.m in Sources */,
 				831F5335120BFFD20027A8A4 /* SettingsViewController.m in Sources */,
-				830859CC120F2FF300F74041 /* ClubzoneMapAnnotation.m in Sources */,
-				830859CD120F2FF300F74041 /* MapViewController.m in Sources */,
 				83281ECD12437D0000792990 /* SHKCustomFormController.m in Sources */,
 				83281ECE12437D0000792990 /* SHKCustomFormFieldCell.m in Sources */,
 				83281ECF12437D0000792990 /* SHKCustomShareMenu.m in Sources */,
@@ -1673,7 +1634,6 @@
 				837C2CF9124DE2A100F09611 /* SessionParser.m in Sources */,
 				834B3DF6126C913600D66D41 /* SessionTableViewCell.m in Sources */,
 				8381B19912CE220C008760FF /* MBProgressHUD.m in Sources */,
-				8320A3C61307EF90000B34E4 /* TabInitializer.m in Sources */,
 				83A7E161130A672E00C8945F /* Preferences.m in Sources */,
 				F3A65026134473EB005B1372 /* JavaZonePrefs.m in Sources */,
 				F35EC3A61356CFD70047294D /* VideoMapper.m in Sources */,

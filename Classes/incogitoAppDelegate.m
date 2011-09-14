@@ -14,7 +14,6 @@
 #import "MyProgrammeViewController.h"
 #import "DetailedSessionViewController.h"
 #import "SettingsViewController.h"
-#import "TabInitializer.h"
 #import "ClearDataInitializer.h"
 #import "SHK.h"
 
@@ -56,9 +55,6 @@ void uncaughtExceptionHandler(NSException *exception) {
 	
     [SHK flushOfflineQueue];
     
-	TabInitializer *tabInitializer = [[[TabInitializer alloc] initWithControllers:rootController.viewControllers] autorelease];
-	[rootController setViewControllers:[tabInitializer validControllers] animated:NO];
-	
 	[window addSubview:rootController.view];
     [window makeKeyAndVisible];
 	
