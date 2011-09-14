@@ -216,7 +216,8 @@
 
     [controller setViewShouldRefreshDelegate:self];
     
-    [controller setModalTransitionStyle:UIModalTransitionStylePartialCurl];
+//    [controller setModalTransitionStyle:UIModalTransitionStylePartialCurl];
+    [controller setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [self presentModalViewController:controller animated:YES]; 
     [controller release];
 }

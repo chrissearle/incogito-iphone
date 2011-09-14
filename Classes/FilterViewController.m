@@ -40,10 +40,16 @@
 
 - (void)redrawForOrientation:(UIInterfaceOrientation)interfaceOrientation {
     
-    CGSize frameSize = self.view.frame.size;
-
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
         if (UIDeviceOrientationIsLandscape(interfaceOrientation)) {
+            self.doneButton.frame = CGRectMake(395, 265, 80, 35);
+            self.listLabel.frame = CGRectMake(105, 15, 80, 21);
+            self.listSelector.frame = CGRectMake(195, 10, 280, 30);
+            self.levelLabel.frame = CGRectMake(105, 50, 80, 21);
+            self.levelSelector.frame = CGRectMake(195, 45, 280, 30);
+
+            self.picker.frame = CGRectMake(0, 84, 380, 216);
+            self.labelLabel.frame = CGRectMake(20, 53, 80, 21);
             /*
             self.picker.frame = CGRectMake(0, 55, 250, 216);
             self.labelsLabel.frame = CGRectMake(7, 20, 280, 34);
@@ -53,37 +59,13 @@
             self.bioPicSwitch.frame = CGRectMake(366, 224, 94, 27);
              */
         } else {
-            
-            int smallwidth = 80;
-            int labelheight = 21;
-            int buttonheight = 35;
-            int segmentheight = 30;
-            int pad = 20;
-            int smallpad = 10;
-            int pickerheight = 216;
-            
-            int segmentwidth = frameSize.width - (2 * pad);
-            int rightx = frameSize.width - (pad + smallwidth);
-            int pickertop = frameSize.height - pickerheight;
-            
-            int top = pad;
-            
-            self.doneButton.frame = CGRectMake(rightx, top, smallwidth, buttonheight);
-            top = top + buttonheight + smallpad;
-            
-            self.listLabel.frame = CGRectMake(rightx, top, smallwidth, labelheight);
-            top = top + labelheight + smallpad;
-            
-            self.listSelector.frame = CGRectMake(pad, top, segmentwidth, segmentheight);
-            top = top + segmentheight + smallpad;
-
-            self.levelLabel.frame = CGRectMake(rightx, top, smallwidth, labelheight);
-            top = top + labelheight + smallpad;
-            
-            self.levelSelector.frame = CGRectMake(pad, top, segmentwidth, segmentheight);
-
-            self.picker.frame = CGRectMake(0, pickertop, frameSize.width, pickerheight);
-            self.labelLabel.frame = CGRectMake(pad, pickertop - (labelheight + smallpad), smallwidth, labelheight);
+            self.doneButton.frame = CGRectMake(220, 20, 80, 35);
+            self.listLabel.frame = CGRectMake(220, 65, 80, 21);
+            self.listSelector.frame = CGRectMake(20, 96, 280, 30);
+            self.levelLabel.frame = CGRectMake(220, 136, 80, 21);
+            self.levelSelector.frame = CGRectMake(20, 167, 280, 30);
+            self.picker.frame = CGRectMake(0, 244, 320, 216);
+            self.labelLabel.frame = CGRectMake(20, 213, 80, 21);
         }
     } else {
         /*
@@ -214,6 +196,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
+    // This SDK bug will cause an odd screen effect: https://devforums.apple.com/message/536881
     return YES;
 }
 
