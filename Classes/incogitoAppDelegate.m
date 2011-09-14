@@ -245,24 +245,5 @@ void uncaughtExceptionHandler(NSException *exception) {
 	return sectionSessionHandler_;
 }
 
-- (void)setLabelFilter:(NSString *)labelFilter {
-	AppLog(@"Setting label filter %@", labelFilter);
-
-	[[NSUserDefaults standardUserDefaults] setObject:labelFilter forKey:@"labelFilter"];
-	[[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (NSString *)getLabelFilter {
-	NSString *label = @"All";
-	
-	if (nil != [[NSUserDefaults standardUserDefaults] stringForKey:@"labelFilter"]) {
-		label = [[NSUserDefaults standardUserDefaults] stringForKey:@"labelFilter"];
-		
-		AppLog(@"Retrieved label filter %@", label);
-	}
-
-	return label;
-}
-
 @end
 

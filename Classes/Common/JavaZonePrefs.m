@@ -37,15 +37,31 @@
 
 // UserDefault Prefs
 
++ (void)setObject:(NSObject *)value forKey:(NSString *)key {
+    AppLog(@"Setting %@ for key %@", value, key);
+    
+	[[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (NSString *)getStringForKey:(NSString *)key withDefault:(NSString *)defaultValue {
+    NSString *value = defaultValue;
+	
+	if (nil != [[NSUserDefaults standardUserDefaults] stringForKey:key]) {
+		value = [[NSUserDefaults standardUserDefaults] stringForKey:key];
+		
+		AppLog(@"Retrieved %@ for key %@", value, key);
+	}
+    
+	return value;
+}
+
 + (NSString *)registeredEmail {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"RegisteredEmail"];
+    return [self getStringForKey:@"RegisteredEmail" withDefault:nil];
 }
 
 + (void)setRegisteredEmail:(NSString *)email {
-    AppLog(@"Setting registered e-mail %@", email);
-    
-    [[NSUserDefaults standardUserDefaults] setObject:email forKey:@"RegisteredEmail"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self setObject:email forKey:@"RegisteredEmail"];
 }
 
 + (BOOL)showBioPic {
@@ -84,8 +100,33 @@
 }
 
 + (void)setLastSuccessfulUpdate:(NSDate *)date {
-    [[NSUserDefaults standardUserDefaults] setObject:date forKey:@"lastSuccessfulUpdate"];
-	[[NSUserDefaults standardUserDefaults] synchronize];
+    [self setObject:date forKey:@"lastSuccessfulUpdate"];
 }
+
++ (void)setLabelFilter:(NSString *)labelFilter {
+    [self setObject:labelFilter forKey:@"labelFilter"];
+}
+
++ (NSString *)labelFilter {
+    return [self getStringForKey:@"labelFilter" withDefault:@"All"];
+}
+
++ (NSString *)listFilter {
+    return [self getStringForKey:@"listFilter" withDefault:@"All"];
+}
+
++ (void)setListFilter:(NSString *)listFilter {
+    [self setObject:listFilter forKey:@"listFilter"];
+}
+
++ (NSString *)levelFilter {
+    return [self getStringForKey:@"levelFilter" withDefault:@"All"];
+}
+
++ (void)setLevelFilter:(NSString *)levelFilter {
+    [self setObject:levelFilter forKey:@"levelFilter"];
+}
+
+
 
 @end

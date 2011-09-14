@@ -20,6 +20,7 @@
 @property (nonatomic, retain) IBOutlet UISegmentedControl *levelSelector;
 @property (nonatomic, retain) IBOutlet UIPickerView *picker;
 @property (nonatomic, retain) IncogitoAppDelegate *appDelegate;
+@property (nonatomic, assign) BOOL initialized;
 
 - (IBAction) done:(id)sender;
 - (IBAction) listSelected:(id)selector;

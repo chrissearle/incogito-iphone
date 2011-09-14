@@ -32,8 +32,5 @@
 - (NSString *)applicationDocumentsDirectory;
 - (SectionSessionHandler *)sectionSessionHandler;
 
-- (NSString *)getLabelFilter;
-- (void)setLabelFilter:(NSString *)labelFilter;
-
 @end
 

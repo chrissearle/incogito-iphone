@@ -26,4 +26,13 @@
 + (NSDate *)lastSuccessfulUpdate;
 + (void)setLastSuccessfulUpdate:(NSDate *)date;
 
++ (NSString *)labelFilter;
++ (void)setLabelFilter:(NSString *)labelFilter;
+
++ (NSString *)listFilter;
++ (void)setListFilter:(NSString *)listFilter;
+
++ (NSString *)levelFilter;
++ (void)setLevelFilter:(NSString *)levelFilter;
+
 @end

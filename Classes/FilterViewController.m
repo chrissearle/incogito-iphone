@@ -7,6 +7,7 @@
 #import "FilterViewController.h"
 #import "IncogitoAppDelegate.h"
 #import "SectionSessionHandler.h"
+#import "JavaZonePrefs.h"
 
 @implementation FilterViewController
 
@@ -16,6 +17,7 @@
 @synthesize labels;
 @synthesize appDelegate;
 @synthesize viewShouldRefreshDelegate;
+@synthesize initialized;
 
 - (void)dealloc
 {
@@ -54,6 +56,8 @@
 {
     [super viewDidLoad];
 
+    self.initialized = NO;
+    
     self.appDelegate = [[UIApplication sharedApplication] delegate];
    
     [self.levelSelector removeAllSegments];
@@ -67,7 +71,7 @@
     [self setLabels:[[self.appDelegate sectionSessionHandler] getUniqueLabels]];
     
 	// Set picker index
-	NSString *savedKey = [self.appDelegate getLabelFilter];
+	NSString *savedKey = [JavaZonePrefs labelFilter];
 	
 	NSArray *values = [[self.labels allValues] sortedArrayUsingSelector:@selector(compare:)];
 	
@@ -77,6 +81,39 @@
 		index = [sortedValues indexOfObject:savedKey] + 1;
 	}
 	[self.picker selectRow:index inComponent:0 animated:YES];
+    
+    
+    
+    NSString *savedListKey = [JavaZonePrefs listFilter];
+
+    int selectedListIndex = 0;
+    
+    for (int i = 0; i < self.listSelector.numberOfSegments; i++) {
+        if ([savedListKey isEqualToString:[self.listSelector titleForSegmentAtIndex:i]]) {
+            selectedListIndex = i;
+        }
+    }
+
+    self.listSelector.selectedSegmentIndex = selectedListIndex;
+    
+    NSString *savedLevelFilter = [JavaZonePrefs levelFilter];
+
+    AppLog(@"Init level filter to %@", savedLevelFilter);
+    
+    if ([savedLevelFilter isEqualToString:@"All"]) {
+        self.levelSelector.selectedSegmentIndex = 0;
+    }
+    if ([savedLevelFilter isEqualToString:@"Introductory"]) {
+        self.levelSelector.selectedSegmentIndex = 1;
+    }
+    if ([savedLevelFilter isEqualToString:@"Intermediate"]) {
+        self.levelSelector.selectedSegmentIndex = 2;
+    }
+    if ([savedLevelFilter isEqualToString:@"Advanced"]) {
+        self.levelSelector.selectedSegmentIndex = 3;
+    }
+    
+    self.initialized = YES;
 }
 
 - (void)viewDidUnload
@@ -102,11 +139,32 @@
 }
 
 - (IBAction) listSelected:(id)selector {
-    AppLog(@"List selected: %d", [self.listSelector selectedSegmentIndex]);
+    if (self.initialized == YES) {
+        AppLog(@"List selected: %d", [self.listSelector selectedSegmentIndex]);
+    
+        [JavaZonePrefs setListFilter:[self.listSelector titleForSegmentAtIndex:[self.listSelector selectedSegmentIndex]]];
+    }
 }
 
 - (IBAction) levelSelected:(id)selector {
-    AppLog(@"Level selected: %d", [self.levelSelector selectedSegmentIndex]);
+    if (self.initialized == YES) {
+        AppLog(@"Level selected: %d", [self.levelSelector selectedSegmentIndex]);
+        
+        switch ([self.levelSelector selectedSegmentIndex]) {
+            case 0:
+                [JavaZonePrefs setLevelFilter:@"All"];
+                break;
+            case 1:
+                [JavaZonePrefs setLevelFilter:@"Introductory"];
+                break;
+            case 2:
+                [JavaZonePrefs setLevelFilter:@"Intermediate"];
+                break;
+            case 3:
+                [JavaZonePrefs setLevelFilter:@"Advanced"];
+                break;
+        }
+    }
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -187,7 +245,7 @@
 	}
     
 	// Store pref
-	[self.appDelegate setLabelFilter:label];
+	[JavaZonePrefs setLabelFilter:label];
 	
 	[FlurryAnalytics logEvent:@"Filtered" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
                                                           label,

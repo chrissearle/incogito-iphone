@@ -16,6 +16,9 @@
 #import "SessionTableViewCell.h"
 #import "JavaZonePrefs.h"
 #import "JavazoneSessionsRetriever.h"
+#ifdef NOW_AND_NEXT_USE_TEST_DATE
+#import "SessionDateConverter.h"
+#endif
 
 @implementation SessionViewController
 
@@ -27,6 +30,7 @@
 @synthesize appDelegate;
 @synthesize lastSuccessfulUpdate;
 @synthesize HUD;
+@synthesize footers;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -52,13 +56,11 @@
 }
 
 - (void) setTitleFromPrefs {
-    NSString *savedKey = [self.appDelegate getLabelFilter];
+    NSString *savedKey = [JavaZonePrefs labelFilter];
+    NSString *savedList = [JavaZonePrefs listFilter];
+    NSString *savedLevel = [JavaZonePrefs levelFilter];
     
-    if ([savedKey isEqual:@"All"]) {
-        self.navigationItem.title = @"Sessions";
-    } else {
-        self.navigationItem.title = savedKey;
-    }
+    self.navigationItem.title = [NSString stringWithFormat:@"%@ : %@ : %@", savedList, savedKey, savedLevel];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -84,17 +86,62 @@
 - (void) loadSessionData {
 	SectionSessionHandler *handler = [self.appDelegate sectionSessionHandler];
 	
-	if ([currentSearch isEqual:@""]) {
+    footers = nil;
+    
+    NSString *list = [JavaZonePrefs listFilter];
+    
+    if ([list isEqual:@"Now & Next"]) {
         self.sessions = [handler getSessions];
-	} else {
-        self.sessions = [handler getSessionsMatching:currentSearch];
-	}
-	
-	NSMutableArray *titles = [NSMutableArray arrayWithArray:[self.sessions allKeys]];
-	
-	[titles sortUsingSelector:@selector(compare:)];
+        
+        NSMutableArray *titles = [[NSMutableArray alloc] init];
+        NSMutableArray *footerTexts = [[NSMutableArray alloc] init];
+        
+#ifdef NOW_AND_NEXT_USE_TEST_DATE
+        // In debug mode we will use the current time of day but always the first day of JZ. Otherwise we couldn't test until JZ started ;)
+        NSDate *current = [[[NSDate alloc] init] autorelease];
+        
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        unsigned int unitFlags = NSHourCalendarUnit|NSMinuteCalendarUnit;
+        NSDateComponents *comp = [calendar components:unitFlags fromDate:current];
+        
+        NSDate *now = [SessionDateConverter dateFromString:[NSString stringWithFormat:@"2011-09-07 %02d:%02d:00 +0200", [comp hour], [comp minute]]];
+#else
+        NSDate *now = [[[NSDate alloc] init] autorelease];
+#endif
+        NSString *nowTitle = [handler getSectionTitleForDate:now];
+        NSString *nextTitle = [handler getNextSectionTitleForDate:now];
+        
+        if (nil != nowTitle) {
+            [footerTexts addObject:nowTitle];
+            [titles addObject:@"Now"];
+        }
+        if (nil != nextTitle) {
+            [footerTexts addObject:nextTitle];
+            [titles addObject:@"Next"];
+        }
 
-	self.sectionTitles = [[[NSArray alloc] initWithArray:titles] autorelease];
+        self.sectionTitles = [[[NSArray alloc] initWithArray:titles] autorelease];
+        self.footers = [[[NSArray alloc] initWithArray:footerTexts] autorelease];
+        
+        [titles release];
+        [footerTexts release];
+    } else {
+        if ([list isEqual:@"My JZ"]) {
+            [self setSessions:[handler getFavouriteSessions]];
+        } else {
+            if ([currentSearch isEqual:@""]) {
+                self.sessions = [handler getSessions];
+            } else {
+                self.sessions = [handler getSessionsMatching:currentSearch];
+            }
+        }    
+        
+        NSMutableArray *titles = [NSMutableArray arrayWithArray:[self.sessions allKeys]];
+        
+        [titles sortUsingSelector:@selector(compare:)];
+        
+        self.sectionTitles = [[[NSArray alloc] initWithArray:titles] autorelease];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -209,6 +256,9 @@
 }
 
 - (NSString *)getSelectedSessionTitle:(NSInteger)section {
+    if (footers != nil) {
+        return [self.footers objectAtIndex:section];
+    }
 	return [self.sectionTitles objectAtIndex:section];
 }
 
@@ -327,6 +377,13 @@
 	return [self.sectionTitles objectAtIndex:section];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    if (self.footers == nil) {
+        return nil;
+    }
+    
+	return [self.footers objectAtIndex:section];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.sb setShowsCancelButton:NO animated:YES];
@@ -340,9 +397,7 @@
     
 	controller.session = [[self.sessions objectForKey:sectionTitle] objectAtIndex:indexPath.row];
 	
-#ifndef SHOW_TAB_BAR_ON_DETAILS_VIEW
 	[controller setHidesBottomBarWhenPushed:YES];
-#endif
 	
 	[[self navigationController] pushViewController:controller animated:YES];
 	[controller release], controller = nil;
@@ -363,7 +418,7 @@
 			
 			[handler toggleFavouriteForSession:[cell jzId]];
 			
-			[self refresh:self];
+			[self reloadView];
 			
 			break;
 		}

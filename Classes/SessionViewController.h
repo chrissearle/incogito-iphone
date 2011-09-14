@@ -18,6 +18,7 @@
 @property (nonatomic, retain) IBOutlet UISearchBar *sb;
 @property (nonatomic, retain) NSArray		*sectionTitles;
 @property (nonatomic, retain) NSDictionary	*sessions;
+@property (nonatomic, retain) NSArray *footers;
 @property (nonatomic, retain) IBOutlet UITableView	*tv;
 @property (nonatomic, retain) IncogitoAppDelegate *appDelegate;
 @property (nonatomic, retain) NSDate *lastSuccessfulUpdate;
