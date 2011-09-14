@@ -192,13 +192,17 @@
     [controller release];
 }
 
+- (void)reloadView {
+    [self loadSessionData];
+    [[self tv] reloadData];
+}
+
 - (void)refeshView:(BOOL)reload withFull:(BOOL)full {
     if (reload == YES) {
         if (full == YES) {
             [self sync];
         } else {
-            [self loadSessionData];
-            [[self tv] reloadData];
+            [self reloadView];
         }
         [self setTitleFromPrefs];
     }
@@ -359,7 +363,7 @@
 			
 			[handler toggleFavouriteForSession:[cell jzId]];
 			
-			[self.appDelegate refreshViewData];
+			[self refresh:self];
 			
 			break;
 		}

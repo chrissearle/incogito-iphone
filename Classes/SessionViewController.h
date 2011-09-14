@@ -5,8 +5,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SessionCommonViewController.h"
 #import "MBProgressHUD.h"
+#import "IncogitoAppDelegate.h"
 
 @protocol ViewShouldRefreshDelegate
 - (void)refeshView:(BOOL)reload withFull:(BOOL)full;

@@ -21,7 +21,6 @@
 		8317CED711F038BB00DE7415 /* 28-star.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B7111ED981300590A7A /* 28-star.png */; };
 		831F532B120BFFB60027A8A4 /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B6811ED981300590A7A /* 19-gear.png */; };
 		831F5332120BFFC40027A8A4 /* Settings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 831F5331120BFFC40027A8A4 /* Settings.xib */; };
-		831F5335120BFFD20027A8A4 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831F5334120BFFD20027A8A4 /* SettingsViewController.m */; };
 		83265D0A1248B1C2002A8333 /* Feedback.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83265D091248B1C2002A8333 /* Feedback.xib */; };
 		83265D101248B363002A8333 /* FeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83265D0F1248B363002A8333 /* FeedbackController.m */; };
 		83281ECD12437D0000792990 /* SHKCustomFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83281E3512437D0000792990 /* SHKCustomFormController.m */; };
@@ -95,9 +94,7 @@
 		834243EB11E74CAD00B438A8 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 834243EA11E74CAD00B438A8 /* Icon.png */; };
 		83424B2211ED882F00590A7A /* Overview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424B2111ED882F00590A7A /* Overview.xib */; };
 		83424B2E11ED88E700590A7A /* SessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83424B2D11ED88E700590A7A /* SessionViewController.m */; };
-		83424E9011EDB68000590A7A /* NowAndNextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83424E8F11EDB68000590A7A /* NowAndNextViewController.m */; };
 		83424E9211EDB68D00590A7A /* NowAndNext.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424E9111EDB68D00590A7A /* NowAndNext.xib */; };
-		83424EBC11EDB79400590A7A /* MyProgrammeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83424EBB11EDB79400590A7A /* MyProgrammeViewController.m */; };
 		83424EC111EDB7E300590A7A /* MyProgramme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424EC011EDB7E300590A7A /* MyProgramme.xib */; };
 		834B3DEE126C8F0700D66D41 /* SessionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834B3DED126C8F0700D66D41 /* SessionCell.xib */; };
 		834B3DF6126C913600D66D41 /* SessionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 834B3DF5126C913600D66D41 /* SessionTableViewCell.m */; };
@@ -188,8 +185,6 @@
 		32CA4F630368D1EE00C91783 /* incogito_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = incogito_Prefix.pch; sourceTree = "<group>"; };
 		830859E1120F30DE00F74041 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		831F5331120BFFC40027A8A4 /* Settings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Settings.xib; sourceTree = "<group>"; };
-		831F5333120BFFD20027A8A4 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		831F5334120BFFD20027A8A4 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		83265D091248B1C2002A8333 /* Feedback.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Feedback.xib; sourceTree = "<group>"; };
 		83265D0E1248B363002A8333 /* FeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackController.h; sourceTree = "<group>"; };
 		83265D0F1248B363002A8333 /* FeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackController.m; sourceTree = "<group>"; };
@@ -458,11 +453,7 @@
 		83424BB611ED981300590A7A /* 97-puzzle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "97-puzzle.png"; sourceTree = "<group>"; };
 		83424BB711ED981300590A7A /* 98-palette.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "98-palette.png"; sourceTree = "<group>"; };
 		83424BB811ED981300590A7A /* 99-umbrella.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "99-umbrella.png"; sourceTree = "<group>"; };
-		83424E8E11EDB68000590A7A /* NowAndNextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowAndNextViewController.h; sourceTree = "<group>"; };
-		83424E8F11EDB68000590A7A /* NowAndNextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowAndNextViewController.m; sourceTree = "<group>"; };
 		83424E9111EDB68D00590A7A /* NowAndNext.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NowAndNext.xib; sourceTree = "<group>"; };
-		83424EBA11EDB79400590A7A /* MyProgrammeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProgrammeViewController.h; sourceTree = "<group>"; };
-		83424EBB11EDB79400590A7A /* MyProgrammeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProgrammeViewController.m; sourceTree = "<group>"; };
 		83424EC011EDB7E300590A7A /* MyProgramme.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProgramme.xib; sourceTree = "<group>"; };
 		834B3DED126C8F0700D66D41 /* SessionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SessionCell.xib; sourceTree = "<group>"; };
 		834B3DF4126C913600D66D41 /* SessionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionTableViewCell.h; sourceTree = "<group>"; };
@@ -612,18 +603,12 @@
 				83265D0F1248B363002A8333 /* FeedbackController.m */,
 				1D3623240D0F684500981E51 /* IncogitoAppDelegate.h */,
 				1D3623250D0F684500981E51 /* IncogitoAppDelegate.m */,
-				83424EBA11EDB79400590A7A /* MyProgrammeViewController.h */,
-				83424EBB11EDB79400590A7A /* MyProgrammeViewController.m */,
-				83424E8E11EDB68000590A7A /* NowAndNextViewController.h */,
-				83424E8F11EDB68000590A7A /* NowAndNextViewController.m */,
 				83424B2C11ED88E700590A7A /* SessionViewController.h */,
 				83424B2D11ED88E700590A7A /* SessionViewController.m */,
 				83D6BDC011EF051700FBC0FE /* SectionSessionHandler.h */,
 				83D6BDC111EF051700FBC0FE /* SectionSessionHandler.m */,
 				834B3DF4126C913600D66D41 /* SessionTableViewCell.h */,
 				834B3DF5126C913600D66D41 /* SessionTableViewCell.m */,
-				831F5333120BFFD20027A8A4 /* SettingsViewController.h */,
-				831F5334120BFFD20027A8A4 /* SettingsViewController.m */,
 				F3D8EEA313EFF7D3002C9427 /* AweZoneController.h */,
 				F3D8EEA413EFF7D3002C9427 /* AweZoneController.m */,
 				F380B771141F69EC009E8242 /* FilterViewController.h */,
@@ -1547,8 +1532,6 @@
 				8394726A11EB98B10075C4C1 /* SBJsonParser.m in Sources */,
 				8394726B11EB98B10075C4C1 /* SBJsonWriter.m in Sources */,
 				83424B2E11ED88E700590A7A /* SessionViewController.m in Sources */,
-				83424E9011EDB68000590A7A /* NowAndNextViewController.m in Sources */,
-				83424EBC11EDB79400590A7A /* MyProgrammeViewController.m in Sources */,
 				83D6BCF911EEF3A100FBC0FE /* SectionInitializer.m in Sources */,
 				83D6BDC211EF051700FBC0FE /* SectionSessionHandler.m in Sources */,
 				83D6BFEF11EF3A7B00FBC0FE /* JZLabel.m in Sources */,
@@ -1557,7 +1540,6 @@
 				83D6BFF211EF3A7B00FBC0FE /* JZSessionBio.m in Sources */,
 				83D6BFF311EF3A7B00FBC0FE /* UserSession.m in Sources */,
 				83D6C07311EF922500FBC0FE /* DetailedSessionViewController.m in Sources */,
-				831F5335120BFFD20027A8A4 /* SettingsViewController.m in Sources */,
 				83281ECD12437D0000792990 /* SHKCustomFormController.m in Sources */,
 				83281ECE12437D0000792990 /* SHKCustomFormFieldCell.m in Sources */,
 				83281ECF12437D0000792990 /* SHKCustomShareMenu.m in Sources */,

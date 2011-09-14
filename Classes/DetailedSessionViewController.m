@@ -148,8 +148,6 @@
 		self.checkboxSelected = 0;
 		[self.handler setFavouriteForSession:session withBoolean:NO];
 	}
-	
-	[self.appDelegate refreshViewData];
 }
 
 - (void)didReceiveMemoryWarning {

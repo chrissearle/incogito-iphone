@@ -10,10 +10,8 @@
 #import "SectionInitializer.h"
 #import "Section.h"
 #import "SectionSessionHandler.h"
-#import "SessionCommonViewController.h"
-#import "MyProgrammeViewController.h"
+#import "SessionViewController.h"
 #import "DetailedSessionViewController.h"
-#import "SettingsViewController.h"
 #import "ClearDataInitializer.h"
 #import "SHK.h"
 
@@ -245,33 +243,6 @@ void uncaughtExceptionHandler(NSException *exception) {
 	[sectionSessionHandler_ setManagedObjectContext:[self managedObjectContext]];
 	
 	return sectionSessionHandler_;
-}
-
-- (void)refreshViewData {
-	for (UIViewController *controller in [rootController viewControllers]) {
-		if ([controller isKindOfClass:[UINavigationController class]]) {
-			UINavigationController *navController = (UINavigationController *)controller;
-			
-			for (UIViewController *subController in [navController viewControllers]) {
-				if ([subController isKindOfClass:[SessionCommonViewController class]]) {
-					AppLog(@"Sending reload to %@", [subController class]);
-			
-					SessionCommonViewController *c = (SessionCommonViewController *)subController;
-			
-					[c loadSessionData];
-					[[c tv] reloadData];
-					
-				}
-			}
-		}
-		if ([controller isKindOfClass:[SettingsViewController class]]) {
-			AppLog(@"Sending reload to %@", [controller class]);
-			
-			SettingsViewController *c = (SettingsViewController *)controller;
-			
-			[c refreshPicker];
-		}
-	}
 }
 
 - (void)setLabelFilter:(NSString *)labelFilter {
