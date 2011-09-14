@@ -13,30 +13,30 @@
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
+// Clear Data
+
 - (NSArray *)getSections;
-- (NSString *)getSectionTitleForDate:(NSDate *)date;
-- (NSString *)getNextSectionTitleForDate:(NSDate *)date;
-- (JZSession *)getSessionForJZId:(NSString *)jzId;
-
-- (NSDictionary *)getSessions;
-- (NSDictionary *)getSessionsMatching:(NSString *)search;
-- (NSArray *)getSessionsForSection:(Section *)section;
-- (NSArray *)getSessionsForSection:(Section *)section matching:(NSString *)search;
-- (NSDictionary *)getFavouriteSessions;
-- (NSArray *)getFavouriteSessionsForSection:(Section *)section;
 - (NSArray *)getAllSessions;
-
-- (NSUInteger)getActiveSessionCount;
-
-- (void) setFavouriteForSession:(JZSession *)session withBoolean:(BOOL)favouriteFlag;
-- (void) toggleFavouriteForSession:(NSString *)jzId;
-
-- (NSDictionary *)getUniqueLabels;
-- (NSString *)getStoredFilter;
-- (NSArray *)filterSessionList:(NSArray *)sessions;
-
 - (void)deleteSession:(JZSession *)session;
 - (void)deleteSection:(Section *)section;
 
+// List
+
+- (NSString *)getSectionTitleForDate:(NSDate *)date;
+- (NSString *)getNextSectionTitleForDate:(NSDate *)date;
+- (NSDictionary *)getSessionsMatching:(NSString *)search andLevel:(NSString *)level andLabel:(NSString *)label withFavourites:(BOOL)limitToFavourites;
+- (NSUInteger)getActiveSessionCount;
+
+// Detail
+
+- (JZSession *)getSessionForJZId:(NSString *)jzId;
+- (void) setFavouriteForSession:(JZSession *)session withBoolean:(BOOL)favouriteFlag;
+
+// Detail and List
+
+- (void) toggleFavouriteForSession:(NSString *)jzId;
+
+// Filter
+- (NSDictionary *)getUniqueLabels;
 
 @end

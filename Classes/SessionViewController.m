@@ -90,9 +90,9 @@
     
     NSString *list = [JavaZonePrefs listFilter];
     
+    self.sessions = [handler getSessionsMatching:self.currentSearch andLevel:[JavaZonePrefs levelFilter] andLabel:[JavaZonePrefs labelFilter] withFavourites:[list isEqual:@"My JZ"]];
+    
     if ([list isEqual:@"Now & Next"]) {
-        self.sessions = [handler getSessions];
-        
         NSMutableArray *titles = [[NSMutableArray alloc] init];
         NSMutableArray *footerTexts = [[NSMutableArray alloc] init];
         
@@ -126,16 +126,6 @@
         [titles release];
         [footerTexts release];
     } else {
-        if ([list isEqual:@"My JZ"]) {
-            [self setSessions:[handler getFavouriteSessions]];
-        } else {
-            if ([currentSearch isEqual:@""]) {
-                self.sessions = [handler getSessions];
-            } else {
-                self.sessions = [handler getSessionsMatching:currentSearch];
-            }
-        }    
-        
         NSMutableArray *titles = [NSMutableArray arrayWithArray:[self.sessions allKeys]];
         
         [titles sortUsingSelector:@selector(compare:)];

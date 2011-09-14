@@ -15,57 +15,58 @@
 
 @synthesize managedObjectContext;
 
-
-- (NSArray *)getSections {
-	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"Section" inManagedObjectContext:self.managedObjectContext];
-	
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	
-	[request setEntity:entityDescription];
-	
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startDate" ascending:YES];
-	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-	[request setSortDescriptors:sortDescriptors];
-	[sortDescriptors release];
-	[sortDescriptor release];
-	
-	NSError *error = nil;
-
-	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
-	[request release];
-
-	if (nil != error) {
-		[mutableFetchResults release];
-		AppLog(@"%@:%@ Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
-		return nil;
-	}
-	
-	NSArray *sections = [[[NSArray alloc] initWithArray:mutableFetchResults] autorelease];
-	[mutableFetchResults release];
-	
-	return sections;
+- (void)dealloc {
+    [managedObjectContext release];
+    
+    [super dealloc];
 }
 
-- (NSArray *)getSessionsForSection:(Section *)section {
+- (NSArray *)getSessionsForSection:(Section *)section matching:(NSString *)search andLevel:(NSString *)level andLabel:(NSString *)label withFavourites:(BOOL)limitToFavourites {
 	NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:@"JZSession" inManagedObjectContext:self.managedObjectContext];
-	
+
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	
 	[request setEntity:entityDescription];
-	
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"room" ascending:YES];
+
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"room" ascending:YES];
 	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
 	[request setSortDescriptors:sortDescriptors];
 	[sortDescriptors release];
 	[sortDescriptor release];
 	
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:
-							  @"(active == %@) AND (startDate >= %@) AND (endDate <= %@)", [NSNumber numberWithBool:true], [section startDate], [section endDate]];
-	
+    NSMutableArray *predicates = [[NSMutableArray alloc] init];
+    
+    [predicates addObject:[NSPredicate predicateWithFormat:@"(active == %@) AND (startDate >= %@) AND (endDate <= %@)",
+                           [NSNumber numberWithBool:true], [section startDate], [section endDate]]];
+    
+    if (search != nil && ![search isEqual:@""]) {
+        [predicates addObject:[NSPredicate predicateWithFormat:@"(title contains[cd] %@ OR ANY speakers.name  contains[cd] %@)",
+                               search, search]];
+    }
+    
+    if (level != nil && ![level isEqual:@""] && ![level isEqual:@"All"]) {
+        [predicates addObject:[NSPredicate predicateWithFormat:@"(level contains[c] %@)",
+                               level]];
+    }
+
+    if (label != nil && ![label isEqual:@""] && ![label isEqual:@"All"]) {
+        [predicates addObject:[NSPredicate predicateWithFormat:@"(ANY labels.title contains[c] %@)",
+                               label]];
+    }
+
+    if (limitToFavourites == YES) {
+        [predicates addObject:[NSPredicate predicateWithFormat:@"(userSession.@count > 0)"]];
+    }
+    
+    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicates];
+    
+    AppLog(@"Searching with %@", [predicate predicateFormat]);
+    
 	[request setPredicate:predicate];
 	
+    [predicates release];
+    
 	NSError *error = nil;
 	
 	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
@@ -80,281 +81,10 @@
 	NSArray *sessions = [[[NSArray alloc] initWithArray:mutableFetchResults] autorelease];
 	[mutableFetchResults release];
 	
-	return [self filterSessionList:sessions];
+	return sessions;
 }
 
-- (NSArray *)getSessionsForSection:(Section *)section matching:(NSString *)search {
-	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"JZSession" inManagedObjectContext:self.managedObjectContext];
-	
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	
-	[request setEntity:entityDescription];
-	
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"room" ascending:YES];
-	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-	[request setSortDescriptors:sortDescriptors];
-	[sortDescriptors release];
-	[sortDescriptor release];
-	
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:
-							  @"(active == %@) AND (startDate >= %@) AND (endDate <= %@) AND (title contains[cd] %@ OR ANY speakers.name  contains[cd] %@)", [NSNumber numberWithBool:true], [section startDate], [section endDate], search, search];
-	
-	[request setPredicate:predicate];
-	
-	NSError *error = nil;
-	
-	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
-	[request release];
-	
-	if (nil != error) {
-		[mutableFetchResults release];
-		AppLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
-		return nil;
-	}
-	
-	NSArray *sessions = [[[NSArray alloc] initWithArray:mutableFetchResults] autorelease];
-	[mutableFetchResults release];
-	
-	return [self filterSessionList:sessions];
-}
-
-- (NSArray *)getFavouriteSessionsForSection:(Section *)section {
-	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"JZSession" inManagedObjectContext:self.managedObjectContext];
-	
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	
-	[request setEntity:entityDescription];
-	
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"room" ascending:YES];
-	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-	[request setSortDescriptors:sortDescriptors];
-	[sortDescriptors release];
-	[sortDescriptor release];
-	
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:
-							  @"(userSession.@count > 0) && (active == %@) AND (startDate >= %@) AND (endDate <= %@)", [NSNumber numberWithBool:true], [section startDate], [section endDate]];
-
-	[request setPredicate:predicate];
-	
-	NSError *error = nil;
-	
-	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
-	[request release];
-	
-	if (nil != error) {
-		[mutableFetchResults release];
-		AppLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
-		return nil;
-	}
-
-	NSArray *sessions = [[[NSArray alloc] initWithArray:mutableFetchResults] autorelease];
-	[mutableFetchResults release];
-	
-	return [self filterSessionList:sessions];
-}
-
-- (NSDictionary *)getSessions {
-	NSArray *sections = [self getSections];
-	
-	NSMutableArray *keys = [[NSMutableArray alloc] initWithCapacity:[sections count]];
-	NSMutableArray *objects = [[NSMutableArray alloc] initWithCapacity:[sections count]];
-	
-	for (Section *section in sections) {
-		NSArray *sessions = [self getSessionsForSection:section];
-		
-		if ([sessions count] > 0) {
-			[keys addObject:[section title]];
-			[objects addObject:sessions];
-		}
-	}
-	
-	NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
-	[objects release];
-	[keys release];
-	
-	return dictionary;
-}
-
-- (NSDictionary *)getSessionsMatching:(NSString *)search {
-	NSArray *sections = [self getSections];
-	
-	NSMutableArray *keys = [[NSMutableArray alloc] initWithCapacity:[sections count]];
-	NSMutableArray *objects = [[NSMutableArray alloc] initWithCapacity:[sections count]];
-	
-	for (Section *section in sections) {
-		NSArray *sessions = [self getSessionsForSection:section matching:search];
-		
-		if ([sessions count] > 0) {
-			[keys addObject:[section title]];
-			[objects addObject:sessions];
-		}
-	}
-	
-	NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
-	[objects release];
-	[keys release];
-	
-	return dictionary;
-}
-
-- (NSString *)getSectionTitleForDate:(NSDate *)date {
-	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"Section" inManagedObjectContext:self.managedObjectContext];
-	
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	
-	[request setEntity:entityDescription];
-	
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:
-							  @"(startDate <= %@) AND (endDate >= %@)", date, date];
-	
-	[request setPredicate:predicate];
-	
-	NSError *error = nil;
-	
-	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
-	[request release];
-	
-	if (nil != error) {
-		[mutableFetchResults release];
-		AppLog(@"%@:%@ Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
-		return nil;
-	}
-
-	NSArray *sections = [[[NSArray alloc] initWithArray:mutableFetchResults] autorelease];
-	[mutableFetchResults release];
-	
-	if (nil == sections || [sections count] == 0) {
-		return nil;
-	}
-	
-	return [[sections objectAtIndex:0] title];
-}
-
-- (NSString *)getNextSectionTitleForDate:(NSDate *)date {
-	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"Section" inManagedObjectContext:self.managedObjectContext];
-	
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	
-	[request setEntity:entityDescription];
-	
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:
-							  @"(startDate > %@)", date];
-	
-	[request setPredicate:predicate];
-
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startDate" ascending:YES];
-	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-	[request setSortDescriptors:sortDescriptors];
-	[sortDescriptors release];
-	[sortDescriptor release];
-	
-	NSError *error = nil;
-	
-	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
-	[request release];
-	
-	if (nil != error) {
-		[mutableFetchResults release];
-		AppLog(@"%@:%@ Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
-		return nil;
-	}
-	
-	NSArray *sections = [[[NSArray alloc] initWithArray:mutableFetchResults] autorelease];
-	
-	[mutableFetchResults release];
-	
-	if (nil == sections || [sections count] == 0) {
-		return nil;
-	}
-	
-	return [[sections objectAtIndex:0] title];
-}
-
-- (JZSession *)getSessionForJZId:(NSString *)jzId {
-	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"JZSession" inManagedObjectContext:self.managedObjectContext];
-	
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	
-	[request setEntity:entityDescription];
-	
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:
-							  @"(jzId == %@)", jzId];
-	
-	[request setPredicate:predicate];
-	
-	NSError *error = nil;
-	
-	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
-	[request release];
-
-	if (nil != error) {
-		[mutableFetchResults release];
-		AppLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
-		return nil;
-	}
-	
-	NSArray *sessions = [[[NSArray alloc] initWithArray:mutableFetchResults] autorelease];
-	[mutableFetchResults release];
-	
-	if (nil == sessions || [sessions count] == 0) {
-		return nil;
-	}
-	
-	return [sessions objectAtIndex:0];
-}
-
-- (NSDictionary *)getFavouriteSessions {
-	NSArray *sections = [self getSections];
-	
-	NSMutableArray *keys = [[NSMutableArray alloc] init];
-	
-	NSMutableArray *objects = [[NSMutableArray alloc] init];
-	
-	for (Section *section in sections) {
-		NSArray *sessions = [self getFavouriteSessionsForSection:section];
-		
-		if (nil != sessions && [sessions count] > 0) {
-			[keys addObject:[section title]];
-			[objects addObject:sessions];
-		}
-	}
-	
-	NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
-	[objects release];
-	[keys release];
-	
-	return dictionary;	
-}
-
-- (NSUInteger)getActiveSessionCount {
-	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"JZSession" inManagedObjectContext:self.managedObjectContext];
-	
-	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
-	
-	[request setEntity:entityDescription];
-
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:
-							  @"(active == %@)", [NSNumber numberWithBool:true]];
-	
-	[request setPredicate:predicate];
-		
-	NSError *error = nil;
-	
-	NSUInteger count = [self.managedObjectContext countForFetchRequest:request error:&error];
-
-	if (nil != error) {
-		AppLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
-		return 0;
-	}
-	
-	return count;
-}
+#pragma mark - Notification handling (internal)
 
 - (NSDate *)sessionStartForNotification:(JZSession *)session {
 #ifdef NOW_AND_NEXT_USE_TEST_DATE
@@ -411,130 +141,39 @@
     }
 }
 
-- (void) toggleFavouriteForSession:(NSString *)jzId {
-	JZSession *session = [self getSessionForJZId:jzId];
-    
-	if ([session userSession]) {
-		[self setFavouriteForSession:session withBoolean:NO];
-        [self removeNotification:session];
-        
-        [FlurryAnalytics logEvent:@"Clearing Favourite" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                  [session title],
-                                                                  @"Title",
-                                                                  [session jzId],
-                                                                  @"ID", 
-                                                                  nil]];
-	} else {
-		[self setFavouriteForSession:session withBoolean:YES];
-        [self addNotification:session];
-        
-        [FlurryAnalytics logEvent:@"Adding Favourite" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                [session title],
-                                                                @"Title",
-                                                                [session jzId],
-                                                                @"ID", 
-                                                                nil]];
-	}
-}
+#pragma mark - Favourites (internal)
 
-- (void) setFavouriteForSession:(JZSession *)session withBoolean:(BOOL)favouriteFlag {
-	JZSession *sessionInContext = [self getSessionForJZId:[session jzId]];
-	
-	if (favouriteFlag == NO) {
-		if ([sessionInContext userSession]) {
-			[self.managedObjectContext deleteObject:[sessionInContext userSession]];
-			[sessionInContext setUserSession:nil];
-		}
-	}
-	
-	if (favouriteFlag == YES) {
-		if ([sessionInContext userSession] == nil) {
-			UserSession *userSession = (UserSession *)[NSEntityDescription insertNewObjectForEntityForName:@"UserSession" inManagedObjectContext:self.managedObjectContext];
-			
-			[sessionInContext setUserSession:userSession];
-		}
-	}
+#pragma mark - Clear Data Initializer
 
-	NSError *error = nil;
-	
-	if (![self.managedObjectContext save:&error]) {
-		if (nil != error) {
-			AppLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
-			return;
-		}
-	}	
-}
-
-- (NSDictionary *)getUniqueLabels {
+- (NSArray *)getSections {
 	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"JZLabel" inManagedObjectContext:self.managedObjectContext];
+											  entityForName:@"Section" inManagedObjectContext:self.managedObjectContext];
 	
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	
 	[request setEntity:entityDescription];
-	[request setReturnsDistinctResults:YES];
+	
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startDate" ascending:YES];
+	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+	[request setSortDescriptors:sortDescriptors];
+	[sortDescriptors release];
+	[sortDescriptor release];
 	
 	NSError *error = nil;
-	
+    
 	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
 	[request release];
-	
+    
 	if (nil != error) {
 		[mutableFetchResults release];
-		AppLog(@"%@:%@ Error fetching uniqueLabels: %@", [self class], _cmd, [error localizedDescription]);
+		AppLog(@"%@:%@ Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
 		return nil;
 	}
 	
-	NSArray *labels = [[[NSArray alloc] initWithArray:mutableFetchResults] autorelease];
+	NSArray *sections = [[[NSArray alloc] initWithArray:mutableFetchResults] autorelease];
 	[mutableFetchResults release];
 	
-	NSMutableArray *keys = [[NSMutableArray alloc] init];
-	
-	NSMutableArray *objects = [[NSMutableArray alloc] init];
-	
-	for (JZLabel *label in labels) {
-		[keys addObject:[label jzId]];
-		[objects addObject:[label title]];
-	}
-	
-	NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
-	[objects release];
-	[keys release];
-	
-	return dictionary;	
-}
-
-- (NSString *)getStoredFilter {
-	NSString *label = @"All";
-
-	if (nil != [[NSUserDefaults standardUserDefaults] stringForKey:@"labelFilter"]) {
-		label = [[NSUserDefaults standardUserDefaults] stringForKey:@"labelFilter"];
-	}
-
-	return label;
-}
-
-- (NSArray *)filterSessionList:(NSArray *)sessions {
-	NSString *filter = [self getStoredFilter];
-	
-	if ([filter isEqual:@"All"]) {
-		return sessions;
-	}
-	
-	NSMutableArray *matchingSessions = [[NSMutableArray alloc] init];
-	
-	for (JZSession *session in sessions) {
-		for (JZLabel *label in [session labels]) {
-			if ([[label title] isEqual:filter]) {
-				[matchingSessions addObject:session];
-			}
-		}
-	}
-
-	NSArray *filteredSessions = [[[NSArray alloc] initWithArray:matchingSessions] autorelease];
-	[matchingSessions release];
-	
-	return filteredSessions;
+	return sections;
 }
 
 - (NSArray *)getAllSessions {
@@ -573,10 +212,261 @@
     [self.managedObjectContext deleteObject:section];
 }
 
-- (void)dealloc {
-    [managedObjectContext release];
+#pragma mark - Session View Controller
+
+- (NSString *)getSectionTitleForDate:(NSDate *)date {
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"Section" inManagedObjectContext:self.managedObjectContext];
+	
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	
+	[request setEntity:entityDescription];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:
+							  @"(startDate <= %@) AND (endDate >= %@)", date, date];
+	
+	[request setPredicate:predicate];
+	
+	NSError *error = nil;
+	
+	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	[request release];
+	
+	if (nil != error) {
+		[mutableFetchResults release];
+		AppLog(@"%@:%@ Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
+		return nil;
+	}
     
-    [super dealloc];
+	NSArray *sections = [[[NSArray alloc] initWithArray:mutableFetchResults] autorelease];
+	[mutableFetchResults release];
+	
+	if (nil == sections || [sections count] == 0) {
+		return nil;
+	}
+	
+	return [[sections objectAtIndex:0] title];
+}
+
+- (NSString *)getNextSectionTitleForDate:(NSDate *)date {
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"Section" inManagedObjectContext:self.managedObjectContext];
+	
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	
+	[request setEntity:entityDescription];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:
+							  @"(startDate > %@)", date];
+	
+	[request setPredicate:predicate];
+    
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startDate" ascending:YES];
+	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+	[request setSortDescriptors:sortDescriptors];
+	[sortDescriptors release];
+	[sortDescriptor release];
+	
+	NSError *error = nil;
+	
+	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	[request release];
+	
+	if (nil != error) {
+		[mutableFetchResults release];
+		AppLog(@"%@:%@ Error fetching sections: %@", [self class], _cmd, [error localizedDescription]);
+		return nil;
+	}
+	
+	NSArray *sections = [[[NSArray alloc] initWithArray:mutableFetchResults] autorelease];
+	
+	[mutableFetchResults release];
+	
+	if (nil == sections || [sections count] == 0) {
+		return nil;
+	}
+	
+	return [[sections objectAtIndex:0] title];
+}
+
+- (NSDictionary *)getSessionsMatching:(NSString *)search andLevel:(NSString *)level andLabel:(NSString *)label withFavourites:(BOOL)limitToFavourites {
+	NSArray *sections = [self getSections];
+	
+	NSMutableArray *keys = [[NSMutableArray alloc] initWithCapacity:[sections count]];
+	NSMutableArray *objects = [[NSMutableArray alloc] initWithCapacity:[sections count]];
+	
+	for (Section *section in sections) {
+		NSArray *sessions = [self getSessionsForSection:section matching:search andLevel:level andLabel:label withFavourites:limitToFavourites];
+		
+		if ([sessions count] > 0) {
+			[keys addObject:[section title]];
+			[objects addObject:sessions];
+		}
+	}
+	
+	NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+	[objects release];
+	[keys release];
+	
+	return dictionary;
+}
+
+- (NSUInteger)getActiveSessionCount {
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"JZSession" inManagedObjectContext:self.managedObjectContext];
+	
+	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+	
+	[request setEntity:entityDescription];
+    
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:
+							  @"(active == %@)", [NSNumber numberWithBool:true]];
+	
+	[request setPredicate:predicate];
+    
+	NSError *error = nil;
+	
+	NSUInteger count = [self.managedObjectContext countForFetchRequest:request error:&error];
+    
+	if (nil != error) {
+		AppLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		return 0;
+	}
+	
+	return count;
+}
+
+#pragma mark - Detailed Session View Controller
+
+- (JZSession *)getSessionForJZId:(NSString *)jzId {
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"JZSession" inManagedObjectContext:self.managedObjectContext];
+	
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	
+	[request setEntity:entityDescription];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:
+							  @"(jzId == %@)", jzId];
+	
+	[request setPredicate:predicate];
+	
+	NSError *error = nil;
+	
+	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	[request release];
+    
+	if (nil != error) {
+		[mutableFetchResults release];
+		AppLog(@"%@:%@ Error fetching sessions: %@", [self class], _cmd, [error localizedDescription]);
+		return nil;
+	}
+	
+	NSArray *sessions = [[[NSArray alloc] initWithArray:mutableFetchResults] autorelease];
+	[mutableFetchResults release];
+	
+	if (nil == sessions || [sessions count] == 0) {
+		return nil;
+	}
+	
+	return [sessions objectAtIndex:0];
+}
+
+- (void) setFavouriteForSession:(JZSession *)session withBoolean:(BOOL)favouriteFlag {
+	JZSession *sessionInContext = [self getSessionForJZId:[session jzId]];
+	
+	if (favouriteFlag == NO) {
+		if ([sessionInContext userSession]) {
+			[self.managedObjectContext deleteObject:[sessionInContext userSession]];
+			[sessionInContext setUserSession:nil];
+		}
+	}
+	
+	if (favouriteFlag == YES) {
+		if ([sessionInContext userSession] == nil) {
+			UserSession *userSession = (UserSession *)[NSEntityDescription insertNewObjectForEntityForName:@"UserSession" inManagedObjectContext:self.managedObjectContext];
+			
+			[sessionInContext setUserSession:userSession];
+		}
+	}
+    
+	NSError *error = nil;
+	
+	if (![self.managedObjectContext save:&error]) {
+		if (nil != error) {
+			AppLog(@"%@:%@ Error saving sessions: %@", [self class], _cmd, [error localizedDescription]);
+			return;
+		}
+	}	
+}
+
+#pragma mark - Session View Controller & Detailed Session View Controller
+
+- (void) toggleFavouriteForSession:(NSString *)jzId {
+	JZSession *session = [self getSessionForJZId:jzId];
+    
+	if ([session userSession]) {
+		[self setFavouriteForSession:session withBoolean:NO];
+        [self removeNotification:session];
+        
+        [FlurryAnalytics logEvent:@"Clearing Favourite" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                        [session title],
+                                                                        @"Title",
+                                                                        [session jzId],
+                                                                        @"ID", 
+                                                                        nil]];
+	} else {
+		[self setFavouriteForSession:session withBoolean:YES];
+        [self addNotification:session];
+        
+        [FlurryAnalytics logEvent:@"Adding Favourite" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                      [session title],
+                                                                      @"Title",
+                                                                      [session jzId],
+                                                                      @"ID", 
+                                                                      nil]];
+	}
+}
+
+#pragma mark - Filter View Controller
+
+- (NSDictionary *)getUniqueLabels {
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"JZLabel" inManagedObjectContext:self.managedObjectContext];
+	
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	
+	[request setEntity:entityDescription];
+	[request setReturnsDistinctResults:YES];
+	
+	NSError *error = nil;
+	
+	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	[request release];
+	
+	if (nil != error) {
+		[mutableFetchResults release];
+		AppLog(@"%@:%@ Error fetching uniqueLabels: %@", [self class], _cmd, [error localizedDescription]);
+		return nil;
+	}
+	
+	NSArray *labels = [[[NSArray alloc] initWithArray:mutableFetchResults] autorelease];
+	[mutableFetchResults release];
+	
+	NSMutableArray *keys = [[NSMutableArray alloc] init];
+	
+	NSMutableArray *objects = [[NSMutableArray alloc] init];
+	
+	for (JZLabel *label in labels) {
+		[keys addObject:[label jzId]];
+		[objects addObject:[label title]];
+	}
+	
+	NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+	[objects release];
+	[keys release];
+	
+	return dictionary;	
 }
 
 @end
