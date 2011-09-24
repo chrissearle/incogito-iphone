@@ -22,8 +22,8 @@
 @property (nonatomic, retain) IBOutlet UIPickerView *picker;
 @property (nonatomic, retain) IBOutlet UILabel *listLabel;
 @property (nonatomic, retain) IBOutlet UILabel *levelLabel;
-@property (nonatomic, retain) IBOutlet UILabel *labelLabel;
 @property (nonatomic, retain) IBOutlet UIButton *doneButton;
+@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 
 @property (nonatomic, retain) IncogitoAppDelegate *appDelegate;
 @property (nonatomic, assign) BOOL initialized;

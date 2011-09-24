@@ -19,9 +19,9 @@
 @synthesize viewShouldRefreshDelegate;
 @synthesize initialized;
 @synthesize listLabel;
-@synthesize labelLabel;
 @synthesize levelLabel;
 @synthesize doneButton;
+@synthesize scrollView;
 
 - (void)dealloc
 {
@@ -32,8 +32,8 @@
     [appDelegate release];
     [listLabel release];
     [levelLabel release];
-    [labelLabel release];
     [doneButton release];
+    [scrollView release];
     
     [super dealloc];
 }
@@ -42,66 +42,32 @@
     
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
         if (UIDeviceOrientationIsLandscape(interfaceOrientation)) {
-            self.doneButton.frame = CGRectMake(395, 265, 80, 35);
-            self.listLabel.frame = CGRectMake(105, 15, 80, 21);
-            self.listSelector.frame = CGRectMake(195, 10, 280, 30);
-            self.levelLabel.frame = CGRectMake(105, 50, 80, 21);
-            self.levelSelector.frame = CGRectMake(195, 45, 280, 30);
-
-            self.picker.frame = CGRectMake(0, 84, 380, 216);
-            self.labelLabel.frame = CGRectMake(20, 53, 80, 21);
-            /*
-            self.picker.frame = CGRectMake(0, 55, 250, 216);
-            self.labelsLabel.frame = CGRectMake(7, 20, 280, 34);
-            self.applyButton.frame = CGRectMake(258, 55, 202, 37);
-            self.refreshButton.frame = CGRectMake(258, 150, 202, 37);
-            self.downloadLabel.frame = CGRectMake(258, 195, 267, 21);
-            self.bioPicSwitch.frame = CGRectMake(366, 224, 94, 27);
-             */
+            CGSize frameSize = self.view.frame.size;
+            self.scrollView.contentSize = CGSizeMake(frameSize.width, 460);
         } else {
-            self.doneButton.frame = CGRectMake(220, 20, 80, 35);
-            self.listLabel.frame = CGRectMake(220, 65, 80, 21);
-            self.listSelector.frame = CGRectMake(20, 96, 280, 30);
-            self.levelLabel.frame = CGRectMake(220, 136, 80, 21);
-            self.levelSelector.frame = CGRectMake(20, 167, 280, 30);
-            self.picker.frame = CGRectMake(0, 244, 320, 216);
-            self.labelLabel.frame = CGRectMake(20, 213, 80, 21);
-        }
+            self.scrollView.contentSize = CGSizeMake(320, 460);
+        } 
     } else {
-        /*
         CGSize frameSize = self.view.frame.size;
         
         int mainWidth = 320;
-        int mainLeft = (frameSize.width - mainWidth) / 2;
+        int mainHeight = 460;
+
+        int mainLeft = 0;
+        int mainTop = 0;
         
-        
-        int mainTop = (frameSize.height - 409) / 2;
-        int refreshTop = mainTop + 325;
-        
-        self.picker.frame = CGRectMake(mainLeft, mainTop, mainWidth, 216);
-        self.applyButton.frame = CGRectMake(mainLeft, mainTop + 224, mainWidth, 37);
-        self.refreshButton.frame = CGRectMake(mainLeft, refreshTop, mainWidth, 37);
-        self.downloadLabel.frame = CGRectMake(mainLeft, refreshTop + 60, mainWidth - 100, 24);
-        self.bioPicSwitch.frame = CGRectMake(mainLeft + mainWidth - 94, refreshTop + 57, 94, 27);
-         */
+        if (UIDeviceOrientationIsLandscape(interfaceOrientation)) {
+            mainLeft = (frameSize.height - mainWidth) / 2;
+            mainTop = (frameSize.width - mainHeight) / 2;
+        } else {
+            mainLeft = (frameSize.width - mainWidth) / 2;
+            mainTop = (frameSize.height - mainHeight) / 2;
+        }
+
+        scrollView.frame = CGRectMake(mainLeft, mainTop, mainWidth, mainHeight);
     }
-    
 }
 
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
-
-- (void) viewWillAppear:(BOOL)animated {
-    [self redrawForOrientation:[self interfaceOrientation]];
-}
 
 - (UIImage *)getImageForLevel:(NSString *) level {
     NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -115,14 +81,11 @@
     return imageFile;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
+- (void) initializeFields {
     self.initialized = NO;
     
     self.appDelegate = [[UIApplication sharedApplication] delegate];
-   
+    
     [self.levelSelector removeAllSegments];
     [self.levelSelector insertSegmentWithTitle:@"All" atIndex:0 animated:NO];
     [self.levelSelector insertSegmentWithImage:[self getImageForLevel:@"Introductory"] atIndex:1 animated:NO];
@@ -133,22 +96,22 @@
     
     [self setLabels:[[self.appDelegate sectionSessionHandler] getUniqueLabels]];
     
-	// Set picker index
-	NSString *savedKey = [JavaZonePrefs labelFilter];
-	
-	NSArray *values = [[self.labels allValues] sortedArrayUsingSelector:@selector(compare:)];
-	
-	int index = 0;
-	if ([values containsObject:savedKey]) {
-		NSArray *sortedValues = [values sortedArrayUsingSelector:@selector(compare:)];
-		index = [sortedValues indexOfObject:savedKey] + 1;
-	}
-	[self.picker selectRow:index inComponent:0 animated:YES];
+    // Set picker index
+    NSString *savedKey = [JavaZonePrefs labelFilter];
+    
+    NSArray *values = [[self.labels allValues] sortedArrayUsingSelector:@selector(compare:)];
+    
+    int index = 0;
+    if ([values containsObject:savedKey]) {
+        NSArray *sortedValues = [values sortedArrayUsingSelector:@selector(compare:)];
+        index = [sortedValues indexOfObject:savedKey] + 1;
+    }
+    [self.picker selectRow:index inComponent:0 animated:YES];
     
     
     
     NSString *savedListKey = [JavaZonePrefs listFilter];
-
+    
     int selectedListIndex = 0;
     
     for (int i = 0; i < self.listSelector.numberOfSegments; i++) {
@@ -156,11 +119,11 @@
             selectedListIndex = i;
         }
     }
-
+    
     self.listSelector.selectedSegmentIndex = selectedListIndex;
     
     NSString *savedLevelFilter = [JavaZonePrefs levelFilter];
-
+    
     AppLog(@"Init level filter to %@", savedLevelFilter);
     
     if ([savedLevelFilter isEqualToString:@"All"]) {
@@ -179,6 +142,19 @@
     self.initialized = YES;
 }
 
+#pragma mark - View lifecycle
+
+- (void) viewWillAppear:(BOOL)animated {
+    [self initializeFields];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    [self initializeFields];
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -190,8 +166,8 @@
     self.appDelegate = nil;
     self.listLabel = nil;
     self.levelLabel = nil;
-    self.labelLabel = nil;
     self.doneButton = nil;
+    self.scrollView = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
