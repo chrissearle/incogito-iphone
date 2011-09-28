@@ -90,7 +90,7 @@
     }
 
     NSString *label = [JavaZonePrefs labelFilter];
-    
+
     if ([label isEqualToString:@"All"]) {
         UIView *deadView = [[[UIView alloc] initWithFrame:CGRectMake(40, 20, 10, 10)] autorelease];
         deadView.backgroundColor = [UIColor lightGrayColor];
@@ -98,14 +98,24 @@
         [navView addSubview:deadView];
         label = @"All labels";
     } else {
-        UIImage *image = [CachedImage labelImageForLabel:label];
+        NSDictionary *labels = [[self.appDelegate sectionSessionHandler] getUniqueLabels];
+        
+        NSArray *keys = [labels allKeysForObject:label];
+        
+        NSString *labelKey = @"All";
+        
+        if (keys != nil && [keys count] > 0) {
+            labelKey = [keys objectAtIndex:0];
+        }
+        
+        UIImage *image = [CachedImage labelImageForLabel:labelKey];
         UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(40, 20, image.size.width, image.size.height)] autorelease];
         [imageView setImage:image];
         
         [navView addSubview:imageView];
     }
     
-    UILabel *labelLabel = [[[UILabel alloc] initWithFrame:CGRectMake(55, 20, 100, 10)] autorelease];
+    UILabel *labelLabel = [[[UILabel alloc] initWithFrame:CGRectMake(55, 20, 200, 10)] autorelease];
     labelLabel.text = label;
     labelLabel.font = [UIFont systemFontOfSize:10.0];
     labelLabel.backgroundColor = [UIColor clearColor];
