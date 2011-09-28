@@ -59,8 +59,15 @@
     NSString *savedKey = [JavaZonePrefs labelFilter];
     NSString *savedList = [JavaZonePrefs listFilter];
     NSString *savedLevel = [JavaZonePrefs levelFilter];
+
+    NSString *title = [NSString stringWithFormat:@"%@ : %@ : %@", savedList, savedKey, savedLevel];
+    self.navigationItem.title = title;
     
-    self.navigationItem.title = [NSString stringWithFormat:@"%@ : %@ : %@", savedList, savedKey, savedLevel];
+    if ([title isEqualToString:@"All : All : All"]) {
+        [self.navigationController setNavigationBarHidden:YES animated:NO];
+    } else {
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated {
