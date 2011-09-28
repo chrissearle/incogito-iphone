@@ -38,5 +38,6 @@
 - (IBAction) curlPage:(id)sender;
 - (IBAction) refresh:(id)sender;
 - (IBAction) party:(id)sender;
+- (IBAction) clear:(id)sender;
 
 @end

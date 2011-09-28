@@ -16,6 +16,7 @@
 #import "SessionTableViewCell.h"
 #import "JavaZonePrefs.h"
 #import "JavazoneSessionsRetriever.h"
+#import "CachedImage.h"
 #ifdef NOW_AND_NEXT_USE_TEST_DATE
 #import "SessionDateConverter.h"
 #endif
@@ -55,23 +56,90 @@
 	AppLog(@"Overview - loaded data");
 }
 
-- (void) setTitleFromPrefs {
+- (UIView *)getNavigationItemView {
+    CGSize size = self.view.frame.size;
+    
+    UIView *navView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width, 32)] autorelease];
+    
+    NSString *list = [JavaZonePrefs listFilter];
+    
+    if ([list isEqualToString:@"All"]) {
+        list = @"All Sessions";
+    }
+    
+    UILabel *listLabel = [[[UILabel alloc] initWithFrame:CGRectMake(40, 2, 100, 15)] autorelease];
+    listLabel.text = list;
+    listLabel.font = [UIFont boldSystemFontOfSize:15.0];
+    listLabel.backgroundColor = [UIColor clearColor];
+    
+    [navView addSubview:listLabel];
+
+    NSString *level = [JavaZonePrefs levelFilter];
+    
+    if ([level isEqualToString:@"All"]) {
+        UIView *deadView = [[[UIView alloc] initWithFrame:CGRectMake(10, 10, 10, 10)] autorelease];
+        deadView.backgroundColor = [UIColor lightGrayColor];
+        
+        [navView addSubview:deadView];
+    } else {
+        UIImage *image = [CachedImage levelImageForLevel:[JavaZonePrefs levelFilter]];
+        UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(10, 10, image.size.width, image.size.height)] autorelease];
+        [imageView setImage:image];
+    
+        [navView addSubview:imageView];
+    }
+
+    NSString *label = [JavaZonePrefs labelFilter];
+    
+    if ([label isEqualToString:@"All"]) {
+        UIView *deadView = [[[UIView alloc] initWithFrame:CGRectMake(40, 20, 10, 10)] autorelease];
+        deadView.backgroundColor = [UIColor lightGrayColor];
+        
+        [navView addSubview:deadView];
+        label = @"All labels";
+    } else {
+        UIImage *image = [CachedImage labelImageForLabel:label];
+        UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(40, 20, image.size.width, image.size.height)] autorelease];
+        [imageView setImage:image];
+        
+        [navView addSubview:imageView];
+    }
+    
+    UILabel *labelLabel = [[[UILabel alloc] initWithFrame:CGRectMake(55, 20, 100, 10)] autorelease];
+    labelLabel.text = label;
+    labelLabel.font = [UIFont systemFontOfSize:10.0];
+    labelLabel.backgroundColor = [UIColor clearColor];
+    
+    [navView addSubview:labelLabel];
+    
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear" 
+                                                                    style:UIBarButtonItemStylePlain target:self action:@selector(clear:)];
+    self.navigationItem.rightBarButtonItem = rightButton;
+    self.navigationItem.hidesBackButton = YES;
+    [rightButton release];
+
+    return navView;
+}
+
+
+- (void) initializeNavigationItem {
     NSString *savedKey = [JavaZonePrefs labelFilter];
     NSString *savedList = [JavaZonePrefs listFilter];
     NSString *savedLevel = [JavaZonePrefs levelFilter];
 
     NSString *title = [NSString stringWithFormat:@"%@ : %@ : %@", savedList, savedKey, savedLevel];
-    self.navigationItem.title = title;
     
     if ([title isEqualToString:@"All : All : All"]) {
         [self.navigationController setNavigationBarHidden:YES animated:NO];
     } else {
         [self.navigationController setNavigationBarHidden:NO animated:NO];
     }
+    
+    self.navigationItem.titleView = [self getNavigationItemView];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-    [self setTitleFromPrefs];
+    [self initializeNavigationItem];
 
 	[FlurryAnalytics logEvent:@"Showing Overview"];
 }
@@ -248,8 +316,17 @@
         } else {
             [self reloadView];
         }
-        [self setTitleFromPrefs];
+        [self initializeNavigationItem];
     }
+}
+
+
+- (void) clear:(id)sender {
+    [JavaZonePrefs setListFilter:@"All"];
+    [JavaZonePrefs setLabelFilter:@"All"];
+    [JavaZonePrefs setLevelFilter:@"All"];
+
+    [self refeshView:YES withFull:NO];
 }
 
 - (NSString *)getSelectedSessionTitle:(NSInteger)section {
@@ -279,26 +356,20 @@
 	}
 	
 	if (!(nil == labels || [labels count] == 0)) {
-		NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-		
 		NSSortDescriptor * titleDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES] autorelease];
 		
 		NSArray * descriptors = [NSArray arrayWithObjects:titleDescriptor, nil];
 		
 		for (JZLabel *label in [[labels allObjects] sortedArrayUsingDescriptors:descriptors]) {
-			NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",[docDir stringByAppendingPathComponent:@"labelIcons"],[label jzId]];
-            
-			NSData *data1 = [NSData dataWithContentsOfFile:pngFilePath];
-			
-			UIImage *labelImageFile = [UIImage imageWithData:data1];
-			
-			CGRect frame = CGRectMake(offset, 0, labelImageFile.size.width, labelImageFile.size.height);
+            UIImage *image = [CachedImage labelImageForLabel:[label jzId]];
+
+			CGRect frame = CGRectMake(offset, 0, image.size.width, image.size.height);
 			
 			offset += 15;
 			
 			UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
 			
-			[imageView setImage:labelImageFile];
+			[imageView setImage:image];
 			
 			[cell.iconBarView addSubview:imageView];
 			
@@ -340,16 +411,10 @@
 	[speakerNames release];
 	
 	UIImageView *levelImageView = [cell levelImage];
-	
-	NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	
-	NSString *pngFilePath = [NSString stringWithFormat:@"%@/%@.png",[docDir stringByAppendingPathComponent:@"levelIcons"],[session level]];
-	
-	NSData *data1 = [NSData dataWithContentsOfFile:pngFilePath];
-	
-	UIImage *levelImageFile = [UIImage imageWithData:data1];
-    
-	[levelImageView setImage:levelImageFile];
+
+    UIImage *image = [CachedImage levelImageForLevel:[JavaZonePrefs levelFilter]];
+
+	[levelImageView setImage:image];
 	
 	UIButton *favouriteImage = [cell favouriteImage];
     
@@ -484,6 +549,14 @@
     
 	// Show the HUD while the provided method executes in a new thread
 	[self.HUD showWhileExecuting:@selector(retrieveSessions:) onTarget:retriever withObject:nil animated:YES];
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self initializeNavigationItem];
 }
 
 @end
