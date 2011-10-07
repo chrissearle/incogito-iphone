@@ -169,6 +169,7 @@
 		F3D8EEA813EFFA27002C9427 /* 95-equalizer.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424BB411ED981300590A7A /* 95-equalizer.png */; };
 		F3D8EEAA13EFFA78002C9427 /* AweZone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D8EEA913EFFA78002C9427 /* AweZone.xib */; };
 		F3D8EEAC13EFFADC002C9427 /* awezone.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D8EEAB13EFFADC002C9427 /* awezone.png */; };
+		F3DA747E143EE9170029DA39 /* ClearDocumentsInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F3DA747D143EE9170029DA39 /* ClearDocumentsInitializer.m */; };
 		F3F0CD6F13E688F100EC1149 /* ClearDataInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F0CD6E13E688F100EC1149 /* ClearDataInitializer.m */; };
 		F3FD25C614053E2100C9BC3B /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3FD25C514053E2100C9BC3B /* libFlurryAnalytics.a */; };
 /* End PBXBuildFile section */
@@ -562,6 +563,8 @@
 		F3D8EEA413EFF7D3002C9427 /* AweZoneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AweZoneController.m; sourceTree = "<group>"; };
 		F3D8EEA913EFFA78002C9427 /* AweZone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AweZone.xib; sourceTree = "<group>"; };
 		F3D8EEAB13EFFADC002C9427 /* awezone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = awezone.png; sourceTree = "<group>"; };
+		F3DA747C143EE9170029DA39 /* ClearDocumentsInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearDocumentsInitializer.h; sourceTree = "<group>"; };
+		F3DA747D143EE9170029DA39 /* ClearDocumentsInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearDocumentsInitializer.m; sourceTree = "<group>"; };
 		F3F0CD6D13E688F100EC1149 /* ClearDataInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearDataInitializer.h; sourceTree = "<group>"; };
 		F3F0CD6E13E688F100EC1149 /* ClearDataInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearDataInitializer.m; sourceTree = "<group>"; };
 		F3FD25C414053E2100C9BC3B /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
@@ -700,6 +703,8 @@
 		8320A3C31307EF5A000B34E4 /* Initializers */ = {
 			isa = PBXGroup;
 			children = (
+				F3DA747C143EE9170029DA39 /* ClearDocumentsInitializer.h */,
+				F3DA747D143EE9170029DA39 /* ClearDocumentsInitializer.m */,
 				83D6BCF711EEF3A100FBC0FE /* SectionInitializer.h */,
 				83D6BCF811EEF3A100FBC0FE /* SectionInitializer.m */,
 				F3F0CD6D13E688F100EC1149 /* ClearDataInitializer.h */,
@@ -1631,6 +1636,7 @@
 				83FAAA2C141BAA0E003AF68B /* CachedPropertyFile.m in Sources */,
 				F380B773141F69EC009E8242 /* FilterViewController.m in Sources */,
 				F36583681432FA5100F13D8D /* CachedImage.m in Sources */,
+				F3DA747E143EE9170029DA39 /* ClearDocumentsInitializer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
