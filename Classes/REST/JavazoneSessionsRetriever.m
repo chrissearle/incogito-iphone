@@ -35,7 +35,7 @@
 -(id) init {
     self = [super init];
 
-	NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+	NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 	
 	self.levelsPath = [docDir stringByAppendingPathComponent:@"levelIcons"];
 	self.labelsPath = [docDir stringByAppendingPathComponent:@"labelIcons"];

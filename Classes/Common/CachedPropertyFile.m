@@ -10,7 +10,7 @@
 @implementation CachedPropertyFile
 
 + (void)retrieveFile:(NSString *) filename fromUrl:(NSURL *)url {
-    NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     
     NSString *dataFilePath = [NSString stringWithFormat:@"%@/%@",docDir,filename];
     
@@ -84,7 +84,7 @@
 }
 
 + (NSData *)readFile:(NSString *)filename {
-    NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     
     NSString *dataFilePath = [NSString stringWithFormat:@"%@/%@",docDir,filename];
     

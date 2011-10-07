@@ -13,6 +13,7 @@
 #import "SessionViewController.h"
 #import "DetailedSessionViewController.h"
 #import "ClearDataInitializer.h"
+#import "ClearDocumentsInitializer.h"
 #import "SHK.h"
 
 @implementation IncogitoAppDelegate
@@ -49,6 +50,10 @@ void uncaughtExceptionHandler(NSException *exception) {
     ClearDataInitializer *clearDataInitializer = [[ClearDataInitializer alloc] initWithSectionSessionHandler:[self sectionSessionHandler]];
     [clearDataInitializer clear];
     [clearDataInitializer release];
+    
+    ClearDocumentsInitializer *clearDocumentsInitializer = [[ClearDocumentsInitializer alloc] init];
+    [clearDocumentsInitializer clear];
+    [clearDocumentsInitializer release];
     
 	SectionInitializer *sectionInitializer = [[SectionInitializer alloc] init];
 	[sectionInitializer setManagedObjectContext:[self managedObjectContext]];
