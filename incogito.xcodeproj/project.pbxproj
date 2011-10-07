@@ -170,6 +170,7 @@
 		F35AC79D141A2C410042BEA6 /* video.png in Resources */ = {isa = PBXBuildFile; fileRef = F35AC79A141A2C410042BEA6 /* video.png */; };
 		F35EC3A61356CFD70047294D /* VideoMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F35EC3A51356CFD70047294D /* VideoMapper.m */; };
 		F35EC3A91356F5A60047294D /* video.plist in Resources */ = {isa = PBXBuildFile; fileRef = F35EC3A81356F5A60047294D /* video.plist */; };
+		F37494B2143EDAF400CDDDB7 /* ClearDocumentsInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F37494B1143EDAF400CDDDB7 /* ClearDocumentsInitializer.m */; };
 		F38304BA141A30A5001E48B6 /* black-grad.png in Resources */ = {isa = PBXBuildFile; fileRef = F38304B9141A30A5001E48B6 /* black-grad.png */; };
 		F3A65026134473EB005B1372 /* JavaZonePrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A65025134473EB005B1372 /* JavaZonePrefs.m */; };
 		F3D8EEA613EFF7D3002C9427 /* AweZoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D8EEA413EFF7D3002C9427 /* AweZoneController.m */; };
@@ -577,6 +578,8 @@
 		F35EC3A41356CFD70047294D /* VideoMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoMapper.h; sourceTree = "<group>"; };
 		F35EC3A51356CFD70047294D /* VideoMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoMapper.m; sourceTree = "<group>"; };
 		F35EC3A81356F5A60047294D /* video.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = video.plist; sourceTree = "<group>"; };
+		F37494B0143EDAF400CDDDB7 /* ClearDocumentsInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearDocumentsInitializer.h; sourceTree = "<group>"; };
+		F37494B1143EDAF400CDDDB7 /* ClearDocumentsInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearDocumentsInitializer.m; sourceTree = "<group>"; };
 		F38304B9141A30A5001E48B6 /* black-grad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "black-grad.png"; sourceTree = "<group>"; };
 		F3A65024134473EB005B1372 /* JavaZonePrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaZonePrefs.h; sourceTree = "<group>"; };
 		F3A65025134473EB005B1372 /* JavaZonePrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaZonePrefs.m; sourceTree = "<group>"; };
@@ -741,6 +744,8 @@
 				8320A3C51307EF90000B34E4 /* TabInitializer.m */,
 				F3F0CD6D13E688F100EC1149 /* ClearDataInitializer.h */,
 				F3F0CD6E13E688F100EC1149 /* ClearDataInitializer.m */,
+				F37494B0143EDAF400CDDDB7 /* ClearDocumentsInitializer.h */,
+				F37494B1143EDAF400CDDDB7 /* ClearDocumentsInitializer.m */,
 			);
 			path = Initializers;
 			sourceTree = "<group>";
@@ -1675,6 +1680,7 @@
 				83F3561113F5AD6D00FDD3A2 /* AppLog.m in Sources */,
 				83FD529E14042D0E001CDF9C /* SessionDateConverter.m in Sources */,
 				83FAAA2C141BAA0E003AF68B /* CachedPropertyFile.m in Sources */,
+				F37494B2143EDAF400CDDDB7 /* ClearDocumentsInitializer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

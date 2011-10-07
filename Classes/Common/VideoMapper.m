@@ -11,7 +11,7 @@
 @implementation VideoMapper
 
 - (NSString *)filePath {
-    NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     
     NSString *filePath = [NSString stringWithFormat:@"%@/video.plist",docDir];
 
