@@ -60,6 +60,14 @@
 	
 	[titles release];
 	[footerTexts release];
+    
+    NSString *filter = [self.appDelegate getLabelFilter];
+    
+    if ([filter isEqualToString:@"All"]) {
+        self.navigationItem.title = @"Now & Next";
+    } else {
+        self.navigationItem.title = filter;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

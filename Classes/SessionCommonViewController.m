@@ -24,7 +24,6 @@
 @synthesize HUD;
 
 - (void) loadSessionData {
-	// Stub
 }
 
 - (void)viewDidLoad {

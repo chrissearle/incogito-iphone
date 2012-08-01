@@ -58,6 +58,14 @@
 	[titles sortUsingSelector:@selector(compare:)];
 
 	self.sectionTitles = [[[NSArray alloc] initWithArray:titles] autorelease];
+    
+    NSString *filter = [self.appDelegate getLabelFilter];
+    
+    if ([filter isEqualToString:@"All"]) {
+        self.navigationItem.title = @"Sessions";
+    } else {
+        self.navigationItem.title = filter;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

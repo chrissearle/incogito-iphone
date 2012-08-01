@@ -31,6 +31,14 @@
 	[titles sortUsingSelector:@selector(compare:)];
 	
 	[self setSectionTitles:[[[NSArray alloc] initWithArray:titles] autorelease]];
+    
+    NSString *filter = [self.appDelegate getLabelFilter];
+    
+    if ([filter isEqualToString:@"All"]) {
+        self.navigationItem.title = @"My JavaZone";
+    } else {
+        self.navigationItem.title = filter;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
