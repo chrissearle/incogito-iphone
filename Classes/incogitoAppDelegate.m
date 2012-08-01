@@ -18,6 +18,7 @@
 #import "ClearDataInitializer.h"
 #import "ClearDocumentsInitializer.h"
 #import "SHK.h"
+#import "FlurryAnalytics.h"
 
 @implementation IncogitoAppDelegate
 
@@ -40,7 +41,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 	[FlurryAnalytics startSession:@"747T2PGB7H2SD3XAN92D"];
 	[FlurryAnalytics logAllPageViews:rootController];
 	
-    [FlurryAnalytics logEvent:@"Started app" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:@"3.0.0", @"Flurry Version", nil]];
+    [FlurryAnalytics logEvent:@"Started app" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:@"3.0.9", @"Flurry Version", nil]];
     
 	AppLog(@"Calling sectionInitializer");
 	
