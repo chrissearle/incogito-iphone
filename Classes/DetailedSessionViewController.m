@@ -108,9 +108,6 @@
     [self prepareButton:[videoButton layer]];
     [self prepareButton:[feedbackButton layer]];
 
-    self.feedbackButton.enabled = NO;
-    self.videoButton.enabled = NO;
-
     dispatch_queue_t dqueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
     dispatch_async(dqueue, ^{
@@ -118,7 +115,7 @@
         [mapper download];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.videoButton.enabled = ([mapper streamingUrlForSession:[self.session jzId]] != nil);
+            [mapper streamingUrlForSession:[self.session jzId]];
         });
     });
 
@@ -127,7 +124,6 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.feedbackAvailability populateDict];
-            self.feedbackButton.enabled = [self.feedbackAvailability isFeedbackAvailableForSession:[self.session jzId]];
         });
     });
 }
@@ -309,12 +305,18 @@
 }
 
 - (IBAction)feedback:(id)sender {
-    FeedbackController *controller = [[FeedbackController alloc] initWithNibName:@"Feedback" bundle:[NSBundle mainBundle]];
-    controller.session = self.session;
-    controller.feedbackURL = [self.feedbackAvailability feedbackUrlForSession:[self.session jzId]];
+    if ([self.feedbackAvailability isFeedbackAvailableForSession:[self.session jzId]]) {
+        FeedbackController *controller = [[FeedbackController alloc] initWithNibName:@"Feedback" bundle:[NSBundle mainBundle]];
+        controller.session = self.session;
+        controller.feedbackURL = [self.feedbackAvailability feedbackUrlForSession:[self.session jzId]];
     
-    [[self navigationController] pushViewController:controller animated:YES];
-    [controller release], controller = nil;
+        [[self navigationController] pushViewController:controller animated:YES];
+        [controller release], controller = nil;
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Feedback" message:@"Feedback can only be given once the session is nearly finished" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
 }
 
 - (IBAction)video:(id)sender {
@@ -322,7 +324,12 @@
     
     NSString *streamingUrl = [mapper streamingUrlForSession:[self.session jzId]];
     
-    [FlurryAnalytics logEvent:@"Streaming Movie" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+    if (streamingUrl == nil) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Video" message:@"Session video not yet available" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    } else {
+        [FlurryAnalytics logEvent:@"Streaming Movie" withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                  [self.session jzId],
                                                                  @"ID",
                                                                  [self.session title],
@@ -331,9 +338,10 @@
                                                                  @"URL",
                                                                  nil]];
     
-    NSURL *movieUrl = [NSURL URLWithString:streamingUrl];
+        NSURL *movieUrl = [NSURL URLWithString:streamingUrl];
     
-    [[UIApplication sharedApplication] openURL:movieUrl];
+        [[UIApplication sharedApplication] openURL:movieUrl];
+    }
 }
 
 @end
