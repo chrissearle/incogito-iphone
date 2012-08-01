@@ -97,6 +97,7 @@
 		83294ABD12112CCE009FD6C8 /* 72-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 83424B9D11ED981300590A7A /* 72-pin.png */; };
 		833A524411F840AD00E070D2 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 833A524311F840AD00E070D2 /* style.css */; };
 		8341FA141212CFB4004A45F4 /* ClubZone.png in Resources */ = {isa = PBXBuildFile; fileRef = 8341FA131212CFB4004A45F4 /* ClubZone.png */; };
+		83421C3615C9C10A0049C397 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83421C3515C9C10A0049C397 /* Crashlytics.framework */; };
 		83424B2211ED882F00590A7A /* Overview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83424B2111ED882F00590A7A /* Overview.xib */; };
 		83424B2E11ED88E700590A7A /* OverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83424B2D11ED88E700590A7A /* OverviewViewController.m */; };
 		83424E9011EDB68000590A7A /* NowAndNextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83424E8F11EDB68000590A7A /* NowAndNextViewController.m */; };
@@ -342,6 +343,7 @@
 		83281F1A12437F2B00792990 /* DetailedViewExtras.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailedViewExtras.xib; sourceTree = "<group>"; };
 		833A524311F840AD00E070D2 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		8341FA131212CFB4004A45F4 /* ClubZone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ClubZone.png; sourceTree = "<group>"; };
+		83421C3515C9C10A0049C397 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		83424B2111ED882F00590A7A /* Overview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Overview.xib; sourceTree = "<group>"; };
 		83424B2C11ED88E700590A7A /* OverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverviewViewController.h; sourceTree = "<group>"; };
 		83424B2D11ED88E700590A7A /* OverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverviewViewController.m; sourceTree = "<group>"; };
@@ -615,6 +617,7 @@
 				83281F1512437D2900792990 /* SystemConfiguration.framework in Frameworks */,
 				83A5A81212CDF06E009FE6A7 /* MediaPlayer.framework in Frameworks */,
 				F3FD25C614053E2100C9BC3B /* libFlurryAnalytics.a in Frameworks */,
+				83421C3615C9C10A0049C397 /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -725,6 +728,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83421C3515C9C10A0049C397 /* Crashlytics.framework */,
 				83C3C1D4120FDC6500B23253 /* QuartzCore.framework */,
 				830859E1120F30DE00F74041 /* MapKit.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
@@ -1476,6 +1480,7 @@
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+				83421C3415C9C0750049C397 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1578,6 +1583,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		83421C3415C9C0750049C397 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 76243485dba0d4938b2917f78d8106a6ff1d0d0b";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -1707,6 +1728,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1734,6 +1759,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chris Searle (3QT967G4GA)";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1787,6 +1816,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Chris Searle";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chris Searle";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1840,6 +1873,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chris Searle";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
