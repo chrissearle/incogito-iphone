@@ -15,7 +15,39 @@
 		<string>Icon.png</string>
 		<string>Icon-72.png</string>
 		<string>Icon@2x.png</string>
+		<string>jz_flame_icon_57.png</string>
+		<string>jz_flame_icon_114.png</string>
+		<string>jz_flame_icon_72.png</string>
+		<string>jz_flame_icon_144.png</string>
+		<string>Default.png</string>
+		<string>Default@2x.png</string>
+		<string>Default-Portrait~ipad.png</string>
+		<string>Default-Landscape~ipad.png</string>
+		<string>Default-Portrait@2x~ipad.png</string>
+		<string>Default-Landscape@2x~ipad.png</string>
 	</array>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>Icon.png</string>
+				<string>Icon-72.png</string>
+				<string>Icon@2x.png</string>
+				<string>jz_flame_icon_57.png</string>
+				<string>jz_flame_icon_114.png</string>
+				<string>jz_flame_icon_72.png</string>
+				<string>jz_flame_icon_144.png</string>
+				<string>Default.png</string>
+				<string>Default@2x.png</string>
+				<string>Default-Portrait~ipad.png</string>
+				<string>Default-Landscape~ipad.png</string>
+				<string>Default-Portrait@2x~ipad.png</string>
+				<string>Default-Landscape@2x~ipad.png</string>
+			</array>
+		</dict>
+	</dict>
 	<key>CFBundleIdentifier</key>
 	<string>net.chrissearle.incogito.JavaZone</string>
 	<key>CFBundleInfoDictionaryVersion</key>

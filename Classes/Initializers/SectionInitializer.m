@@ -26,21 +26,21 @@
 	if ([self getSectionCount] == 0) {
 		AppLog(@"Adding sections");
 
-		[self addSectionForDay:1 startingAt:@"2011-09-07 09:00:00 +0200" endingAt:@"2011-09-07 10:00:00 +0200"];
-		[self addSectionForDay:1 startingAt:@"2011-09-07 10:20:00 +0200" endingAt:@"2011-09-07 11:20:00 +0200"];
-		[self addSectionForDay:1 startingAt:@"2011-09-07 11:40:00 +0200" endingAt:@"2011-09-07 12:40:00 +0200"];
-		[self addSectionForDay:1 startingAt:@"2011-09-07 13:00:00 +0200" endingAt:@"2011-09-07 14:00:00 +0200"];
-		[self addSectionForDay:1 startingAt:@"2011-09-07 14:20:00 +0200" endingAt:@"2011-09-07 15:20:00 +0200"];
-		[self addSectionForDay:1 startingAt:@"2011-09-07 15:40:00 +0200" endingAt:@"2011-09-07 16:40:00 +0200"];
-		[self addSectionForDay:1 startingAt:@"2011-09-07 17:00:00 +0200" endingAt:@"2011-09-07 18:00:00 +0200"];
-		[self addSectionForDay:1 startingAt:@"2011-09-07 18:20:00 +0200" endingAt:@"2011-09-07 19:20:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2011-09-08 09:00:00 +0200" endingAt:@"2011-09-08 10:00:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2011-09-08 10:20:00 +0200" endingAt:@"2011-09-08 11:20:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2011-09-08 11:40:00 +0200" endingAt:@"2011-09-08 12:40:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2011-09-08 13:00:00 +0200" endingAt:@"2011-09-08 14:00:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2011-09-08 14:20:00 +0200" endingAt:@"2011-09-08 15:20:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2011-09-08 15:40:00 +0200" endingAt:@"2011-09-08 16:40:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2011-09-08 17:00:00 +0200" endingAt:@"2011-09-08 18:00:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2012-09-12 09:00:00 +0200" endingAt:@"2012-09-12 10:00:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2012-09-12 10:20:00 +0200" endingAt:@"2012-09-12 11:20:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2012-09-12 11:40:00 +0200" endingAt:@"2012-09-12 12:40:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2012-09-12 13:00:00 +0200" endingAt:@"2012-09-12 14:00:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2012-09-12 14:20:00 +0200" endingAt:@"2012-09-12 15:20:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2012-09-12 15:40:00 +0200" endingAt:@"2012-09-12 16:40:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2012-09-12 17:00:00 +0200" endingAt:@"2012-09-12 18:00:00 +0200"];
+		[self addSectionForDay:1 startingAt:@"2012-09-12 18:20:00 +0200" endingAt:@"2012-09-12 19:20:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2012-09-13 09:00:00 +0200" endingAt:@"2012-09-12 10:00:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2012-09-13 10:20:00 +0200" endingAt:@"2012-09-12 11:20:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2012-09-13 11:40:00 +0200" endingAt:@"2012-09-12 12:40:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2012-09-13 13:00:00 +0200" endingAt:@"2012-09-12 14:00:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2012-09-13 14:20:00 +0200" endingAt:@"2012-09-12 15:20:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2012-09-13 15:40:00 +0200" endingAt:@"2012-09-12 16:40:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2012-09-13 17:00:00 +0200" endingAt:@"2012-09-12 18:00:00 +0200"];
 	}
 }
 
