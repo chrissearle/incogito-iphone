@@ -34,13 +34,13 @@
 		[self addSectionForDay:1 startingAt:@"2012-09-12 15:40:00 +0200" endingAt:@"2012-09-12 16:40:00 +0200"];
 		[self addSectionForDay:1 startingAt:@"2012-09-12 17:00:00 +0200" endingAt:@"2012-09-12 18:00:00 +0200"];
 		[self addSectionForDay:1 startingAt:@"2012-09-12 18:20:00 +0200" endingAt:@"2012-09-12 19:20:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2012-09-13 09:00:00 +0200" endingAt:@"2012-09-12 10:00:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2012-09-13 10:20:00 +0200" endingAt:@"2012-09-12 11:20:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2012-09-13 11:40:00 +0200" endingAt:@"2012-09-12 12:40:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2012-09-13 13:00:00 +0200" endingAt:@"2012-09-12 14:00:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2012-09-13 14:20:00 +0200" endingAt:@"2012-09-12 15:20:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2012-09-13 15:40:00 +0200" endingAt:@"2012-09-12 16:40:00 +0200"];
-		[self addSectionForDay:2 startingAt:@"2012-09-13 17:00:00 +0200" endingAt:@"2012-09-12 18:00:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2012-09-13 09:00:00 +0200" endingAt:@"2012-09-13 10:00:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2012-09-13 10:20:00 +0200" endingAt:@"2012-09-13 11:20:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2012-09-13 11:40:00 +0200" endingAt:@"2012-09-13 12:40:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2012-09-13 13:00:00 +0200" endingAt:@"2012-09-13 14:00:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2012-09-13 14:20:00 +0200" endingAt:@"2012-09-13 15:20:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2012-09-13 15:40:00 +0200" endingAt:@"2012-09-13 16:40:00 +0200"];
+		[self addSectionForDay:2 startingAt:@"2012-09-13 17:00:00 +0200" endingAt:@"2012-09-13 18:00:00 +0200"];
 	}
 }
 
