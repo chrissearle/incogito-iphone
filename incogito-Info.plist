@@ -12,9 +12,6 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>Icon.png</string>
-		<string>Icon-72.png</string>
-		<string>Icon@2x.png</string>
 		<string>jz_flame_icon_57.png</string>
 		<string>jz_flame_icon_114.png</string>
 		<string>jz_flame_icon_72.png</string>
