@@ -66,10 +66,10 @@
 		</dict>
 	</array>
 	<key>FeedbackUrl</key>
-	<string>http://www.eventsystems.no/jzfeedback/api/surveys/javazone2011</string>
+	<string>http://www.eventsystems.no/jzfeedback/api/surveys/javazone2012</string>
 	<key>SessionUrl</key>
 	<string>http://javazone.no/incogito10/rest/events/JavaZone%202012/sessions</string>
 	<key>VideoUrl</key>
-	<string>http://dav.java.no/resources/iOS/video-224.plist</string>
+	<string>http://dav.java.no/resources/iOS/video-232.plist</string>
 </dict>
 </plist>
