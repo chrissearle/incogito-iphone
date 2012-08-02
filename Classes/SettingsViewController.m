@@ -25,22 +25,24 @@
 @synthesize HUD;
 
 - (void)redrawForOrientation:(UIInterfaceOrientation)interfaceOrientation {
+
+    int bioPicWidth = self.bioPicSwitch.frame.size.width;
     
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
         if (UIDeviceOrientationIsLandscape(interfaceOrientation)) {
             self.picker.frame = CGRectMake(0, 55, 250, 216);
             self.labelsLabel.frame = CGRectMake(7, 20, 280, 34);
             self.applyButton.frame = CGRectMake(258, 55, 202, 37);
-            self.refreshButton.frame = CGRectMake(258, 150, 202, 37);
-            self.downloadLabel.frame = CGRectMake(258, 195, 267, 21);
-            self.bioPicSwitch.frame = CGRectMake(366, 224, 94, 27);
+            self.refreshButton.frame = CGRectMake(258, 212, 202, 37);
+            self.downloadLabel.frame = CGRectMake(258, 150, 267, 21);
+            self.bioPicSwitch.frame = CGRectMake((460 - bioPicWidth), 178, bioPicWidth, 27);
         } else {
-            self.picker.frame = CGRectMake(0, 62, 320, 216);
-            self.labelsLabel.frame = CGRectMake(20, 20, 280, 34);
-            self.applyButton.frame = CGRectMake(20, 286, 280, 37);
-            self.refreshButton.frame = CGRectMake(20, 331, 280, 37);
-            self.downloadLabel.frame = CGRectMake(20, 379, 178, 24);
-            self.bioPicSwitch.frame = CGRectMake(206, 376, 94, 27);
+            self.picker.frame = CGRectMake(0, 41, 320, 216);
+            self.labelsLabel.frame = CGRectMake(20, 20, 280, 20);
+            self.applyButton.frame = CGRectMake(20, 265, 280, 37);
+            self.refreshButton.frame = CGRectMake(20, 363, 280, 37);
+            self.downloadLabel.frame = CGRectMake(20, 330, 178, 24);
+            self.bioPicSwitch.frame = CGRectMake((300 - bioPicWidth), 328, bioPicWidth, 27);
         }
     } else {
         CGSize frameSize = self.view.frame.size;
@@ -52,11 +54,12 @@
         int mainTop = (frameSize.height - 409) / 2;
         int refreshTop = mainTop + 325;
         
+        self.labelsLabel.frame = CGRectMake(mainLeft, mainTop - 20, mainWidth, 20);
         self.picker.frame = CGRectMake(mainLeft, mainTop, mainWidth, 216);
         self.applyButton.frame = CGRectMake(mainLeft, mainTop + 224, mainWidth, 37);
-        self.refreshButton.frame = CGRectMake(mainLeft, refreshTop, mainWidth, 37);
-        self.downloadLabel.frame = CGRectMake(mainLeft, refreshTop + 60, mainWidth - 100, 24);
-        self.bioPicSwitch.frame = CGRectMake(mainLeft + mainWidth - 94, refreshTop + 57, 94, 27);
+        self.refreshButton.frame = CGRectMake(mainLeft, refreshTop + 40, mainWidth, 37);
+        self.downloadLabel.frame = CGRectMake(mainLeft, refreshTop + 3, mainWidth - 100, 24);
+        self.bioPicSwitch.frame = CGRectMake(mainLeft + mainWidth - bioPicWidth, refreshTop, 94, 27);
     }
     
 }
