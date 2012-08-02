@@ -19,6 +19,7 @@
 #import "ClearDocumentsInitializer.h"
 #import "SHK.h"
 #import "FlurryAnalytics.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation IncogitoAppDelegate
 
@@ -61,6 +62,8 @@ void uncaughtExceptionHandler(NSException *exception) {
 	AppLog(@"Called sectionInitializer");
 	
     [SHK flushOfflineQueue];
+
+    [Crashlytics startWithAPIKey:@"76243485dba0d4938b2917f78d8106a6ff1d0d0b"];
     
 	TabInitializer *tabInitializer = [[[TabInitializer alloc] initWithControllers:rootController.viewControllers] autorelease];
 	[rootController setViewControllers:[tabInitializer validControllers] animated:NO];
