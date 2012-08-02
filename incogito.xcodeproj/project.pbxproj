@@ -1738,7 +1738,7 @@
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "incogito-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/FlurryAnalytics\"",
@@ -1767,7 +1767,7 @@
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "incogito-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/FlurryAnalytics\"",
@@ -1824,14 +1824,14 @@
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "incogito-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/FlurryAnalytics\"",
 				);
 				PRODUCT_NAME = JavaZone;
-				PROVISIONING_PROFILE = "02E07B3C-3084-4655-87DA-F3167C8A8EC3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "02E07B3C-3084-4655-87DA-F3167C8A8EC3";
+				PROVISIONING_PROFILE = "D9B1354A-D161-45A7-8FE7-CEF443B7D228";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D9B1354A-D161-45A7-8FE7-CEF443B7D228";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1870,7 +1870,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Chris Searle";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chris Searle";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1881,13 +1881,13 @@
 				GCC_PREFIX_HEADER = incogito_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "incogito-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/FlurryAnalytics\"",
 				);
 				PRODUCT_NAME = JavaZone;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "A117B26B-AAE0-45AE-8672-1B65C54EA4C4";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A117B26B-AAE0-45AE-8672-1B65C54EA4C4";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
