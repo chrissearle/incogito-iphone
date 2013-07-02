@@ -1,3 +1,12 @@
+## Project Status
+
+This project is mothballed. It was based on screen-scraping the JavaZone
+website since there was no better back-end to talk to. From 2013 this is no
+longer the case.
+
+For the <a href="https://github.com/javaBin/ems-redux">EMS-Redux</a> based
+application - please see <a href="https://github.com/chrissearle/ems-ios/">ems-ios</a>.
+
 ## iOS support
 
 JavaZone 2010 supported iOS 3.1 and above.
